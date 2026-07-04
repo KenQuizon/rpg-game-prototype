@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://djkodwunqlpaw"]
+
+[ext_resource type="Script" uid="uid://cr0gnhrwfolxe" path="res://Characters/Components/Movement/MovementComponent.gd" id="1_502mb"]
+[ext_resource type="PackedScene" uid="uid://cr2hmkf65x5m1" path="res://Characters/Scenes/Ranger.tscn" id="1_fc2fk"]
+[ext_resource type="Script" uid="uid://dt61ygcy2nfgd" path="res://Characters/Scripts/Character.gd" id="1_xdxam"]
+[ext_resource type="Script" uid="uid://bqmh470sqw07n" path="res://Characters/Controllers/PlayerController.gd" id="2_0vidv"]
+[ext_resource type="Script" uid="uid://1uxjegku06ai" path="res://Characters/Components/Animation/AnimationComponent.gd" id="2_xdxam"]
+[ext_resource type="Script" uid="uid://db5y2ks4n6tkj" path="res://Characters/Components/Animation/AnimationProfile.gd" id="4_kx4co"]
+[ext_resource type="Script" uid="uid://fymtemcyytr3" path="res://Characters/Components/Interaction/InteractionComponent.gd" id="5_mp4tf"]
+[ext_resource type="Script" uid="uid://cigxfduvci7n2" path="res://Characters/StateMachine/CharacterStateMachine.gd" id="5_rfj7e"]
+[ext_resource type="Script" uid="uid://c0mhx0gyehvm3" path="res://Characters/Components/Health/HealthComponent.gd" id="6_ngbtq"]
+[ext_resource type="Script" uid="uid://qwrj0oop1vf0" path="res://Characters/Components/Health/HealthProfile.gd" id="7_yj2dr"]
+[ext_resource type="PackedScene" uid="uid://b6gj2tri376r5" path="res://Characters/Components/Interaction/InteractionArea.tscn" id="8_31vka"]
+[ext_resource type="Script" uid="uid://cu6oyn8ecb07t" path="res://Characters/Components/Stats/StatsComponent.gd" id="8_og5vo"]
+[ext_resource type="Script" uid="uid://d2lmkbyu5ly2u" path="res://Characters/Components/Stats/StatProfile.gd" id="9_4wbua"]
+[ext_resource type="Script" uid="uid://x3ox78n14rii" path="res://Characters/Components/Action/ActionComponent.gd" id="10_4wbua"]
+
+[sub_resource type="Resource" id="Resource_wmxcc"]
+script = ExtResource("4_kx4co")
+metadata/_custom_type_script = "uid://db5y2ks4n6tkj"
+
+[sub_resource type="Resource" id="Resource_2nri0"]
+script = ExtResource("9_4wbua")
+move_speed = 5.0
+metadata/_custom_type_script = "uid://d2lmkbyu5ly2u"
+
+[sub_resource type="Resource" id="Resource_x02cj"]
+script = ExtResource("7_yj2dr")
+metadata/_custom_type_script = "uid://qwrj0oop1vf0"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_er8h5"]
+height = 2.2
+
+[node name="Character" type="CharacterBody3D" unique_id=1084824515]
+script = ExtResource("1_xdxam")
+
+[node name="Components" type="Node" parent="." unique_id=1345096673]
+
+[node name="MovementComponent" type="Node" parent="Components" unique_id=586826802]
+script = ExtResource("1_502mb")
+metadata/_custom_type_script = "uid://cr0gnhrwfolxe"
+
+[node name="AnimationComponent" type="Node" parent="Components" unique_id=1517437127]
+script = ExtResource("2_xdxam")
+animation_profile = SubResource("Resource_wmxcc")
+metadata/_custom_type_script = "uid://1uxjegku06ai"
+
+[node name="StatsComponent" type="Node" parent="Components" unique_id=268312463]
+script = ExtResource("8_og5vo")
+stats_profile = SubResource("Resource_2nri0")
+metadata/_custom_type_script = "uid://cu6oyn8ecb07t"
+
+[node name="HealthComponent" type="Node" parent="Components" unique_id=908688141]
+script = ExtResource("6_ngbtq")
+profile = SubResource("Resource_x02cj")
+metadata/_custom_type_script = "uid://c0mhx0gyehvm3"
+
+[node name="InteractionComponent" type="Node" parent="Components" unique_id=951766864]
+script = ExtResource("5_mp4tf")
+metadata/_custom_type_script = "uid://fymtemcyytr3"
+
+[node name="ActionComponent" type="Node" parent="Components" unique_id=1849275258]
+script = ExtResource("10_4wbua")
+metadata/_custom_type_script = "uid://x3ox78n14rii"
+
+[node name="Systems" type="Node" parent="." unique_id=1868648437]
+
+[node name="Controller" type="Node" parent="Systems" unique_id=1188592564]
+script = ExtResource("2_0vidv")
+
+[node name="CharacterStateMachine" type="Node" parent="Systems" unique_id=1814035927]
+script = ExtResource("5_rfj7e")
+metadata/_custom_type_script = "uid://cigxfduvci7n2"
+
+[node name="Model" type="Node3D" parent="." unique_id=704711723]
+
+[node name="VisualRoot" type="Node3D" parent="Model" unique_id=1744098547]
+
+[node name="Ranger" parent="Model/VisualRoot" unique_id=1195253167 instance=ExtResource("1_fc2fk")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2039398385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+shape = SubResource("CapsuleShape3D_er8h5")
+
+[node name="CameraTarget" type="Node3D" parent="." unique_id=639854559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraTarget" unique_id=837568200]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 10, 10)
+current = true
+fov = 50.0
+
+[node name="InteractionOrigin" type="Node3D" parent="." unique_id=1127554027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.5)
+
+[node name="InteractionArea" parent="InteractionOrigin" unique_id=1013743914 instance=ExtResource("8_31vka")]

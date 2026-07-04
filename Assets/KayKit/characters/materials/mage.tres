@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dob7scw0fg35v"]
+
+[ext_resource type="Texture2D" uid="uid://d0523ddpdyc5m" path="res://Assets/KayKit/characters/textures/mage_texture.png" id="1_pc2ab"]
+
+[resource]
+resource_name = "mage"
+cull_mode = 2
+albedo_texture = ExtResource("1_pc2ab")
+roughness = 0.5
+metadata/_gltf_primary_texture_coord = 0

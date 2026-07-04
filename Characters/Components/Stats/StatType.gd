@@ -1,0 +1,17 @@
+extends RefCounted
+class_name StatType
+
+enum Id {
+	STRENGTH,
+	DEXTERITY,
+	INTELLIGENCE,
+	VITALITY,
+
+	MOVE_SPEED,
+	ATTACK_SPEED,
+
+	CRITICAL_CHANCE,
+	CRITICAL_DAMAGE,
+
+	DEFENSE
+}
