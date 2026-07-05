@@ -1,0 +1,18 @@
+extends Resource
+class_name AttackDefinition
+
+@export var display_name: String = ""
+
+@export var animation: StringName = &""
+
+@export var attack_data: AttackData = AttackData.new()
+@export var motion: AttackMotion = AttackMotion.new()
+@export var timing: AttackTiming = AttackTiming.new()
+@export var effects: AttackEffects = AttackEffects.new()
+
+@export var stamina_cost: float = 0.0
+@export var attack_speed: float = 1.0
+@export var can_move_during_attack: bool = false
+
+@export var projectile_scene: PackedScene = null
+@export var custom_events: Array[StringName] = []

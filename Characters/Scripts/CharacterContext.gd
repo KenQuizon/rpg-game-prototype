@@ -7,12 +7,16 @@ class_name CharacterContext
 
 var _character: Character
 var _registry: ComponentRegistry
+var _input := CharacterInput.new()
 
 #==============================================================================
 # Initialization
 #==============================================================================
 
-func _init(character: Character, component_registry: ComponentRegistry) -> void:
+func _init(
+	character: Character,
+	component_registry: ComponentRegistry
+) -> void:
 
 	_character = character
 	_registry = component_registry
@@ -24,6 +28,10 @@ func _init(character: Character, component_registry: ComponentRegistry) -> void:
 var character: Character:
 	get:
 		return _character
+
+var input: CharacterInput:
+	get:
+		return _input
 
 #==============================================================================
 # Generic Component Access
@@ -37,35 +45,48 @@ func has_component(component_class: GDScript) -> bool:
 	return _registry.has_component(component_class)
 
 #==============================================================================
-# Typed Component Access
+# Typed Components
 #==============================================================================
 
 var movement: MovementComponent:
 	get:
-		return get_component(MovementComponent) as MovementComponent
+		return get_component(MovementComponent)
 
 
 var animation: AnimationComponent:
 	get:
-		return get_component(AnimationComponent) as AnimationComponent
+		return get_component(AnimationComponent)
 
 
 var interaction: InteractionComponent:
 	get:
-		return get_component(InteractionComponent) as InteractionComponent
+		return get_component(InteractionComponent)
 
 
 var stats: StatsComponent:
 	get:
-		return get_component(StatsComponent) as StatsComponent
-		
-		
-var _input := CharacterInput.new()
+		return get_component(StatsComponent)
 
-var input: CharacterInput:
+
+var health: HealthComponent:
 	get:
-		return _input
-		
+		return get_component(HealthComponent)
+
+
 var action: ActionComponent:
 	get:
-		return get_component(ActionComponent) as ActionComponent
+		return get_component(ActionComponent)
+
+
+var combat: CombatComponent:
+	get:
+		return get_component(CombatComponent)
+
+
+var weapon: WeaponComponent:
+	get:
+		return get_component(WeaponComponent)
+		
+var combo: ComboComponent:
+	get:
+		return get_component(ComboComponent) as ComboComponent

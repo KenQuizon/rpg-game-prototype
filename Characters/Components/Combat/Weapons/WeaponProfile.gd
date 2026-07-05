@@ -1,60 +1,54 @@
-extends RefCounted
-class_name CharacterAction
+extends Resource
+class_name WeaponProfile
 
 #==============================================================================
-# Protected
+# Identity
 #==============================================================================
 
-var _context: CharacterContext
+@export var display_name: String = ""
 
-var _animation: AnimationComponent
-
-#==============================================================================
-# Properties
-#==============================================================================
-
-var context: CharacterContext:
-	get:
-		return _context
-
-var animation: AnimationComponent:
-	get:
-		return _animation
+@export var weapon_type: WeaponType.Id = WeaponType.Id.UNARMED
 
 #==============================================================================
-# Initialization
+# Combat
 #==============================================================================
 
-func initialize(character_context: CharacterContext) -> void:
+@export_range(0.0,10000.0)
+var base_damage: float = 10.0
 
-	_context = character_context
+@export_range(0.1,10.0)
+var attack_speed: float = 1.0
 
-	_animation = _context.animation
-
-#==============================================================================
-# Validation
-#==============================================================================
-
-func can_execute() -> bool:
-	return true
+@export_range(0.1,20.0)
+var attack_range: float = 1.5
 
 #==============================================================================
-# Lifecycle
+# Resources
 #==============================================================================
 
-func begin() -> void:
-	pass
+@export var hitbox_scene: PackedScene
 
-func update(_delta: float) -> void:
-	pass
+#==============================================================================
+# Weapon Scene
+#==============================================================================
 
+@export var weapon_scene: PackedScene
 
-func finish() -> void:
-	pass
-	
-func can_cancel() -> bool:
-	return true
+#==============================================================================
+# Attack Set
+#==============================================================================
 
+@export var attack_set: AttackSet
 
-func cancel() -> void:
-	finish()
+#==============================================================================
+# Future Expansion
+#==============================================================================
+
+# AnimationProfile override
+# ComboSet
+# ProjectileProfile
+# SkillSet
+# VFX Profile
+# Audio Profile
+# Attribute Requirements
+# Durability

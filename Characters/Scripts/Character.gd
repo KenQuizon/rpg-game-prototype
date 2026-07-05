@@ -20,6 +20,9 @@ class_name Character
 
 @onready var interaction_area: Area3D = $InteractionOrigin/InteractionArea
 
+@onready var weapon_socket: WeaponSocket = \
+	$Model/VisualRoot/Ranger/WeaponSocket
+	
 #==============================================================================
 # Camera API
 #==============================================================================
@@ -58,6 +61,10 @@ var character_interaction_area: Area3D:
 var character_state_machine: CharacterStateMachine:
 	get:
 		return state_machine
+		
+var character_weapon_socket: WeaponSocket:
+	get:
+		return weapon_socket
 
 #==============================================================================
 # Public Framework API

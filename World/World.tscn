@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dtw77nqdubr33"]
 
-[ext_resource type="Script" uid="uid://hlouhdxxrmv3" path="res://World.gd" id="1_bcbcq"]
-[ext_resource type="PackedScene" uid="uid://djkodwunqlpaw" path="res://Characters/Scenes/Character.tscn" id="2_js7pq"]
-[ext_resource type="PackedScene" uid="uid://c77s1tth17cnh" path="res://Camera/CameraRig.tscn" id="3_eu7l1"]
-[ext_resource type="PackedScene" uid="uid://cdff7qoxrslkx" path="res://Chest.tscn" id="4_js7pq"]
+[ext_resource type="Script" uid="uid://hlouhdxxrmv3" path="res://World/World.gd" id="1_il6x7"]
+[ext_resource type="PackedScene" uid="uid://djkodwunqlpaw" path="res://Characters/Scenes/Character.tscn" id="2_o14yy"]
+[ext_resource type="PackedScene" uid="uid://c77s1tth17cnh" path="res://Camera/CameraRig.tscn" id="3_04mge"]
+[ext_resource type="PackedScene" uid="uid://cdff7qoxrslkx" path="res://Chest.tscn" id="4_eue43"]
 
 [sub_resource type="Environment" id="Environment_tw2g7"]
 
@@ -14,9 +14,9 @@ size = Vector3(20, 1, 20)
 size = Vector3(20, 1, 20)
 
 [node name="World" type="Node3D" unique_id=2144308848]
-script = ExtResource("1_bcbcq")
+script = ExtResource("1_il6x7")
 
-[node name="Character" parent="." unique_id=1084824515 instance=ExtResource("2_js7pq")]
+[node name="Character" parent="." unique_id=1084824515 instance=ExtResource("2_o14yy")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1036113808]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
@@ -35,7 +35,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2135957461]
 shape = SubResource("BoxShape3D_2nri0")
 
-[node name="CameraRig" parent="." unique_id=304269602 instance=ExtResource("3_eu7l1")]
+[node name="CameraRig" parent="." unique_id=304269602 instance=ExtResource("3_04mge")]
 
-[node name="Chest" parent="." unique_id=1541842573 instance=ExtResource("4_js7pq")]
+[node name="Chest" parent="." unique_id=1541842573 instance=ExtResource("4_eue43")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)

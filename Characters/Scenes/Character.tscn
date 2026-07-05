@@ -5,28 +5,26 @@
 [ext_resource type="Script" uid="uid://dt61ygcy2nfgd" path="res://Characters/Scripts/Character.gd" id="1_xdxam"]
 [ext_resource type="Script" uid="uid://bqmh470sqw07n" path="res://Characters/Controllers/PlayerController.gd" id="2_0vidv"]
 [ext_resource type="Script" uid="uid://1uxjegku06ai" path="res://Characters/Components/Animation/AnimationComponent.gd" id="2_xdxam"]
-[ext_resource type="Script" uid="uid://db5y2ks4n6tkj" path="res://Characters/Components/Animation/AnimationProfile.gd" id="4_kx4co"]
+[ext_resource type="Resource" uid="uid://dhmb5gkntdpj3" path="res://Characters/Components/Animation/PlayerAnimationProfile.tres" id="4_2dinu"]
 [ext_resource type="Script" uid="uid://fymtemcyytr3" path="res://Characters/Components/Interaction/InteractionComponent.gd" id="5_mp4tf"]
 [ext_resource type="Script" uid="uid://cigxfduvci7n2" path="res://Characters/StateMachine/CharacterStateMachine.gd" id="5_rfj7e"]
+[ext_resource type="Resource" uid="uid://cgx0kfko0lg3j" path="res://Characters/Components/Stats/PlayerStats.tres" id="6_adxff"]
 [ext_resource type="Script" uid="uid://c0mhx0gyehvm3" path="res://Characters/Components/Health/HealthComponent.gd" id="6_ngbtq"]
-[ext_resource type="Script" uid="uid://qwrj0oop1vf0" path="res://Characters/Components/Health/HealthProfile.gd" id="7_yj2dr"]
 [ext_resource type="PackedScene" uid="uid://b6gj2tri376r5" path="res://Characters/Components/Interaction/InteractionArea.tscn" id="8_31vka"]
+[ext_resource type="Resource" uid="uid://bni4713l6eyw5" path="res://Characters/Components/Health/PlayerHealth.tres" id="8_41xvy"]
 [ext_resource type="Script" uid="uid://cu6oyn8ecb07t" path="res://Characters/Components/Stats/StatsComponent.gd" id="8_og5vo"]
-[ext_resource type="Script" uid="uid://d2lmkbyu5ly2u" path="res://Characters/Components/Stats/StatProfile.gd" id="9_4wbua"]
 [ext_resource type="Script" uid="uid://x3ox78n14rii" path="res://Characters/Components/Action/ActionComponent.gd" id="10_4wbua"]
+[ext_resource type="Script" uid="uid://cs3373l874ea1" path="res://Characters/Components/Combat/Combat/CombatComponent.gd" id="11_cj3vo"]
+[ext_resource type="Script" uid="uid://c714tlwbn8rdv" path="res://Characters/Components/Combat/Combat/HurtboxComponent.gd" id="12_5otae"]
+[ext_resource type="Script" uid="uid://ccm8lflo77amt" path="res://Characters/Components/Combat/Weapons/WeaponComponent.gd" id="13_m1gpw"]
+[ext_resource type="Script" uid="uid://bb12xak51omdq" path="res://Characters/Components/Combat/Weapons/WeaponProfile.gd" id="14_2dinu"]
+[ext_resource type="Script" uid="uid://ylguh5pimf4c" path="res://Characters/Components/Combat/Combat/ComboComponent.gd" id="15_adxff"]
 
-[sub_resource type="Resource" id="Resource_wmxcc"]
-script = ExtResource("4_kx4co")
-metadata/_custom_type_script = "uid://db5y2ks4n6tkj"
+[sub_resource type="BoxShape3D" id="BoxShape3D_5otae"]
 
-[sub_resource type="Resource" id="Resource_2nri0"]
-script = ExtResource("9_4wbua")
-move_speed = 5.0
-metadata/_custom_type_script = "uid://d2lmkbyu5ly2u"
-
-[sub_resource type="Resource" id="Resource_x02cj"]
-script = ExtResource("7_yj2dr")
-metadata/_custom_type_script = "uid://qwrj0oop1vf0"
+[sub_resource type="Resource" id="Resource_il6x7"]
+script = ExtResource("14_2dinu")
+metadata/_custom_type_script = "uid://bb12xak51omdq"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_er8h5"]
 height = 2.2
@@ -42,17 +40,17 @@ metadata/_custom_type_script = "uid://cr0gnhrwfolxe"
 
 [node name="AnimationComponent" type="Node" parent="Components" unique_id=1517437127]
 script = ExtResource("2_xdxam")
-animation_profile = SubResource("Resource_wmxcc")
+animation_profile = ExtResource("4_2dinu")
 metadata/_custom_type_script = "uid://1uxjegku06ai"
 
 [node name="StatsComponent" type="Node" parent="Components" unique_id=268312463]
 script = ExtResource("8_og5vo")
-stats_profile = SubResource("Resource_2nri0")
+stats_profile = ExtResource("6_adxff")
 metadata/_custom_type_script = "uid://cu6oyn8ecb07t"
 
 [node name="HealthComponent" type="Node" parent="Components" unique_id=908688141]
 script = ExtResource("6_ngbtq")
-profile = SubResource("Resource_x02cj")
+profile = ExtResource("8_41xvy")
 metadata/_custom_type_script = "uid://c0mhx0gyehvm3"
 
 [node name="InteractionComponent" type="Node" parent="Components" unique_id=951766864]
@@ -62,6 +60,28 @@ metadata/_custom_type_script = "uid://fymtemcyytr3"
 [node name="ActionComponent" type="Node" parent="Components" unique_id=1849275258]
 script = ExtResource("10_4wbua")
 metadata/_custom_type_script = "uid://x3ox78n14rii"
+
+[node name="HurtboxComponent" type="Node" parent="Components" unique_id=1894124302]
+script = ExtResource("12_5otae")
+metadata/_custom_type_script = "uid://c714tlwbn8rdv"
+
+[node name="Area3D" type="Area3D" parent="Components/HurtboxComponent" unique_id=1708993336]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Components/HurtboxComponent/Area3D" unique_id=1103412139]
+shape = SubResource("BoxShape3D_5otae")
+
+[node name="CombatComponent" type="Node" parent="Components" unique_id=2142510943]
+script = ExtResource("11_cj3vo")
+metadata/_custom_type_script = "uid://cs3373l874ea1"
+
+[node name="WeaponComponent" type="Node" parent="Components" unique_id=1398985983]
+script = ExtResource("13_m1gpw")
+default_weapon = SubResource("Resource_il6x7")
+metadata/_custom_type_script = "uid://ccm8lflo77amt"
+
+[node name="ComboComponent" type="Node" parent="Components" unique_id=2143321997]
+script = ExtResource("15_adxff")
+metadata/_custom_type_script = "uid://ylguh5pimf4c"
 
 [node name="Systems" type="Node" parent="." unique_id=1868648437]
 

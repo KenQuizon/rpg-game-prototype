@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cm3kparcj8df1"]
+
+[ext_resource type="PackedScene" uid="uid://bxkag4ehtnivh" path="res://Assets/KayKit/characters/props/gltf/sword_1handed.gltf" id="1_aeeks"]
+
+[node name="sword_1handed2" unique_id=328844577 instance=ExtResource("1_aeeks")]

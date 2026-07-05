@@ -136,8 +136,20 @@ func _play(
 	animation_started.emit(animation_name)
 	
 func animation_event_trigger(event_name: StringName) -> void:
+
 	animation_event.emit(event_name)
+
+	if context == null:
+		return
+
+	if context.combat == null:
+		return
+
+	context.combat.dispatch_event(event_name)
 
 
 func _on_animation_finished(animation_name: StringName) -> void:
 	animation_finished.emit(animation_name)
+	
+func play(animation_name: StringName, force_restart := false) -> void:
+	_play(animation_name, force_restart)

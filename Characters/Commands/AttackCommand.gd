@@ -9,6 +9,6 @@ func execute() -> bool:
 	if context.action.is_busy():
 		return false
 
-	return context.action.execute(
-		AttackAction.new()
-	)
+	var action := ActionFactory.create_attack()
+
+	return context.action.execute(action)

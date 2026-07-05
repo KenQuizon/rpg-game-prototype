@@ -80,6 +80,7 @@
 [ext_resource type="Animation" uid="uid://bi4m5nod2ins1" path="res://Assets/KayKit/characters/animations/movement/Walking_B.res" id="77_81r1q"]
 [ext_resource type="Animation" uid="uid://gkmvpvcdie22" path="res://Assets/KayKit/characters/animations/movement/Walking_Backwards.res" id="78_gjacw"]
 [ext_resource type="Animation" uid="uid://br2g72y60aqa4" path="res://Assets/KayKit/characters/animations/movement/Walking_C.res" id="79_eyp7h"]
+[ext_resource type="Script" uid="uid://5a0oneonidmo" path="res://Characters/Components/Combat/Weapons/WeaponSocket.gd" id="81_r3jr0"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oslyh"]
 _data = {
@@ -204,6 +205,7 @@ bone_name = "handslot.r"
 bone_idx = 17
 
 [node name="sword_1handed2" parent="Rig_Medium/Skeleton3D/Main_Hand" index="0" unique_id=1327699413 instance=ExtResource("2_r3jr0")]
+visible = false
 
 [node name="Off_Hand" type="BoneAttachment3D" parent="Rig_Medium/Skeleton3D" index="9" unique_id=1184445899]
 transform = Transform3D(-6.1197096e-09, 0.26286295, 0.96483237, 0.99999905, -2.9802404e-08, 3.32579e-07, 3.3326728e-07, 0.96483254, -0.26286313, 0.5077683, 0.63670504, -0.01852119)
@@ -213,3 +215,6 @@ bone_idx = 22
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=54704793]
 libraries/Combat = SubResource("AnimationLibrary_oslyh")
 libraries/Movement = SubResource("AnimationLibrary_r3jr0")
+
+[node name="WeaponSocket" type="Node3D" parent="." index="2" unique_id=1176139717]
+script = ExtResource("81_r3jr0")

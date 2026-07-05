@@ -1,26 +1,67 @@
 extends CharacterAction
 class_name AttackAction
 
+#==============================================================================
+# Runtime
+#==============================================================================
+
+var _weapon: WeaponComponent
+var _attack: AttackDefinition
+
+#==============================================================================
+# Validation
+#==============================================================================
+
+func can_execute() -> bool:
+
+	_weapon = context.weapon
+
+	if _weapon == null:
+		return false
+
+	if not _weapon.has_weapon():
+		return false
+
+	_attack = _weapon.select_next_attack()
+
+	if _attack == null:
+		return false
+
+	return true
+
+#==============================================================================
+# Lifecycle
+#==============================================================================
 
 func begin() -> void:
 
 	super.begin()
 
-	animation.play_attack()
+	context.combat.begin_attack()
+
+	_play_attack_animation()
 
 
-func _on_animation_event(event_name: StringName) -> void:
+func finish() -> void:
 
-	match event_name:
+	context.combat.finish_attack()
 
-		AnimationEvents.ENABLE_WEAPON:
-			print("Enable weapon")
+	super.finish()
 
-		AnimationEvents.ATTACK_HIT:
-			print("Deal damage")
+#==============================================================================
+# Internal
+#==============================================================================
 
-		AnimationEvents.DISABLE_WEAPON:
-			print("Disable weapon")
+func _play_attack_animation() -> void:
 
-		AnimationEvents.FINISH_ACTION:
-			context.action.stop_current_action()
+	if _attack == null:
+		return
+
+	if _attack.animation.is_empty():
+		animation.play_attack()
+		return
+
+	animation.play(
+		_attack.animation,
+		true
+	)
