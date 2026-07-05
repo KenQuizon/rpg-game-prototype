@@ -18,24 +18,12 @@
 [ext_resource type="Script" uid="uid://c714tlwbn8rdv" path="res://Characters/Components/Combat/Combat/HurtboxComponent.gd" id="12_5otae"]
 [ext_resource type="Script" uid="uid://ccm8lflo77amt" path="res://Characters/Components/Combat/Weapons/WeaponComponent.gd" id="13_m1gpw"]
 [ext_resource type="Script" uid="uid://bb12xak51omdq" path="res://Characters/Components/Combat/Weapons/WeaponProfile.gd" id="14_2dinu"]
-[ext_resource type="Script" uid="uid://bbp1veisyovtv" path="res://Characters/Components/Combat/Attacks/AttackDefinition.gd" id="14_pw0um"]
-[ext_resource type="Script" uid="uid://rgnyd2ru1lwi" path="res://Characters/Components/Combat/Attacks/AttackSet.gd" id="15_32hqh"]
 [ext_resource type="Script" uid="uid://ylguh5pimf4c" path="res://Characters/Components/Combat/Combat/ComboComponent.gd" id="15_adxff"]
-[ext_resource type="PackedScene" uid="uid://2r00002qw2u" path="res://Characters/Components/Combat/Hitbox.tscn" id="16_eagt1"]
-[ext_resource type="PackedScene" uid="uid://bxkag4ehtnivh" path="res://Assets/KayKit/characters/props/gltf/sword_1handed.gltf" id="18_paa67"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5otae"]
 
-[sub_resource type="Resource" id="Resource_r3jr0"]
-script = ExtResource("15_32hqh")
-light_attacks = Array[ExtResource("14_pw0um")]([null])
-metadata/_custom_type_script = "uid://rgnyd2ru1lwi"
-
 [sub_resource type="Resource" id="Resource_il6x7"]
 script = ExtResource("14_2dinu")
-hitbox_scene = ExtResource("16_eagt1")
-weapon_scene = ExtResource("18_paa67")
-attack_set = SubResource("Resource_r3jr0")
 metadata/_custom_type_script = "uid://bb12xak51omdq"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_er8h5"]

@@ -10,4 +10,4 @@ class_name AnimationProfile
 
 @export var attack_primary: StringName = &"Combat/Melee_1H_Attack_Slice_Diagonal"
 @export var hurt: StringName = &"Movement/Hit_B"
-@export var death: StringName = &"Movement//Death_B"
+@export var death: StringName = &"Movement/Death_B"

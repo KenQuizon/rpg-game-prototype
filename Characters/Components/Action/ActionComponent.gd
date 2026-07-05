@@ -5,66 +5,88 @@ class_name ActionComponent
 # Signals
 #==============================================================================
 
-signal action_started(action: CharacterAction)
-signal action_finished(action: CharacterAction)
+signal execution_started(execution: ActionExecution)
+signal execution_finished(execution: ActionExecution)
 
 #==============================================================================
 # Private
 #==============================================================================
 
-var _current_action: CharacterAction
+var _scheduler := ActionScheduler.new()
+var _factory := ActionFactory.new()
 
 #==============================================================================
 # Properties
 #==============================================================================
 
-var current_action: CharacterAction:
+var current_execution: ActionExecution:
 	get:
-		return _current_action
+		return _scheduler.current_execution
 
 func is_busy() -> bool:
-	return _current_action != null
+	return not _scheduler.is_idle()
+
+# Locks held by the currently running action (NONE when idle). Other
+# components (movement, rotation, camera...) query this to decide whether
+# their own behavior should be suppressed right now.
+var acquired_locks: int:
+	get:
+		return _scheduler.current_locks
+
+func has_lock(lock: int) -> bool:
+	return (acquired_locks & lock) != 0
 
 #==============================================================================
 # Public API
 #==============================================================================
 
-func execute_action(action: CharacterAction) -> bool:
-	return execute(action)
-	
-func execute(action: CharacterAction) -> bool:
+func submit(
+	request: ActionRequest
+) -> ActionResult:
 
-	if action == null:
-		return false
+	var execution := _factory.create(request)
 
-	if is_busy():
-		return false
+	if execution == null:
+		return ActionResult.new(
+			ActionResultCode.Id.INVALID,
+			ActionCompletionReason.Id.INVALID_REQUEST
+		)
 
-	action.initialize(context)
+	var validation := execution.action.validate()
 
-	if not action.can_execute():
-		return false
+	if validation.failed():
+		return validation
 
-	_current_action = action
+	var previous := _scheduler.current_execution
 
-	action.begin()
+	var result := _scheduler.submit(execution)
 
-	action_started.emit(action)
+	if result.succeeded():
 
-	return true
+		execution_started.emit(execution)
+
+		# Preemption swaps current_execution synchronously here, not inside
+		# process_update()'s before/after check — emit the replaced
+		# execution's finish so listeners still see a matched pair.
+		if previous != null and _scheduler.current_execution == execution:
+			execution_finished.emit(previous)
+
+	return result
+
+func cancel_current() -> void:
+	_scheduler.cancel()
+
+func interrupt_current() -> void:
+	_scheduler.interrupt()
 
 func stop_current_action() -> void:
+	_scheduler.request_finish_current()
 
-	if _current_action == null:
-		return
-
-	var finished := _current_action
-
-	finished.finish()
-
-	_current_action = null
-
-	action_finished.emit(finished)
+# Bypasses recovery entirely — an immediate administrative/system override.
+# Not currently called anywhere in the framework; exposed for cases like a
+# networked "server says this ends now" authority override in the future.
+func force_finish_current() -> void:
+	_scheduler.force_finish()
 
 #==============================================================================
 # Updates
@@ -72,7 +94,9 @@ func stop_current_action() -> void:
 
 func process_update(delta: float) -> void:
 
-	if _current_action == null:
-		return
+	var previous := _scheduler.current_execution
 
-	_current_action.update(delta)
+	_scheduler.update(delta)
+
+	if previous != null and _scheduler.current_execution == null:
+		execution_finished.emit(previous)

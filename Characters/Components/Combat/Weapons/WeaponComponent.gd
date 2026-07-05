@@ -25,8 +25,7 @@ var _socket: WeaponSocket
 #==============================================================================
 
 var _instance: WeaponInstance
-
-var _attack_runtime := AttackRuntime.new()
+var _attack_runtime: AttackRuntime = AttackRuntime.new()
 
 #==============================================================================
 # Properties
@@ -36,13 +35,11 @@ var current_instance: WeaponInstance:
 	get:
 		return _instance
 
-
 var current_profile: WeaponProfile:
 	get:
 		if _instance == null:
 			return null
 		return _instance.profile
-
 
 func has_weapon() -> bool:
 	return _instance != null
@@ -59,7 +56,7 @@ func on_initialize() -> void:
 		return
 
 	_socket = character.character_weapon_socket
-	
+
 	_attack_runtime.initialize(self)
 
 	if default_weapon != null:
@@ -104,7 +101,6 @@ func equip(profile: WeaponProfile) -> bool:
 
 	return true
 
-
 func unequip() -> void:
 
 	if _instance == null:
@@ -130,10 +126,8 @@ func get_weapon_type() -> WeaponType.Id:
 
 	return current_profile.weapon_type
 
-
 func is_weapon_type(type: WeaponType.Id) -> bool:
 	return get_weapon_type() == type
-
 
 func get_hitbox() -> HitboxComponent:
 
@@ -142,47 +136,48 @@ func get_hitbox() -> HitboxComponent:
 
 	return _instance.get_hitbox()
 
-
-func get_attack(index: int = 0) -> WeaponAttack:
-
-	if current_profile == null:
-		return null
-
-	if current_profile.attacks.is_empty():
-		return null
-
-	index = clamp(
-		index,
-		0,
-		current_profile.attacks.size() - 1
-	)
-
-	return current_profile.attacks[index]
-
 func get_attack_set() -> AttackSet:
 
 	if current_profile == null:
 		return null
 
 	return current_profile.attack_set
-	
+
+#------------------------------------------------------------------------------
+# Action Framework API
+#------------------------------------------------------------------------------
+
+func get_attack_definition(index: int = 0) -> ActionDefinition:
+
+	var attack_set := get_attack_set()
+
+	if attack_set == null:
+		return null
+
+	return attack_set.get_light_attack(index)
+
+#------------------------------------------------------------------------------
+# Legacy Compatibility
+#------------------------------------------------------------------------------
+
+func get_attack(index: int = 0) -> AttackDefinition:
+	return get_attack_definition(index)
+
 func get_light_attack_count() -> int:
 
-	var set := get_attack_set()
+	var attack_set := get_attack_set()
 
-	if set == null:
+	if attack_set == null:
 		return 0
 
-	return set.get_light_attack_count()
-	
+	return attack_set.get_light_attack_count()
 
 func reset_combo() -> void:
 
 	if context.combo:
 		context.combo.reset_combo()
-		
-	_attack_runtime.reset_combo()
-		
-func select_next_attack() -> AttackDefinition:
 
+	_attack_runtime.reset_combo()
+
+func select_next_attack() -> AttackDefinition:
 	return _attack_runtime.select_next_attack()

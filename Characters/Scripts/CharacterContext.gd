@@ -1,91 +1,63 @@
 extends RefCounted
 class_name CharacterContext
-
 #==============================================================================
 # Private Variables
 #==============================================================================
-
 var _character: Character
 var _registry: ComponentRegistry
 var _input := CharacterInput.new()
-
 #==============================================================================
 # Initialization
 #==============================================================================
-
 func _init(
 	character: Character,
 	component_registry: ComponentRegistry
 ) -> void:
-
 	_character = character
 	_registry = component_registry
-
 #==============================================================================
 # Public Properties
 #==============================================================================
-
 var character: Character:
 	get:
 		return _character
-
 var input: CharacterInput:
 	get:
 		return _input
-
 #==============================================================================
 # Generic Component Access
 #==============================================================================
-
 func get_component(component_class: GDScript) -> BaseComponent:
 	return _registry.get_component(component_class)
-
-
 func has_component(component_class: GDScript) -> bool:
 	return _registry.has_component(component_class)
-
 #==============================================================================
 # Typed Components
 #==============================================================================
-
 var movement: MovementComponent:
 	get:
-		return get_component(MovementComponent)
-
-
+		return get_component(MovementComponent) as MovementComponent
 var animation: AnimationComponent:
 	get:
-		return get_component(AnimationComponent)
-
-
+		return get_component(AnimationComponent) as AnimationComponent
 var interaction: InteractionComponent:
 	get:
-		return get_component(InteractionComponent)
-
-
+		return get_component(InteractionComponent) as InteractionComponent
 var stats: StatsComponent:
 	get:
-		return get_component(StatsComponent)
-
-
+		return get_component(StatsComponent) as StatsComponent
 var health: HealthComponent:
 	get:
-		return get_component(HealthComponent)
-
-
+		return get_component(HealthComponent) as HealthComponent
 var action: ActionComponent:
 	get:
-		return get_component(ActionComponent)
-
-
+		return get_component(ActionComponent) as ActionComponent
 var combat: CombatComponent:
 	get:
-		return get_component(CombatComponent)
-
-
+		return get_component(CombatComponent) as CombatComponent
 var weapon: WeaponComponent:
 	get:
-		return get_component(WeaponComponent)
+		return get_component(WeaponComponent) as WeaponComponent
 		
 var combo: ComboComponent:
 	get:

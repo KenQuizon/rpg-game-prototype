@@ -63,13 +63,6 @@ func change_state(new_state: CharacterState) -> void:
 	_current_state.initialize(_context)
 	_current_state.enter()
 
-	print(
-		"[StateMachine] ",
-		_previous_state.get_state_name() if _previous_state else "None",
-		" -> ",
-		_current_state.get_state_name()
-	)
-
 	state_changed.emit(
 		_previous_state,
 		_current_state

@@ -82,9 +82,7 @@ func process_update(delta: float) -> void:
 	if _visual_root == null:
 		return
 
-	# Rotation should ALWAYS happen
-
-	if _movement.is_moving:
+	if _movement.is_moving and not _is_rotation_locked():
 
 		var direction := _movement.facing_direction
 
@@ -99,8 +97,10 @@ func process_update(delta: float) -> void:
 			rotation_speed * delta
 		)
 
-	# Only locomotion animations stop while an action is running
-
+	# Locomotion animations never override a running action's animation —
+	# this stays a blanket "any action running" check regardless of which
+	# specific locks that action declares, since it's about not stomping
+	# the action's own animation, not about physical movement/rotation.
 	if context.action != null and context.action.is_busy():
 		return
 
@@ -108,6 +108,11 @@ func process_update(delta: float) -> void:
 		play_walk()
 	else:
 		play_idle()
+
+func _is_rotation_locked() -> bool:
+	if context.action == null:
+		return false
+	return context.action.has_lock(ActionLock.Id.ROTATION)
 
 #==============================================================================
 # Animation

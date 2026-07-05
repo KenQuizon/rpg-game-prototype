@@ -41,9 +41,10 @@ func select_next_attack() -> AttackDefinition:
 	else:
 		combo.reset_timer()
 
-	var attack = set.get_light_attack(
-		combo.combo_index
-	)
+	var attack := set.get_light_attack(combo.combo_index)
+
+	if attack != null and attack.timing != null:
+		combo.set_active_timeout(attack.timing.combo_close_time)
 
 	combo.advance_combo(
 		set.get_light_attack_count()

@@ -56,21 +56,20 @@ func interact() -> void:
 # Initialization
 #==============================================================================
 
+# InteractionComponent.on_initialize()
 func on_initialize() -> void:
 
 	if context == null:
-		print("Context is NULL")
+		push_error("InteractionComponent: context is null.")
 		return
 
 	if context.character == null:
-		print("Character is NULL")
+		push_error("InteractionComponent: context.character is null.")
 		return
 
 	var character := context.character
 
 	_interaction_area = character.character_interaction_area
-
-	print(_interaction_area)
 
 	if _interaction_area == null:
 		push_error("InteractionArea not found.")

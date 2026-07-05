@@ -3,12 +3,14 @@ class_name AttackCommand
 
 func execute() -> bool:
 
-	if context.action == null:
+	var definition := context.weapon.get_attack_definition()
+
+	if definition == null:
 		return false
 
-	if context.action.is_busy():
-		return false
+	var request := ActionRequest.new(
+		context,
+		definition
+	)
 
-	var action := ActionFactory.create_attack()
-
-	return context.action.execute(action)
+	return context.action.submit(request).succeeded()

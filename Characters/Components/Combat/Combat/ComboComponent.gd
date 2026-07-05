@@ -13,7 +13,9 @@ signal combo_finished
 # Export
 #==============================================================================
 
-@export var combo_timeout := 1.0
+# Fallback only — used when nothing supplies a more specific timeout via
+# set_active_timeout() (e.g. an attack with no AttackTiming assigned).
+@export var default_combo_timeout := 1.0
 
 #==============================================================================
 # Runtime
@@ -22,6 +24,7 @@ signal combo_finished
 var _combo_index := 0
 var _combo_timer := 0.0
 var _combo_active := false
+var _active_timeout := 0.0
 
 #==============================================================================
 # Properties
@@ -30,7 +33,6 @@ var _combo_active := false
 var combo_index: int:
 	get:
 		return _combo_index
-
 
 func is_combo_active() -> bool:
 	return _combo_active
@@ -46,7 +48,7 @@ func process_update(delta: float) -> void:
 
 	_combo_timer += delta
 
-	if _combo_timer >= combo_timeout:
+	if _combo_timer >= _active_timeout:
 		reset_combo()
 
 #==============================================================================
@@ -61,11 +63,20 @@ func begin_combo() -> void:
 	_combo_active = true
 	_combo_timer = 0.0
 	_combo_index = 0
+	_active_timeout = default_combo_timeout
 
 	combo_started.emit()
 
 func reset_timer() -> void:
 	_combo_timer = 0.0
+
+# Lets whoever selects the next attack (AttackRuntime) supply that specific
+# attack's own AttackTiming.combo_close_time as the window for chaining
+# into the next hit, instead of every attack sharing one fixed timeout.
+func set_active_timeout(timeout: float) -> void:
+	if timeout <= 0.0:
+		return
+	_active_timeout = timeout
 
 func advance_combo(max_attacks: int) -> void:
 
@@ -90,5 +101,6 @@ func reset_combo() -> void:
 	_combo_active = false
 	_combo_timer = 0.0
 	_combo_index = 0
+	_active_timeout = default_combo_timeout
 
 	combo_finished.emit()
