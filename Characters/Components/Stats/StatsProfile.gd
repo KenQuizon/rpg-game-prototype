@@ -21,6 +21,8 @@ class_name StatsProfile
 
 @export var critical_damage: float = 1.5
 
+@export var poise: float = 50.0
+
 @export_group("Movement")
 
 @export var move_speed: float = 4.5

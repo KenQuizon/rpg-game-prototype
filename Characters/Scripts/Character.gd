@@ -32,34 +32,28 @@ func get_camera_follow_target() -> Node3D:
 #==============================================================================
 # Public Scene API
 #==============================================================================
-var character_model: Node3D:
-	get:
-		return model
-var character_visual: Node3D:
-	get:
-		return visual_root
-var character_camera_target: Node3D:
-	get:
-		return camera_target
-var character_interaction_origin: Node3D:
-	get:
-		return interaction_origin
-		
-var character_animation_player: AnimationPlayer:
-	get:
-		return animation_player
-		
-var character_interaction_area: Area3D:
-	get:
-		return interaction_area
-		
-var character_state_machine: CharacterStateMachine:
-	get:
-		return state_machine
-		
-var character_weapon_socket: WeaponSocket:
-	get:
-		return weapon_socket
+# Exposed as methods rather than properties so Gameplay-layer components can
+# duck-type against them with has_method() instead of hard-casting the owner
+# to Character. Any Node — a trap, a projectile, a destructible — can
+# implement this same set of get_character_*() methods and be usable by
+# AnimationComponent / WeaponComponent / EquipmentComponent / etc. without
+# being a Character or subclassing it. See BaseComponent.owner_character.
+func get_character_model() -> Node3D:
+	return model
+func get_character_visual() -> Node3D:
+	return visual_root
+func get_character_camera_target() -> Node3D:
+	return camera_target
+func get_character_interaction_origin() -> Node3D:
+	return interaction_origin
+func get_character_animation_player() -> AnimationPlayer:
+	return animation_player
+func get_character_interaction_area() -> Area3D:
+	return interaction_area
+func get_character_state_machine() -> CharacterStateMachine:
+	return state_machine
+func get_character_weapon_socket() -> WeaponSocket:
+	return weapon_socket
 #==============================================================================
 # Public Framework API
 #==============================================================================

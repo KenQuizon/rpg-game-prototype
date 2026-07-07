@@ -57,3 +57,14 @@ var flags: int = (
 @export var cooldown_group: StringName
 
 @export var cooldown: float = 0.0
+
+#==============================================================================
+# Validation
+#==============================================================================
+
+# Pluggable, composable validation gates evaluated in order during
+# CharacterAction.validate(), after flag checks and before can_execute().
+# Use this for cooldown checks, resource costs (mana/stamina), network
+# authority checks, etc. — new gate types are new ActionPolicy subclasses,
+# not edits to CharacterAction or ActionScheduler.
+@export var policies: Array[ActionPolicy] = []

@@ -55,14 +55,17 @@ var current_animation: StringName:
 
 func on_initialize() -> void:
 
-	var character := owner_character as Character
-
-	if character == null:
+	# Duck-typed against the get_character_visual()/get_character_animation_player()
+	# contract (see Character.gd) rather than requiring owner_character to be a
+	# Character — any host node implementing the same methods works here.
+	if not owner_character.has_method("get_character_visual"):
+		return
+	if not owner_character.has_method("get_character_animation_player"):
 		return
 
 	_movement = context.movement
-	_visual_root = character.character_visual
-	_animation_player = character.character_animation_player
+	_visual_root = owner_character.get_character_visual()
+	_animation_player = owner_character.get_character_animation_player()
 
 	if not _animation_player.animation_finished.is_connected(_on_animation_finished):
 		_animation_player.animation_finished.connect(_on_animation_finished)
@@ -110,9 +113,7 @@ func process_update(delta: float) -> void:
 		play_idle()
 
 func _is_rotation_locked() -> bool:
-	if context.action == null:
-		return false
-	return context.action.has_lock(ActionLock.Id.ROTATION)
+	return context.is_locked(ActionLock.Id.ROTATION)
 
 #==============================================================================
 # Animation

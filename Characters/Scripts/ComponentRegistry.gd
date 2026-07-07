@@ -12,11 +12,11 @@ var _components: Dictionary = {}
 #==============================================================================
 
 func register_component(component: BaseComponent) -> void:
-	_components[component.get_script()] = component
+	_components[component.get_component_key()] = component
 
 
 func unregister_component(component: BaseComponent) -> void:
-	_components.erase(component.get_script())
+	_components.erase(component.get_component_key())
 
 #==============================================================================
 # Lookup

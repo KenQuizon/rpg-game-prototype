@@ -139,3 +139,5 @@ func _load_profile() -> void:
 
 	_base_stats[StatType.Id.CRITICAL_CHANCE] = stats_profile.critical_chance
 	_base_stats[StatType.Id.CRITICAL_DAMAGE] = stats_profile.critical_damage
+	
+	_base_stats[StatType.Id.POISE] = stats_profile.poise

@@ -6,9 +6,21 @@ func execute() -> bool:
 	if context.interaction == null:
 		return false
 
-	if not context.interaction.has_target():
+	var target := context.interaction.current_target
+
+	if target == null:
 		return false
 
-	context.interaction.interact()
+	var definition := context.interaction.get_interact_definition(target)
 
-	return true
+	if definition == null:
+		return false
+
+	var request := ActionRequest.new(
+		context,
+		definition
+	)
+
+	request.target = target
+
+	return context.action.submit(request).succeeded()

@@ -34,3 +34,9 @@ func succeeded() -> bool:
 
 func failed() -> bool:
 	return not succeeded()
+
+# Convenience factory — equivalent to ActionResult.new(), but reads clearly
+# at call sites like ActionPolicy.evaluate() that only ever return success
+# or an explicit rejection.
+static func success() -> ActionResult:
+	return ActionResult.new()

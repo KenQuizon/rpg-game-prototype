@@ -24,6 +24,20 @@ class_name AttackData
 @export var can_stagger := true
 
 #==============================================================================
+# Stagger
+#==============================================================================
+
+# Poise damage this hit deals, separate from HP damage. 0.0 (default) means
+# this attack never contributes to stagger even if can_stagger is true —
+# both must be set for a hit to be able to break poise.
+@export var stagger_damage: float = 0.0
+
+# Status effect applied to the target only when this hit actually breaks
+# their poise (see PoiseComponent). Leave null for a hit that can break
+# poise but shouldn't apply any follow-up effect beyond the interrupt.
+@export var stagger_effect: StatusEffectData
+
+#==============================================================================
 # Tags
 #==============================================================================
 

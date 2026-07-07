@@ -74,7 +74,11 @@ func clear_attack_motion() -> void:
 
 func physics_update(delta: float) -> void:
 
-	var character := owner_character as Character
+	# CharacterBody3D, not Character — movement only needs velocity /
+	# move_and_slide() / is_on_floor(), which is a physics-body capability,
+	# not something specific to the Character class. Any CharacterBody3D
+	# host (an NPC, a boss, a non-Character actor) can use this component.
+	var character := owner_character as CharacterBody3D
 
 	if character == null:
 		return
@@ -110,7 +114,7 @@ func _update_direction() -> void:
 	if _is_moving:
 		_facing_direction = _move_direction.normalized()
 
-func _apply_horizontal_velocity(character: Character) -> void:
+func _apply_horizontal_velocity(character: CharacterBody3D) -> void:
 
 	var stats := context.stats
 
@@ -122,7 +126,7 @@ func _apply_horizontal_velocity(character: Character) -> void:
 	character.velocity.x = _move_direction.x * speed
 	character.velocity.z = _move_direction.z * speed
 
-func _apply_forced_motion(character: Character, delta: float) -> void:
+func _apply_forced_motion(character: CharacterBody3D, delta: float) -> void:
 
 	character.velocity.x = _forced_motion_direction.x * _forced_motion_speed
 	character.velocity.z = _forced_motion_direction.z * _forced_motion_speed
@@ -132,7 +136,7 @@ func _apply_forced_motion(character: Character, delta: float) -> void:
 	if _forced_motion_remaining_distance <= 0.0:
 		_forced_motion_active = false
 
-func _apply_gravity(character: Character, delta: float) -> void:
+func _apply_gravity(character: CharacterBody3D, delta: float) -> void:
 
 	if character.is_on_floor():
 		return
@@ -140,6 +144,4 @@ func _apply_gravity(character: Character, delta: float) -> void:
 	character.velocity.y -= gravity * delta
 
 func _is_movement_locked() -> bool:
-	if context.action == null:
-		return false
-	return context.action.has_lock(ActionLock.Id.MOVEMENT)
+	return context.is_locked(ActionLock.Id.MOVEMENT)

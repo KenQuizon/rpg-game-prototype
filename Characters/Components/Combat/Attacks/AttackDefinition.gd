@@ -27,7 +27,6 @@ class_name AttackDefinition
 
 @export var attack_speed: float = 1.0
 
-@export var can_move_during_attack: bool = false
 
 #==============================================================================
 # Optional

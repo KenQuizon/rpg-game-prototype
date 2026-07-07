@@ -28,7 +28,10 @@ var is_attacking: bool:
 func on_initialize() -> void:
 	_health = context.health
 	_stats = context.stats
-	_hurtbox = owner_character.get_component(HurtboxComponent)
+	# registry (not owner_character.get_component) — BaseComponent already
+	# exposes the registry directly, so this needs no Node-hierarchy access
+	# at all and works for any host, Character or otherwise.
+	_hurtbox = registry.get_component(HurtboxComponent)
 	_dispatcher = CombatEventDispatcher.get_default()
 	if _health != null:
 		if not _health.died.is_connected(_on_died):
@@ -97,4 +100,28 @@ func get_hurtbox() -> HurtboxComponent:
 # Internal
 #==============================================================================
 func _on_died() -> void:
+
+	# Death should immediately stop whatever the character was doing, not
+	# let an in-flight action run out its recovery — cancel() (not
+	# request_finish()) is deliberate here: dying is not a natural
+	# completion, it should behave like any other hard interrupt.
+	if context.action != null:
+		context.action.cancel_current()
+
+	# Duck-typed against get_character_state_machine() rather than
+	# context.character.character_state_machine — a state machine is an
+	# optional capability, not something every damageable host has (a
+	# destructible object dying doesn't need a CharacterDeadState).
+	if owner_character.has_method("get_character_state_machine"):
+		var state_machine: CharacterStateMachine = owner_character.get_character_state_machine()
+		if state_machine != null:
+			state_machine.change_state(CharacterDeadState.new())
+
+	if context.status != null:
+		context.status.clear_all()
+
 	death.emit()
+	
+# CombatComponent — new query, alongside get_defense()/get_hitbox()/get_hurtbox()
+func is_dead() -> bool:
+	return _health != null and _health.is_dead

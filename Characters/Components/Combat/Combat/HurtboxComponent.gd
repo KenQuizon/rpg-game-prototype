@@ -38,10 +38,17 @@ func on_initialize() -> void:
 
 func _on_area_entered(other: Area3D) -> void:
 
-	if not other.owner is HitboxComponent:
+	# Read the tag HitboxComponent.on_initialize() sets on its own Area3D
+	# rather than relying on Node.owner, which reflects scene-save
+	# ownership, not logical parentage, and breaks silently if a weapon
+	# scene's hierarchy is ever restructured.
+	if not other.has_meta("hitbox_component"):
 		return
 
-	var hitbox := other.owner as HitboxComponent
+	var hitbox := other.get_meta("hitbox_component") as HitboxComponent
+
+	if hitbox == null:
+		return
 
 	hit_received.emit(hitbox)
 

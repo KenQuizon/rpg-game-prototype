@@ -71,16 +71,65 @@ func can_execute() -> bool:
 
 func validate() -> ActionResult:
 
+	var alive_result := _validate_alive()
+
+	if alive_result.failed():
+		return alive_result
+
 	var flag_result := _validate_flags()
 
 	if flag_result.failed():
 		return flag_result
+
+	var policy_result := _validate_policies()
+
+	if policy_result.failed():
+		return policy_result
 
 	if not can_execute():
 		return ActionResult.new(
 			ActionResultCode.Id.REJECTED,
 			ActionCompletionReason.Id.FAILED_VALIDATION
 		)
+
+	return ActionResult.new()
+
+# Unconditional, not opt-in via a flag — a dead character being unable to
+# act is a base guarantee of the framework, not something every future
+# ActionDefinition has to remember to declare. Runs before flags/policies
+# since it's the cheapest possible rejection and applies universally.
+func _validate_alive() -> ActionResult:
+
+	if _context == null:
+		return ActionResult.new()
+
+	var health := _context.health
+
+	if health != null and health.is_dead:
+		return ActionResult.new(
+			ActionResultCode.Id.REJECTED,
+			ActionCompletionReason.Id.CHARACTER_DEAD
+		)
+
+	return ActionResult.new()
+
+# Runs every ActionPolicy attached to this action's ActionDefinition, in
+# order, stopping at the first failure. Definitions with no policies (the
+# default) skip this entirely and behave exactly as before this existed.
+func _validate_policies() -> ActionResult:
+
+	if _definition == null:
+		return ActionResult.new()
+
+	for policy in _definition.policies:
+
+		if policy == null:
+			continue
+
+		var result := policy.evaluate(_request, _runtime)
+
+		if result.failed():
+			return result
 
 	return ActionResult.new()
 
@@ -120,7 +169,20 @@ func _validate_flags() -> ActionResult:
 #==============================================================================
 
 func start() -> void:
+	_commit_policies()
 	on_start()
+
+func _commit_policies() -> void:
+
+	if _definition == null:
+		return
+
+	for policy in _definition.policies:
+
+		if policy == null:
+			continue
+
+		policy.commit(_request, _runtime)
 
 func tick(delta: float) -> int:
 

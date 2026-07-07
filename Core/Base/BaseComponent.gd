@@ -52,7 +52,30 @@ func register_component(
 	_registry = component_registry
 
 	_registry.register_component(self)
+
+# Resolves to the highest-level framework component type (e.g.
+# MovementComponent), not the concrete instantiated script. This lets a
+# game-specific subclass — e.g. `FlyingMovementComponent extends
+# MovementComponent` on a boss — still be found via `context.movement`,
+# which looks up by the base MovementComponent script. Without this, the
+# registry would key subclasses under their own script and typed
+# CharacterContext accessors would silently return null for them.
+func get_component_key() -> Script:
+
+	var script := get_script() as Script
+
+	if script == null:
+		return null
 	
+	var base_script: Script = script.get_base_script()
+
+	while base_script != null and base_script != BaseComponent:
+		script = base_script
+		base_script = script.get_base_script()
+
+	return script
+
+
 func initialize() -> void:
 			
 	if _initialized:

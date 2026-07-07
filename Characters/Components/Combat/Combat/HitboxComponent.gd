@@ -95,7 +95,9 @@ func create_damage_request() -> DamageRequest:
 		.critical_multiplier(data.critical_multiplier) \
 		.can_be_blocked(data.can_be_blocked) \
 		.can_be_evaded(data.can_be_evaded) \
-		.can_stagger(data.can_stagger)
+		.can_stagger(data.can_stagger) \
+		.stagger_damage(data.stagger_damage) \
+		.stagger_effect(data.stagger_effect)
 	for tag in data.tags:
 		builder.add_tag(tag)
 	return builder.build()

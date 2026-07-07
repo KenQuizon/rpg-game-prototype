@@ -34,6 +34,12 @@ func can_be_evaded(value: bool) -> DamageRequestBuilder:
 func can_stagger(value: bool) -> DamageRequestBuilder:
 	_request.can_stagger = value
 	return self
+func stagger_damage(value: float) -> DamageRequestBuilder:
+	_request.stagger_damage = value
+	return self
+func stagger_effect(value: StatusEffectData) -> DamageRequestBuilder:
+	_request.stagger_effect = value
+	return self
 func add_tag(tag: StringName) -> DamageRequestBuilder:
 	_request.tags.append(tag)
 	return self

@@ -50,12 +50,10 @@ func has_weapon() -> bool:
 
 func on_initialize() -> void:
 
-	var character := owner_character as Character
-
-	if character == null:
+	if not owner_character.has_method("get_character_weapon_socket"):
 		return
 
-	_socket = character.character_weapon_socket
+	_socket = owner_character.get_character_weapon_socket()
 
 	_attack_runtime.initialize(self)
 

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cdff7qoxrslkx"]
 
-[ext_resource type="Script" uid="uid://bpclqbabewhjh" path="res://Chest.gd" id="1_4gslm"]
+[ext_resource type="Script" uid="uid://bpclqbabewhjh" path="res://World/Chest.gd" id="1_4gslm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2nri0"]
 
