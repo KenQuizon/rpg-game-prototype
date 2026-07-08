@@ -37,12 +37,11 @@ func on_initialize() -> void:
 #==============================================================================
 
 func _on_area_entered(other: Area3D) -> void:
-	print("[Hurtbox] entered by: ", other.name,
-		" | owner path: ", other.get_path(),
-		" | has_meta: ", other.has_meta("hitbox_component"),
-		" | other layer/mask: ", other.collision_layer, "/", other.collision_mask,
-		" | my layer/mask: ", area.collision_layer, "/", area.collision_mask)
 
+	# Read the tag HitboxComponent.on_initialize() sets on its own Area3D
+	# rather than relying on Node.owner, which reflects scene-save
+	# ownership, not logical parentage, and breaks silently if a weapon
+	# scene's hierarchy is ever restructured.
 	if not other.has_meta("hitbox_component"):
 		return
 
@@ -61,8 +60,6 @@ func _on_area_entered(other: Area3D) -> void:
 
 func _receive_hit(hitbox: HitboxComponent) -> void:
 
-	print("[Hurtbox] _receive_hit — is_active: ", hitbox.is_active(), " can_hit: ", hitbox.can_hit(self))
-
 	if not hitbox.is_active():
 		return
 
@@ -72,8 +69,6 @@ func _receive_hit(hitbox: HitboxComponent) -> void:
 	hitbox.register_hit(self)
 
 	var request := hitbox.create_damage_request()
-
-	print("[Hurtbox] request built: ", request)
 
 	damage_received.emit(request)
 

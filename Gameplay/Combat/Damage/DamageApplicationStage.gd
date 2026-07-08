@@ -17,9 +17,9 @@ func process(context: DamagePipelineContext) -> void:
 
 	var result := context.result
 
-	print("[Damage] final_damage: ", result.final_damage)
-
 	if result.final_damage <= 0.0:
+		# Matches the old apply_damage() early return: nothing to apply,
+		# and stagger/gameplay-events stages should not run either.
 		context.cancel()
 		return
 

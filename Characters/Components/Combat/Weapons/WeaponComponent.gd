@@ -49,7 +49,6 @@ func has_weapon() -> bool:
 #==============================================================================
 
 func on_initialize() -> void:
-	print("HITBOX INITIALIZED")
 	if not owner_character.has_method("get_character_weapon_socket"):
 		return
 

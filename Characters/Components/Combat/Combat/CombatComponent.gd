@@ -71,26 +71,19 @@ func finish_attack() -> void:
 # Damage
 #==============================================================================
 func receive_damage(request: DamageRequest) -> void:
-	var result := DamageSystem.apply_damage(self, request)
+	# DamagePipeline (via DamageApplicationStage) already applies the
+	# damage to this target internally as part of resolving the request.
+	# The returned DamageResult is for callers who want the outcome (e.g.
+	# for events/UI) — it must not be re-applied here, or every hit deals
+	# double damage.
+	DamageSystem.apply_damage(self, request)
 
-	print(result)
-
-	if result != null:
-		apply_damage(result)
-			
 func apply_damage(result: DamageResult) -> void:
-
-	print("[Combat] apply_damage")
-
 	if result == null:
-		print("result null")
 		return
 
 	if _health == null:
-		print("health null")
 		return
-
-	print("health =", _health)
 
 	_health.damage(result.final_damage)
 #==============================================================================

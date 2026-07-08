@@ -30,9 +30,9 @@ var _active_attack_data: AttackData = null
 func on_initialize() -> void:
 	if area == null:
 		push_error("HitboxComponent requires an Area3D.")
-		return   # ← bails out HERE
+		return
 	area.monitoring = false
-	area.set_meta("hitbox_component", self)   # ← this line never runs
+	area.set_meta("hitbox_component", self)
 #==============================================================================
 # Public API
 #==============================================================================
@@ -42,8 +42,6 @@ func activate() -> void:
 	_active = true
 	_already_hit.clear()
 	area.monitoring = true
-	print("[Hitbox] ACTIVATED at ", area.global_position,
-		" | layer/mask: ", area.collision_layer, "/", area.collision_mask)
 	activated.emit()
 
 func deactivate() -> void:
@@ -52,7 +50,6 @@ func deactivate() -> void:
 	_active = false
 	area.monitoring = false
 	_already_hit.clear()
-	print("[Hitbox] DEACTIVATED")
 	deactivated.emit()
 func is_active() -> bool:
 	return _active
@@ -77,10 +74,6 @@ func register_hit(hurtbox: HurtboxComponent) -> void:
 # Damage Requests
 #==============================================================================
 func create_damage_request() -> DamageRequest:
-	
-	print("combat owner = ", _combat_owner)
-	print("attack data = ", _active_attack_data)
-	print("default attack = ", attack_data)
 
 	var data := _active_attack_data if _active_attack_data != null else attack_data
 

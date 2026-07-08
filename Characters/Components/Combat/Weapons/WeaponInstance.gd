@@ -36,17 +36,12 @@ func initialize(
 # WeaponInstance.gd
 func _initialize_children() -> void:
 
-	print("hitbox =", hitbox)
-
 	if hitbox == null:
-		print("[WeaponInstance] hitbox is NULL")
 		return
 
 	hitbox.initialize()
 
 	hitbox.set_combat_owner(_context.combat)
-
-	print("[WeaponInstance] initialized")
 
 #==============================================================================
 # Public API
