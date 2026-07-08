@@ -1,3 +1,4 @@
+extends BaseComponent
 class_name TargetingComponent
 
 #==============================================================================

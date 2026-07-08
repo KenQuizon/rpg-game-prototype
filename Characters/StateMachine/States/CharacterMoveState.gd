@@ -14,6 +14,12 @@ func process_update(_delta: float) -> void:
 	movement.set_move_input(context.input.move_vector)
 
 	if movement.move_input == Vector2.ZERO:
-		context.character.state_machine.change_state(
-			CharacterIdleState.new()
-		)
+
+		# Duck-typed against get_character_state_machine() — see the
+		# identical note in CharacterIdleState.gd (roadmap 7.2).
+		if context.character.has_method("get_character_state_machine"):
+
+			var state_machine: CharacterStateMachine = context.character.get_character_state_machine()
+
+			if state_machine != null:
+				state_machine.change_state(CharacterIdleState.new())

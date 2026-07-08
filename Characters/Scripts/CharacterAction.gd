@@ -155,7 +155,13 @@ func _validate_flags() -> ActionResult:
 			)
 
 	if (flags & ActionFlags.Id.REQUIRES_GROUND) != 0:
-		var character := _context.character
+		# is_on_floor() is a CharacterBody3D capability, not something every
+		# CharacterContext host guarantees (context.character is typed Node
+		# — see roadmap 7.2). Cast defensively rather than assuming Character;
+		# a non-physics-body host (e.g. a stationary turret) simply never
+		# authors an action with REQUIRES_GROUND, so failing this check for
+		# one is the correct outcome, not an error.
+		var character := _context.character as CharacterBody3D
 		if character == null or not character.is_on_floor():
 			return ActionResult.new(
 				ActionResultCode.Id.REJECTED,

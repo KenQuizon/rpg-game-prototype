@@ -81,4 +81,10 @@ var tick_interval: float = 1.0
 # Tags
 #==============================================================================
 
+# Draw from GameplayTags (roadmap 7.6) — e.g. GameplayTags.STUNNED,
+# GameplayTags.SILENCED — rather than ad hoc strings, so
+# StatusComponent.has_tag()/RequiredTagsPolicy/AI perception all agree on
+# what a given condition is called. Distinct from `locks` above: locks
+# suppress behavior, tags name *which* condition is doing the suppressing
+# (two effects can share a lock bit while being different tags).
 @export var tags: Array[StringName] = []

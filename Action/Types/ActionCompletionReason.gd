@@ -49,6 +49,11 @@ enum Id {
 
 	COOLDOWN,
 
+	# Rejected by RequiredTagsPolicy — the actor currently has an active
+	# status effect tag (see GameplayTags) this action forbids, e.g. an
+	# attempt to cast while GameplayTags.SILENCED is active.
+	FORBIDDEN_TAG,
+
 	#--------------------------------------------------------------------------
 	# System
 	#--------------------------------------------------------------------------

@@ -42,5 +42,5 @@ class_name AttackData
 #==============================================================================
 
 @export var tags: Array[StringName] = [
-	CombatTags.MELEE
+	GameplayTags.MELEE
 ]

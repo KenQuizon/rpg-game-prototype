@@ -114,6 +114,39 @@ func get_active_locks() -> int:
 	return locks
 
 #==============================================================================
+# Tags (roadmap 7.6)
+#==============================================================================
+
+# Whether any currently-active status effect carries this tag — see
+# GameplayTags. This is the query surface ActionPolicy (RequiredTagsPolicy)
+# and, eventually, AI perception/targeting are meant to read from, kept
+# separate from has_lock()/get_active_locks() since a tag identifies
+# *which* condition is active, not just whether some behavior is
+# suppressed.
+func has_tag(tag: StringName) -> bool:
+
+	for instance: StatusEffectInstance in _active.values():
+		if instance.data.tags.has(tag):
+			return true
+
+	return false
+
+
+# All tags from every currently-active status effect, deduplicated — for
+# UI (condition icons) or AI (perception filters) that need to enumerate
+# what's currently active rather than test one tag at a time.
+func get_active_tags() -> Array[StringName]:
+
+	var result: Array[StringName] = []
+
+	for instance: StatusEffectInstance in _active.values():
+		for tag in instance.data.tags:
+			if not result.has(tag):
+				result.append(tag)
+
+	return result
+
+#==============================================================================
 # Updates
 #==============================================================================
 

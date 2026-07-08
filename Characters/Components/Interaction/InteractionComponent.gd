@@ -137,7 +137,15 @@ func on_initialize() -> void:
 
 	var character := context.character
 
-	_interaction_area = character.character_interaction_area
+	# Duck-typed against get_character_interaction_area() — context.character
+	# is typed Node, not Character (roadmap 7.2), so any host implementing
+	# the framework's get_character_*() contract can supply its own
+	# interaction area, not just the concrete Character class.
+	if not character.has_method("get_character_interaction_area"):
+		push_error("InteractionComponent: host does not implement get_character_interaction_area().")
+		return
+
+	_interaction_area = character.get_character_interaction_area()
 
 	if _interaction_area == null:
 		push_error("InteractionArea not found.")
@@ -222,7 +230,10 @@ func _select_best_target() -> Node:
 	if _nearby.is_empty():
 		return null
 
-	var character := context.character
+	# context.character is typed Node (roadmap 7.2) — only world position is
+	# needed here, so cast to Node3D rather than assuming Character, mirroring
+	# TargetingComponent._select_best_target()'s identical pattern.
+	var character := context.character as Node3D
 
 	if character == null:
 		return _nearby[0]
