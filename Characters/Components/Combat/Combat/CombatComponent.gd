@@ -71,15 +71,27 @@ func finish_attack() -> void:
 # Damage
 #==============================================================================
 func receive_damage(request: DamageRequest) -> void:
-	DamageSystem.apply_damage(
-		self,
-		request
-	)
+	var result := DamageSystem.apply_damage(self, request)
+
+	print(result)
+
+	if result != null:
+		apply_damage(result)
+			
 func apply_damage(result: DamageResult) -> void:
+
+	print("[Combat] apply_damage")
+
 	if result == null:
+		print("result null")
 		return
+
 	if _health == null:
+		print("health null")
 		return
+
+	print("health =", _health)
+
 	_health.damage(result.final_damage)
 #==============================================================================
 # Queries

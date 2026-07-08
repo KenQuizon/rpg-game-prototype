@@ -20,31 +20,42 @@
 [ext_resource type="Script" uid="uid://bb12xak51omdq" path="res://Characters/Components/Combat/Weapons/WeaponProfile.gd" id="14_2dinu"]
 [ext_resource type="Script" uid="uid://bbp1veisyovtv" path="res://Characters/Components/Combat/Attacks/AttackDefinition.gd" id="14_pw0um"]
 [ext_resource type="Script" uid="uid://rgnyd2ru1lwi" path="res://Characters/Components/Combat/Attacks/AttackSet.gd" id="15_32hqh"]
+[ext_resource type="PackedScene" uid="uid://cm3kparcj8df1" path="res://Characters/Components/Combat/sword_1_handed_2.tscn" id="15_41xvy"]
 [ext_resource type="Script" uid="uid://ylguh5pimf4c" path="res://Characters/Components/Combat/Combat/ComboComponent.gd" id="15_adxff"]
-[ext_resource type="PackedScene" uid="uid://2r00002qw2u" path="res://Characters/Components/Combat/Hitbox.tscn" id="16_eagt1"]
-[ext_resource type="PackedScene" uid="uid://bxkag4ehtnivh" path="res://Assets/KayKit/characters/props/gltf/sword_1handed.gltf" id="18_paa67"]
+[ext_resource type="Resource" uid="uid://dvn2cwpuy7sbk" path="res://Gameplay/Combat/Data/Attack_Slash1.tres" id="15_fef4x"]
+[ext_resource type="Script" uid="uid://cv5gb46oukrjm" path="res://Action/RunTime/PoiseComponent.gd" id="20_xovkx"]
+[ext_resource type="Script" uid="uid://c7xa74wehf8b5" path="res://Characters/Components/Stats/StatusComponent.gd" id="21_3fb5f"]
+[ext_resource type="Script" uid="uid://bi7uwhsjrsq3b" path="res://Characters/Components/Resource/ResourceComponent.gd" id="22_s77ed"]
+[ext_resource type="Script" uid="uid://chrq4eft6blp5" path="res://Characters/Components/Resource/ResourcePoolProfile.gd" id="23_8oa8c"]
+[ext_resource type="Resource" uid="uid://d082bktgl0lo2" path="res://Gameplay/Combat/Data/Stamina.tres" id="24_stqro"]
+[ext_resource type="Script" uid="uid://y6j1o6ejoksh" path="res://Characters/Components/Resource/CooldownComponent.gd" id="25_fw7kn"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5otae"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fef4x"]
+radius = 0.6
+height = 2.2
 
-[sub_resource type="Resource" id="Resource_r3jr0"]
+[sub_resource type="Resource" id="Resource_6rtp4"]
 script = ExtResource("15_32hqh")
-light_attacks = Array[ExtResource("14_pw0um")]([null])
+light_attacks = Array[ExtResource("14_pw0um")]([ExtResource("15_fef4x")])
 metadata/_custom_type_script = "uid://rgnyd2ru1lwi"
 
-[sub_resource type="Resource" id="Resource_il6x7"]
+[sub_resource type="Resource" id="Resource_h5dav"]
 script = ExtResource("14_2dinu")
-hitbox_scene = ExtResource("16_eagt1")
-weapon_scene = ExtResource("18_paa67")
-attack_set = SubResource("Resource_r3jr0")
+display_name = "Iron Sword"
+weapon_type = 1
+weapon_scene = ExtResource("15_41xvy")
+attack_set = SubResource("Resource_6rtp4")
 metadata/_custom_type_script = "uid://bb12xak51omdq"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_er8h5"]
+radius = 0.6
 height = 2.2
 
-[node name="Character" type="CharacterBody3D" unique_id=1084824515]
+[node name="Character" type="CharacterBody3D" unique_id=1084824515 groups=["player"]]
 script = ExtResource("1_xdxam")
+weapon_socket_path = NodePath("Model/VisualRoot/Ranger/Rig_Medium/Skeleton3D/Main_Hand/WeaponSocket")
 
-[node name="Components" type="Node" parent="." unique_id=1345096673]
+[node name="Components" type="Node3D" parent="." unique_id=1511514424]
 
 [node name="MovementComponent" type="Node" parent="Components" unique_id=586826802]
 script = ExtResource("1_502mb")
@@ -73,14 +84,15 @@ metadata/_custom_type_script = "uid://fymtemcyytr3"
 script = ExtResource("10_4wbua")
 metadata/_custom_type_script = "uid://x3ox78n14rii"
 
-[node name="HurtboxComponent" type="Node" parent="Components" unique_id=1894124302]
+[node name="HurtboxComponent" type="Node3D" parent="Components" unique_id=703178018]
 script = ExtResource("12_5otae")
-metadata/_custom_type_script = "uid://c714tlwbn8rdv"
 
 [node name="Area3D" type="Area3D" parent="Components/HurtboxComponent" unique_id=1708993336]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Components/HurtboxComponent/Area3D" unique_id=1103412139]
-shape = SubResource("BoxShape3D_5otae")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Components/HurtboxComponent/Area3D" unique_id=184719050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+shape = SubResource("CapsuleShape3D_fef4x")
+debug_color = Color(0.77747333, 0.4655519, 0, 0.41960785)
 
 [node name="CombatComponent" type="Node" parent="Components" unique_id=2142510943]
 script = ExtResource("11_cj3vo")
@@ -88,12 +100,29 @@ metadata/_custom_type_script = "uid://cs3373l874ea1"
 
 [node name="WeaponComponent" type="Node" parent="Components" unique_id=1398985983]
 script = ExtResource("13_m1gpw")
-default_weapon = SubResource("Resource_il6x7")
+default_weapon = SubResource("Resource_h5dav")
 metadata/_custom_type_script = "uid://ccm8lflo77amt"
 
 [node name="ComboComponent" type="Node" parent="Components" unique_id=2143321997]
 script = ExtResource("15_adxff")
 metadata/_custom_type_script = "uid://ylguh5pimf4c"
+
+[node name="PoiseComponent" type="Node" parent="Components" unique_id=1541991321]
+script = ExtResource("20_xovkx")
+metadata/_custom_type_script = "uid://cv5gb46oukrjm"
+
+[node name="StatusComponent" type="Node" parent="Components" unique_id=258154783]
+script = ExtResource("21_3fb5f")
+metadata/_custom_type_script = "uid://c7xa74wehf8b5"
+
+[node name="ResourceComponent" type="Node" parent="Components" unique_id=633261420]
+script = ExtResource("22_s77ed")
+pools = Array[ExtResource("23_8oa8c")]([ExtResource("24_stqro")])
+metadata/_custom_type_script = "uid://bi7uwhsjrsq3b"
+
+[node name="CooldownComponent" type="Node" parent="Components" unique_id=881125021]
+script = ExtResource("25_fw7kn")
+metadata/_custom_type_script = "uid://y6j1o6ejoksh"
 
 [node name="Systems" type="Node" parent="." unique_id=1868648437]
 
@@ -113,11 +142,12 @@ metadata/_custom_type_script = "uid://cigxfduvci7n2"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2039398385]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 shape = SubResource("CapsuleShape3D_er8h5")
+debug_color = Color(0.9440604, 5.4580272e-05, 0.70688885, 0.41960785)
 
 [node name="CameraTarget" type="Node3D" parent="." unique_id=639854559]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Camera3D" type="Camera3D" parent="CameraTarget" unique_id=837568200]
+[node name="Camera3D" type="Camera3D" parent="CameraTarget" unique_id=1667876836]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 10, 10)
 current = true
 fov = 50.0

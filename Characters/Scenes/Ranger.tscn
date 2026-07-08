@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dbe3qf1yo7fk" path="res://Assets/KayKit/characters/adventurers/Ranger.glb" id="1_0wm0f"]
 [ext_resource type="Animation" uid="uid://bmk717p7r0ifc" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Chop.res" id="2_oslyh"]
-[ext_resource type="PackedScene" uid="uid://bxkag4ehtnivh" path="res://Assets/KayKit/characters/props/gltf/sword_1handed.gltf" id="2_r3jr0"]
 [ext_resource type="Animation" uid="uid://dalhokfii67jc" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Jump_Chop.res" id="3_r3jr0"]
+[ext_resource type="PackedScene" uid="uid://cm3kparcj8df1" path="res://Characters/Components/Combat/sword_1_handed_2.tscn" id="3_tgmbb"]
 [ext_resource type="Animation" uid="uid://h72ekkq1m1if" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Slice_Diagonal.res" id="4_tgmbb"]
 [ext_resource type="Animation" uid="uid://4ll5vfangkr0" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Slice_Horizontal.res" id="5_h62n6"]
 [ext_resource type="Animation" uid="uid://dabacevmai657" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Stab.res" id="6_i0t6l"]
@@ -182,14 +182,14 @@ bones/6/position = Vector3(-0.17094508, 0.11358732, 1.557549e-08)
 bones/6/rotation = Quaternion(0.9973222, -0.029457364, 0.03152927, 0.05904832)
 bones/7/rotation = Quaternion(0.2740081, -6.3812955e-08, 1.927607e-07, 0.9617275)
 bones/8/rotation = Quaternion(-0.5590394, 0.11451276, -0.008627633, 0.82115)
-bones/9/rotation = Quaternion(-8.934892e-05, 0.9202217, -0.3913977, 2.0290998e-05)
+bones/9/rotation = Quaternion(-8.9348905e-05, 0.9202216, -0.39139763, 2.0290994e-05)
 bones/10/rotation = Quaternion(-6.938893e-18, 7.1054274e-15, 4.93038e-32, 1)
 bones/11/rotation = Quaternion(8.271806e-25, 3.7252903e-09, -2.75506e-40, 1)
 bones/12/rotation = Quaternion(-5.8060785e-11, -0.031341746, -1.880125e-09, 0.99950874)
 bones/13/position = Vector3(-0.21200737, 0.13413203, 8.6813984e-08)
 bones/13/rotation = Quaternion(-0.6182439, 0.08072865, 0.61801153, 0.47887278)
-bones/14/rotation = Quaternion(2.1687793e-08, 6.223694e-08, 0.5179393, 0.8554175)
-bones/16/rotation = Quaternion(-0.31929126, 0.30052418, -0.22734974, 0.8695117)
+bones/14/rotation = Quaternion(2.1687793e-08, 6.223694e-08, 0.5179393, 0.85541743)
+bones/16/rotation = Quaternion(-0.31929126, 0.30052418, -0.22734971, 0.8695116)
 bones/17/position = Vector3(-1.541501e-08, 0.096125126, -0.057499975)
 bones/17/rotation = Quaternion(-9.53579e-10, -4.3147743e-09, 0.7071068, 0.7071067)
 bones/18/position = Vector3(0.21200736, 0.13413203, 7.9299625e-08)
@@ -200,11 +200,16 @@ bones/22/position = Vector3(-6.936717e-09, 0.096125185, -0.057500005)
 bones/22/rotation = Quaternion(6.9489685e-09, -3.587743e-09, -0.7071068, 0.7071067)
 
 [node name="Main_Hand" type="BoneAttachment3D" parent="Rig_Medium/Skeleton3D" index="8" unique_id=1124459441]
-transform = Transform3D(3.0525698e-07, -0.14989437, -0.9887013, -0.9999989, 8.940685e-08, 3.4555764e-08, -3.0008258e-07, 0.9887013, -0.14989465, -0.49106094, 0.6410296, 0.10659539)
+transform = Transform3D(4.2446624e-07, -0.14989443, -0.9887013, -0.99999905, 8.940687e-08, -1.7406047e-07, -2.1067565e-07, 0.9887013, -0.14989457, -0.49106094, 0.6410296, 0.10659543)
 bone_name = "handslot.r"
 bone_idx = 17
 
-[node name="sword_1handed2" parent="Rig_Medium/Skeleton3D/Main_Hand" index="0" unique_id=1327699413 instance=ExtResource("2_r3jr0")]
+[node name="WeaponSocket" type="Node3D" parent="Rig_Medium/Skeleton3D/Main_Hand" index="0" unique_id=1176139717]
+transform = Transform3D(1.0000007, 0, 0, 0, 1.0000011, 0, 0, 0, 1.0000007, 0, 0, 0)
+script = ExtResource("81_r3jr0")
+
+[node name="IronSword" parent="Rig_Medium/Skeleton3D/Main_Hand/WeaponSocket" index="0" unique_id=328844577 instance=ExtResource("3_tgmbb")]
+transform = Transform3D(0.9999999, 0, 0, 0, 1.0000002, 0, 0, 0, 0.9999995, 0, 0, 0)
 visible = false
 
 [node name="Off_Hand" type="BoneAttachment3D" parent="Rig_Medium/Skeleton3D" index="9" unique_id=1184445899]
@@ -215,6 +220,3 @@ bone_idx = 22
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=54704793]
 libraries/Combat = SubResource("AnimationLibrary_oslyh")
 libraries/Movement = SubResource("AnimationLibrary_r3jr0")
-
-[node name="WeaponSocket" type="Node3D" parent="." index="2" unique_id=1176139717]
-script = ExtResource("81_r3jr0")

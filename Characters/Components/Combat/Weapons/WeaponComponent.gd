@@ -49,7 +49,7 @@ func has_weapon() -> bool:
 #==============================================================================
 
 func on_initialize() -> void:
-
+	print("HITBOX INITIALIZED")
 	if not owner_character.has_method("get_character_weapon_socket"):
 		return
 
@@ -87,13 +87,13 @@ func equip(profile: WeaponProfile) -> bool:
 
 	_instance = scene as WeaponInstance
 
+	if _socket != null:
+			_socket.attach(_instance)
+
 	_instance.initialize(
 		context,
 		profile
 	)
-
-	if _socket != null:
-		_socket.attach(_instance)
 
 	weapon_equipped.emit(profile)
 

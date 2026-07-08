@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="AttackDefinition" format=3 uid="uid://dvn2cwpuy7sbk"]
+
+[ext_resource type="Script" uid="uid://qpepkjukhlvt" path="res://Action/RunTime/ActionPolicy.gd" id="1_dyfgi"]
+[ext_resource type="Script" uid="uid://bnnbymum325ix" path="res://Gameplay/Combat/Data/AttackData.gd" id="1_jj2dx"]
+[ext_resource type="Script" uid="uid://d3ff2n2f5fjrh" path="res://Gameplay/Actions/Combat/AttackAction.gd" id="1_u4lbc"]
+[ext_resource type="Script" uid="uid://bbp1veisyovtv" path="res://Characters/Components/Combat/Attacks/AttackDefinition.gd" id="2_pkpil"]
+[ext_resource type="Script" uid="uid://bm7k5aqdcgye3" path="res://Characters/Components/Combat/Attacks/AttackTiming.gd" id="4_vv4sv"]
+
+[sub_resource type="Resource" id="Resource_u4lbc"]
+script = ExtResource("1_jj2dx")
+metadata/_custom_type_script = "uid://bnnbymum325ix"
+
+[sub_resource type="Resource" id="Resource_6qtug"]
+script = ExtResource("4_vv4sv")
+metadata/_custom_type_script = "uid://bm7k5aqdcgye3"
+
+[resource]
+script = ExtResource("2_pkpil")
+animation = &"Combat/Melee_1H_Attack_Slice_Diagonal"
+attack_data = SubResource("Resource_u4lbc")
+timing = SubResource("Resource_6qtug")
+id = &"attack_light_1"
+display_name = "DiagonalSlash"
+action_script = ExtResource("1_u4lbc")
+metadata/_custom_type_script = "uid://bbp1veisyovtv"

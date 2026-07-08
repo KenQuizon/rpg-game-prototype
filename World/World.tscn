@@ -4,8 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://djkodwunqlpaw" path="res://Characters/Scenes/Character.tscn" id="2_o14yy"]
 [ext_resource type="PackedScene" uid="uid://c77s1tth17cnh" path="res://Camera/CameraRig.tscn" id="3_04mge"]
 [ext_resource type="PackedScene" uid="uid://cdff7qoxrslkx" path="res://World/Chest.tscn" id="4_eue43"]
+[ext_resource type="PackedScene" uid="uid://d4bcsx26ymp38" path="res://Characters/Scenes/Enemy.tscn" id="5_o14yy"]
 
 [sub_resource type="Environment" id="Environment_tw2g7"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_g3r0j"]
+vertices = PackedVector3Array(-0.75, 0.5, -4.75, -1, 0.5, -6.75, -9.5, 0.5, -9.5, -9.5, 0.5, 9.5, 1, 0.5, -7, 9.5, 0.5, -9.5, 9.5, 0.5, 9.5, 0.75, 0.5, -4.75, 1.25, 0.5, -5.25)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(4, 1, 5), PackedInt32Array(5, 1, 2), PackedInt32Array(0, 7, 3), PackedInt32Array(3, 7, 6), PackedInt32Array(5, 8, 4), PackedInt32Array(8, 5, 7), PackedInt32Array(7, 5, 6)]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2nri0"]
 size = Vector3(20, 1, 20)
@@ -16,8 +21,6 @@ size = Vector3(20, 1, 20)
 [node name="World" type="Node3D" unique_id=2144308848]
 script = ExtResource("1_il6x7")
 
-[node name="Character" parent="." unique_id=1084824515 instance=ExtResource("2_o14yy")]
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1036113808]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
 shadow_enabled = true
@@ -25,17 +28,24 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=864884276]
 environment = SubResource("Environment_tw2g7")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1809488919]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1853309804]
+navigation_mesh = SubResource("NavigationMesh_g3r0j")
+
+[node name="Chest" parent="NavigationRegion3D" unique_id=1541842573 instance=ExtResource("4_eue43")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
+
+[node name="Ground" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1684734025]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/Ground" unique_id=1809488919]
 mesh = SubResource("BoxMesh_2nri0")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1684734025]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2135957461]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Ground" unique_id=2135957461]
 shape = SubResource("BoxShape3D_2nri0")
+
+[node name="Enemy" parent="." unique_id=1692040955 instance=ExtResource("5_o14yy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.687243, 0, -7.1346583)
 
 [node name="CameraRig" parent="." unique_id=304269602 instance=ExtResource("3_04mge")]
 
-[node name="Chest" parent="." unique_id=1541842573 instance=ExtResource("4_eue43")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
+[node name="Character" parent="." unique_id=1084824515 instance=ExtResource("2_o14yy")]

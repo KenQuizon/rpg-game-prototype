@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_eips4")
+walk = &"Movement/Running_B"
 metadata/_custom_type_script = "uid://db5y2ks4n6tkj"

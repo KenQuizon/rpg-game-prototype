@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://d4m0tb03mj5mr"]
+
+[ext_resource type="Texture2D" uid="uid://rmmnjmhe0s77" path="res://Assets/KayKit/characters/textures/skeleton_texture.png" id="1_sgmm6"]
+
+[resource]
+resource_name = "skeleton"
+albedo_texture = ExtResource("1_sgmm6")
+roughness = 0.5
+metadata/_gltf_primary_texture_coord = 0

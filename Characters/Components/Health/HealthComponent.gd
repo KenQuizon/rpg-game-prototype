@@ -68,6 +68,7 @@ func physics_update(delta: float) -> void:
 # Public API
 #==============================================================================
 func damage(amount: float) -> void:
+
 	if _dead:
 		return
 	if _invulnerable:
@@ -86,6 +87,10 @@ func damage(amount: float) -> void:
 	damaged.emit(amount)
 	if _current_health <= 0.0:
 		_die()
+		
+	print("[Health] damage =", amount)
+	print("[Health] before =", current_health)
+	print("[Health] after =", current_health)
 func heal(amount: float) -> void:
 	if _dead:
 		return
