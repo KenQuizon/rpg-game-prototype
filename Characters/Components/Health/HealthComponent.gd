@@ -71,26 +71,40 @@ func damage(amount: float) -> void:
 
 	if _dead:
 		return
+
 	if _invulnerable:
 		return
+
 	if amount <= 0.0:
 		return
+
 	var previous := _current_health
+
+	print("")
+	print("================ DAMAGE =================")
+	print("[Health] Target:", owner.name)
+	print("[Health] Incoming Damage:", amount)
+	print("[Health] Health Before:", previous)
+
 	_current_health = max(
 		0.0,
 		_current_health - amount
 	)
+
+	print("[Health] Health After:", _current_health)
+
 	health_changed.emit(
 		previous,
 		_current_health
 	)
+
 	damaged.emit(amount)
+
 	if _current_health <= 0.0:
+		print("[Health] Target Died")
 		_die()
-		
-	print("[Health] damage =", amount)
-	print("[Health] before =", current_health)
-	print("[Health] after =", current_health)
+
+	print("=========================================")
 func heal(amount: float) -> void:
 	if _dead:
 		return

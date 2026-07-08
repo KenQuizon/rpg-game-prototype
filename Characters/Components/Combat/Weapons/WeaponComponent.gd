@@ -87,8 +87,12 @@ func equip(profile: WeaponProfile) -> bool:
 
 	_instance = scene as WeaponInstance
 
+	# Attach FIRST — this is what actually adds the weapon (and its nested
+	# HitboxComponent) to the scene tree, which is what makes @onready vars
+	# like HitboxComponent.area resolve. Initializing before this point means
+	# $Area3D is still null when on_initialize() runs.
 	if _socket != null:
-			_socket.attach(_instance)
+		_socket.attach(_instance)
 
 	_instance.initialize(
 		context,

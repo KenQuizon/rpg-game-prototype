@@ -28,15 +28,11 @@ var _active_attack_data: AttackData = null
 # Lifecycle
 #==============================================================================
 func on_initialize() -> void:
-	print("[Hitbox] Initialized")
 	if area == null:
 		push_error("HitboxComponent requires an Area3D.")
-		return
+		return   # ← bails out HERE
 	area.monitoring = false
-	area.set_meta(
-		"hitbox_component",
-		self
-	)
+	area.set_meta("hitbox_component", self)   # ← this line never runs
 #==============================================================================
 # Public API
 #==============================================================================
