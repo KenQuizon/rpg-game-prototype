@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="HealthProfile" format=3 uid="uid://bni4713l6eyw5"]
+
+[ext_resource type="Script" uid="uid://qwrj0oop1vf0" path="res://Project/Characters/Components/Health/HealthProfile.gd" id="1_ijojv"]
+
+[resource]
+script = ExtResource("1_ijojv")
+metadata/_custom_type_script = "uid://qwrj0oop1vf0"

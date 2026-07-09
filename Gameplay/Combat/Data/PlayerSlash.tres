@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="AttackData" format=3 uid="uid://c60je6a67wfev"]
-
-[ext_resource type="Script" uid="uid://bnnbymum325ix" path="res://Gameplay/Combat/Data/AttackData.gd" id="1_q7s5p"]
-
-[resource]
-script = ExtResource("1_q7s5p")
-metadata/_custom_type_script = "uid://bnnbymum325ix"

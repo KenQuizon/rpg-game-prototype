@@ -1,0 +1,227 @@
+[gd_scene format=3 uid="uid://cr2hmkf65x5m1"]
+
+[ext_resource type="PackedScene" uid="uid://dbe3qf1yo7fk" path="res://Assets/KayKit/characters/adventurers/Ranger.glb" id="1_0wm0f"]
+[ext_resource type="Animation" uid="uid://bmk717p7r0ifc" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Chop.res" id="2_oslyh"]
+[ext_resource type="Script" uid="uid://bg8csr1tobjt7" path="res://Project/Equipment/Data/EquipmentSlotSocket.gd" id="2_r3jr0"]
+[ext_resource type="Animation" uid="uid://dalhokfii67jc" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Jump_Chop.res" id="3_r3jr0"]
+[ext_resource type="PackedScene" uid="uid://cm3kparcj8df1" path="res://Project/Characters/Components/Combat/Scenes_Combat/sword_1_handed_2.tscn" id="4_h62n6"]
+[ext_resource type="Animation" uid="uid://h72ekkq1m1if" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Slice_Diagonal.res" id="4_tgmbb"]
+[ext_resource type="Animation" uid="uid://4ll5vfangkr0" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Slice_Horizontal.res" id="5_h62n6"]
+[ext_resource type="Animation" uid="uid://dabacevmai657" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Stab.res" id="6_i0t6l"]
+[ext_resource type="Animation" uid="uid://yi0s5lw0mr8w" path="res://Assets/KayKit/characters/animations/combat/Melee_2H_Attack_Chop.res" id="7_bsa5g"]
+[ext_resource type="Animation" uid="uid://du584glkly2cp" path="res://Assets/KayKit/characters/animations/combat/Melee_2H_Attack_Slice.res" id="8_kmfhw"]
+[ext_resource type="Animation" uid="uid://b5ewl6ra1t8lv" path="res://Assets/KayKit/characters/animations/combat/Melee_2H_Attack_Spin.res" id="9_1cimi"]
+[ext_resource type="Animation" uid="uid://dspu6j1v6t4ow" path="res://Assets/KayKit/characters/animations/combat/Melee_2H_Attack_Spinning.res" id="10_evj6u"]
+[ext_resource type="Animation" uid="uid://cfu2x31tsnsr" path="res://Assets/KayKit/characters/animations/combat/Melee_2H_Attack_Stab.res" id="11_qeruv"]
+[ext_resource type="Animation" uid="uid://dgnimr3kh61sp" path="res://Assets/KayKit/characters/animations/combat/Melee_2H_Idle.res" id="12_li3bb"]
+[ext_resource type="Animation" uid="uid://dbkwuusy36wwy" path="res://Assets/KayKit/characters/animations/combat/Melee_Block.res" id="13_2llui"]
+[ext_resource type="Animation" uid="uid://qlhk7ifypkri" path="res://Assets/KayKit/characters/animations/combat/Melee_Block_Attack.res" id="14_1l0x5"]
+[ext_resource type="Animation" uid="uid://dmfmaewhowye5" path="res://Assets/KayKit/characters/animations/combat/Melee_Block_Hit.res" id="15_dkb53"]
+[ext_resource type="Animation" uid="uid://ddul0xnflijv2" path="res://Assets/KayKit/characters/animations/combat/Melee_Blocking.res" id="16_vehpk"]
+[ext_resource type="Animation" uid="uid://dyqjqyseepm5g" path="res://Assets/KayKit/characters/animations/combat/Melee_Dualwield_Attack_Chop.res" id="17_tpffm"]
+[ext_resource type="Animation" uid="uid://0dwr5kk4bueb" path="res://Assets/KayKit/characters/animations/combat/Melee_Dualwield_Attack_Slice.res" id="18_gk3ge"]
+[ext_resource type="Animation" uid="uid://bj43bdf2dtiqq" path="res://Assets/KayKit/characters/animations/combat/Melee_Dualwield_Attack_Stab.res" id="19_iwrqo"]
+[ext_resource type="Animation" uid="uid://p4qig4psu8qh" path="res://Assets/KayKit/characters/animations/combat/Melee_Unarmed_Attack_Kick.res" id="20_xqivg"]
+[ext_resource type="Animation" uid="uid://cw4ulq62u8yps" path="res://Assets/KayKit/characters/animations/combat/Melee_Unarmed_Attack_Punch_A.res" id="21_mthj6"]
+[ext_resource type="Animation" uid="uid://bmpe0aspxy83k" path="res://Assets/KayKit/characters/animations/combat/Melee_Unarmed_Idle.res" id="22_qa0uj"]
+[ext_resource type="Animation" uid="uid://cgqxyci5oi87c" path="res://Assets/KayKit/characters/animations/combat/Ranged_1H_Aiming.res" id="23_6rrpe"]
+[ext_resource type="Animation" uid="uid://d4fm752q1qxk2" path="res://Assets/KayKit/characters/animations/combat/Ranged_1H_Reload.res" id="24_lbx3p"]
+[ext_resource type="Animation" uid="uid://ceerli81c4oet" path="res://Assets/KayKit/characters/animations/combat/Ranged_1H_Shoot.res" id="25_vd6k1"]
+[ext_resource type="Animation" uid="uid://bs2oejkoder3n" path="res://Assets/KayKit/characters/animations/combat/Ranged_1H_Shooting.res" id="26_lkfbi"]
+[ext_resource type="Animation" uid="uid://0ujtbatmd3qa" path="res://Assets/KayKit/characters/animations/combat/Ranged_2H_Aiming.res" id="27_bqorh"]
+[ext_resource type="Animation" uid="uid://cwudvbvl8og2i" path="res://Assets/KayKit/characters/animations/combat/Ranged_2H_Reload.res" id="28_n4cpk"]
+[ext_resource type="Animation" uid="uid://rojm651lhgrh" path="res://Assets/KayKit/characters/animations/combat/Ranged_2H_Shoot.res" id="29_ggsht"]
+[ext_resource type="Animation" uid="uid://cpww3vlowru3l" path="res://Assets/KayKit/characters/animations/combat/Ranged_2H_Shooting.res" id="30_ww0mo"]
+[ext_resource type="Animation" uid="uid://dtn5uryejbt3" path="res://Assets/KayKit/characters/animations/combat/Ranged_Bow_Aiming_Idle.res" id="31_y2lik"]
+[ext_resource type="Animation" uid="uid://bj8wd6rekdrk" path="res://Assets/KayKit/characters/animations/combat/Ranged_Bow_Draw.res" id="32_krw37"]
+[ext_resource type="Animation" uid="uid://cquy5kpcjhm16" path="res://Assets/KayKit/characters/animations/combat/Ranged_Bow_Draw_Up.res" id="33_cins5"]
+[ext_resource type="Animation" uid="uid://3e8xocgr70wf" path="res://Assets/KayKit/characters/animations/combat/Ranged_Bow_Idle.res" id="34_gihow"]
+[ext_resource type="Animation" uid="uid://wx23y565rwt2" path="res://Assets/KayKit/characters/animations/combat/Ranged_Bow_Release.res" id="35_bmb5j"]
+[ext_resource type="Animation" uid="uid://bs6u83pbuoeme" path="res://Assets/KayKit/characters/animations/combat/Ranged_Bow_Release_Up.res" id="36_vsqr2"]
+[ext_resource type="Animation" uid="uid://cec6qoqlwqqd6" path="res://Assets/KayKit/characters/animations/combat/Ranged_Magic_Raise.res" id="37_rsjq1"]
+[ext_resource type="Animation" uid="uid://ckf2vhxww02tv" path="res://Assets/KayKit/characters/animations/combat/Ranged_Magic_Shoot.res" id="38_jlj2y"]
+[ext_resource type="Animation" uid="uid://dtso3vqq3fh8x" path="res://Assets/KayKit/characters/animations/combat/Ranged_Magic_Spellcasting.res" id="39_lbuig"]
+[ext_resource type="Animation" uid="uid://tvldapr8cmv4" path="res://Assets/KayKit/characters/animations/combat/Ranged_Magic_Spellcasting_Long.res" id="40_4d3o8"]
+[ext_resource type="Animation" uid="uid://mfgmyudsg75v" path="res://Assets/KayKit/characters/animations/combat/Ranged_Magic_Summon.res" id="41_u3dty"]
+[ext_resource type="Animation" uid="uid://4m0tnmts61qr" path="res://Assets/KayKit/characters/animations/combat/T-Pose.res" id="42_uj408"]
+[ext_resource type="Animation" uid="uid://dsyik54g1lbmm" path="res://Assets/KayKit/characters/animations/movement/Crawling.res" id="43_mlpt6"]
+[ext_resource type="Animation" uid="uid://b0l8dm1v1ho" path="res://Assets/KayKit/characters/animations/movement/Crouching.res" id="44_lwv5a"]
+[ext_resource type="Animation" uid="uid://cg5rfmuu8a7lu" path="res://Assets/KayKit/characters/animations/movement/Death_A.res" id="45_lr6f4"]
+[ext_resource type="Animation" uid="uid://c8iujlgxifo62" path="res://Assets/KayKit/characters/animations/movement/Death_A_Pose.res" id="46_xmdt7"]
+[ext_resource type="Animation" uid="uid://cqgw0xj8k5du2" path="res://Assets/KayKit/characters/animations/movement/Death_B.res" id="47_87j15"]
+[ext_resource type="Animation" uid="uid://n08jdm4agvqf" path="res://Assets/KayKit/characters/animations/movement/Death_B_Pose.res" id="48_fvte2"]
+[ext_resource type="Animation" uid="uid://cx2kira5oosuy" path="res://Assets/KayKit/characters/animations/movement/Dodge_Backward.res" id="49_qs3b4"]
+[ext_resource type="Animation" uid="uid://dvg1eqwexjp0p" path="res://Assets/KayKit/characters/animations/movement/Dodge_Forward.res" id="50_gmrir"]
+[ext_resource type="Animation" uid="uid://ctnrms6sx2k7x" path="res://Assets/KayKit/characters/animations/movement/Dodge_Left.res" id="51_eorc0"]
+[ext_resource type="Animation" uid="uid://d2yj86641si3j" path="res://Assets/KayKit/characters/animations/movement/Dodge_Right.res" id="52_4cy8w"]
+[ext_resource type="Animation" uid="uid://dbwv422nl1yuj" path="res://Assets/KayKit/characters/animations/movement/Hit_A.res" id="53_oxtoq"]
+[ext_resource type="Animation" uid="uid://b28emayatauik" path="res://Assets/KayKit/characters/animations/movement/Hit_B.res" id="54_uycbh"]
+[ext_resource type="Animation" uid="uid://qsutepkg8wm5" path="res://Assets/KayKit/characters/animations/movement/Idle_A.res" id="55_oo8rn"]
+[ext_resource type="Animation" uid="uid://dh10sj65xird1" path="res://Assets/KayKit/characters/animations/movement/Idle_B.res" id="56_ecdqe"]
+[ext_resource type="Animation" uid="uid://biqitgt78tf5c" path="res://Assets/KayKit/characters/animations/movement/Interact.res" id="57_7u3fi"]
+[ext_resource type="Animation" uid="uid://balkv2r1vfgvq" path="res://Assets/KayKit/characters/animations/movement/Jump_Full_Long.res" id="58_wfeqi"]
+[ext_resource type="Animation" uid="uid://47w4jh1shh0v" path="res://Assets/KayKit/characters/animations/movement/Jump_Full_Short.res" id="59_2vhu1"]
+[ext_resource type="Animation" uid="uid://dsrb8hux3wvov" path="res://Assets/KayKit/characters/animations/movement/Jump_Idle.res" id="60_4k3gi"]
+[ext_resource type="Animation" uid="uid://bmshrtlil26dg" path="res://Assets/KayKit/characters/animations/movement/Jump_Land.res" id="61_wm36s"]
+[ext_resource type="Animation" uid="uid://bueiscwv8gc0c" path="res://Assets/KayKit/characters/animations/movement/Jump_Start.res" id="62_20nvm"]
+[ext_resource type="Animation" uid="uid://lpqau3swlm7s" path="res://Assets/KayKit/characters/animations/movement/PickUp.res" id="63_0okjb"]
+[ext_resource type="Animation" uid="uid://c3al5a6bmr600" path="res://Assets/KayKit/characters/animations/movement/Running_A.res" id="64_j4kep"]
+[ext_resource type="Animation" uid="uid://2a2tn608dlqh" path="res://Assets/KayKit/characters/animations/movement/Running_B.res" id="65_x54k5"]
+[ext_resource type="Animation" uid="uid://bgas2e1dw03c0" path="res://Assets/KayKit/characters/animations/movement/Running_HoldingBow.res" id="66_pq6kc"]
+[ext_resource type="Animation" uid="uid://r4tqdo6ncd87" path="res://Assets/KayKit/characters/animations/movement/Running_HoldingRifle.res" id="67_s22s0"]
+[ext_resource type="Animation" uid="uid://ck15bgxm1086o" path="res://Assets/KayKit/characters/animations/movement/Running_Strafe_Left.res" id="68_l2qq5"]
+[ext_resource type="Animation" uid="uid://bfu881tvowg4d" path="res://Assets/KayKit/characters/animations/movement/Running_Strafe_Right.res" id="69_l8qyr"]
+[ext_resource type="Animation" uid="uid://dgu4uknfjevrk" path="res://Assets/KayKit/characters/animations/movement/Sneaking.res" id="70_mv5ye"]
+[ext_resource type="Animation" uid="uid://c6s81p5qtn5i" path="res://Assets/KayKit/characters/animations/movement/Spawn_Air.res" id="71_sksk0"]
+[ext_resource type="Animation" uid="uid://lxpv15ggqgwj" path="res://Assets/KayKit/characters/animations/movement/Spawn_Ground.res" id="72_wkilf"]
+[ext_resource type="Animation" uid="uid://bsvhg2fgpemjd" path="res://Assets/KayKit/characters/animations/movement/T-Pose.res" id="73_1gjrj"]
+[ext_resource type="Animation" uid="uid://byg1ttcf16pax" path="res://Assets/KayKit/characters/animations/movement/Throw.res" id="74_5m4t1"]
+[ext_resource type="Animation" uid="uid://s5yirbwllwan" path="res://Assets/KayKit/characters/animations/movement/Use_Item.res" id="75_86jmi"]
+[ext_resource type="Animation" uid="uid://rjru7d7m0dfx" path="res://Assets/KayKit/characters/animations/movement/Walking_A.res" id="76_a042s"]
+[ext_resource type="Animation" uid="uid://bi4m5nod2ins1" path="res://Assets/KayKit/characters/animations/movement/Walking_B.res" id="77_81r1q"]
+[ext_resource type="Animation" uid="uid://gkmvpvcdie22" path="res://Assets/KayKit/characters/animations/movement/Walking_Backwards.res" id="78_gjacw"]
+[ext_resource type="Animation" uid="uid://br2g72y60aqa4" path="res://Assets/KayKit/characters/animations/movement/Walking_C.res" id="79_eyp7h"]
+[ext_resource type="Script" uid="uid://5a0oneonidmo" path="res://Project/Characters/Components/Combat/Weapons/WeaponSocket.gd" id="81_r3jr0"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oslyh"]
+_data = {
+&"Melee_1H_Attack_Chop": ExtResource("2_oslyh"),
+&"Melee_1H_Attack_Jump_Chop": ExtResource("3_r3jr0"),
+&"Melee_1H_Attack_Slice_Diagonal": ExtResource("4_tgmbb"),
+&"Melee_1H_Attack_Slice_Horizontal": ExtResource("5_h62n6"),
+&"Melee_1H_Attack_Stab": ExtResource("6_i0t6l"),
+&"Melee_2H_Attack_Chop": ExtResource("7_bsa5g"),
+&"Melee_2H_Attack_Slice": ExtResource("8_kmfhw"),
+&"Melee_2H_Attack_Spin": ExtResource("9_1cimi"),
+&"Melee_2H_Attack_Spinning": ExtResource("10_evj6u"),
+&"Melee_2H_Attack_Stab": ExtResource("11_qeruv"),
+&"Melee_2H_Idle": ExtResource("12_li3bb"),
+&"Melee_Block": ExtResource("13_2llui"),
+&"Melee_Block_Attack": ExtResource("14_1l0x5"),
+&"Melee_Block_Hit": ExtResource("15_dkb53"),
+&"Melee_Blocking": ExtResource("16_vehpk"),
+&"Melee_Dualwield_Attack_Chop": ExtResource("17_tpffm"),
+&"Melee_Dualwield_Attack_Slice": ExtResource("18_gk3ge"),
+&"Melee_Dualwield_Attack_Stab": ExtResource("19_iwrqo"),
+&"Melee_Unarmed_Attack_Kick": ExtResource("20_xqivg"),
+&"Melee_Unarmed_Attack_Punch_A": ExtResource("21_mthj6"),
+&"Melee_Unarmed_Idle": ExtResource("22_qa0uj"),
+&"Ranged_1H_Aiming": ExtResource("23_6rrpe"),
+&"Ranged_1H_Reload": ExtResource("24_lbx3p"),
+&"Ranged_1H_Shoot": ExtResource("25_vd6k1"),
+&"Ranged_1H_Shooting": ExtResource("26_lkfbi"),
+&"Ranged_2H_Aiming": ExtResource("27_bqorh"),
+&"Ranged_2H_Reload": ExtResource("28_n4cpk"),
+&"Ranged_2H_Shoot": ExtResource("29_ggsht"),
+&"Ranged_2H_Shooting": ExtResource("30_ww0mo"),
+&"Ranged_Bow_Aiming_Idle": ExtResource("31_y2lik"),
+&"Ranged_Bow_Draw": ExtResource("32_krw37"),
+&"Ranged_Bow_Draw_Up": ExtResource("33_cins5"),
+&"Ranged_Bow_Idle": ExtResource("34_gihow"),
+&"Ranged_Bow_Release": ExtResource("35_bmb5j"),
+&"Ranged_Bow_Release_Up": ExtResource("36_vsqr2"),
+&"Ranged_Magic_Raise": ExtResource("37_rsjq1"),
+&"Ranged_Magic_Shoot": ExtResource("38_jlj2y"),
+&"Ranged_Magic_Spellcasting": ExtResource("39_lbuig"),
+&"Ranged_Magic_Spellcasting_Long": ExtResource("40_4d3o8"),
+&"Ranged_Magic_Summon": ExtResource("41_u3dty"),
+&"T-Pose": ExtResource("42_uj408")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r3jr0"]
+_data = {
+&"Crawling": ExtResource("43_mlpt6"),
+&"Crouching": ExtResource("44_lwv5a"),
+&"Death_A": ExtResource("45_lr6f4"),
+&"Death_A_Pose": ExtResource("46_xmdt7"),
+&"Death_B": ExtResource("47_87j15"),
+&"Death_B_Pose": ExtResource("48_fvte2"),
+&"Dodge_Backward": ExtResource("49_qs3b4"),
+&"Dodge_Forward": ExtResource("50_gmrir"),
+&"Dodge_Left": ExtResource("51_eorc0"),
+&"Dodge_Right": ExtResource("52_4cy8w"),
+&"Hit_A": ExtResource("53_oxtoq"),
+&"Hit_B": ExtResource("54_uycbh"),
+&"Idle_A": ExtResource("55_oo8rn"),
+&"Idle_B": ExtResource("56_ecdqe"),
+&"Interact": ExtResource("57_7u3fi"),
+&"Jump_Full_Long": ExtResource("58_wfeqi"),
+&"Jump_Full_Short": ExtResource("59_2vhu1"),
+&"Jump_Idle": ExtResource("60_4k3gi"),
+&"Jump_Land": ExtResource("61_wm36s"),
+&"Jump_Start": ExtResource("62_20nvm"),
+&"PickUp": ExtResource("63_0okjb"),
+&"Running_A": ExtResource("64_j4kep"),
+&"Running_B": ExtResource("65_x54k5"),
+&"Running_HoldingBow": ExtResource("66_pq6kc"),
+&"Running_HoldingRifle": ExtResource("67_s22s0"),
+&"Running_Strafe_Left": ExtResource("68_l2qq5"),
+&"Running_Strafe_Right": ExtResource("69_l8qyr"),
+&"Sneaking": ExtResource("70_mv5ye"),
+&"Spawn_Air": ExtResource("71_sksk0"),
+&"Spawn_Ground": ExtResource("72_wkilf"),
+&"T-Pose": ExtResource("73_1gjrj"),
+&"Throw": ExtResource("74_5m4t1"),
+&"Use_Item": ExtResource("75_86jmi"),
+&"Walking_A": ExtResource("76_a042s"),
+&"Walking_B": ExtResource("77_81r1q"),
+&"Walking_Backwards": ExtResource("78_gjacw"),
+&"Walking_C": ExtResource("79_eyp7h")
+}
+
+[node name="Ranger" unique_id=261617860 instance=ExtResource("1_0wm0f")]
+
+[node name="Skeleton3D" parent="Rig_Medium" parent_id_path=PackedInt32Array(667789922) index="0" unique_id=60928533]
+bones/1/position = Vector3(-3.2458744e-11, 0.39085373, 0.00013614439)
+bones/1/rotation = Quaternion(-1.13424e-09, 0.0545278, 1.0300435e-08, 0.9985123)
+bones/2/position = Vector3(0.17094508, 0.1135872, 1.5994095e-08)
+bones/2/rotation = Quaternion(0.99303025, 0.082872756, 0.08343216, 0.007881181)
+bones/3/rotation = Quaternion(0.20346007, 7.1152414e-08, -1.3932072e-07, 0.9790833)
+bones/4/rotation = Quaternion(-0.5257619, -0.21831903, 0.043232117, 0.8210009)
+bones/5/rotation = Quaternion(0.00012257486, 0.92024344, -0.3913464, -2.7679558e-05)
+bones/6/position = Vector3(-0.17094508, 0.11358732, 1.557549e-08)
+bones/6/rotation = Quaternion(0.99631745, -0.031205842, 0.042624854, 0.067533836)
+bones/7/rotation = Quaternion(0.28754747, -6.0468054e-08, 1.9689577e-07, 0.9577664)
+bones/8/rotation = Quaternion(-0.56323755, 0.11451464, -0.009917078, 0.8182613)
+bones/9/rotation = Quaternion(-7.316969e-05, 0.9202063, -0.39143392, 1.6653179e-05)
+bones/10/rotation = Quaternion(-6.938893e-18, 7.1054274e-15, 4.93038e-32, 1)
+bones/11/rotation = Quaternion(-9.045408e-10, -0.011383439, -8.4252125e-09, 0.99993527)
+bones/12/rotation = Quaternion(-5.8060803e-11, -0.031341746, -1.880125e-09, 0.99950874)
+bones/13/position = Vector3(-0.21200737, 0.13413204, 8.698304e-08)
+bones/13/rotation = Quaternion(-0.62343687, 0.07821669, 0.6077427, 0.4856515)
+bones/14/rotation = Quaternion(1.4741096e-08, 6.917881e-08, 0.55573577, 0.8313591)
+bones/16/rotation = Quaternion(-0.31013846, 0.2977861, -0.2448008, 0.8690284)
+bones/17/position = Vector3(-0.0012143999, 0.09665656, -0.057684094)
+bones/17/rotation = Quaternion(0.0010026844, -0.001002618, 0.7015378, 0.7126308)
+bones/18/position = Vector3(0.21200736, 0.13413203, 7.9299625e-08)
+bones/18/rotation = Quaternion(-0.5597003, -0.055887975, -0.640576, 0.5227567)
+bones/19/rotation = Quaternion(5.415573e-08, -5.742928e-08, -0.4969117, 0.86780113)
+bones/21/rotation = Quaternion(-0.31634265, -0.34589636, 0.13034669, 0.87366635)
+bones/22/position = Vector3(-6.936717e-09, 0.096125185, -0.057500005)
+bones/22/rotation = Quaternion(6.9489685e-09, -3.587743e-09, -0.7071068, 0.7071067)
+
+[node name="Head" type="BoneAttachment3D" parent="Rig_Medium/Skeleton3D" index="5" unique_id=1968718258]
+transform = Transform3D(0.9997204, -3.5222303e-10, 0.023646612, 2.360457e-10, 0.99999994, 4.915934e-09, -0.023646612, -4.9089777e-09, 0.9997204, -1.283491e-08, 1.2266158, 0.00013614251)
+bone_name = "head"
+bone_idx = 12
+script = ExtResource("2_r3jr0")
+
+[node name="Main_Hand" type="BoneAttachment3D" parent="Rig_Medium/Skeleton3D" index="9" unique_id=1124459441]
+transform = Transform3D(-0.013865974, -0.12173924, -0.9924647, -0.9998543, 0.011492065, 0.012559952, 0.00987609, 0.9924949, -0.12188128, -0.48157716, 0.65101486, 0.123030014)
+bone_name = "handslot.r"
+bone_idx = 17
+
+[node name="WeaponSocket" type="Node3D" parent="Rig_Medium/Skeleton3D/Main_Hand" index="0" unique_id=1176139717]
+transform = Transform3D(1.0000007, 0, 0, 0, 1.0000011, 0, 0, 0, 1.0000007, 0, 0, 0)
+script = ExtResource("81_r3jr0")
+
+[node name="IronSword" parent="Rig_Medium/Skeleton3D/Main_Hand" index="1" unique_id=328844577 instance=ExtResource("4_h62n6")]
+
+[node name="Off_Hand" type="BoneAttachment3D" parent="Rig_Medium/Skeleton3D" index="10" unique_id=1184445899]
+transform = Transform3D(-0.0039810636, 0.29735515, 0.954758, 0.9993906, 0.034265216, -0.006504203, -0.03464883, 0.95415133, -0.2973106, 0.5089708, 0.6374484, -0.019232078)
+bone_name = "handslot.l"
+bone_idx = 22
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=54704793]
+libraries/Combat = SubResource("AnimationLibrary_oslyh")
+libraries/Movement = SubResource("AnimationLibrary_r3jr0")

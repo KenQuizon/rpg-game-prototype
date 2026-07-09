@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cwyhvfblurr7q"]
+
+[ext_resource type="Script" uid="uid://korydahe87g6" path="res://Project/Gameplay/Projectiles/Projectile.gd" id="1_vhbf7"]
+[ext_resource type="PackedScene" uid="uid://2r00002qw2u" path="res://Project/Characters/Components/Combat/Scenes_Combat/HitboxComponent.tscn" id="2_unbte"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_2nri0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g3r0j"]
+
+[node name="Projectile" type="Node3D" unique_id=2087007725]
+script = ExtResource("1_vhbf7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=968347750]
+mesh = SubResource("SphereMesh_2nri0")
+
+[node name="HitboxComponent" parent="." unique_id=858829038 instance=ExtResource("2_unbte")]
+
+[node name="CollisionShape3D" parent="HitboxComponent/Area3D" parent_id_path=PackedInt32Array(858829038, 1461109804) index="0" unique_id=72962891]
+shape = SubResource("SphereShape3D_g3r0j")
+
+[editable path="HitboxComponent"]

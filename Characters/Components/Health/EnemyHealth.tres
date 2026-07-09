@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="HealthProfile" format=3 uid="uid://b25cmghj41u1v"]
-
-[ext_resource type="Script" uid="uid://qwrj0oop1vf0" path="res://Characters/Components/Health/HealthProfile.gd" id="1_vtfkt"]
-
-[resource]
-script = ExtResource("1_vtfkt")
-max_health = 20.0
-starting_health = 20.0
-metadata/_custom_type_script = "uid://qwrj0oop1vf0"

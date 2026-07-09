@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://2r00002qw2u"]
+
+[ext_resource type="Script" uid="uid://bd8uhan5b3603" path="res://Project/Characters/Components/Combat/Components/HitboxComponent.gd" id="1_k5s52"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ib3ge"]
+
+[node name="HitboxComponent" type="Node3D" unique_id=858829038]
+script = ExtResource("1_k5s52")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1461109804]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=72962891]
+shape = SubResource("BoxShape3D_ib3ge")

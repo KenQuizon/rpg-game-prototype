@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://crk1ut2sgeeyg"]
+
+[ext_resource type="PackedScene" uid="uid://2lrjquwt1ui3" path="res://Assets/KayKit/characters/props/skeleton/Skeleton_Blade.gltf" id="1_dq3w1"]
+[ext_resource type="Script" uid="uid://c1yc32baelg7u" path="res://Project/Characters/Components/Combat/Weapons/WeaponInstance.gd" id="2_q6pq4"]
+[ext_resource type="PackedScene" uid="uid://2r00002qw2u" path="res://Project/Characters/Components/Combat/Scenes_Combat/HitboxComponent.tscn" id="3_6ds0i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8tqyy"]
+
+[node name="Skeleton_Blade2" unique_id=290771928 instance=ExtResource("1_dq3w1")]
+script = ExtResource("2_q6pq4")
+
+[node name="HitboxComponent" parent="." index="1" unique_id=846209543 instance=ExtResource("3_6ds0i")]
+
+[node name="CollisionShape3D" parent="HitboxComponent/Area3D" parent_id_path=PackedInt32Array(846209543, 1461109804) index="0" unique_id=72962891]
+transform = Transform3D(0.6, 0, 0, 0, 1.5, 0, 0, 0, 0.25, 0, 0.425, 0)
+shape = SubResource("BoxShape3D_8tqyy")
+
+[editable path="HitboxComponent"]
