@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://cr2hmkf65x5m1" path="res://Characters/Scenes/Ranger.tscn" id="1_fc2fk"]
 [ext_resource type="Script" uid="uid://dt61ygcy2nfgd" path="res://Characters/Scripts/Character.gd" id="1_xdxam"]
 [ext_resource type="Script" uid="uid://bqmh470sqw07n" path="res://Characters/Controllers/PlayerController.gd" id="2_0vidv"]
-[ext_resource type="Resource" uid="uid://4cgtnhhudcoc" path="res://Action/RunTime/EvadeAction.tres" id="2_stqro"]
 [ext_resource type="Script" uid="uid://1uxjegku06ai" path="res://Characters/Components/Animation/AnimationComponent.gd" id="2_xdxam"]
 [ext_resource type="Resource" uid="uid://dhmb5gkntdpj3" path="res://Characters/Components/Animation/PlayerAnimationProfile.tres" id="4_2dinu"]
 [ext_resource type="Script" uid="uid://fymtemcyytr3" path="res://Characters/Components/Interaction/InteractionComponent.gd" id="5_mp4tf"]
@@ -34,7 +33,6 @@
 [ext_resource type="Script" uid="uid://351jp0xp4ysr" path="res://Characters/Components/Resource/SkillComponent.gd" id="27_8oa8c"]
 [ext_resource type="Script" uid="uid://dtb7oc0r6dx1g" path="res://Characters/Components/Resource/SkillDefinition.gd" id="28_stqro"]
 [ext_resource type="Resource" uid="uid://ie0iyf8mlky7" path="res://Skills/Fireball.tres" id="29_fw7kn"]
-[ext_resource type="Script" uid="uid://d052vxq1yotpq" path="res://Equipment/Items/InventoryComponent.gd" id="31_fw7kn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fef4x"]
 radius = 0.6
@@ -61,11 +59,9 @@ metadata/_custom_type_script = "uid://chrq4eft6blp5"
 radius = 0.6
 height = 2.2
 
-[node name="Character" type="CharacterBody3D" unique_id=1084824515 node_paths=PackedStringArray("projectile_spawn_point") groups=["player"]]
+[node name="Character" type="CharacterBody3D" unique_id=1084824515 groups=["player"]]
 script = ExtResource("1_xdxam")
 weapon_socket_path = NodePath("Model/VisualRoot/Ranger/Rig_Medium/Skeleton3D/Main_Hand/WeaponSocket")
-evade_definition = ExtResource("2_stqro")
-projectile_spawn_point = NodePath("Model/VisualRoot/ProjectileSpawnPoint")
 
 [node name="Components" type="Node3D" parent="." unique_id=1511514424]
 
@@ -145,10 +141,6 @@ script = ExtResource("27_8oa8c")
 known_skills = Array[ExtResource("28_stqro")]([ExtResource("29_fw7kn")])
 metadata/_custom_type_script = "uid://351jp0xp4ysr"
 
-[node name="InventoryComponent" type="Node" parent="Components" unique_id=2005927058]
-script = ExtResource("31_fw7kn")
-metadata/_custom_type_script = "uid://d052vxq1yotpq"
-
 [node name="Systems" type="Node" parent="." unique_id=1868648437]
 
 [node name="Controller" type="Node" parent="Systems" unique_id=1188592564]
@@ -163,9 +155,6 @@ metadata/_custom_type_script = "uid://cigxfduvci7n2"
 [node name="VisualRoot" type="Node3D" parent="Model" unique_id=1744098547]
 
 [node name="Ranger" parent="Model/VisualRoot" unique_id=1195253167 instance=ExtResource("1_fc2fk")]
-
-[node name="ProjectileSpawnPoint" type="Marker3D" parent="Model/VisualRoot" unique_id=82150810]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2039398385]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)

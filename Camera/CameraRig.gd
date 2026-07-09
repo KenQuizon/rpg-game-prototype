@@ -44,15 +44,19 @@ func clear_target() -> void:
 func _ready() -> void:
 	camera.position = Vector3.ZERO
 
+var _shake_strength: float = 0.0
+var _shake_remaining: float = 0.0
+
+func shake(strength: float, duration: float = 0.2) -> void:
+	_shake_strength = strength
+	_shake_remaining = duration
 
 func _process(delta: float) -> void:
-
 	if _target == null:
 		return
-
 	var desired_position := _target.global_position + camera_offset
-
-	global_position = global_position.lerp(
-		desired_position,
-		follow_speed * delta
-	)
+	if _shake_remaining > 0.0:
+		_shake_remaining -= delta
+		var offset := Vector3(randf_range(-1,1), randf_range(-1,1), 0.0) * _shake_strength
+		desired_position += offset
+	global_position = global_position.lerp(desired_position, follow_speed * delta)

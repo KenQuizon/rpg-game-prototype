@@ -34,7 +34,6 @@
 [ext_resource type="Script" uid="uid://351jp0xp4ysr" path="res://Characters/Components/Resource/SkillComponent.gd" id="27_8oa8c"]
 [ext_resource type="Script" uid="uid://dtb7oc0r6dx1g" path="res://Characters/Components/Resource/SkillDefinition.gd" id="28_stqro"]
 [ext_resource type="Resource" uid="uid://ie0iyf8mlky7" path="res://Skills/Fireball.tres" id="29_fw7kn"]
-[ext_resource type="Script" uid="uid://d052vxq1yotpq" path="res://Equipment/Items/InventoryComponent.gd" id="31_fw7kn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fef4x"]
 radius = 0.6
@@ -144,10 +143,6 @@ metadata/_custom_type_script = "uid://b2p2nf7kd6wrt"
 script = ExtResource("27_8oa8c")
 known_skills = Array[ExtResource("28_stqro")]([ExtResource("29_fw7kn")])
 metadata/_custom_type_script = "uid://351jp0xp4ysr"
-
-[node name="InventoryComponent" type="Node" parent="Components" unique_id=2005927058]
-script = ExtResource("31_fw7kn")
-metadata/_custom_type_script = "uid://d052vxq1yotpq"
 
 [node name="Systems" type="Node" parent="." unique_id=1868648437]
 

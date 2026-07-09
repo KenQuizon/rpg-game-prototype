@@ -30,3 +30,7 @@ func _init(registry: ComponentRegistry) -> void:
 var equipment: EquipmentComponent:
 	get:
 		return _registry.get_component(EquipmentComponent) as EquipmentComponent
+		
+var inventory: InventoryComponent:
+	get:
+		return _registry.get_component(InventoryComponent) as InventoryComponent

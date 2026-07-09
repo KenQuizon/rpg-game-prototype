@@ -36,15 +36,15 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-materials/extract=2
+materials/extract=0
 materials/extract_format=0
-materials/extract_path="res://"
+materials/extract_path=""
 _subresources={
 "materials": {
 "knight": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://knight.tres",
-"use_external/path": "uid://6o6svrwayyot"
+"use_external/fallback_path": "res://Assets/KayKit/characters/materials/knight.tres",
+"use_external/path": "uid://bf4rqut3rtnkr"
 }
 }
 }

@@ -40,3 +40,9 @@ class_name SkillDefinition
 # CooldownPolicy and/or ResourceCostPolicy to `policies` (inherited from
 # ActionDefinition) if this skill should have a cooldown or a mana/stamina
 # cost — neither is automatic.
+
+#==============================================================================
+# Combat Data
+#==============================================================================
+
+@export var attack_data: AttackData = AttackData.new()

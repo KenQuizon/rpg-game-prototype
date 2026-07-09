@@ -10,6 +10,8 @@ class_name Character
 @export_group("Model-Dependent Node Paths")
 @export var animation_player_path: NodePath = NodePath("Model/VisualRoot/Ranger/AnimationPlayer")
 @export var weapon_socket_path: NodePath = NodePath("Model/VisualRoot/Ranger/WeaponSocket")
+@export var evade_definition: ActionDefinition
+@export var projectile_spawn_point: Marker3D
 #==============================================================================
 # Cached Nodes
 #==============================================================================
@@ -54,6 +56,8 @@ func get_character_state_machine() -> CharacterStateMachine:
 	return state_machine
 func get_character_weapon_socket() -> WeaponSocket:
 	return weapon_socket
+func get_character_projectile_spawn_point() -> Marker3D:
+	return projectile_spawn_point
 #==============================================================================
 # Public Framework API
 #==============================================================================
@@ -145,3 +149,41 @@ func _initialize_state_machine() -> void:
 	state_machine.change_state(
 	CharacterIdleState.new()
 )
+
+func save_state() -> Dictionary:
+
+	var data := {
+		"position": {"x": global_position.x, "y": global_position.y, "z": global_position.z}
+	}
+
+	if context.health != null:
+		data["health"] = context.health.save_state()
+
+	if context.resources != null:
+		data["resources"] = context.resources.save_state()
+
+	if context.equipment != null:
+		data["equipment"] = context.equipment.save_state()
+
+	if context.inventory != null:
+		data["inventory"] = context.inventory.save_state()
+
+	return data
+
+func load_state(data: Dictionary) -> void:
+
+	if data.has("position"):
+		var pos: Dictionary = data["position"]
+		global_position = Vector3(pos["x"], pos["y"], pos["z"])
+
+	if data.has("health") and context.health != null:
+		context.health.load_state(data["health"])
+
+	if data.has("resources") and context.resources != null:
+		context.resources.load_state(data["resources"])
+
+	if data.has("equipment") and context.equipment != null:
+		context.equipment.load_state(data["equipment"])
+
+	if data.has("inventory") and context.inventory != null:
+		context.inventory.load_state(data["inventory"])

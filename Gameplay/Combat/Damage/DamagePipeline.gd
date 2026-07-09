@@ -48,6 +48,7 @@ var _stages: Array[DamageStage] = []
 # when they do, rather than requiring a rewrite of this list.
 func _register_default_stages() -> void:
 	add_stage(DamageValidationStage.new())
+	add_stage(DamageDefenseStage.new())
 	add_stage(DamageCriticalResolutionStage.new())
 	add_stage(DamageMitigationStage.new())
 	add_stage(DamageApplicationStage.new())

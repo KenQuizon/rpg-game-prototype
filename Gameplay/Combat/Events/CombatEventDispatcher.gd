@@ -20,6 +20,7 @@ func _register_default_handlers() -> void:
 	register_handler(AnimationEvents.ENABLE_WEAPON, EnableHitboxHandler.new())
 	register_handler(AnimationEvents.DISABLE_WEAPON, DisableHitboxHandler.new())
 	register_handler(AnimationEvents.FINISH_ACTION, FinishActionHandler.new())
+	register_handler(AnimationEvents.SPAWN_PROJECTILE, SpawnProjectileHandler.new())
 #==============================================================================
 # Private
 #==============================================================================

@@ -161,6 +161,10 @@ var interaction: InteractionComponent:
 var equipment: EquipmentComponent:
 	get:
 		return _items_domain.equipment
+		
+var inventory: InventoryComponent:
+	get:
+		return _items_domain.inventory
 #==============================================================================
 # Locks
 #==============================================================================

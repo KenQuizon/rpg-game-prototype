@@ -157,3 +157,17 @@ func _detach_visual(item: EquippedItem) -> void:
 
 	if socket != null:
 		socket.clear()
+		
+func save_state() -> Dictionary:
+	var data := {}
+	for slot in _equipped.keys():
+		var item: EquippedItem = _equipped[slot]
+		data[str(slot)] = item.profile.resource_path
+	return data
+
+func load_state(data: Dictionary) -> void:
+	unequip_all()
+	for key in data.keys():
+		var profile := load(data[key]) as EquipmentProfile
+		if profile != null:
+			equip(profile)

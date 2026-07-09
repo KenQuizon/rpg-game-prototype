@@ -8,3 +8,5 @@ var interact_pressed: bool = false
 var attack_pressed: bool = false
 
 var dash_pressed: bool = false
+
+var skill_1_pressed: bool = false

@@ -41,6 +41,7 @@ func on_start() -> void:
 	super.on_start()
 
 	_play_cast_animation()
+	context.combat.set_active_projectile(_skill.projectile_scene, _skill.attack_data)
 
 func on_update(_delta: float) -> int:
 	return ActionExecutionStatus.Id.RUNNING
@@ -56,9 +57,10 @@ func get_recovery_time() -> float:
 # a channeled skill (a beam, a charge-up heal) would be a CastAction
 # subclass overriding this to end whatever effect it started in on_start().
 func on_finish_requested() -> void:
-	pass
+	context.combat.clear_active_projectile()
 
 func on_finish() -> void:
+	context.combat.clear_active_projectile()
 	super.on_finish()
 
 #==============================================================================

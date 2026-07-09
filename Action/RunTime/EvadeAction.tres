@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ActionDefinition" format=3 uid="uid://4cgtnhhudcoc"]
+
+[ext_resource type="Script" uid="uid://qpepkjukhlvt" path="res://Action/RunTime/ActionPolicy.gd" id="1_i2gyi"]
+[ext_resource type="Script" uid="uid://bhtskkdh6qss8" path="res://Gameplay/Combat/EvadeAction.gd" id="1_x27nw"]
+[ext_resource type="Script" uid="uid://ca1kt7dtvcle6" path="res://Action/RunTime/ActionDefinition.gd" id="2_n7a6e"]
+[ext_resource type="Script" uid="uid://cm1am7hfwgfix" path="res://Characters/Components/Resource/CooldownPolicy.gd" id="3_n8nd1"]
+
+[sub_resource type="Resource" id="Resource_x27nw"]
+script = ExtResource("3_n8nd1")
+metadata/_custom_type_script = "uid://cm1am7hfwgfix"
+
+[resource]
+script = ExtResource("2_n7a6e")
+id = &"evade"
+action_script = ExtResource("1_x27nw")
+locks = 10
+flags = 2
+duration = 0.4
+cooldown_group = &"evade"
+cooldown = 1.0
+policies = Array[ExtResource("1_i2gyi")]([SubResource("Resource_x27nw")])
+metadata/_custom_type_script = "uid://ca1kt7dtvcle6"

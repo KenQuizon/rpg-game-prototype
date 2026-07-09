@@ -24,6 +24,14 @@ var _already_hit: Dictionary = {}
 # attack_data when null so this component still works without an Action
 # driving it.
 var _active_attack_data: AttackData = null
+
+var _active_effects: AttackEffects = null
+
+func set_active_effects(effects: AttackEffects) -> void:
+	_active_effects = effects
+
+func clear_active_effects() -> void:
+	_active_effects = null
 #==============================================================================
 # Lifecycle
 #==============================================================================
@@ -70,6 +78,10 @@ func register_hit(hurtbox: HurtboxComponent) -> void:
 	if hurtbox == null:
 		return
 	_already_hit[hurtbox.get_instance_id()] = true
+
+	if _active_effects != null:
+		CombatEffects.play_vfx(_active_effects.impact_vfx, area.global_position, get_tree())
+		CombatEffects.play_sfx(_active_effects.hit_sfx, area.global_position, get_tree())
 #==============================================================================
 # Damage Requests
 #==============================================================================

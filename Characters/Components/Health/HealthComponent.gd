@@ -140,3 +140,15 @@ func _die() -> void:
 		return
 	_dead = true
 	died.emit()
+	
+	
+func save_state() -> Dictionary:
+	return {"current_health": _current_health}
+
+func load_state(data: Dictionary) -> void:
+	if not data.has("current_health"):
+		return
+	var previous := _current_health
+	_current_health = clamp(data["current_health"], 0.0, max_health)
+	_dead = _current_health <= 0.0
+	health_changed.emit(previous, _current_health)

@@ -15,6 +15,8 @@ var _health: HealthComponent
 var _stats: StatsComponent
 var _hurtbox: HurtboxComponent
 var _dispatcher: CombatEventDispatcher
+var _active_projectile_scene: PackedScene = null
+var _active_projectile_data: AttackData = null
 #==============================================================================
 # Attack State
 #==============================================================================
@@ -22,6 +24,26 @@ var _is_attacking: bool = false
 var is_attacking: bool:
 	get:
 		return _is_attacking
+		
+#==============================================================================
+# Defense State
+#==============================================================================
+
+var _is_blocking: bool = false
+var is_blocking: bool:
+	get:
+		return _is_blocking
+
+var _is_evading: bool = false
+var is_evading: bool:
+	get:
+		return _is_evading
+
+func set_blocking(value: bool) -> void:
+	_is_blocking = value
+
+func set_evading(value: bool) -> void:
+	_is_evading = value
 #==============================================================================
 # Lifecycle
 #==============================================================================
@@ -130,3 +152,17 @@ func _on_died() -> void:
 # CombatComponent — new query, alongside get_defense()/get_hitbox()/get_hurtbox()
 func is_dead() -> bool:
 	return _health != null and _health.is_dead
+
+func set_active_projectile(scene: PackedScene, data: AttackData) -> void:
+	_active_projectile_scene = scene
+	_active_projectile_data = data
+
+func clear_active_projectile() -> void:
+	_active_projectile_scene = null
+	_active_projectile_data = null
+
+func get_active_projectile_scene() -> PackedScene:
+	return _active_projectile_scene
+
+func get_active_projectile_data() -> AttackData:
+	return _active_projectile_data

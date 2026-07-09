@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EquipmentProfile" format=3 uid="uid://tmq8yc2xgmo3"]
+
+[ext_resource type="Script" uid="uid://dt67f8ckxamoe" path="res://Equipment/EquipmentProfile.gd" id="1_1ll5t"]
+[ext_resource type="Script" uid="uid://b2cnklllsutok" path="res://Characters/Components/Stats/StatModifierEntry.gd" id="2_mc2hv"]
+[ext_resource type="PackedScene" uid="uid://clrgffw5yf0cf" path="res://Equipment/iron_helmet.tscn" id="3_mc2hv"]
+
+[sub_resource type="Resource" id="Resource_ejbkv"]
+script = ExtResource("2_mc2hv")
+stat = 8
+value = 5.0
+metadata/_custom_type_script = "uid://b2cnklllsutok"
+
+[resource]
+script = ExtResource("1_1ll5t")
+display_name = "Iron Helmet"
+stat_modifiers = Array[ExtResource("2_mc2hv")]([SubResource("Resource_ejbkv")])
+visual_scene = ExtResource("3_mc2hv")
+metadata/_custom_type_script = "uid://dt67f8ckxamoe"

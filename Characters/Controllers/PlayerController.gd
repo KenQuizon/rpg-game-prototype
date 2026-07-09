@@ -21,6 +21,8 @@ func physics_update(_delta: float) -> void:
 	context.input.attack_pressed = Input.is_action_just_pressed("attack")
 	context.input.interact_pressed = Input.is_action_just_pressed("interact")
 	context.input.dash_pressed = Input.is_action_just_pressed("dash")
+	context.input.skill_1_pressed = Input.is_action_just_pressed("skill_1")
+	context.combat.set_blocking(Input.is_action_pressed("block")and not context.is_locked(ActionLock.Id.ATTACK))
 
 	# Raw input is always captured above (harmless, and useful for UI/state
 	# tracking even while locked). If INPUT is locked, movement input is
@@ -63,3 +65,19 @@ func physics_update(_delta: float) -> void:
 		interact.initialize(context)
 
 		interact.execute()
+
+	if context.input.dash_pressed:
+
+		var evade := EvadeCommand.new()
+
+		evade.initialize(context)
+		evade.execute()
+		
+	if context.input.skill_1_pressed:
+
+		var cast := CastSkillCommand.new()
+
+		cast.initialize(context)
+		cast.skill_id = &"fireball"
+
+		cast.execute()

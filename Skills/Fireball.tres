@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="SkillDefinition" format=3 uid="uid://ie0iyf8mlky7"]
+
+[ext_resource type="Script" uid="uid://be2wqa18gif6g" path="res://Characters/Components/Resource/CastAction.gd" id="1_nyj0y"]
+[ext_resource type="Script" uid="uid://qpepkjukhlvt" path="res://Action/RunTime/ActionPolicy.gd" id="2_38rx2"]
+[ext_resource type="Script" uid="uid://bnnbymum325ix" path="res://Gameplay/Combat/Data/AttackData.gd" id="2_d1wip"]
+[ext_resource type="Script" uid="uid://cm1am7hfwgfix" path="res://Characters/Components/Resource/CooldownPolicy.gd" id="3_d1wip"]
+[ext_resource type="Script" uid="uid://c11wq0edaq4gi" path="res://Characters/Components/Resource/ResourceCostPolicy.gd" id="4_0wpfb"]
+[ext_resource type="Script" uid="uid://dtb7oc0r6dx1g" path="res://Characters/Components/Resource/SkillDefinition.gd" id="5_bqmdh"]
+[ext_resource type="PackedScene" uid="uid://cwyhvfblurr7q" path="res://Gameplay/Projectiles/Projectile.tscn" id="6_0wpfb"]
+
+[sub_resource type="Resource" id="Resource_qmh2x"]
+script = ExtResource("2_d1wip")
+damage = 20.0
+damage_type = 1
+metadata/_custom_type_script = "uid://bnnbymum325ix"
+
+[sub_resource type="Resource" id="Resource_kevn2"]
+script = ExtResource("3_d1wip")
+metadata/_custom_type_script = "uid://cm1am7hfwgfix"
+
+[sub_resource type="Resource" id="Resource_1ofh7"]
+script = ExtResource("4_0wpfb")
+amount = 25.0
+metadata/_custom_type_script = "uid://c11wq0edaq4gi"
+
+[resource]
+script = ExtResource("5_bqmdh")
+cast_animation = &"Combat/Ranged_Magic_Shoot"
+recovery_time = 0.2
+projectile_scene = ExtResource("6_0wpfb")
+attack_data = SubResource("Resource_qmh2x")
+id = &"fireball"
+action_script = ExtResource("1_nyj0y")
+locks = 18
+flags = 2
+cooldown_group = &"fireball"
+cooldown = 4.0
+policies = Array[ExtResource("2_38rx2")]([SubResource("Resource_kevn2"), SubResource("Resource_1ofh7")])
+metadata/_custom_type_script = "uid://dtb7oc0r6dx1g"

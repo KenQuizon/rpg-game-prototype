@@ -87,6 +87,21 @@ func _play_attack_animation() -> void:
 		true
 	)
 
+func _play_attack_effects() -> void:
+	if _attack == null or _attack.effects == null:
+		return
+	CombatEffects.play_vfx(
+	_attack.effects.slash_vfx,
+	context.character.global_position,
+	context.character.get_tree()
+	)
+
+	CombatEffects.play_sfx(
+	_attack.effects.attack_sfx,
+	context.character.global_position,
+	context.character.get_tree()
+	)
+	
 func _apply_attack_data() -> void:
 
 	if _attack == null:
@@ -99,12 +114,18 @@ func _apply_attack_data() -> void:
 
 	hitbox.set_active_attack_data(_attack.attack_data)
 
+	hitbox.set_active_attack_data(_attack.attack_data)
+	hitbox.set_active_effects(_attack.effects)
+	
 func _clear_attack_data() -> void:
 
 	var hitbox := context.combat.get_hitbox()
 
 	if hitbox != null:
 		hitbox.clear_active_attack_data()
+		
+	hitbox.clear_active_attack_data()
+	hitbox.clear_active_effects()
 
 # Wires AttackMotion.move_distance/move_speed only — allow_rotation and
 # stop_movement_input are superseded by ActionDefinition.locks (ROTATION/

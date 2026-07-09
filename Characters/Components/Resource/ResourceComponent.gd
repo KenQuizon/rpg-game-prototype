@@ -105,3 +105,18 @@ func process_update(delta: float) -> void:
 			continue
 
 		restore(resource_type, regen * delta)
+		
+func save_state() -> Dictionary:
+	var data := {}
+	for resource_type in _current.keys():
+		data[str(resource_type)] = _current[resource_type]
+	return data
+
+func load_state(data: Dictionary) -> void:
+	for key in data.keys():
+		var resource_type := int(key)
+		if not _max.has(resource_type):
+			continue
+		var previous := get_current(resource_type)
+		_current[resource_type] = clamp(data[key], 0.0, _max[resource_type])
+		resource_changed.emit(resource_type, previous, _current[resource_type])
