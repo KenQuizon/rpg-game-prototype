@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://txenblydka1r"]
+
+[ext_resource type="PackedScene" uid="uid://cjt1l65v3q5oe" path="res://Assets/KayKit/characters/props/gltf/bow.gltf" id="1_b22kw"]
+[ext_resource type="Script" uid="uid://c1yc32baelg7u" path="res://Project/Characters/Components/Combat/Weapons/WeaponInstance.gd" id="2_b8g4t"]
+[ext_resource type="PackedScene" uid="uid://2r00002qw2u" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/HitboxComponent.tscn" id="3_24gub"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nwt0i"]
+
+[node name="Bow" unique_id=639875407 instance=ExtResource("1_b22kw")]
+script = ExtResource("2_b8g4t")
+
+[node name="bow" parent="." index="0" unique_id=1222327418]
+transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0, 0)
+
+[node name="HitboxComponent" parent="." index="1" unique_id=858829038 instance=ExtResource("3_24gub")]
+
+[node name="CollisionShape3D" parent="HitboxComponent/Area3D" parent_id_path=PackedInt32Array(858829038, 1461109804) index="0" unique_id=72962891]
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 0.15, 0.12, 0, 0)
+shape = SubResource("BoxShape3D_nwt0i")
+
+[editable path="HitboxComponent"]

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="WeaponProfile" format=3 uid="uid://dhht4mspyc4ya"]
+
+[ext_resource type="Script" uid="uid://bbp1veisyovtv" path="res://Project/Characters/Components/Combat/Data/AttackDefinition.gd" id="1_jtwc4"]
+[ext_resource type="Resource" uid="uid://dvn2cwpuy7sbk" path="res://Project/Gameplay/Combat/Resources_CombatAttack/Attack_Slash1.tres" id="2_ppj6a"]
+[ext_resource type="Script" uid="uid://rgnyd2ru1lwi" path="res://Project/Characters/Components/Combat/Data/AttackSet.gd" id="3_cj2sg"]
+[ext_resource type="Script" uid="uid://bb12xak51omdq" path="res://Project/Characters/Components/Combat/Weapons/WeaponProfile.gd" id="4_xxbe6"]
+[ext_resource type="PackedScene" uid="uid://crk1ut2sgeeyg" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/SkeletonBlade.tscn" id="5_iuc2k"]
+
+[sub_resource type="Resource" id="Resource_6rtp4"]
+script = ExtResource("3_cj2sg")
+light_attacks = Array[ExtResource("1_jtwc4")]([ExtResource("2_ppj6a")])
+metadata/_custom_type_script = "uid://rgnyd2ru1lwi"
+
+[resource]
+script = ExtResource("4_xxbe6")
+display_name = "Skeleton Blade"
+weapon_type = 1
+weapon_scene = ExtResource("5_iuc2k")
+attack_set = SubResource("Resource_6rtp4")
+metadata/_custom_type_script = "uid://bb12xak51omdq"

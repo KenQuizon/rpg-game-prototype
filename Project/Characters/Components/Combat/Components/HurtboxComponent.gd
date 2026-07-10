@@ -29,8 +29,13 @@ func on_initialize() -> void:
 		push_error("HurtboxComponent requires an Area3D.")
 		return
 
+	area.set_meta("hurtbox_component", self)
+
 	if not area.area_entered.is_connected(_on_area_entered):
 		area.area_entered.connect(_on_area_entered)
+
+func get_combat_owner() -> CombatComponent:
+	return _combat
 
 #==============================================================================
 # Area Events

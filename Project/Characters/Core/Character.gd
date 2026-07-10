@@ -10,8 +10,10 @@ class_name Character
 @export_group("Model-Dependent Node Paths")
 @export var animation_player_path: NodePath = NodePath("Model/VisualRoot/Ranger/AnimationPlayer")
 @export var weapon_socket_path: NodePath = NodePath("Model/VisualRoot/Ranger/WeaponSocket")
+@export var off_hand_socket_path: NodePath = NodePath("Model/VisualRoot/Ranger/Rig_Medium/Skeleton3D/Off_Hand/WeaponSocket")
 @export var evade_definition: ActionDefinition
 @export var projectile_spawn_point: Marker3D
+@export var attack_range_area: Area3D
 #==============================================================================
 # Cached Nodes
 #==============================================================================
@@ -25,6 +27,7 @@ class_name Character
 @onready var interaction_area: Area3D = $InteractionOrigin/InteractionArea
 var animation_player: AnimationPlayer
 var weapon_socket: WeaponSocket
+var off_hand_weapon_socket: WeaponSocket
 #==============================================================================
 # Camera API
 #==============================================================================
@@ -56,10 +59,14 @@ func get_character_state_machine() -> CharacterStateMachine:
 	return state_machine
 func get_character_weapon_socket() -> WeaponSocket:
 	return weapon_socket
+func get_character_off_hand_socket() -> WeaponSocket:
+	return off_hand_weapon_socket
 func get_character_projectile_spawn_point() -> Marker3D:
 	return projectile_spawn_point
 func get_character_evade_definition() -> ActionDefinition:
 	return evade_definition
+func get_character_attack_range_area() -> Area3D:
+	return attack_range_area
 #==============================================================================
 # Public Framework API
 #==============================================================================
@@ -120,6 +127,11 @@ func _resolve_model_dependent_nodes() -> void:
 	if weapon_socket == null:
 		push_error(
 			"Character: weapon_socket_path '%s' did not resolve to a WeaponSocket." % weapon_socket_path
+		)
+	off_hand_weapon_socket = get_node_or_null(off_hand_socket_path) as WeaponSocket
+	if off_hand_weapon_socket == null:
+		push_error(
+			"Character: off_hand_socket_path '%s' did not resolve to a WeaponSocket." % off_hand_socket_path
 		)
 func _discover_components() -> void:
 	_components.clear()

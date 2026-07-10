@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="WeaponProfile" format=3 uid="uid://coe3n66dd8q5c"]
+
+[ext_resource type="Script" uid="uid://bbp1veisyovtv" path="res://Project/Characters/Components/Combat/Data/AttackDefinition.gd" id="1_xg7dx"]
+[ext_resource type="Resource" uid="uid://b6jpt7k38aws4" path="res://Project/Gameplay/Combat/Resources_CombatAttack/Attack_ArrowShot.tres" id="2_vqssl"]
+[ext_resource type="Script" uid="uid://rgnyd2ru1lwi" path="res://Project/Characters/Components/Combat/Data/AttackSet.gd" id="3_kgxfl"]
+[ext_resource type="Script" uid="uid://bb12xak51omdq" path="res://Project/Characters/Components/Combat/Weapons/WeaponProfile.gd" id="4_dt01m"]
+[ext_resource type="PackedScene" uid="uid://txenblydka1r" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/Bow.tscn" id="5_1mpvc"]
+
+[sub_resource type="Resource" id="Resource_6rtp4"]
+script = ExtResource("3_kgxfl")
+light_attacks = Array[ExtResource("1_xg7dx")]([ExtResource("2_vqssl")])
+metadata/_custom_type_script = "uid://rgnyd2ru1lwi"
+
+[resource]
+script = ExtResource("4_dt01m")
+display_name = "Bow"
+weapon_type = 5
+attack_range = 8.0
+weapon_scene = ExtResource("5_1mpvc")
+attack_set = SubResource("Resource_6rtp4")
+metadata/_custom_type_script = "uid://bb12xak51omdq"

@@ -41,6 +41,9 @@ func on_initialize() -> void:
 		return
 	area.monitoring = false
 	area.set_meta("hitbox_component", self)
+	
+func get_combat_owner() -> CombatComponent:
+	return _combat_owner
 #==============================================================================
 # Public API
 #==============================================================================

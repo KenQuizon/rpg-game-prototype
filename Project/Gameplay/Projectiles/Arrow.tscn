@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://korydahe87g6" path="res://Project/Gameplay/Projectiles/Projectile.gd" id="1_okm8k"]
 [ext_resource type="Material" uid="uid://cvvkyy5e6uaoh" path="res://Assets/KayKit/characters/materials/ranger.tres" id="2_fcmc0"]
-[ext_resource type="PackedScene" uid="uid://2r00002qw2u" path="res://Project/Characters/Components/Combat/Scenes_Combat/HitboxComponent.tscn" id="2_waxvb"]
+[ext_resource type="PackedScene" uid="uid://2r00002qw2u" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/HitboxComponent.tscn" id="2_waxvb"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_ps8pi"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_waxvb"]
 _surfaces = [{
 "aabb": AABB(-0.081750676, -0.09439285, -0.6414669, 0.163489, 0.14159527, 1.2614648),
 "format": 34896613377,
@@ -36,7 +36,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("wGPVl1wIjwVHnM6XXAiOBf9/UdBcCP/0KtAY4AAAWOfYLxfgAABY5wCAyD8AAJwclKioqrTjwQ0/qjNW5ucE5z+qHP/m5/oYjiuoqubnPPI/qhz/5uc5TQSAqKr///5/jiuoqubnujo/qjNW5ufFspSoqKq041TVS5Q707gkRD2UqKiquCRU1bdrO9O4JEQ9S5QVgrgkusJtV6iquCSqKrdrFYK4JLrCt2sVgrgk8szAY9WXXAj3ym1XqKq4JMrIAIDIPwAAudD9fwAAXhiq0EuUFYK4JJqc/X8AAF4Ympy3axWCuCSanLdrO9O4JDU//39R0FwICz9LlDvTuCQzP9gvF+AAADk+AAD8/14YPT6UqKiquCTTyEeczpdcCBnLS5QVgrgk+8wq0BjgAABgxv////9eGGrGwGPVl1wIJ8sAAPz/Xhhjxm1XqKq4JOLI2C8X4AAAXsZtV6iquCRhTQAA/P9eGGFNt2s707gkYU1HnM6XXAjpyv1/AABeGLHQS5QVgrgk38wAgMg/AAC50EuUO9O4JGFN/////14YYU2UqKiquCRhTf9/UdBcCAs//////14YOj5LlDvTuCQ3PyrQGOAAADg+S5QVgrTjBOd61Kiq5ufBDUuUOtO04/oYt2sVgrTjA+fJVRz/5uf7GMlVM1bm5wPnt2s607Tj+xhuV6iqtOM88slVM1bm58WyyVUc/+bnOU161Kiq5ue6OkuUOtO040Q9S5QVgrTjusK3azrTtONEPbdrFYK047rCbleoqrTjqiq+8Q9/Gv80jgUA+H9uOEypTymNR/b/+X8TwXpWSxliXmLetGbsPoSpAcyha/9///+K1XzeXRQCTKoqqipV06ppqiqqKqrpqKxUFlZTVNVU1aksVJZqSIGkQkSjovU/S6APTnanGU6NpwAA/38AAP9/AAD/f+TyYHm+/4B/f/kajT/jfHE941hxOSANQGEizztvJJs3ghyrR2UcsEcpREeiTjh0nOk/F6BQOIOckOhp15DoadeQ6GnXvCK2O30n7jGeJIw3cSfzMZWokGiVqJBolaiQaCr/a4Bt8cCcLPkcjYLxv5xKGWReE8F6VmTetWadIUqZteaaoZshSZm05pyh7D6EqfwzXZSh6/yzgqGKVVXTqmlUFlZTqumorKksVJZU1VTV")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_ps8pi")
+shadow_mesh = SubResource("ArrayMesh_waxvb")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_atsqe"]
 radius = 0.05

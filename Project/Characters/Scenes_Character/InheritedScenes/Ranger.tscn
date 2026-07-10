@@ -219,6 +219,10 @@ transform = Transform3D(-0.0039810636, 0.29735515, 0.954758, 0.9993906, 0.034265
 bone_name = "handslot.l"
 bone_idx = 22
 
+[node name="WeaponSocket" type="Node3D" parent="Rig_Medium/Skeleton3D/Off_Hand" index="0" unique_id=38323717]
+transform = Transform3D(1.0000007, 0, 0, 0, 1.0000011, 0, 0, 0, 1.0000007, 0, 0, 0)
+script = ExtResource("81_r3jr0")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=54704793]
 libraries/Combat = SubResource("AnimationLibrary_oslyh")
 libraries/Movement = SubResource("AnimationLibrary_r3jr0")

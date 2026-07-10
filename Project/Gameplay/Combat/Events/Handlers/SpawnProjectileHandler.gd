@@ -36,7 +36,18 @@ func handle_event(
 
 	if context.movement != null:
 		direction = context.movement.facing_direction
+		
+	if context.targeting != null and context.targeting.has_target():
 
+		var target := context.targeting.current_target as Node3D
+
+		if target != null:
+			direction = target.global_position - spawn_point.global_position
+			direction.y = 0.0 # keep it horizontal for now — vertical aim is a later refinement
+
+	elif context.movement != null:
+		direction = context.movement.facing_direction
+	
 	projectile.launch(
 		direction,
 		context.combat,

@@ -56,9 +56,17 @@ func _physics_process(delta: float) -> void:
 
 	global_position += _direction * speed * delta
 
-func _on_area_entered(_other: Area3D) -> void:
-	# Simplification for a first pass: destroys on any overlap at all
-	# (including a stray TargetingArea), not just a confirmed damage hit.
-	# Fine for now since the hurtbox side already gates real damage
-	# correctly — this only controls when the projectile despawns.
+func _on_area_entered(other: Area3D) -> void:
+
+	if not other.has_meta("hurtbox_component"):
+		return # ignore anything that isn't a real hurtbox — other hitboxes, TargetingAreas, etc.
+
+	var hurtbox := other.get_meta("hurtbox_component") as HurtboxComponent
+
+	if hurtbox == null:
+		return
+
+	if hurtbox.get_combat_owner() == hitbox.get_combat_owner():
+		return # don't destroy on overlapping your own caster's hurtbox
+
 	queue_free()

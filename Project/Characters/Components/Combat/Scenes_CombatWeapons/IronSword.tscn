@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bxkag4ehtnivh" path="res://Assets/KayKit/characters/props/gltf/sword_1handed.gltf" id="1_aeeks"]
 [ext_resource type="Script" uid="uid://c1yc32baelg7u" path="res://Project/Characters/Components/Combat/Weapons/WeaponInstance.gd" id="2_c06xq"]
-[ext_resource type="PackedScene" uid="uid://2r00002qw2u" path="res://Project/Characters/Components/Combat/Scenes_Combat/HitboxComponent.tscn" id="3_j8vei"]
+[ext_resource type="PackedScene" uid="uid://2r00002qw2u" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/HitboxComponent.tscn" id="3_j8vei"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j8vei"]
 

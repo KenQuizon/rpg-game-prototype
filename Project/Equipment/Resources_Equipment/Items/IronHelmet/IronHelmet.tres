@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dt67f8ckxamoe" path="res://Project/Equipment/Data/EquipmentProfile.gd" id="1_1ll5t"]
 [ext_resource type="Script" uid="uid://b2cnklllsutok" path="res://Project/Characters/Components/Stats/StatModifierEntry.gd" id="2_mc2hv"]
-[ext_resource type="PackedScene" uid="uid://clrgffw5yf0cf" path="res://Project/Equipment/Resources_Equipment/Items/IronHelmet/iron_helmet.tscn" id="3_mc2hv"]
+[ext_resource type="PackedScene" uid="uid://clrgffw5yf0cf" path="res://Project/Equipment/Resources_Equipment/Items/IronHelmet/IronHelmet.tscn" id="3_mc2hv"]
 
 [sub_resource type="Resource" id="Resource_ejbkv"]
 script = ExtResource("2_mc2hv")

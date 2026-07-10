@@ -2,21 +2,9 @@ extends BaseController
 class_name AIController
 
 #==============================================================================
-# Export Variables
-#==============================================================================
-
-@export var attack_range: float = 2.0
-
-#==============================================================================
 # Updates
 #==============================================================================
 
-# Deliberately minimal — idle / chase / engage, not a general AI framework.
-# The point of this class is that every line below only ever writes
-# CharacterInput or submits a CharacterCommand, exactly PlayerController's
-# contract — never touching ActionComponent, MovementComponent, or the
-# state machine directly. That's what makes this a proof of Controller
-# Abstraction rather than just another way to move a character.
 func physics_update(_delta: float) -> void:
 
 	if context.is_locked(ActionLock.Id.INPUT):
@@ -37,6 +25,7 @@ func physics_update(_delta: float) -> void:
 		return
 
 	var distance: float = character.global_position.distance_to(target.global_position)
+	var attack_range := context.weapon.get_attack_range() if context.weapon != null else 1.5
 
 	if distance > attack_range:
 		_chase(target, navigation)
