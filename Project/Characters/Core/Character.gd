@@ -58,6 +58,8 @@ func get_character_weapon_socket() -> WeaponSocket:
 	return weapon_socket
 func get_character_projectile_spawn_point() -> Marker3D:
 	return projectile_spawn_point
+func get_character_evade_definition() -> ActionDefinition:
+	return evade_definition
 #==============================================================================
 # Public Framework API
 #==============================================================================

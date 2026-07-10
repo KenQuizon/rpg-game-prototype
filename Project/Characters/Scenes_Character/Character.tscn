@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://djkodwunqlpaw"]
 
 [ext_resource type="Script" uid="uid://cr0gnhrwfolxe" path="res://Project/Characters/Components/Movement/MovementComponent.gd" id="1_502mb"]
-[ext_resource type="PackedScene" uid="uid://cr2hmkf65x5m1" path="res://Project/Characters/Scenes_Character/Ranger.tscn" id="1_fc2fk"]
+[ext_resource type="PackedScene" uid="uid://cr2hmkf65x5m1" path="res://Project/Characters/Scenes_Character/InheritedScenes/Ranger.tscn" id="1_fc2fk"]
 [ext_resource type="Script" uid="uid://dt61ygcy2nfgd" path="res://Project/Characters/Core/Character.gd" id="1_xdxam"]
 [ext_resource type="Script" uid="uid://bqmh470sqw07n" path="res://Project/Characters/Controllers/PlayerController.gd" id="2_0vidv"]
 [ext_resource type="Resource" uid="uid://4cgtnhhudcoc" path="res://Project/Gameplay/Actions/Resources_Actions/EvadeAction.tres" id="2_stqro"]
@@ -21,7 +21,7 @@
 [ext_resource type="Script" uid="uid://bb12xak51omdq" path="res://Project/Characters/Components/Combat/Weapons/WeaponProfile.gd" id="14_2dinu"]
 [ext_resource type="Script" uid="uid://bbp1veisyovtv" path="res://Project/Characters/Components/Combat/Data/AttackDefinition.gd" id="14_pw0um"]
 [ext_resource type="Script" uid="uid://rgnyd2ru1lwi" path="res://Project/Characters/Components/Combat/Data/AttackSet.gd" id="15_32hqh"]
-[ext_resource type="PackedScene" uid="uid://cm3kparcj8df1" path="res://Project/Characters/Components/Combat/Scenes_Combat/sword_1_handed_2.tscn" id="15_41xvy"]
+[ext_resource type="PackedScene" uid="uid://cm3kparcj8df1" path="res://Project/Characters/Components/Combat/Scenes_Combat/sword_1_handed.tscn" id="15_41xvy"]
 [ext_resource type="Script" uid="uid://ylguh5pimf4c" path="res://Project/Characters/Components/Combat/Components/ComboComponent.gd" id="15_adxff"]
 [ext_resource type="Resource" uid="uid://dvn2cwpuy7sbk" path="res://Project/Gameplay/Combat/Resources_Combat/Attack_Slash1.tres" id="15_fef4x"]
 [ext_resource type="Script" uid="uid://cv5gb46oukrjm" path="res://Project/Action/Components/PoiseComponent.gd" id="20_xovkx"]

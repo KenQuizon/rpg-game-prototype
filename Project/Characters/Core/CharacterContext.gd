@@ -165,6 +165,19 @@ var equipment: EquipmentComponent:
 var inventory: InventoryComponent:
 	get:
 		return _items_domain.inventory
+
+# -- Character-Level (not component-owned) --
+# evade_definition lives on the Character node itself (there's exactly one
+# per character, not per-component), so it's exposed here the same way
+# weapon_socket/projectile_spawn_point are: duck-typed against the host
+# contract rather than assuming _character is a Character.
+var evade_definition: ActionDefinition:
+	get:
+		if _character == null:
+			return null
+		if not _character.has_method("get_character_evade_definition"):
+			return null
+		return _character.get_character_evade_definition()
 #==============================================================================
 # Locks
 #==============================================================================

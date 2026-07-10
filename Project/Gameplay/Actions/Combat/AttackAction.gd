@@ -109,23 +109,21 @@ func _apply_attack_data() -> void:
 
 	var hitbox := context.combat.get_hitbox()
 
-	if hitbox == null:
-		return
+	if hitbox != null:
+		hitbox.set_active_attack_data(_attack.attack_data)
+		hitbox.set_active_effects(_attack.effects)
 
-	hitbox.set_active_attack_data(_attack.attack_data)
+	context.combat.set_active_projectile(_attack.projectile_scene, _attack.attack_data)
 
-	hitbox.set_active_attack_data(_attack.attack_data)
-	hitbox.set_active_effects(_attack.effects)
-	
 func _clear_attack_data() -> void:
 
 	var hitbox := context.combat.get_hitbox()
 
 	if hitbox != null:
 		hitbox.clear_active_attack_data()
-		
-	hitbox.clear_active_attack_data()
-	hitbox.clear_active_effects()
+		hitbox.clear_active_effects()
+
+	context.combat.clear_active_projectile()
 
 # Wires AttackMotion.move_distance/move_speed only — allow_rotation and
 # stop_movement_input are superseded by ActionDefinition.locks (ROTATION/

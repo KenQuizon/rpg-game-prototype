@@ -6,18 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://cdff7qoxrslkx" path="res://Project/World/Chest.tscn" id="4_eue43"]
 [ext_resource type="PackedScene" uid="uid://d4bcsx26ymp38" path="res://Project/Characters/Scenes_Character/Enemy.tscn" id="5_o14yy"]
 [ext_resource type="PackedScene" uid="uid://7jnufg4g2adh" path="res://Project/HUD/HUD.tscn" id="6_04mge"]
+[ext_resource type="PackedScene" uid="uid://cs7yoatek8jnu" path="res://Project/Characters/Scenes_Character/SkeletonArcher.tscn" id="7_2ua4a"]
 
 [sub_resource type="Environment" id="Environment_tw2g7"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_g3r0j"]
-vertices = PackedVector3Array(-0.75, 0.5, -4.75, -1, 0.5, -6.75, -9.5, 0.5, -9.5, -9.5, 0.5, 9.5, 1, 0.5, -7, 9.5, 0.5, -9.5, 9.5, 0.5, 9.5, 0.75, 0.5, -4.75, 1.25, 0.5, -5.25)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(4, 1, 5), PackedInt32Array(5, 1, 2), PackedInt32Array(0, 7, 3), PackedInt32Array(3, 7, 6), PackedInt32Array(5, 8, 4), PackedInt32Array(8, 5, 7), PackedInt32Array(7, 5, 6)]
+vertices = PackedVector3Array(-1, 0.5, -6.75, 0.25, 0.5, -7, 0.25, 0.5, -49.5, -49.5, 0.5, -49.5, -49.5, 0.5, -5.75, -1, 0.5, -5.75, 1, 0.5, -7, 1.25, 0.5, -6, 49.5, 0.5, -6, 49.5, 0.5, -49.5, 0.75, 0.5, -4.75, 0, 0.5, 49.5, 49.5, 0.5, 49.5, 0, 0.5, -4.75, -1, 0.5, -5, -49.5, 0.5, 49.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(0, 5, 4), PackedInt32Array(6, 1, 2), PackedInt32Array(6, 2, 7), PackedInt32Array(7, 2, 8), PackedInt32Array(8, 2, 9), PackedInt32Array(7, 8, 10), PackedInt32Array(10, 8, 12), PackedInt32Array(10, 12, 11), PackedInt32Array(11, 13, 10), PackedInt32Array(4, 5, 14), PackedInt32Array(14, 13, 4), PackedInt32Array(4, 13, 11), PackedInt32Array(4, 11, 15)]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2nri0"]
-size = Vector3(20, 1, 20)
+size = Vector3(100, 1, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2nri0"]
-size = Vector3(20, 1, 20)
+size = Vector3(100, 1, 100)
 
 [node name="World" type="Node3D" unique_id=2144308848]
 script = ExtResource("1_il6x7")
@@ -48,9 +49,15 @@ shape = SubResource("BoxShape3D_2nri0")
 [node name="Enemy" parent="." unique_id=1692040955 instance=ExtResource("5_o14yy")]
 transform = Transform3D(0.99961436, -0.027769044, 0, 0.027769044, 0.99961436, 0, 0, 0, 1, 5.687243, 0, -7.1346583)
 
+[node name="Enemy2" parent="." unique_id=1084824515 instance=ExtResource("5_o14yy")]
+transform = Transform3D(0.99961436, -0.027769044, 0, 0.027769044, 0.99961436, 0, 0, 0, 1, 11.723545, 0.16768704, -7.1346583)
+
+[node name="SkeletonArcher" parent="." unique_id=1333557891 instance=ExtResource("7_2ua4a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.134684, 0, -4.662224)
+
 [node name="CameraRig" parent="." unique_id=304269602 instance=ExtResource("3_04mge")]
 
-[node name="Character" parent="." unique_id=1084824515 instance=ExtResource("2_o14yy")]
+[node name="Character" parent="." unique_id=1915526537 instance=ExtResource("2_o14yy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.383242)
 
 [node name="HUD" parent="." unique_id=1659639571 instance=ExtResource("6_04mge")]

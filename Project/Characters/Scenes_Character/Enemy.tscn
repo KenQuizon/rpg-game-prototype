@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dt61ygcy2nfgd" path="res://Project/Characters/Core/Character.gd" id="1_2t644"]
 [ext_resource type="Script" uid="uid://cr0gnhrwfolxe" path="res://Project/Characters/Components/Movement/MovementComponent.gd" id="2_g6bof"]
+[ext_resource type="Resource" uid="uid://4cgtnhhudcoc" path="res://Project/Gameplay/Actions/Resources_Actions/EvadeAction.tres" id="2_yt0mr"]
 [ext_resource type="Script" uid="uid://1uxjegku06ai" path="res://Project/Characters/Components/Animation/AnimationComponent.gd" id="3_vbojf"]
-[ext_resource type="Script" uid="uid://db5y2ks4n6tkj" path="res://Project/Characters/Components/Animation/AnimationProfile.gd" id="4_2t644"]
 [ext_resource type="Script" uid="uid://cu6oyn8ecb07t" path="res://Project/Characters/Components/Stats/StatsComponent.gd" id="5_qgp1a"]
+[ext_resource type="Resource" uid="uid://b27kdgxrk0jbu" path="res://Project/Characters/Components/Animation/Resources_Animation/SkeletonAnimationProfile.tres" id="5_yt0mr"]
 [ext_resource type="Resource" uid="uid://c1eajktfgcvp5" path="res://Project/Characters/Components/Stats/Resources_Stats/EnemyStats.tres" id="6_2t644"]
 [ext_resource type="Script" uid="uid://c0mhx0gyehvm3" path="res://Project/Characters/Components/Health/HealthComponent.gd" id="7_guaj2"]
 [ext_resource type="Resource" uid="uid://b25cmghj41u1v" path="res://Project/Characters/Components/Health/Resources_Health/EnemyHealth.tres" id="8_g6bof"]
@@ -16,7 +17,7 @@
 [ext_resource type="Resource" uid="uid://dvn2cwpuy7sbk" path="res://Project/Gameplay/Combat/Resources_Combat/Attack_Slash1.tres" id="15_o8bhq"]
 [ext_resource type="Script" uid="uid://rgnyd2ru1lwi" path="res://Project/Characters/Components/Combat/Data/AttackSet.gd" id="16_chtgb"]
 [ext_resource type="Script" uid="uid://bb12xak51omdq" path="res://Project/Characters/Components/Combat/Weapons/WeaponProfile.gd" id="17_d1d6e"]
-[ext_resource type="PackedScene" uid="uid://cm3kparcj8df1" path="res://Project/Characters/Components/Combat/Scenes_Combat/sword_1_handed_2.tscn" id="18_ruc7e"]
+[ext_resource type="PackedScene" uid="uid://crk1ut2sgeeyg" path="res://Project/Characters/Components/Combat/Scenes_Combat/skeleton_blade.tscn" id="18_yt0mr"]
 [ext_resource type="Script" uid="uid://ylguh5pimf4c" path="res://Project/Characters/Components/Combat/Components/ComboComponent.gd" id="19_l3ol5"]
 [ext_resource type="Script" uid="uid://cv5gb46oukrjm" path="res://Project/Action/Components/PoiseComponent.gd" id="20_jm3mx"]
 [ext_resource type="Script" uid="uid://c7xa74wehf8b5" path="res://Project/Characters/Components/Status/StatusComponent.gd" id="21_t2n2y"]
@@ -28,12 +29,8 @@
 [ext_resource type="Script" uid="uid://g4yf1rbowctg" path="res://Project/Characters/Components/Navigation/NavigationComponent.gd" id="26_6ixcu"]
 [ext_resource type="Script" uid="uid://xyrl2ubhsmjr" path="res://Project/Characters/Controllers/AIController.gd" id="27_qgp1a"]
 [ext_resource type="Script" uid="uid://cigxfduvci7n2" path="res://Project/Characters/StateMachine/CharacterStateMachine.gd" id="27_r77gu"]
-[ext_resource type="PackedScene" uid="uid://digqepvu8m4ax" path="res://Project/Characters/Scenes_Character/Skeleton_Minion.tscn" id="29_2t644"]
+[ext_resource type="PackedScene" uid="uid://digqepvu8m4ax" path="res://Project/Characters/Scenes_Character/InheritedScenes/Skeleton_Minion.tscn" id="29_2t644"]
 [ext_resource type="PackedScene" uid="uid://b6gj2tri376r5" path="res://Project/Characters/Components/Interaction/Scenes_Interaction/InteractionArea.tscn" id="30_g6bof"]
-
-[sub_resource type="Resource" id="Resource_w2xlo"]
-script = ExtResource("4_2t644")
-metadata/_custom_type_script = "uid://db5y2ks4n6tkj"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2t644"]
 height = 2.2
@@ -47,7 +44,7 @@ metadata/_custom_type_script = "uid://rgnyd2ru1lwi"
 script = ExtResource("17_d1d6e")
 display_name = "Iron Sword"
 weapon_type = 1
-weapon_scene = ExtResource("18_ruc7e")
+weapon_scene = ExtResource("18_yt0mr")
 attack_set = SubResource("Resource_6rtp4")
 metadata/_custom_type_script = "uid://bb12xak51omdq"
 
@@ -57,10 +54,12 @@ height = 2.2
 [sub_resource type="SphereShape3D" id="SphereShape3D_2nri0"]
 radius = 8.0
 
-[node name="Enemy" type="CharacterBody3D" unique_id=1084824515]
+[node name="Enemy" type="CharacterBody3D" unique_id=1084824515 node_paths=PackedStringArray("projectile_spawn_point")]
 script = ExtResource("1_2t644")
 animation_player_path = NodePath("Model/VisualRoot/Skeleton_Minion/AnimationPlayer")
 weapon_socket_path = NodePath("Model/VisualRoot/Skeleton_Minion/Rig_Medium/Skeleton3D/Main_Hand/WeaponSocket")
+evade_definition = ExtResource("2_yt0mr")
+projectile_spawn_point = NodePath("Model/VisualRoot/ProjectileSpawnPoint")
 
 [node name="Components" type="Node3D" parent="." unique_id=1215277130]
 
@@ -70,7 +69,7 @@ metadata/_custom_type_script = "uid://cr0gnhrwfolxe"
 
 [node name="AnimationComponent" type="Node" parent="Components" unique_id=1517437127]
 script = ExtResource("3_vbojf")
-animation_profile = SubResource("Resource_w2xlo")
+animation_profile = ExtResource("5_yt0mr")
 metadata/_custom_type_script = "uid://1uxjegku06ai"
 
 [node name="StatsComponent" type="Node" parent="Components" unique_id=268312463]
@@ -152,9 +151,13 @@ metadata/_custom_type_script = "uid://cigxfduvci7n2"
 
 [node name="Skeleton_Minion" parent="Model/VisualRoot" unique_id=1819926485 instance=ExtResource("29_2t644")]
 
+[node name="ProjectileSpawnPoint" type="Marker3D" parent="Model/VisualRoot" unique_id=80610288]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2039398385]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 shape = SubResource("CapsuleShape3D_er8h5")
+debug_color = Color(1, 0, 0, 0.41960785)
 
 [node name="TargetingArea" type="Area3D" parent="." unique_id=1722110358]
 

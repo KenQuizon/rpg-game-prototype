@@ -4,7 +4,6 @@
 [ext_resource type="Animation" uid="uid://bmk717p7r0ifc" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Chop.res" id="2_oslyh"]
 [ext_resource type="Script" uid="uid://bg8csr1tobjt7" path="res://Project/Equipment/Data/EquipmentSlotSocket.gd" id="2_r3jr0"]
 [ext_resource type="Animation" uid="uid://dalhokfii67jc" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Jump_Chop.res" id="3_r3jr0"]
-[ext_resource type="PackedScene" uid="uid://cm3kparcj8df1" path="res://Project/Characters/Components/Combat/Scenes_Combat/sword_1_handed_2.tscn" id="4_h62n6"]
 [ext_resource type="Animation" uid="uid://h72ekkq1m1if" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Slice_Diagonal.res" id="4_tgmbb"]
 [ext_resource type="Animation" uid="uid://4ll5vfangkr0" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Slice_Horizontal.res" id="5_h62n6"]
 [ext_resource type="Animation" uid="uid://dabacevmai657" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Stab.res" id="6_i0t6l"]
@@ -214,8 +213,6 @@ bone_idx = 17
 [node name="WeaponSocket" type="Node3D" parent="Rig_Medium/Skeleton3D/Main_Hand" index="0" unique_id=1176139717]
 transform = Transform3D(1.0000007, 0, 0, 0, 1.0000011, 0, 0, 0, 1.0000007, 0, 0, 0)
 script = ExtResource("81_r3jr0")
-
-[node name="IronSword" parent="Rig_Medium/Skeleton3D/Main_Hand" index="1" unique_id=328844577 instance=ExtResource("4_h62n6")]
 
 [node name="Off_Hand" type="BoneAttachment3D" parent="Rig_Medium/Skeleton3D" index="10" unique_id=1184445899]
 transform = Transform3D(-0.0039810636, 0.29735515, 0.954758, 0.9993906, 0.034265216, -0.006504203, -0.03464883, 0.95415133, -0.2973106, 0.5089708, 0.6374484, -0.019232078)

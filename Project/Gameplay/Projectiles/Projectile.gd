@@ -28,6 +28,7 @@ var _elapsed: float = 0.0
 # this projectile (SpawnProjectileHandler) — mirrors WeaponInstance's own
 # initialize()-after-attach ordering, for the same @onready-safety reason.
 func _ready() -> void:
+	hitbox.initialize()
 	hitbox.area.area_entered.connect(_on_area_entered)
 	
 func launch(direction: Vector3, combat_owner: CombatComponent, attack_data: AttackData) -> void:

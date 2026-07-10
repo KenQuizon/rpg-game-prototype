@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://cs7yoatek8jnu"]
+
+[ext_resource type="Script" uid="uid://dt61ygcy2nfgd" path="res://Project/Characters/Core/Character.gd" id="1_dtmp0"]
+[ext_resource type="Resource" uid="uid://4cgtnhhudcoc" path="res://Project/Gameplay/Actions/Resources_Actions/EvadeAction.tres" id="2_hle06"]
+[ext_resource type="Script" uid="uid://cr0gnhrwfolxe" path="res://Project/Characters/Components/Movement/MovementComponent.gd" id="2_kv5au"]
+[ext_resource type="Script" uid="uid://1uxjegku06ai" path="res://Project/Characters/Components/Animation/AnimationComponent.gd" id="3_hle06"]
+[ext_resource type="Script" uid="uid://cu6oyn8ecb07t" path="res://Project/Characters/Components/Stats/StatsComponent.gd" id="5_g4t0t"]
+[ext_resource type="Resource" uid="uid://b27kdgxrk0jbu" path="res://Project/Characters/Components/Animation/Resources_Animation/SkeletonAnimationProfile.tres" id="5_kv5au"]
+[ext_resource type="Resource" uid="uid://c1eajktfgcvp5" path="res://Project/Characters/Components/Stats/Resources_Stats/EnemyStats.tres" id="6_n1kte"]
+[ext_resource type="Script" uid="uid://c0mhx0gyehvm3" path="res://Project/Characters/Components/Health/HealthComponent.gd" id="7_dwm1c"]
+[ext_resource type="Resource" uid="uid://b25cmghj41u1v" path="res://Project/Characters/Components/Health/Resources_Health/EnemyHealth.tres" id="8_njs1s"]
+[ext_resource type="Script" uid="uid://x3ox78n14rii" path="res://Project/Characters/Components/Action/ActionComponent.gd" id="9_ydd4r"]
+[ext_resource type="Script" uid="uid://c714tlwbn8rdv" path="res://Project/Characters/Components/Combat/Components/HurtboxComponent.gd" id="10_qp1uf"]
+[ext_resource type="Script" uid="uid://cs3373l874ea1" path="res://Project/Characters/Components/Combat/Components/CombatComponent.gd" id="11_n31nj"]
+[ext_resource type="Script" uid="uid://ccm8lflo77amt" path="res://Project/Characters/Components/Combat/Components/WeaponComponent.gd" id="12_wp44x"]
+[ext_resource type="Script" uid="uid://bbp1veisyovtv" path="res://Project/Characters/Components/Combat/Data/AttackDefinition.gd" id="13_4d3xl"]
+[ext_resource type="Resource" uid="uid://b6jpt7k38aws4" path="res://Project/Gameplay/Combat/Resources_Combat/Attack_ArrowShot.tres" id="14_dtmp0"]
+[ext_resource type="Script" uid="uid://rgnyd2ru1lwi" path="res://Project/Characters/Components/Combat/Data/AttackSet.gd" id="15_nc87f"]
+[ext_resource type="Script" uid="uid://bb12xak51omdq" path="res://Project/Characters/Components/Combat/Weapons/WeaponProfile.gd" id="16_tkv0t"]
+[ext_resource type="Script" uid="uid://ylguh5pimf4c" path="res://Project/Characters/Components/Combat/Components/ComboComponent.gd" id="18_fner7"]
+[ext_resource type="PackedScene" uid="uid://txenblydka1r" path="res://Project/Characters/Components/Combat/Scenes_Combat/bow.tscn" id="18_kv5au"]
+[ext_resource type="Script" uid="uid://cv5gb46oukrjm" path="res://Project/Action/Components/PoiseComponent.gd" id="19_xae5f"]
+[ext_resource type="Script" uid="uid://c7xa74wehf8b5" path="res://Project/Characters/Components/Status/StatusComponent.gd" id="20_orc6g"]
+[ext_resource type="Script" uid="uid://bi7uwhsjrsq3b" path="res://Project/Characters/Components/Resources/ResourceComponent.gd" id="21_flf61"]
+[ext_resource type="Script" uid="uid://chrq4eft6blp5" path="res://Project/Characters/Components/Resources/ResourcePoolProfile.gd" id="22_8arc6"]
+[ext_resource type="Resource" uid="uid://d082bktgl0lo2" path="res://Project/Characters/Components/Resources/Resources_/Stamina.tres" id="23_jwywy"]
+[ext_resource type="Script" uid="uid://y6j1o6ejoksh" path="res://Project/Characters/Components/Cooldown/CooldownComponent.gd" id="24_c4412"]
+[ext_resource type="Script" uid="uid://ojuacks7rywl" path="res://Project/Characters/Components/Navigation/TargetingComponent.gd" id="25_0p2dm"]
+[ext_resource type="Script" uid="uid://g4yf1rbowctg" path="res://Project/Characters/Components/Navigation/NavigationComponent.gd" id="26_pwxua"]
+[ext_resource type="Script" uid="uid://xyrl2ubhsmjr" path="res://Project/Characters/Controllers/AIController.gd" id="27_pg2jo"]
+[ext_resource type="Script" uid="uid://cigxfduvci7n2" path="res://Project/Characters/StateMachine/CharacterStateMachine.gd" id="28_p1n4s"]
+[ext_resource type="PackedScene" uid="uid://digqepvu8m4ax" path="res://Project/Characters/Scenes_Character/InheritedScenes/Skeleton_Minion.tscn" id="29_k3da1"]
+[ext_resource type="PackedScene" uid="uid://b6gj2tri376r5" path="res://Project/Characters/Components/Interaction/Scenes_Interaction/InteractionArea.tscn" id="30_pjuvr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2t644"]
+height = 2.2
+
+[sub_resource type="Resource" id="Resource_6rtp4"]
+script = ExtResource("15_nc87f")
+light_attacks = Array[ExtResource("13_4d3xl")]([ExtResource("14_dtmp0")])
+metadata/_custom_type_script = "uid://rgnyd2ru1lwi"
+
+[sub_resource type="Resource" id="Resource_h5dav"]
+script = ExtResource("16_tkv0t")
+display_name = "Bow"
+weapon_type = 5
+attack_range = 8.0
+weapon_scene = ExtResource("18_kv5au")
+attack_set = SubResource("Resource_6rtp4")
+metadata/_custom_type_script = "uid://bb12xak51omdq"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_er8h5"]
+height = 2.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2nri0"]
+radius = 8.0
+
+[node name="SkeletonArcher" type="CharacterBody3D" unique_id=1084824515 node_paths=PackedStringArray("projectile_spawn_point")]
+script = ExtResource("1_dtmp0")
+animation_player_path = NodePath("Model/VisualRoot/Skeleton_Minion/AnimationPlayer")
+weapon_socket_path = NodePath("Model/VisualRoot/Skeleton_Minion/Rig_Medium/Skeleton3D/Off_Hand/WeaponSocket")
+evade_definition = ExtResource("2_hle06")
+projectile_spawn_point = NodePath("Model/VisualRoot/ProjectileSpawnPoint")
+
+[node name="Components" type="Node3D" parent="." unique_id=1215277130]
+
+[node name="MovementComponent" type="Node" parent="Components" unique_id=586826802]
+script = ExtResource("2_kv5au")
+metadata/_custom_type_script = "uid://cr0gnhrwfolxe"
+
+[node name="AnimationComponent" type="Node" parent="Components" unique_id=1517437127]
+script = ExtResource("3_hle06")
+animation_profile = ExtResource("5_kv5au")
+metadata/_custom_type_script = "uid://1uxjegku06ai"
+
+[node name="StatsComponent" type="Node" parent="Components" unique_id=268312463]
+script = ExtResource("5_g4t0t")
+stats_profile = ExtResource("6_n1kte")
+metadata/_custom_type_script = "uid://cu6oyn8ecb07t"
+
+[node name="HealthComponent" type="Node" parent="Components" unique_id=908688141]
+script = ExtResource("7_dwm1c")
+profile = ExtResource("8_njs1s")
+metadata/_custom_type_script = "uid://c0mhx0gyehvm3"
+
+[node name="ActionComponent" type="Node" parent="Components" unique_id=1849275258]
+script = ExtResource("9_ydd4r")
+metadata/_custom_type_script = "uid://x3ox78n14rii"
+
+[node name="HurtboxComponent" type="Node3D" parent="Components" unique_id=1103694614]
+script = ExtResource("10_qp1uf")
+
+[node name="Area3D" type="Area3D" parent="Components/HurtboxComponent" unique_id=1708993336]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Components/HurtboxComponent/Area3D" unique_id=1451559427]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+shape = SubResource("CapsuleShape3D_2t644")
+
+[node name="CombatComponent" type="Node" parent="Components" unique_id=2142510943]
+script = ExtResource("11_n31nj")
+metadata/_custom_type_script = "uid://cs3373l874ea1"
+
+[node name="WeaponComponent" type="Node" parent="Components" unique_id=1398985983]
+script = ExtResource("12_wp44x")
+default_weapon = SubResource("Resource_h5dav")
+metadata/_custom_type_script = "uid://ccm8lflo77amt"
+
+[node name="ComboComponent" type="Node" parent="Components" unique_id=2143321997]
+script = ExtResource("18_fner7")
+metadata/_custom_type_script = "uid://ylguh5pimf4c"
+
+[node name="PoiseComponent" type="Node" parent="Components" unique_id=1541991321]
+script = ExtResource("19_xae5f")
+metadata/_custom_type_script = "uid://cv5gb46oukrjm"
+
+[node name="StatusComponent" type="Node" parent="Components" unique_id=258154783]
+script = ExtResource("20_orc6g")
+metadata/_custom_type_script = "uid://c7xa74wehf8b5"
+
+[node name="ResourceComponent" type="Node" parent="Components" unique_id=633261420]
+script = ExtResource("21_flf61")
+pools = Array[ExtResource("22_8arc6")]([ExtResource("23_jwywy")])
+metadata/_custom_type_script = "uid://bi7uwhsjrsq3b"
+
+[node name="CooldownComponent" type="Node" parent="Components" unique_id=881125021]
+script = ExtResource("24_c4412")
+metadata/_custom_type_script = "uid://y6j1o6ejoksh"
+
+[node name="TargetingComponent" type="Node" parent="Components" unique_id=1278320512]
+script = ExtResource("25_0p2dm")
+target_group = &"player"
+metadata/_custom_type_script = "uid://ojuacks7rywl"
+
+[node name="NavigationComponent" type="Node3D" parent="Components" unique_id=1102107664]
+script = ExtResource("26_pwxua")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Components/NavigationComponent" unique_id=285563117]
+debug_enabled = true
+
+[node name="Systems" type="Node" parent="." unique_id=1868648437]
+
+[node name="Controller" type="Node" parent="Systems" unique_id=1188592564]
+script = ExtResource("27_pg2jo")
+attack_range = 8.0
+
+[node name="CharacterStateMachine" type="Node" parent="Systems" unique_id=1814035927]
+script = ExtResource("28_p1n4s")
+metadata/_custom_type_script = "uid://cigxfduvci7n2"
+
+[node name="Model" type="Node3D" parent="." unique_id=704711723]
+
+[node name="VisualRoot" type="Node3D" parent="Model" unique_id=1744098547]
+
+[node name="Skeleton_Minion" parent="Model/VisualRoot" unique_id=1819926485 instance=ExtResource("29_k3da1")]
+
+[node name="ProjectileSpawnPoint" type="Marker3D" parent="Model/VisualRoot" unique_id=80610288]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2039398385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+shape = SubResource("CapsuleShape3D_er8h5")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="TargetingArea" type="Area3D" parent="." unique_id=1722110358]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TargetingArea" unique_id=169454032]
+shape = SubResource("SphereShape3D_2nri0")
+
+[node name="CameraTarget" type="Node3D" parent="." unique_id=664427336]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="InteractionOrigin" type="Node3D" parent="." unique_id=1999352598]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.5)
+
+[node name="InteractionArea" parent="InteractionOrigin" unique_id=1013743914 instance=ExtResource("30_pjuvr")]

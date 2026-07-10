@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AnimationProfile" format=3 uid="uid://b27kdgxrk0jbu"]
+
+[ext_resource type="Script" uid="uid://db5y2ks4n6tkj" path="res://Project/Characters/Components/Animation/AnimationProfile.gd" id="1_x0hh7"]
+
+[resource]
+script = ExtResource("1_x0hh7")
+idle = &"Skeleton/Skeletons_Idle"
+walk = &"Skeleton/Skeletons_Walking"
+death = &"Skeleton/Skeletons_Death"
+metadata/_custom_type_script = "uid://db5y2ks4n6tkj"
