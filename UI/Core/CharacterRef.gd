@@ -1,54 +1,78 @@
 extends Node
 class_name CharacterRef
 
-# Provides consistent way to access character and its components
+# Provides a consistent way to access the player character and its
+# components. Gameplay components live on character.context (a
+# CharacterContext), NOT behind get_character_*() methods — those methods
+# are reserved for framework/visual plumbing (visual root, animation
+# player, weapon sockets). See Character.gd / CharacterContext.gd.
 static var player: Character
 
-func _enter_tree() -> void:
-	# Auto-find player when scene loads
-	await get_tree().process_frame
-	if not player:
-		player = get_tree().root.find_child("Player", true, false)
-		if player:
-			print("Player character found: %s" % player.name)
 
 static func get_player() -> Character:
 	"""Get the player character (auto-finds if needed)"""
 	if not player:
-		player = get_tree().root.find_child("Player", true, false)
+		_find_player()
 	return player
 
-static func get_player_health() -> Node:
+
+# Static functions can't call instance methods like get_tree(), so the
+# tree is reached via Engine.get_main_loop() instead — that call is
+# static-safe.
+static func _find_player() -> void:
+	var tree := Engine.get_main_loop() as SceneTree
+	if tree == null:
+		return
+
+	var found := tree.root.find_child("Player", true, false)
+	if found is Character:
+		player = found
+		print("Player character found: %s" % player.name)
+
+
+static func get_player_health() -> HealthComponent:
 	"""Get player health component"""
-	var p = get_player()
-	if p and p.has_method("get_character_health"):
-		return p.get_character_health()
+	var p := get_player()
+	if p and p.context:
+		return p.context.health
 	return null
 
-static func get_player_skills() -> Node:
+
+static func get_player_resources() -> ResourceComponent:
+	"""Get player resource component (mana/stamina/etc.)"""
+	var p := get_player()
+	if p and p.context:
+		return p.context.resources
+	return null
+
+
+static func get_player_skills() -> SkillComponent:
 	"""Get player skills component"""
-	var p = get_player()
-	if p and p.has_method("get_character_skills"):
-		return p.get_character_skills()
+	var p := get_player()
+	if p and p.context:
+		return p.context.skills
 	return null
 
-static func get_player_inventory() -> Node:
+
+static func get_player_inventory() -> InventoryComponent:
 	"""Get player inventory component"""
-	var p = get_player()
-	if p and p.has_method("get_character_inventory"):
-		return p.get_character_inventory()
+	var p := get_player()
+	if p and p.context:
+		return p.context.inventory
 	return null
 
-static func get_player_equipment() -> Node:
+
+static func get_player_equipment() -> EquipmentComponent:
 	"""Get player equipment component"""
-	var p = get_player()
-	if p and p.has_method("get_character_equipment"):
-		return p.get_character_equipment()
+	var p := get_player()
+	if p and p.context:
+		return p.context.equipment
 	return null
 
-static func get_player_stats() -> Node:
+
+static func get_player_stats() -> StatsComponent:
 	"""Get player stats component"""
-	var p = get_player()
-	if p and p.has_method("get_character_stats"):
-		return p.get_character_stats()
+	var p := get_player()
+	if p and p.context:
+		return p.context.stats
 	return null
