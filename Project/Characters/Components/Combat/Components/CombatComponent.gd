@@ -185,3 +185,13 @@ func _on_damage_received(result: DamageResult) -> void:
 		return
 
 	context.animation.play_hurt()
+
+	
+	# UI bridge — fires for every character (player or enemy), not just
+	# the player, so damage numbers work for both sides of a fight.
+	if owner_character is Node3D:
+		UIEvents.damage_applied.emit(
+			result.final_damage,
+			result.critical,
+			(owner_character as Node3D).global_position
+		)

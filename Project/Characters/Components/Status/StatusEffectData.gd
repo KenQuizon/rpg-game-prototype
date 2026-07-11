@@ -24,6 +24,7 @@ enum StackMode {
 
 @export_multiline var description: String = ""
 
+@export var icon: Texture2D
 #==============================================================================
 # Duration & Stacking
 #==============================================================================

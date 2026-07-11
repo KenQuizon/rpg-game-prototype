@@ -2,15 +2,12 @@ extends Node3D
 
 @onready var player: Character = $Character
 @onready var camera_rig: CameraRig = $CameraRig
-@onready var hud: HUD = $HUD
 
 
 func _ready() -> void:
 	camera_rig.set_target(
 		player.get_camera_follow_target()
 	)
-
-	hud.bind_to_character(player)
 
 func _unhandled_input(event: InputEvent) -> void:
 

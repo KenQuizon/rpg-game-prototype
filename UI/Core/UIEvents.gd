@@ -1,6 +1,6 @@
 extends Node
 
-class_name UIEvents
+#class_name UIEvents - Autoload
 
 # Declare all signals that UI panels can emit/listen to
 signal inventory_opened
@@ -12,7 +12,7 @@ signal skill_selected(skill_id: String)
 signal skill_used(skill_id: String)
 signal skill_cooldown_started(skill_id: String, duration: float)
 
-signal damage_applied(amount: float, is_critical: bool)
+signal damage_applied(amount: float, is_critical: bool, world_position: Vector3)
 signal healing_applied(amount: float)
 
 signal status_effect_applied(effect_name: String)

@@ -47,8 +47,5 @@ func spawn_damage_number(world_pos: Vector3, damage: float, is_critical: bool = 
 	await number.tree_exited
 	damage_number_pool.append(number)
 
-func _on_damage_applied(amount: float, is_critical: bool) -> void:
-	"""Listen for damage events from UIEvents"""
-	var player = CharacterRef.get_player()
-	if player:
-		spawn_damage_number(player.global_position, amount, is_critical)
+func _on_damage_applied(amount: float, is_critical: bool, world_position: Vector3) -> void:
+	spawn_damage_number(world_position, amount, is_critical)

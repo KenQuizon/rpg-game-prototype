@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c01nirneon10h"]
+
+[ext_resource type="Script" uid="uid://cthvpa4n3us60" path="res://UI/Feedback/DamageNumberSpawner.gd" id="1_hwuua"]
+[ext_resource type="PackedScene" uid="uid://onhi17xtt73p" path="res://UI/Feedback/DamageNumber.tscn" id="2_y3rn7"]
+
+[node name="DamageNumberSpawner" type="CanvasLayer" unique_id=492531340]
+script = ExtResource("1_hwuua")
+damage_number_scene = ExtResource("2_y3rn7")

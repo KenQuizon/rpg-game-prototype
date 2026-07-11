@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://da4apvdi0g24t"]
+
+[ext_resource type="Script" uid="uid://ca55i3xlcjvox" path="res://UI/Feedback/StatusEffectIndicator.gd" id="1_c4ktw"]
+
+[node name="StatusEffectIndicator" type="PanelContainer" unique_id=19411629]
+script = ExtResource("1_c4ktw")

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://g2rpetu5a8wo"]
+
+[ext_resource type="Script" uid="uid://dhohc2pbjpfu" path="res://UI/Feedback/ActionFeedback.gd" id="1_feom5"]
+[ext_resource type="PackedScene" uid="uid://d3maev7bxq1e3" path="res://UI/Feedback/FeedbackItem.tscn" id="2_hjayr"]
+
+[node name="ActionFeedback" type="VBoxContainer" unique_id=1718562854]
+script = ExtResource("1_feom5")
+feedback_item_scene = ExtResource("2_hjayr")
