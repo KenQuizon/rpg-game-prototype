@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cxa5bhd30h8bh"]
+
+[ext_resource type="PackedScene" uid="uid://doj881bk73sdq" path="res://UI/HUD/HealthBar.tscn" id="1_5qg3j"]
+[ext_resource type="PackedScene" uid="uid://6814pqptgp25" path="res://UI/HUD/ManaBar.tscn" id="2_cdo0s"]
+[ext_resource type="PackedScene" uid="uid://c10wtpdgiaiv4" path="res://UI/HUD/EXPBar.tscn" id="3_uljmn"]
+[ext_resource type="PackedScene" uid="uid://bl2j3vy3pdpc8" path="res://UI/HUD/StaminaBar.tscn" id="4_2kuvv"]
+
+[node name="MainHUD" type="Control" unique_id=424546778]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="PlayerStats" type="HBoxContainer" parent="." unique_id=73180882]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 380.0
+offset_bottom = 80.0
+
+[node name="EXPBar" parent="PlayerStats" unique_id=1343801903 instance=ExtResource("3_uljmn")]
+z_index = 2
+custom_minimum_size = Vector2(65, 78)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerStats" unique_id=1377261596]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="HealthBar" parent="PlayerStats/VBoxContainer" unique_id=179306097 instance=ExtResource("1_5qg3j")]
+layout_mode = 2
+
+[node name="ManaBar" parent="PlayerStats/VBoxContainer" unique_id=171801448 instance=ExtResource("2_cdo0s")]
+layout_mode = 2
+
+[node name="StaminaBar" parent="PlayerStats" unique_id=1219846074 instance=ExtResource("4_2kuvv")]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(300, 300)

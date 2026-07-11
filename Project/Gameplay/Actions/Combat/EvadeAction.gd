@@ -39,6 +39,8 @@ func on_start() -> void:
 
 	if context.movement != null:
 		context.movement.apply_attack_motion(EVADE_DISTANCE, EVADE_SPEED)
+		
+	animation.play_dash()
 
 func on_update(delta: float) -> int:
 

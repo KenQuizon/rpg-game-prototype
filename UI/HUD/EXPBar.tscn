@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://c10wtpdgiaiv4"]
+
+[ext_resource type="Texture2D" uid="uid://b1ytewht1qxdx" path="res://Assets/buttonCircle_white.png" id="1_8duni"]
+[ext_resource type="Texture2D" uid="uid://dbfs0ia333ycy" path="res://Assets/CircularProgressBar.png" id="1_oiydk"]
+[ext_resource type="Texture2D" uid="uid://ddu1vwf41m70f" path="res://Assets/buttonCircle_black.png" id="2_oksc1"]
+
+[node name="EXPBar" type="Control" unique_id=179306097]
+custom_minimum_size = Vector2(78, 78)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 79.0
+offset_bottom = 79.0
+
+[node name="BG" type="TextureRect" parent="." unique_id=1236747364]
+layout_mode = 1
+offset_right = 78.0
+offset_bottom = 86.0
+texture = ExtResource("1_8duni")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1495176847]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 76.0
+offset_bottom = 76.0
+value = 17.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_under = ExtResource("1_oiydk")
+texture_progress = ExtResource("1_oiydk")
+tint_under = Color(0.14901961, 0.14901961, 0.20392157, 1)
+
+[node name="CharacterLevel" type="Control" parent="." unique_id=427473919]
+custom_minimum_size = Vector2(21, 23)
+custom_maximum_size = Vector2(21, 23)
+anchors_preset = 0
+offset_right = 21.0
+offset_bottom = 23.0
+
+[node name="BG" type="TextureRect" parent="CharacterLevel" unique_id=24057373]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_oksc1")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="LevelText" type="Label" parent="CharacterLevel" unique_id=1105220280]
+layout_mode = 1
+offset_right = 21.0
+offset_bottom = 21.0
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

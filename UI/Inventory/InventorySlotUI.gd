@@ -1,0 +1,31 @@
+extends PanelContainer
+class_name InventorySlotUI
+
+signal item_selected
+
+@onready var icon: TextureRect = $VBoxContainer/Icon
+@onready var quantity: Label = $VBoxContainer/Quantity
+
+var item: ItemDefinition
+var item_quantity: int = 1
+
+func _ready() -> void:
+	gui_input.connect(_on_gui_input)
+
+func set_item(new_item: ItemDefinition, qty: int = 1) -> void:
+	"""Display an item in this slot"""
+	item = new_item
+	item_quantity = qty
+	
+	if item:
+		icon.texture = item.get_meta("icon", null)
+		quantity.text = str(qty) if qty > 1 else ""
+		tooltip_text = item.name
+
+func _on_gui_input(event: InputEvent) -> void:
+	if not item:
+		return
+	
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			item_selected.emit()

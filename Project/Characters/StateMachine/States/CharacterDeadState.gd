@@ -10,3 +10,6 @@ func enter() -> void:
 
 	if movement:
 		movement.set_move_input(Vector2.ZERO)
+
+	if context.animation != null:
+		context.animation.play_death()

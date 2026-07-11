@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="AttackDefinition" format=3 uid="uid://b6jpt7k38aws4"]
 
 [ext_resource type="Script" uid="uid://qpepkjukhlvt" path="res://Project/Action/Data/ActionPolicy.gd" id="1_bksef"]
-[ext_resource type="Script" uid="uid://d3ff2n2f5fjrh" path="res://Project/Gameplay/Actions/Combat/AttackAction.gd" id="1_f2br6"]
 [ext_resource type="Script" uid="uid://bnnbymum325ix" path="res://Project/Gameplay/Combat/Data/AttackData.gd" id="1_h3bmu"]
+[ext_resource type="Script" uid="uid://bttogue7bqaph" path="res://Project/Gameplay/Actions/Combat/RangedChargeAttackAction.gd" id="1_pj822"]
 [ext_resource type="Script" uid="uid://bbp1veisyovtv" path="res://Project/Characters/Components/Combat/Data/AttackDefinition.gd" id="2_h3bmu"]
 [ext_resource type="PackedScene" uid="uid://5telnvpq3e8e" path="res://Project/Gameplay/Projectiles/Arrow.tscn" id="3_3emdp"]
 [ext_resource type="Script" uid="uid://bm7k5aqdcgye3" path="res://Project/Characters/Components/Combat/Data/AttackTiming.gd" id="5_f2br6"]
@@ -10,21 +10,24 @@
 [sub_resource type="Resource" id="Resource_5qypi"]
 script = ExtResource("1_h3bmu")
 damage = 8.0
+stagger_damage = 1.0
 metadata/_custom_type_script = "uid://bnnbymum325ix"
 
 [sub_resource type="Resource" id="Resource_3emdp"]
 script = ExtResource("5_f2br6")
-recovery_time = 0.3
+recovery_time = 1.5
 metadata/_custom_type_script = "uid://bm7k5aqdcgye3"
 
 [resource]
 script = ExtResource("2_h3bmu")
 animation = &"Combat/Ranged_Bow_Release"
+draw_animation = &"Combat/Ranged_Bow_Draw"
+aim_animation = &"Combat/Ranged_Bow_Aiming_Idle"
 attack_data = SubResource("Resource_5qypi")
 timing = SubResource("Resource_3emdp")
 projectile_scene = ExtResource("3_3emdp")
 id = &"attack_arrow"
-action_script = ExtResource("1_f2br6")
+action_script = ExtResource("1_pj822")
 locks = 10
 flags = 19
 metadata/_custom_type_script = "uid://bbp1veisyovtv"

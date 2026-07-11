@@ -10,7 +10,7 @@ func handle_event(
 		return
 
 	var scene := context.combat.get_active_projectile_scene()
-
+	print("spawn_projectile fired, scene = ", scene)
 	if scene == null:
 		return
 

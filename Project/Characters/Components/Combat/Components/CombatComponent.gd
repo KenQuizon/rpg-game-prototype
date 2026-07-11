@@ -58,6 +58,8 @@ func on_initialize() -> void:
 	if _health != null:
 		if not _health.died.is_connected(_on_died):
 			_health.died.connect(_on_died)
+	if not damage_received.is_connected(_on_damage_received):
+		damage_received.connect(_on_damage_received)
 #==============================================================================
 # Combat Events
 #==============================================================================
@@ -166,3 +168,20 @@ func get_active_projectile_scene() -> PackedScene:
 
 func get_active_projectile_data() -> AttackData:
 	return _active_projectile_data
+
+func _on_damage_received(result: DamageResult) -> void:
+
+	if is_dead():
+		return   # the killing blow already triggered play_death() via _on_died()
+
+	if context.animation == null:
+		return
+
+	if result.evaded:
+		return
+
+	if result.blocked:
+		context.animation.play_block_hit()   # see below
+		return
+
+	context.animation.play_hurt()

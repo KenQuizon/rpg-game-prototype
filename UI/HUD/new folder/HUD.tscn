@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://7jnufg4g2adh"]
 
-[ext_resource type="Script" uid="uid://dbwbav3titrmi" path="res://Project/HUD/HUD.gd" id="1_f31rt"]
+[ext_resource type="Script" uid="uid://dbwbav3titrmi" path="res://UI/HUD/new folder/HUD.gd" id="1_f31rt"]
+[ext_resource type="Texture2D" uid="uid://d0xrw2oifuclf" path="res://icon.svg" id="2_fw562"]
 
 [node name="HUD" type="CanvasLayer" unique_id=1659639571]
 script = ExtResource("1_f31rt")
@@ -14,19 +15,27 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VitalsPanel" type="VBoxContainer" parent="Root" unique_id=232484870]
-custom_minimum_size = Vector2(220, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 1
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 250.0
+offset_bottom = 39.0
 
 [node name="HealthBar" type="ProgressBar" parent="Root/VitalsPanel" unique_id=802935107]
 layout_mode = 2
+offset_transform_enabled = true
+show_percentage = false
 
 [node name="ManaBar" type="ProgressBar" parent="Root/VitalsPanel" unique_id=1524198841]
 layout_mode = 2
+show_percentage = false
+
+[node name="ExperienceBar" type="ProgressBar" parent="Root/VitalsPanel" unique_id=1520150552]
+layout_mode = 2
+show_percentage = false
 
 [node name="StaminaBar" type="ProgressBar" parent="Root/VitalsPanel" unique_id=519203466]
 layout_mode = 2
+show_percentage = false
 
 [node name="CooldownPanel" type="HBoxContainer" parent="Root" unique_id=1390023304]
 layout_mode = 1
@@ -49,6 +58,7 @@ layout_mode = 2
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+texture = ExtResource("2_fw562")
 
 [node name="CooldownLabel" type="Label" parent="Root/CooldownPanel/FireballCooldown" unique_id=1599171034]
 layout_mode = 0
@@ -58,7 +68,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InventoryPanel" type="VBoxContainer" parent="Root" unique_id=766636448]
-visible = false
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 1
 anchors_preset = 1

@@ -3,10 +3,12 @@
 [ext_resource type="Script" uid="uid://hlouhdxxrmv3" path="res://Project/World/World.gd" id="1_il6x7"]
 [ext_resource type="PackedScene" uid="uid://djkodwunqlpaw" path="res://Project/Characters/Scenes_Character/Character.tscn" id="2_o14yy"]
 [ext_resource type="PackedScene" uid="uid://c77s1tth17cnh" path="res://Project/Camera/CameraRig.tscn" id="3_04mge"]
+[ext_resource type="Texture2D" uid="uid://pwrstq5viawe" path="res://Assets/KayKit/characters/textures/barbarian_texture.png" id="3_tf3c8"]
 [ext_resource type="PackedScene" uid="uid://cdff7qoxrslkx" path="res://Project/World/Chest.tscn" id="4_eue43"]
 [ext_resource type="PackedScene" uid="uid://d4bcsx26ymp38" path="res://Project/Characters/Scenes_Character/Enemy.tscn" id="5_o14yy"]
-[ext_resource type="PackedScene" uid="uid://7jnufg4g2adh" path="res://Project/HUD/HUD.tscn" id="6_04mge"]
+[ext_resource type="PackedScene" uid="uid://7jnufg4g2adh" path="res://UI/HUD/new folder/HUD.tscn" id="6_04mge"]
 [ext_resource type="PackedScene" uid="uid://cs7yoatek8jnu" path="res://Project/Characters/Scenes_Character/SkeletonArcher.tscn" id="7_2ua4a"]
+[ext_resource type="PackedScene" uid="uid://cxa5bhd30h8bh" path="res://UI/HUD/MainHUD.tscn" id="9_yhhn6"]
 
 [sub_resource type="Environment" id="Environment_tw2g7"]
 
@@ -14,7 +16,11 @@
 vertices = PackedVector3Array(-1, 0.5, -6.75, 0.25, 0.5, -7, 0.25, 0.5, -49.5, -49.5, 0.5, -49.5, -49.5, 0.5, -5.75, -1, 0.5, -5.75, 1, 0.5, -7, 1.25, 0.5, -6, 49.5, 0.5, -6, 49.5, 0.5, -49.5, 0.75, 0.5, -4.75, 0, 0.5, 49.5, 49.5, 0.5, 49.5, 0, 0.5, -4.75, -1, 0.5, -5, -49.5, 0.5, 49.5)
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(0, 5, 4), PackedInt32Array(6, 1, 2), PackedInt32Array(6, 2, 7), PackedInt32Array(7, 2, 8), PackedInt32Array(8, 2, 9), PackedInt32Array(7, 8, 10), PackedInt32Array(10, 8, 12), PackedInt32Array(10, 12, 11), PackedInt32Array(11, 13, 10), PackedInt32Array(4, 5, 14), PackedInt32Array(14, 13, 4), PackedInt32Array(4, 13, 11), PackedInt32Array(4, 11, 15)]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6r17d"]
+albedo_texture = ExtResource("3_tf3c8")
+
 [sub_resource type="BoxMesh" id="BoxMesh_2nri0"]
+material = SubResource("StandardMaterial3D_6r17d")
 size = Vector3(100, 1, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2nri0"]
@@ -61,3 +67,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.134684, 0, -4.662224)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.383242)
 
 [node name="HUD" parent="." unique_id=1659639571 instance=ExtResource("6_04mge")]
+visible = false
+
+[node name="MainHUD" parent="." unique_id=424546778 instance=ExtResource("9_yhhn6")]

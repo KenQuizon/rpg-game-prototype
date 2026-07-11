@@ -7,6 +7,9 @@ class_name AttackDefinition
 
 @export var animation: StringName = &""
 
+@export var draw_animation: StringName = &""
+@export var aim_animation: StringName = &""   # only used by charge-capable actions
+
 #==============================================================================
 # Combat Data
 #==============================================================================

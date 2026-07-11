@@ -84,6 +84,16 @@ func process_update(delta: float) -> void:
 
 	if _visual_root == null:
 		return
+		
+	if context.combat != null and context.combat.is_dead():
+		return 
+		
+	if context.action != null and context.action.is_busy():
+		return
+
+	if context.combat != null and context.combat.is_blocking:
+		play_block_idle()
+		return
 
 	if _movement.is_moving and not _is_rotation_locked():
 
@@ -159,3 +169,18 @@ func _on_animation_finished(animation_name: StringName) -> void:
 	
 func play(animation_name: StringName, force_restart := false) -> void:
 	_play(animation_name, force_restart)
+
+func play_death() -> void:
+	_play(animation_profile.death, true)
+
+func play_hurt() -> void:
+	_play(animation_profile.hurt, true)
+
+func play_dash() -> void:
+	_play(animation_profile.dash, true)
+
+func play_block_idle() -> void:
+	_play(animation_profile.block_idle)
+
+func play_block_hit() -> void:
+	_play(animation_profile.block_hit, true)

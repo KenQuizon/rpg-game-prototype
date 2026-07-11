@@ -8,6 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_u4lbc"]
 script = ExtResource("1_jj2dx")
+stagger_damage = 1.0
 metadata/_custom_type_script = "uid://bnnbymum325ix"
 
 [sub_resource type="Resource" id="Resource_5qypi"]

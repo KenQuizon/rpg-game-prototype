@@ -116,7 +116,7 @@ func _apply_attack_data() -> void:
 	context.combat.set_active_projectile(_attack.projectile_scene, _attack.attack_data)
 
 func _clear_attack_data() -> void:
-
+	print("clearing projectile at t=", Time.get_ticks_msec())
 	var hitbox := context.combat.get_hitbox()
 
 	if hitbox != null:
