@@ -17,28 +17,28 @@ func _ready() -> void:
 	set_process(true)
 
 func set_skill(new_skill: SkillDefinition, key: String = "") -> void:
-	"""Assign a skill to this slot"""
 	skill = new_skill
 	hotkey = key
 	key_label.text = key.to_upper()
-	
-	if skill and skill.has_meta("icon"):
-		icon.texture = skill.get_meta("icon")
+	icon.texture = skill.icon if skill else null
 
 func start_cooldown(duration: float) -> void:
-	"""Start cooldown for this skill"""
 	is_on_cooldown = true
 	cooldown_remaining = duration
 	modulate = Color.GRAY
 
+func clear_cooldown() -> void:
+	is_on_cooldown = false
+	cooldown_remaining = 0.0
+	modulate = Color.WHITE
+	cooldown_label.text = ""
+
 func _process(delta: float) -> void:
 	if is_on_cooldown:
 		cooldown_remaining -= delta
-		
+
 		if cooldown_remaining <= 0:
-			is_on_cooldown = false
-			modulate = Color.WHITE
-			cooldown_label.text = ""
+			clear_cooldown()
 		else:
 			cooldown_label.text = "%.1f" % cooldown_remaining if cooldown_remaining < 10 else ""
 
@@ -47,6 +47,5 @@ func _on_gui_input(event: InputEvent) -> void:
 		activate_skill()
 
 func activate_skill() -> void:
-	"""Try to activate this skill"""
 	if skill and not is_on_cooldown:
 		skill_activated.emit(skill)

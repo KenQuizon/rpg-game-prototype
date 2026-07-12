@@ -7,48 +7,57 @@ class_name Hotbar
 
 var slots: Array[HotbarSlot] = []
 var character: Character
-var skill_component: Node
 
 func _ready() -> void:
 	self.custom_minimum_size.y = 80
-	
+
 	character = CharacterRef.get_player()
-	
-	if character and character.has_method("get_character_skills"):
-		skill_component = character.get_character_skills()
-		skill_component.cooldown_updated.connect(_on_cooldown_updated)
-	
-	# Create hotbar slots
+
+	if character and character.context and character.context.cooldowns:
+		character.context.cooldowns.cooldown_started.connect(_on_cooldown_started)
+		character.context.cooldowns.cooldown_finished.connect(_on_cooldown_finished)
+
 	for i in range(slot_count):
 		var slot = hotbar_slot_scene.instantiate() as HotbarSlot
 		slot.set_skill(null, hotkeys[i] if i < hotkeys.size() else "")
 		slot.skill_activated.connect(_on_skill_activated)
 		add_child(slot)
 		slots.append(slot)
-	
-	# Setup hotkey input
+
 	_setup_hotkey_inputs()
 	print("Hotbar initialized with %d slots" % slot_count)
 
 func assign_skill(slot_index: int, skill: SkillDefinition) -> void:
-	"""Assign a skill to a hotbar slot"""
 	if slot_index < slots.size():
 		slots[slot_index].set_skill(skill, hotkeys[slot_index])
 
 func _on_skill_activated(skill: SkillDefinition) -> void:
-	"""Player activated a skill"""
-	if skill_component:
-		skill_component.use_skill(skill)
-		UIEvents.skill_used.emit(skill.name)
+	if character == null or character.context == null:
+		return
 
-func _on_cooldown_updated(skill_id: String, remaining: float, total: float) -> void:
-	"""Update cooldown display"""
+	var command := CastSkillCommand.new()
+	command.initialize(character.context)
+	command.skill_id = skill.id
+
+	if command.execute():
+		UIEvents.skill_used.emit(String(skill.id))
+
+func _on_cooldown_started(group: StringName, duration: float) -> void:
 	for slot in slots:
-		if slot.skill and slot.skill.name == skill_id:
-			slot.start_cooldown(remaining)
+		if slot.skill and slot.skill.cooldown_group == group:
+			slot.start_cooldown(duration)
+
+func _on_cooldown_finished(group: StringName) -> void:
+	for slot in slots:
+		if slot.skill and slot.skill.cooldown_group == group:
+			slot.clear_cooldown()
+
+func _unhandled_input(event: InputEvent) -> void:
+	for i in range(slots.size()):
+		if event.is_action_pressed("hotbar_%d" % i):
+			slots[i].activate_skill()
 
 func _setup_hotkey_inputs() -> void:
-	"""Setup input map for hotkeys"""
 	for i in range(hotkeys.size()):
 		var action_name = "hotbar_%d" % i
 		if not InputMap.has_action(action_name):

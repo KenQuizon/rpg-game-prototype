@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://de0tqe3qu6mbq"]
+
+[ext_resource type="Script" uid="uid://btsna4l0oceuk" path="res://UI/Hotbar/Hotbar.gd" id="1_4xnba"]
+[ext_resource type="PackedScene" uid="uid://crsiltuw6ss81" path="res://UI/Hotbar/HotbarSlot.tscn" id="2_tgoqj"]
+
+[node name="Hotbar" type="HBoxContainer" unique_id=2051952290]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4xnba")
+hotbar_slot_scene = ExtResource("2_tgoqj")

@@ -11,21 +11,16 @@ var character: Character
 
 func _ready() -> void:
 	super._ready()
-	character = get_tree().root.get_node("World/Player")
-	
+	character = CharacterRef.get_player()
+
 	if character:
 		_update_character_display()
-		
-		# Add character model preview
 		_create_character_preview()
 
 func _create_character_preview() -> void:
-	# Clone character model for display
-	if character.has_method("get_character_model"):
-		var model = character.get_character_model().duplicate()
-		character_model.add_child(model)
+	var model := character.get_character_model()
+	if model:
+		character_model.add_child(model.duplicate())
 
 func _update_character_display() -> void:
 	character_name.text = character.name
-	# Update all information
-	pass

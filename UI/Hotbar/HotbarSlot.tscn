@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://crsiltuw6ss81"]
+
+[ext_resource type="Script" uid="uid://d2rf8wuf18ete" path="res://UI/Hotbar/HotbarSlot.gd" id="1_cvxou"]
+
+[node name="HotbarSlot" type="PanelContainer" unique_id=1361512614]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cvxou")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1111529838]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer" unique_id=1320353690]
+layout_mode = 2
+
+[node name="KeyLabel" type="Label" parent="VBoxContainer" unique_id=1936507558]
+layout_mode = 2
+
+[node name="CooldownLabel" type="Label" parent="VBoxContainer" unique_id=1570390958]
+layout_mode = 2

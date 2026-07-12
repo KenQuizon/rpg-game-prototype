@@ -7,6 +7,8 @@ class_name ActionDefinition
 
 @export var id: StringName
 
+@export var icon: Texture2D
+
 @export var display_name: String = ""
 
 @export_multiline var description: String = ""

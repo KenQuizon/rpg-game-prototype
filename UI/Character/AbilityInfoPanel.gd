@@ -12,22 +12,27 @@ var current_skill: SkillDefinition
 
 func display_skill(skill: SkillDefinition) -> void:
 	current_skill = skill
-	
-	skill_name.text = skill.name
-	description.text = skill.description if skill.has_meta("description") else ""
-	
-	# Display resource cost
-	if skill.has_meta("resource_cost"):
-		cost_label.text = "%d Mana" % int(skill.get_meta("resource_cost"))
-	
-	# Display cooldown
-	if skill.has_meta("cooldown"):
-		cooldown_label.text = "%.1fs" % float(skill.get_meta("cooldown"))
-	
-	# Display damage if applicable
-	if skill.has_meta("damage"):
-		damage_info.text = "Damage: %d" % int(skill.get_meta("damage"))
-	
-	# Display icon
-	if skill.has_meta("icon"):
-		icon.texture = skill.get_meta("icon")
+
+	skill_name.text = skill.display_name
+	description.text = skill.description
+	icon.texture = skill.icon
+
+	cooldown_label.text = "%.1fs" % skill.cooldown if skill.cooldown > 0.0 else "No cooldown"
+
+	var cost := _get_resource_cost(skill)
+	if cost:
+		cost_label.text = "%d %s" % [int(cost.amount), ResourceType.Id.keys()[cost.resource_type].capitalize()]
+	else:
+		cost_label.text = "Free"
+
+	if skill.attack_data:
+		damage_info.text = "Damage: %d" % int(skill.attack_data.damage)
+		damage_info.visible = true
+	else:
+		damage_info.visible = false
+
+func _get_resource_cost(skill: SkillDefinition) -> ResourceCostPolicy:
+	for policy in skill.policies:
+		if policy is ResourceCostPolicy:
+			return policy
+	return null
