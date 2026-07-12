@@ -24,7 +24,7 @@ static func _find_player() -> void:
 	if tree == null:
 		return
 
-	var found := tree.root.find_child("Player", true, false)
+	var found := tree.root.find_child("Character", true, false)
 	if found is Character:
 		player = found
 		print("Player character found: %s" % player.name)

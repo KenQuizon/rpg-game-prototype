@@ -4,3 +4,12 @@
 
 [node name="StatusEffectIndicator" type="PanelContainer" unique_id=19411629]
 script = ExtResource("1_c4ktw")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1375260538]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="." unique_id=740453727]
+layout_mode = 2
+
+[node name="StackLabel" type="Label" parent="." unique_id=321903368]
+layout_mode = 2

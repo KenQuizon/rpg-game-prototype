@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://ylguh5pimf4c" path="res://Project/Characters/Components/Combat/Components/ComboComponent.gd" id="15_adxff"]
 [ext_resource type="Resource" uid="uid://coe3n66dd8q5c" path="res://Project/Characters/Components/Combat/Resources_CombatWeapons/Bow.tres" id="15_iifnj"]
 [ext_resource type="Script" uid="uid://cv5gb46oukrjm" path="res://Project/Action/Components/PoiseComponent.gd" id="20_xovkx"]
+[ext_resource type="Resource" uid="uid://dbsmaqf0ui8ah" path="res://Project/Characters/Components/Resources/Resources_/Mana.tres" id="21_0gj3o"]
 [ext_resource type="Script" uid="uid://c7xa74wehf8b5" path="res://Project/Characters/Components/Status/StatusComponent.gd" id="21_3fb5f"]
 [ext_resource type="Script" uid="uid://bi7uwhsjrsq3b" path="res://Project/Characters/Components/Resources/ResourceComponent.gd" id="22_s77ed"]
 [ext_resource type="Script" uid="uid://chrq4eft6blp5" path="res://Project/Characters/Components/Resources/ResourcePoolProfile.gd" id="23_8oa8c"]
@@ -35,10 +36,6 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fef4x"]
 radius = 0.6
 height = 2.2
-
-[sub_resource type="Resource" id="Resource_2nri0"]
-script = ExtResource("23_8oa8c")
-metadata/_custom_type_script = "uid://chrq4eft6blp5"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_er8h5"]
 radius = 0.6
@@ -116,7 +113,7 @@ metadata/_custom_type_script = "uid://c7xa74wehf8b5"
 
 [node name="ResourceComponent" type="Node" parent="Components" unique_id=633261420]
 script = ExtResource("22_s77ed")
-pools = Array[ExtResource("23_8oa8c")]([ExtResource("24_stqro"), SubResource("Resource_2nri0")])
+pools = Array[ExtResource("23_8oa8c")]([ExtResource("21_0gj3o"), ExtResource("24_stqro")])
 metadata/_custom_type_script = "uid://bi7uwhsjrsq3b"
 
 [node name="CooldownComponent" type="Node" parent="Components" unique_id=881125021]

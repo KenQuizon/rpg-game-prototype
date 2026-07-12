@@ -6,12 +6,3 @@
 [node name="StatusEffectContainer" type="HBoxContainer" unique_id=1661896671]
 script = ExtResource("1_5cn7t")
 indicator_scene = ExtResource("2_i55gv")
-
-[node name="Icon" type="TextureRect" parent="." unique_id=1796545056]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="." unique_id=1108658951]
-layout_mode = 2
-
-[node name="StackLabel" type="Label" parent="." unique_id=1518448023]
-layout_mode = 2

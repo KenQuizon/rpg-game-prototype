@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ResourcePoolProfile" format=3 uid="uid://dbsmaqf0ui8ah"]
+
+[ext_resource type="Script" uid="uid://chrq4eft6blp5" path="res://Project/Characters/Components/Resources/ResourcePoolProfile.gd" id="1_r85oy"]
+
+[resource]
+script = ExtResource("1_r85oy")
+metadata/_custom_type_script = "uid://chrq4eft6blp5"

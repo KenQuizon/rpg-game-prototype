@@ -68,7 +68,7 @@ offset_right = 247.0
 offset_bottom = 19.0
 theme_override_styles/background = SubResource("StyleBoxFlat_x72bi")
 theme_override_styles/fill = SubResource("StyleBoxFlat_g20jw")
-value = 42.0
+value = 100.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="ProgressBar" unique_id=1167786891]
