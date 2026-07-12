@@ -57,11 +57,22 @@ func _release() -> void:
 	if MAX_CHARGE_TIME > 0.0:
 		charge_percent = clamp(_charge_time / MAX_CHARGE_TIME, 0.0, 1.0)
 
-	# Hook point: scale the shot before it fires. e.g.
-	# var scaled := _attack.attack_data.duplicate()
-	# scaled.damage *= lerp(1.0, 2.5, charge_percent)
-	# context.combat.set_active_projectile(_attack.projectile_scene, scaled)
+	# THE FIX: Set the active projectile with scaled damage BEFORE playing release animation
+	# This ensures the projectile data is ready when the spawn_projectile animation event fires
+	if _attack != null:
+		var scaled := _attack.attack_data.duplicate()
+		scaled.damage *= lerp(1.0, 2.5, charge_percent)
+		context.combat.set_active_projectile(_attack.projectile_scene, scaled)
+		print("[RANGED CHARGE] Projectile set: scene=", _attack.projectile_scene, " damage=", scaled.damage)
+
+	if not animation.animation_finished.is_connected(_on_release_finished):
+		animation.animation_finished.connect(_on_release_finished, CONNECT_ONE_SHOT)
 
 	animation.play(_attack.animation, true)   # Ranged_Bow_Release — already has
-											  # your spawn_projectile + finish_action
-											  # call-method tracks
+												  # your spawn_projectile + finish_action
+												  # call-method tracks
+
+func _on_release_finished(finished_name: StringName) -> void:
+	if finished_name != _attack.animation:
+		return
+	request_finish()

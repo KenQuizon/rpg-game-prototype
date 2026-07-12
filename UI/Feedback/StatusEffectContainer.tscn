@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://paepsyf5y6i8"]
-
-[ext_resource type="Script" uid="uid://cf567uywcgj2t" path="res://UI/Feedback/StatusEffectContainer.gd" id="1_5cn7t"]
-[ext_resource type="PackedScene" uid="uid://da4apvdi0g24t" path="res://UI/Feedback/StatusEffectIndicator.tscn" id="2_i55gv"]
-
-[node name="StatusEffectContainer" type="HBoxContainer" unique_id=1661896671]
-script = ExtResource("1_5cn7t")
-indicator_scene = ExtResource("2_i55gv")

@@ -16,6 +16,13 @@ var _animation: AnimationComponent
 var _finish_requested := false
 var _recovery_remaining := 0.0
 
+# True = this action can currently be preempted (subject to
+# ActionFlags.INTERRUPTIBLE and priority — see ActionScheduler). Defaults
+# to true so any action that doesn't opt into delayed_interrupt_window
+# keeps its exact prior behavior: INTERRUPTIBLE means interruptible from
+# frame one.
+var _interrupt_window_open := true
+
 #==============================================================================
 # Properties
 #==============================================================================
@@ -175,6 +182,9 @@ func _validate_flags() -> ActionResult:
 #==============================================================================
 
 func start() -> void:
+	_interrupt_window_open = not (
+		_definition != null and _definition.delayed_interrupt_window
+	)
 	_commit_policies()
 	on_start()
 
@@ -247,6 +257,34 @@ func get_recovery_time() -> float:
 
 func on_finish_requested() -> void:
 	pass
+
+#==============================================================================
+# Interrupt Window
+#==============================================================================
+# Read by ActionScheduler at conflict-resolution time — see
+# _resolve_conflicting_submission(). Combines the authored intent
+# (ActionFlags.INTERRUPTIBLE) with the runtime gate above, so a Resource
+# can declare "I *can* be interrupted" while the actual window only opens
+# once open_interrupt_window() is called (or immediately, by default).
+
+func is_interruptible() -> bool:
+	if _definition == null:
+		return false
+	if (_definition.flags & ActionFlags.Id.INTERRUPTIBLE) == 0:
+		return false
+	return _interrupt_window_open
+
+# Override to also release any locks (movement/rotation) this action no
+# longer needs held once its committed effect has happened — see
+# AttackAction for an example. Base implementation only flips the gate,
+# so calling this on an action that never opted into
+# delayed_interrupt_window is a harmless no-op (the window was already
+# open).
+func open_interrupt_window() -> void:
+	_interrupt_window_open = true
+
+func close_interrupt_window() -> void:
+	_interrupt_window_open = false
 
 #==============================================================================
 # Gameplay Hooks

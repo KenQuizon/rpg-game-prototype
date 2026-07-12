@@ -20,3 +20,9 @@ const SPAWN_PROJECTILE = &"spawn_projectile"
 const CAST_COMPLETE = &"cast_complete"
 
 const FINISH_ACTION = &"finish_action"
+
+# Fires at an action's "point of commitment" — after the arrow is loosed,
+# after the spell is released — to open its interrupt window early. Only
+# does anything for actions with ActionDefinition.delayed_interrupt_window
+# = true; a no-op otherwise.
+const OPEN_INTERRUPT_WINDOW = &"open_interrupt_window"

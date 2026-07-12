@@ -68,6 +68,30 @@ func clear_attack_motion() -> void:
 	_forced_motion_active = false
 	_forced_motion_remaining_distance = 0.0
 
+# Directly overrides facing_direction — used to snap the character toward
+# a target when initiating an attack (see AttackAction._face_target()).
+# Deliberately NOT gated by ROTATION lock itself (this IS the attack's
+# own facing decision, not player input trying to sneak a turn in) —
+# what matters is that _update_direction() below won't immediately
+# overwrite it with stale movement input on the very next physics frame.
+func face_direction(direction: Vector3) -> void:
+
+	var flat := Vector3(direction.x, 0.0, direction.z)
+
+	if flat.is_zero_approx():
+		return
+
+	_facing_direction = flat.normalized()
+
+func face_point(world_position: Vector3) -> void:
+
+	var character := owner_character as Node3D
+
+	if character == null:
+		return
+
+	face_direction(world_position - character.global_position)
+
 #==============================================================================
 # Updates
 #==============================================================================
@@ -111,7 +135,17 @@ func _update_direction() -> void:
 
 	_is_moving = not _move_direction.is_zero_approx()
 
-	if _is_moving:
+	# facing_direction is deliberately NOT updated from input while
+	# ROTATION is locked. Without this, held WASD input keeps overwriting
+	# facing_direction every physics frame regardless of what the current
+	# action wants — which is exactly why a projectile could spawn toward
+	# whatever direction the player happened to be holding, rather than
+	# the direction the attack actually faced (either a snapped-to target
+	# via face_point(), or wherever the character was facing when the
+	# attack started). Physical velocity is unaffected by this — it's
+	# still zeroed separately by _is_movement_locked() below — this only
+	# freezes the visual/aim direction.
+	if _is_moving and not _is_rotation_locked():
 		_facing_direction = _move_direction.normalized()
 
 func _apply_horizontal_velocity(character: CharacterBody3D) -> void:
@@ -145,3 +179,6 @@ func _apply_gravity(character: CharacterBody3D, delta: float) -> void:
 
 func _is_movement_locked() -> bool:
 	return context.is_locked(ActionLock.Id.MOVEMENT)
+
+func _is_rotation_locked() -> bool:
+	return context.is_locked(ActionLock.Id.ROTATION)

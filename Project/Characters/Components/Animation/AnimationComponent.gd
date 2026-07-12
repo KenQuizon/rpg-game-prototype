@@ -49,6 +49,17 @@ var current_animation: StringName:
 	get:
 		return _current_animation
 
+# Once movement input is seen while an action is busy-but-interruptible,
+# locomotion takes over the animation channel for the rest of that
+# action's run — including switching to play_idle() if movement later
+# stops again. Without this latch, is_moving briefly flipping back to
+# false mid-recovery would re-trigger the "no input yet" lock and freeze
+# on whatever was last playing (walk), instead of falling through to
+# idle. Reset whenever the action stops being busy-and-interruptible, so
+# the next action starts fresh and requires its own input before
+# overriding.
+var _locomotion_active := false
+
 #==============================================================================
 # Lifecycle
 #==============================================================================
@@ -88,7 +99,9 @@ func process_update(delta: float) -> void:
 	if context.combat != null and context.combat.is_dead():
 		return 
 		
-	if context.action != null and context.action.is_busy():
+	_update_locomotion_takeover()
+
+	if _is_action_locked_with_no_input():
 		return
 
 	if context.combat != null and context.combat.is_blocking:
@@ -110,17 +123,50 @@ func process_update(delta: float) -> void:
 			rotation_speed * delta
 		)
 
-	# Locomotion animations never override a running action's animation —
-	# this stays a blanket "any action running" check regardless of which
-	# specific locks that action declares, since it's about not stomping
-	# the action's own animation, not about physical movement/rotation.
-	if context.action != null and context.action.is_busy():
-		return
-
 	if _movement.is_moving:
 		play_walk()
 	else:
 		play_idle()
+
+# Updates _locomotion_active — see its declaration above for why this
+# needs to be a latch rather than a live is_moving check.
+func _update_locomotion_takeover() -> void:
+
+	if context.action == null or not context.action.is_busy():
+		_locomotion_active = false
+		return
+
+	if not context.action.is_current_interruptible():
+		_locomotion_active = false
+		return
+
+	if _movement.is_moving:
+		_locomotion_active = true
+
+# True while an action is still running and either (a) not interruptible
+# yet — the window hasn't opened, so it owns the animation outright — or
+# (b) interruptible but locomotion hasn't taken over yet (see
+# _locomotion_active above). In case (b) we deliberately do NOT force
+# play_idle(): the action's own animation should keep playing to its
+# natural end unless something actually happens. "Something happens"
+# means movement input, which works identically for a player (WASD) and
+# an AI (chase steering via AIController._chase) — no notion of which
+# controller is driving, only whether movement occurred. A brand new
+# action (attack/dash/skill) interrupting doesn't go through this at
+# all: it calls animation.play() directly in its own on_start(), so it
+# always cuts in immediately regardless of this gate.
+func _is_action_locked_with_no_input() -> bool:
+
+	if context.action == null:
+		return false
+
+	if not context.action.is_busy():
+		return false
+
+	if not context.action.is_current_interruptible():
+		return true
+
+	return not _locomotion_active
 
 func _is_rotation_locked() -> bool:
 	return context.is_locked(ActionLock.Id.ROTATION)

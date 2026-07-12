@@ -7,11 +7,15 @@ func handle_event(
 ) -> void:
 
 	if context == null or context.combat == null:
+		push_error("Invalid context in SpawnProjectileHandler")
 		return
-
+	
 	var scene := context.combat.get_active_projectile_scene()
-	print("spawn_projectile fired, scene = ", scene)
 	if scene == null:
+		push_error("Active projectile scene is null!")
+		# Debug: why is it null?
+		var data = context.combat.get_active_projectile_data()
+		print("Projectile data:", data)
 		return
 
 	var owner_char := context.character

@@ -82,6 +82,25 @@ func interrupt_current() -> void:
 func stop_current_action() -> void:
 	_scheduler.request_finish_current()
 
+# Forwarded to the currently running action — see AnimationEvents.
+# OPEN_INTERRUPT_WINDOW / OpenInterruptWindowHandler.
+func open_interrupt_window() -> void:
+	if _scheduler.current_execution != null:
+		_scheduler.current_execution.action.open_interrupt_window()
+
+func release_locks(mask: int) -> void:
+	_scheduler.release_locks(mask)
+
+# Whether the currently running action can be preempted right now — see
+# CharacterAction.is_interruptible(). Used by AnimationComponent to decide
+# whether locomotion animation may take back the animation channel from a
+# still-recovering action whose interrupt window has opened, rather than
+# waiting for it to fully finish.
+func is_current_interruptible() -> bool:
+	if _scheduler.current_execution == null:
+		return false
+	return _scheduler.current_execution.action.is_interruptible()
+
 # Bypasses recovery entirely — an immediate administrative/system override.
 # Not currently called anywhere in the framework; exposed for cases like a
 # networked "server says this ends now" authority override in the future.

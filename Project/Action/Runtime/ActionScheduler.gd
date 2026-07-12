@@ -145,6 +145,16 @@ func request_finish_current() -> void:
 func clear() -> void:
 	_current_execution = null
 
+# Lets the currently running action voluntarily give back specific locks
+# before it finishes — e.g. once its interrupt window opens, it may no
+# longer need to hold MOVEMENT. Submission-based conflicts (attack, dash,
+# skill) don't need this; only continuous per-frame checks like
+# MovementComponent's is_locked(MOVEMENT) do.
+func release_locks(mask: int) -> void:
+	if not has_execution():
+		return
+	_current_execution.runtime.acquired_locks &= ~mask
+
 #==============================================================================
 # Internal — Conflict Resolution
 #==============================================================================
@@ -154,11 +164,22 @@ func _resolve_conflicting_submission(execution: ActionExecution) -> ActionResult
 	var current_definition := _current_execution.request.definition as ActionDefinition
 	var incoming_definition := execution.request.definition as ActionDefinition
 
+	# Strictly-higher priority always wins, regardless of interruptibility
+	# (e.g. a stagger/knockback action should be able to cut in on
+	# anything). Equal priority only wins if the current action is
+	# currently interruptible — this is what lets an opened interrupt
+	# window be preempted by another normal-priority action (basic
+	# attack, dash, skill) rather than only by something more important.
+	var current_interruptible := (
+		current_definition == null
+		or _current_execution.action.is_interruptible()
+	)
+
 	var can_preempt := (
 		execution.effective_priority > _current_execution.effective_priority
-		and (
-			current_definition == null
-			or _has_flag(current_definition.flags, ActionFlags.Id.INTERRUPTIBLE)
+		or (
+			current_interruptible
+			and execution.effective_priority >= _current_execution.effective_priority
 		)
 	)
 

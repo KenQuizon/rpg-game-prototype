@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cdff7qoxrslkx" path="res://Project/World/Chest.tscn" id="4_eue43"]
 [ext_resource type="PackedScene" uid="uid://d4bcsx26ymp38" path="res://Project/Characters/Scenes_Character/Enemy.tscn" id="5_o14yy"]
 [ext_resource type="PackedScene" uid="uid://cs7yoatek8jnu" path="res://Project/Characters/Scenes_Character/SkeletonArcher.tscn" id="7_2ua4a"]
-[ext_resource type="PackedScene" uid="uid://c01nirneon10h" path="res://UI/Feedback/DamageNumberSpawner.tscn" id="9_gwcue"]
-[ext_resource type="PackedScene" uid="uid://cxa5bhd30h8bh" path="res://UI/HUD/MainHUD.tscn" id="9_yhhn6"]
-[ext_resource type="Script" uid="uid://dnaq051yd1kdj" path="res://UI/Inventory/ItemUsageSystem.gd" id="10_gwcue"]
+[ext_resource type="PackedScene" uid="uid://c01nirneon10h" path="res://Project/UI/Feedback/DamageNumberSpawner.tscn" id="9_gwcue"]
+[ext_resource type="PackedScene" uid="uid://cxa5bhd30h8bh" path="res://Project/UI/HUD/MainHUD.tscn" id="9_yhhn6"]
+[ext_resource type="Script" uid="uid://dnaq051yd1kdj" path="res://Project/UI/Inventory/ItemUsageSystem.gd" id="10_gwcue"]
 [ext_resource type="Texture2D" uid="uid://rmmnjmhe0s77" path="res://Assets/KayKit/textures/skeleton_texture.png" id="10_jghqt"]
 
 [sub_resource type="Environment" id="Environment_tw2g7"]

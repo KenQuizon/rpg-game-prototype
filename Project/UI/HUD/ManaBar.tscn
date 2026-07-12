@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://6814pqptgp25"]
+
+[ext_resource type="Script" uid="uid://cqd6g8ga1hhw6" path="res://Project/UI/HUD/ResourceBar.gd" id="1_i7cnl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b54v5"]
+bg_color = Color(0.14901961, 0.14901961, 0.20392157, 1)
+skew = Vector2(0.5, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+shadow_color = Color(0, 0, 0, 0.09019608)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7cnl"]
+bg_color = Color(0.27058825, 0.7372549, 0.9607843, 1)
+skew = Vector2(0.5, 0)
+border_width_top = 2
+border_color = Color(0.41960785, 0.8156863, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="ManaBar" type="Control" unique_id=179306097]
+custom_minimum_size = Vector2(250, 14)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 250.0
+offset_bottom = 14.0
+script = ExtResource("1_i7cnl")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=562356796]
+z_index = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 246.0
+offset_bottom = 7.0
+theme_override_styles/background = SubResource("StyleBoxFlat_b54v5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_i7cnl")
+value = 100.0
+show_percentage = false

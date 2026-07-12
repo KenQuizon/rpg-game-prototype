@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d3maev7bxq1e3"]
+
+[ext_resource type="Script" uid="uid://cjmkp7jllrgkw" path="res://Project/UI/Feedback/FeedbackItem.gd" id="1_60jko"]
+
+[node name="FeedbackItem" type="Label" unique_id=2015026791]
+script = ExtResource("1_60jko")

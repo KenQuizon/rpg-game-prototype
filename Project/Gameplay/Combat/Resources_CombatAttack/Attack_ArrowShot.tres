@@ -13,9 +13,8 @@ damage = 8.0
 stagger_damage = 1.0
 metadata/_custom_type_script = "uid://bnnbymum325ix"
 
-[sub_resource type="Resource" id="Resource_3emdp"]
+[sub_resource type="Resource" id="Resource_pj822"]
 script = ExtResource("5_f2br6")
-recovery_time = 1.5
 metadata/_custom_type_script = "uid://bm7k5aqdcgye3"
 
 [resource]
@@ -24,10 +23,12 @@ animation = &"Combat/Ranged_Bow_Release"
 draw_animation = &"Combat/Ranged_Bow_Draw"
 aim_animation = &"Combat/Ranged_Bow_Aiming_Idle"
 attack_data = SubResource("Resource_5qypi")
-timing = SubResource("Resource_3emdp")
+timing = SubResource("Resource_pj822")
 projectile_scene = ExtResource("3_3emdp")
 id = &"attack_arrow"
+display_name = "Bow"
 action_script = ExtResource("1_pj822")
-locks = 10
+locks = 136
 flags = 19
+delayed_interrupt_window = true
 metadata/_custom_type_script = "uid://bbp1veisyovtv"

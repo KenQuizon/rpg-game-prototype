@@ -17,15 +17,24 @@ func can_execute() -> bool:
 	_weapon = context.weapon
 
 	if _weapon == null:
+		print("[COMBAT] AttackAction.can_execute() - weapon is null")
 		return false
 
 	if not _weapon.has_weapon():
+		print("[COMBAT] AttackAction.can_execute() - no weapon equipped")
 		return false
 
 	_attack = _weapon.select_next_attack()
 
 	if _attack == null:
+		print("[COMBAT] AttackAction.can_execute() - attack selection returned null")
 		return false
+
+	print("[COMBAT] ✅ AttackAction.can_execute() SUCCESS")
+	print("[COMBAT]   - Attack ID: ", _attack.id)
+	print("[COMBAT]   - Projectile Scene: ", _attack.projectile_scene)
+	print("[COMBAT]   - Action Script: ", _attack.action_script)
+	print("[COMBAT]   - Animation: ", _attack.animation)
 
 	return true
 
@@ -39,9 +48,15 @@ func on_start() -> void:
 
 	context.combat.begin_attack()
 
+	print("[COMBAT] AttackAction.on_start() starting")
+	print("[COMBAT]   - Attack: ", _attack.id if _attack else "null")
+	print("[COMBAT]   - Has Projectile: ", _attack.projectile_scene != null if _attack else "no attack")
+	
 	_apply_attack_data()
 	_apply_motion()
 	_play_attack_animation()
+	
+	print("[COMBAT]   - Attack data applied and animation started")
 
 func on_update(_delta: float) -> int:
 	return ActionExecutionStatus.Id.RUNNING
@@ -51,22 +66,41 @@ func on_update(_delta: float) -> int:
 # right away, while get_recovery_time() below holds the action's locks a
 # bit longer.
 func on_finish_requested() -> void:
+	print("[COMBAT] AttackAction.on_finish_requested() - FINISH_ACTION event received")
 	context.combat.finish_attack()
 	_clear_attack_data()
-	_clear_motion()
 
 func get_recovery_time() -> float:
 	if _attack == null or _attack.timing == null:
 		return 0.0
 	return _attack.timing.recovery_time
 
+# Once this attack becomes preemptible (see ActionDefinition.
+# delayed_interrupt_window), it also no longer needs to hold movement/
+# rotation hostage — a released arrow doesn't care if the ranger starts
+# walking away immediately after. Locks are a separate mechanism from
+# preemption (see ActionScheduler.release_locks), so both need updating.
+# INPUT is the important one here: PlayerController/AIController check
+# context.is_locked(INPUT) before building ANY command (attack, evade,
+# skill, interact) — leaving it held means no new action ever reaches
+# ActionScheduler.submit() for is_interruptible() to even be asked about,
+# which is why the window "opening" alone wasn't enough to make anything
+# feel responsive.
+func open_interrupt_window() -> void:
+	super.open_interrupt_window()
+	context.action.release_locks(
+		ActionLock.Id.MOVEMENT
+		| ActionLock.Id.ROTATION
+		| ActionLock.Id.INPUT
+	)
+
 func on_finish() -> void:
-	# Safety net — idempotent, guarantees clean state even if
+	# Safety net — idiopotent, guarantees clean state even if
 	# on_finish_requested() never ran (e.g. duration timeout with no
 	# FINISH_ACTION event at all).
+	print("[COMBAT] AttackAction.on_finish() - final cleanup")
 	context.combat.finish_attack()
 	_clear_attack_data()
-	_clear_motion()
 	super.on_finish()
 
 #==============================================================================
@@ -113,10 +147,13 @@ func _apply_attack_data() -> void:
 		hitbox.set_active_attack_data(_attack.attack_data)
 		hitbox.set_active_effects(_attack.effects)
 
+	print("[COMBAT] _apply_attack_data(): setting projectile")
+	print("[COMBAT]   - Scene: ", _attack.projectile_scene)
+	print("[COMBAT]   - Data: ", _attack.attack_data)
 	context.combat.set_active_projectile(_attack.projectile_scene, _attack.attack_data)
 
 func _clear_attack_data() -> void:
-	print("clearing projectile at t=", Time.get_ticks_msec())
+	print("[COMBAT] _clear_attack_data() - CLEARING projectile at t=", Time.get_ticks_msec())
 	var hitbox := context.combat.get_hitbox()
 
 	if hitbox != null:
