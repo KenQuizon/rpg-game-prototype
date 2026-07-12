@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://clrgffw5yf0cf"]
 
-[ext_resource type="Material" uid="uid://bf4rqut3rtnkr" path="res://Assets/KayKit/characters/materials/knight.tres" id="1_ev7gx"]
+[ext_resource type="Material" uid="uid://bf4rqut3rtnkr" path="res://Assets/KayKit/materials/knight/knight.tres" id="1_ev7gx"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_mc6dl"]
 resource_name = "Knight_Knight_HelmetVisor"

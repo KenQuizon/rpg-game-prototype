@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cdntrm1rep6j4"]
+
+[ext_resource type="Texture2D" uid="uid://cbp7yt5qes0r1" path="res://Assets/KayKit/textures/Paladin/base.png" id="1_br10m"]
+
+[resource]
+resource_name = "paladin_metallic"
+albedo_texture = ExtResource("1_br10m")
+metallic = 1.0
+roughness = 0.25
+metadata/_gltf_primary_texture_coord = 0

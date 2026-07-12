@@ -11,6 +11,7 @@ func _ready() -> void:
 	health_component = CharacterRef.get_player_health()
 
 	if health_component:
+		print("[HealthBar] bound to HealthComponent id=", health_component.get_instance_id(), " owner=", health_component.owner_character.name if health_component.owner_character else "null")
 		progress_bar.max_value = health_component.max_health
 		progress_bar.value = health_component.current_health
 		label.text = "%d/%d" % [int(health_component.current_health), int(health_component.max_health)]
@@ -22,6 +23,7 @@ func _ready() -> void:
 		print("ERROR: Could not find player health component")
 
 func _on_health_changed(_previous: float, current: float) -> void:
+	print("[HealthBar] _on_health_changed fired, current=", current)
 	"""Called when player health changes"""
 	var max_health := health_component.max_health
 	progress_bar.max_value = max_health

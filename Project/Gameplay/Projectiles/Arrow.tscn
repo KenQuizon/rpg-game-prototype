@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://5telnvpq3e8e"]
 
 [ext_resource type="Script" uid="uid://korydahe87g6" path="res://Project/Gameplay/Projectiles/Projectile.gd" id="1_okm8k"]
-[ext_resource type="Material" uid="uid://cvvkyy5e6uaoh" path="res://Assets/KayKit/characters/materials/ranger.tres" id="2_fcmc0"]
+[ext_resource type="Material" uid="uid://cvvkyy5e6uaoh" path="res://Assets/KayKit/materials/ranger/ranger.tres" id="2_fcmc0"]
 [ext_resource type="PackedScene" uid="uid://2r00002qw2u" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/HitboxComponent.tscn" id="2_waxvb"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_waxvb"]

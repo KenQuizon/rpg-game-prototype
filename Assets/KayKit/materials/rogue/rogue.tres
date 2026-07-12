@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bwlnm1fcvy0ig"]
+
+[ext_resource type="Texture2D" uid="uid://bh3cdxcegck7y" path="res://Assets/KayKit/textures/Rogue/base.png" id="1_fad2w"]
+
+[resource]
+resource_name = "rogue"
+cull_mode = 2
+albedo_texture = ExtResource("1_fad2w")
+roughness = 0.5
+metadata/_gltf_primary_texture_coord = 0

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://crk1ut2sgeeyg"]
 
-[ext_resource type="PackedScene" uid="uid://2lrjquwt1ui3" path="res://Assets/KayKit/characters/props/skeleton/Skeleton_Blade.gltf" id="1_dq3w1"]
+[ext_resource type="PackedScene" uid="uid://2lrjquwt1ui3" path="res://Assets/KayKit/weapon/skeleton/Skeleton_Blade.gltf" id="1_dq3w1"]
 [ext_resource type="Script" uid="uid://c1yc32baelg7u" path="res://Project/Characters/Components/Combat/Weapons/WeaponInstance.gd" id="2_q6pq4"]
 [ext_resource type="PackedScene" uid="uid://2r00002qw2u" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/HitboxComponent.tscn" id="3_6ds0i"]
 

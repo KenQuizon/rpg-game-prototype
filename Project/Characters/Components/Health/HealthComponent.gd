@@ -68,7 +68,7 @@ func physics_update(delta: float) -> void:
 # Public API
 #==============================================================================
 func damage(amount: float) -> void:
-
+	print("[HealthComponent] damage() called on id=", get_instance_id(), " amount=", amount)
 	if _dead:
 		return
 

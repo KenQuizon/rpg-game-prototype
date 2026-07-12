@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dbe3qf1yo7fk" path="res://Assets/KayKit/characters/adventurers/Ranger.glb" id="1_0wm0f"]
 [ext_resource type="Animation" uid="uid://bmk717p7r0ifc" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Chop.res" id="2_oslyh"]
 [ext_resource type="Script" uid="uid://bg8csr1tobjt7" path="res://Project/Equipment/Data/EquipmentSlotSocket.gd" id="2_r3jr0"]
+[ext_resource type="Material" uid="uid://b6au431wgn4ah" path="res://Assets/KayKit/materials/ranger/ranger_b.tres" id="2_wqokq"]
 [ext_resource type="Animation" uid="uid://dalhokfii67jc" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Jump_Chop.res" id="3_r3jr0"]
 [ext_resource type="Animation" uid="uid://h72ekkq1m1if" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Slice_Diagonal.res" id="4_tgmbb"]
 [ext_resource type="Animation" uid="uid://4ll5vfangkr0" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Slice_Horizontal.res" id="5_h62n6"]
@@ -199,11 +200,35 @@ bones/21/rotation = Quaternion(-0.31634265, -0.34589636, 0.13034669, 0.87366635)
 bones/22/position = Vector3(-6.936717e-09, 0.096125185, -0.057500005)
 bones/22/rotation = Quaternion(6.9489685e-09, -3.587743e-09, -0.7071068, 0.7071067)
 
+[node name="Ranger_ArmLeft" parent="Rig_Medium/Skeleton3D" index="0" unique_id=564867404]
+material_override = ExtResource("2_wqokq")
+
+[node name="Ranger_ArmRight" parent="Rig_Medium/Skeleton3D" index="1" unique_id=184272172]
+material_override = ExtResource("2_wqokq")
+
+[node name="Ranger_Body" parent="Rig_Medium/Skeleton3D" index="2" unique_id=1575724781]
+material_override = ExtResource("2_wqokq")
+
+[node name="Ranger_Cape" parent="Rig_Medium/Skeleton3D" index="3" unique_id=2132989163]
+material_override = ExtResource("2_wqokq")
+
+[node name="Ranger_Head" parent="Rig_Medium/Skeleton3D" index="4" unique_id=1810568181]
+material_override = ExtResource("2_wqokq")
+
 [node name="Head" type="BoneAttachment3D" parent="Rig_Medium/Skeleton3D" index="5" unique_id=1968718258]
 transform = Transform3D(0.9997204, -3.5222303e-10, 0.023646612, 2.360457e-10, 0.99999994, 4.915934e-09, -0.023646612, -4.9089777e-09, 0.9997204, -1.283491e-08, 1.2266158, 0.00013614251)
 bone_name = "head"
 bone_idx = 12
 script = ExtResource("2_r3jr0")
+
+[node name="Ranger_LegLeft" parent="Rig_Medium/Skeleton3D" index="6" unique_id=1565548130]
+material_override = ExtResource("2_wqokq")
+
+[node name="Ranger_LegRight" parent="Rig_Medium/Skeleton3D" index="7" unique_id=1902246015]
+material_override = ExtResource("2_wqokq")
+
+[node name="Ranger_Quiver" parent="Rig_Medium/Skeleton3D" index="8" unique_id=2022564179]
+material_override = ExtResource("2_wqokq")
 
 [node name="Main_Hand" type="BoneAttachment3D" parent="Rig_Medium/Skeleton3D" index="9" unique_id=1124459441]
 transform = Transform3D(-0.013865974, -0.12173924, -0.9924647, -0.9998543, 0.011492065, 0.012559952, 0.00987609, 0.9924949, -0.12188128, -0.48157716, 0.65101486, 0.123030014)

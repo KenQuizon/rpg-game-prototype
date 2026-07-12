@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dxw0qx3o3smwy"]
+
+[ext_resource type="Texture2D" uid="uid://bhekggw1ukns6" path="res://Assets/KayKit/textures/Knight/alt_a.png" id="1_xcfat"]
+
+[resource]
+resource_name = "knight"
+cull_mode = 2
+albedo_texture = ExtResource("1_xcfat")
+roughness = 0.5
+metadata/_gltf_primary_texture_coord = 0

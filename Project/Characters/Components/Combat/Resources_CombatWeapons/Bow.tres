@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://b6jpt7k38aws4" path="res://Project/Gameplay/Combat/Resources_CombatAttack/Attack_ArrowShot.tres" id="2_vqssl"]
 [ext_resource type="Script" uid="uid://rgnyd2ru1lwi" path="res://Project/Characters/Components/Combat/Data/AttackSet.gd" id="3_kgxfl"]
 [ext_resource type="Script" uid="uid://bb12xak51omdq" path="res://Project/Characters/Components/Combat/Weapons/WeaponProfile.gd" id="4_dt01m"]
-[ext_resource type="PackedScene" uid="uid://txenblydka1r" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/Bow.tscn" id="5_1mpvc"]
+[ext_resource type="PackedScene" uid="uid://duluvxv0iivpa" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/Bow.tscn" id="5_1mpvc"]
 
 [sub_resource type="Resource" id="Resource_6rtp4"]
 script = ExtResource("3_kgxfl")

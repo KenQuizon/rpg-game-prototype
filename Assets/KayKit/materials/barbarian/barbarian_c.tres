@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://1odgj6jero0t"]
+
+[ext_resource type="Texture2D" uid="uid://dhgp23sk7ogg1" path="res://Assets/KayKit/textures/Barbarian/alt_c.png" id="1_n2qsl"]
+
+[resource]
+resource_name = "barbarian"
+cull_mode = 2
+albedo_texture = ExtResource("1_n2qsl")
+roughness = 0.5
+metadata/_gltf_primary_texture_coord = 0
