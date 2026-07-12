@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_wnbh2")
 resource_type = 1
+regen_per_second = 10.0
 metadata/_custom_type_script = "uid://chrq4eft6blp5"

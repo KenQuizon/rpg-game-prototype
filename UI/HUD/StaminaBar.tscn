@@ -10,6 +10,8 @@ anchors_preset = 0
 offset_right = 25.0
 offset_bottom = 25.0
 script = ExtResource("1_u0o6r")
+resource_type = 1
+hide_when_full = true
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1495176847]
 layout_mode = 1

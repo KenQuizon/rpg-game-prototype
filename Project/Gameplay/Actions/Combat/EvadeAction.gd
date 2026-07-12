@@ -4,15 +4,11 @@ class_name EvadeAction
 #==============================================================================
 # Tuning
 #==============================================================================
-# Kept here rather than on a new EvadeDefinition resource type — a plain
-# ActionDefinition is sufficient for evade's needs (id/locks/flags/cooldown
-# already cover it), so no new Resource subclass is introduced for one
-# constant pair. Revisit as an exported field on a dedicated definition if
-# multiple evade variants (roll vs. blink) are ever needed.
 
 const EVADE_DISTANCE: float = 3.0
 const EVADE_SPEED: float = 12.0
 const INVULNERABLE_TIME: float = 0.3
+const STAMINA_COST: float = 20.0
 
 #==============================================================================
 # Runtime
@@ -25,7 +21,13 @@ var _invulnerable_timer: float = 0.0
 #==============================================================================
 
 func can_execute() -> bool:
-	return not context.is_locked(ActionLock.Id.MOVEMENT)
+	if context.is_locked(ActionLock.Id.MOVEMENT):
+		return false
+
+	if context.resources != null and not context.resources.has_resource(ResourceType.Id.STAMINA, STAMINA_COST):
+		return false
+
+	return true
 
 #==============================================================================
 # Lifecycle
@@ -33,6 +35,9 @@ func can_execute() -> bool:
 
 func on_start() -> void:
 	super.on_start()
+
+	if context.resources != null:
+		context.resources.spend(ResourceType.Id.STAMINA, STAMINA_COST)
 
 	context.combat.set_evading(true)
 	_invulnerable_timer = INVULNERABLE_TIME

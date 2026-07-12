@@ -2,6 +2,7 @@ extends Control
 class_name ResourceBar
 
 @export var resource_type: ResourceType.Id = ResourceType.Id.MANA
+@export var hide_when_full: bool = false
 
 @onready var progress_bar: Range = _find_progress_bar()
 @onready var label: Label = get_node_or_null("Label")
@@ -23,6 +24,7 @@ func _ready() -> void:
 		progress_bar.max_value = max_val
 		progress_bar.value = current_val
 		_update_label(current_val, max_val)
+		_update_visibility(current_val, max_val)
 
 		resource_component.resource_changed.connect(_on_resource_changed)
 		print("ResourceBar (%s) connected" % ResourceType.Id.keys()[resource_type])
@@ -37,15 +39,17 @@ func _on_resource_changed(changed_type: int, _previous: float, current: float) -
 	progress_bar.max_value = max_val
 	progress_bar.value = current
 	_update_label(current, max_val)
+	_update_visibility(current, max_val)
 
 func _update_label(current: float, max_val: float) -> void:
 	if label:
 		label.text = "%d/%d" % [int(current), int(max_val)]
 
+func _update_visibility(current: float, max_val: float) -> void:
+	if hide_when_full:
+		visible = current < max_val
+
 func _find_progress_bar() -> Range:
-	# Works whether the bar is a flat ProgressBar (ManaBar) or a
-	# TextureProgressBar (StaminaBar) — just grabs whichever Range-type
-	# node is a direct child, regardless of its name.
 	for child in get_children():
 		if child is Range:
 			return child
