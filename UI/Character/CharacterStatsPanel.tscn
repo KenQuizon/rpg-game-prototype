@@ -18,7 +18,7 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="CharcterName" type="Label" parent="VBoxContainer" unique_id=667998268]
+[node name="CharacterName" type="Label" parent="VBoxContainer" unique_id=667998268]
 layout_mode = 2
 
 [node name="Level" type="Label" parent="VBoxContainer" unique_id=456207464]

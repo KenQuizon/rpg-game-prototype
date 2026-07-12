@@ -19,5 +19,5 @@ layout_mode = 2
 [node name="KeyLabel" type="Label" parent="VBoxContainer" unique_id=1936507558]
 layout_mode = 2
 
-[node name="CooldownLabel" type="Label" parent="VBoxContainer" unique_id=1570390958]
+[node name="CooldownLabel" type="Label" parent="." unique_id=1570390958]
 layout_mode = 2

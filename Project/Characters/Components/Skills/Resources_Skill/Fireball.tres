@@ -30,6 +30,7 @@ recovery_time = 0.2
 projectile_scene = ExtResource("6_0wpfb")
 attack_data = SubResource("Resource_qmh2x")
 id = &"fireball"
+display_name = "Fire Ball"
 action_script = ExtResource("1_nyj0y")
 locks = 18
 flags = 2

@@ -9,6 +9,7 @@ signal skill_activated(skill: SkillDefinition)
 
 var skill: SkillDefinition
 var hotkey: String = ""
+
 var is_on_cooldown: bool = false
 var cooldown_remaining: float = 0.0
 

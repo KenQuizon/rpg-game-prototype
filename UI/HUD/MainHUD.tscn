@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://g2rpetu5a8wo" path="res://UI/Feedback/ActionFeedback.tscn" id="6_1wvxl"]
 [ext_resource type="PackedScene" uid="uid://c727bvmb8e0fs" path="res://UI/Feedback/CastBar.tscn" id="7_4cr1f"]
 [ext_resource type="PackedScene" uid="uid://paepsyf5y6i8" path="res://UI/Feedback/StatusEffectContainer.tscn" id="8_bcs26"]
+[ext_resource type="PackedScene" uid="uid://de0tqe3qu6mbq" path="res://UI/Hotbar/Hotbar.tscn" id="9_4cr1f"]
 
 [node name="MainHUD" type="CanvasLayer" unique_id=615724408]
 layer = 50
@@ -58,10 +59,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -2.0
-offset_top = -48.0
+offset_top = -98.0
 offset_right = 0.0
-offset_bottom = -48.0
+offset_bottom = -98.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -77,3 +77,5 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Hotbar" parent="." unique_id=2051952290 instance=ExtResource("9_4cr1f")]
