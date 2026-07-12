@@ -1,43 +1,26 @@
 extends Control
 class_name ItemPickupUI
 
-signal item_picked_up(item: ItemDefinition)
-
-@export var pickup_distance: float = 5.0
-
-var nearby_items: Array[WorldItem] = []
-var inventory_component: Node
+@onready var prompt_label: Label = $PromptLabel
 
 func _ready() -> void:
-	set_process(true)
+	visible = false
 
-func _process(delta: float) -> void:
-	# Find nearby items
-	var world = get_tree().root.get_node("World")
-	if not world:
+	var character := CharacterRef.get_player()
+	if character and character.context and character.context.interaction:
+		character.context.interaction.interaction_target_changed.connect(_on_target_changed)
+
+func _on_target_changed(_previous: Node, new_target: Node) -> void:
+	if new_target == null:
+		visible = false
 		return
-	
-	var player = world.get_node("Player")
-	nearby_items.clear()
-	
-	for item in world.get_tree().get_nodes_in_group("items"):
-		if item is WorldItem:
-			var distance = player.global_position.distance_to(item.global_position)
-			if distance <= pickup_distance:
-				nearby_items.append(item)
-	
-	# Show pickup prompt if items nearby
-	if nearby_items.size() > 0:
-		show_pickup_prompt()
 
-func show_pickup_prompt() -> void:
-	# Display "Press E to pickup" UI
-	pass
+	if new_target is WorldItem and new_target.item is ItemDefinition:
+		prompt_label.text = "Press F to pick up %s" % new_target.item.display_name
+	elif new_target.has_method("interact"):
+		prompt_label.text = "Press F to interact"
+	else:
+		visible = false
+		return
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") and nearby_items.size() > 0:
-		# Pickup first item
-		var item = nearby_items[0]
-		inventory_component.add_item(item.item_definition)
-		item.queue_free()
-		item_picked_up.emit(item.item_definition)
+	visible = true

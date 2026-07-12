@@ -76,3 +76,6 @@ static func get_player_stats() -> StatsComponent:
 	if p and p.context:
 		return p.context.stats
 	return null
+
+static func clear_player() -> void:
+	player = null

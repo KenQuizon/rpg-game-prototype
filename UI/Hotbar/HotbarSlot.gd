@@ -3,8 +3,8 @@ class_name HotbarSlot
 
 signal skill_activated(skill: SkillDefinition)
 
-@onready var icon: TextureRect = $VBoxContainer/Icon
-@onready var key_label: Label = $VBoxContainer/KeyLabel
+@onready var icon: TextureRect = $Icon
+@onready var key_label: Label = $KeyLabel
 @onready var cooldown_label: Label = $CooldownLabel
 
 var skill: SkillDefinition

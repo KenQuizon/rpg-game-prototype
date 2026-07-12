@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 UIManager="*uid://cvv36o5laan8k"
 UIEvents="*uid://c02qk8oswl6dv"
+UICoordinator="*uid://cico8vmwlblfq"
 
 [display]
 

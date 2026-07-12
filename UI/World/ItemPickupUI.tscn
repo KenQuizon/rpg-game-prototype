@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://beyjbgptx1gkl"]
+
+[ext_resource type="Script" uid="uid://bgxa6676yoy7d" path="res://UI/World/ItemPickupUI.gd" id="1_o5mmn"]
+
+[node name="ItemPickupUI" type="Control" unique_id=1022468920]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o5mmn")
+
+[node name="PromptLabel" type="Label" parent="." unique_id=533656255]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

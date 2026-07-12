@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vwktw")
 
-[node name="SortDropDown" type="OptionButton" parent="." unique_id=53416411]
+[node name="SortDropdown" type="OptionButton" parent="." unique_id=53416411]
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 20.0

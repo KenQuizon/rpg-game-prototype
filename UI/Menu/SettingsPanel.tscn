@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bqanb4svl1035"]
+
+[ext_resource type="Script" uid="uid://dabyef305acve" path="res://UI/Menu/SettingsPanel.gd" id="1_xv14r"]
+
+[node name="SettingsPanel" type="Control" unique_id=2048888951]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xv14r")
+
+[node name="Tabs" type="TabContainer" parent="." unique_id=122816224]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 40.0
+current_tab = 0
+
+[node name="Graphics" type="Control" parent="Tabs" unique_id=69357836]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Audio" type="Control" parent="Tabs" unique_id=1695493807]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Gameplay" type="Control" parent="Tabs" unique_id=1398995496]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2

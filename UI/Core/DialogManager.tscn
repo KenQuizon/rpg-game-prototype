@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://degew88ksr0vu"]
+
+[ext_resource type="Script" uid="uid://3w2bgci8eak0" path="res://UI/Core/DialogManager.gd" id="1_0rlc0"]
+
+[node name="DialogManager" type="CanvasLayer" unique_id=1163189804]
+script = ExtResource("1_0rlc0")
+
+[node name="DialogBox" type="PanelContainer" parent="." unique_id=1885895056]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Character" type="Label" parent="DialogBox" unique_id=1653976748]
+layout_mode = 2
+
+[node name="Text" type="RichTextLabel" parent="DialogBox" unique_id=1640016063]
+layout_mode = 2
+
+[node name="Choices" type="VBoxContainer" parent="DialogBox" unique_id=897545927]
+layout_mode = 2

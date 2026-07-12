@@ -1,32 +1,30 @@
 extends Node
-class_name UICoordinator
 
-# Coordinates between all UI systems
-var ui_manager: UIManager
-var tooltip_manager: TooltipManager
-var dialog_manager: DialogManager
-var event_system: UIEvents
+#class_name UICoordinator - Autoload
+
+@onready var tooltip_manager: TooltipManager = $TooltipManager
+@onready var dialog_manager: DialogManager = $DialogManager
 
 func _ready() -> void:
-	# Setup global access
-	ui_manager = UIManager.new()
-	tooltip_manager = get_node("TooltipManager")
-	dialog_manager = get_node("DialogManager")
-	event_system = UIEvents.new()
-	
-	# Connect all UI systems
-	_connect_systems()
+	# Must keep processing input even while the tree is paused, or ESC
+	# would never be able to unpause.
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
-func _connect_systems() -> void:
-	# Connect inventory to equipment
-	# Connect skills to hotbar
-	# Connect all events
-	pass
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		toggle_pause()
+		get_viewport().set_input_as_handled()
+
+func toggle_pause() -> void:
+	if get_tree().paused:
+		unpause_game()
+	else:
+		pause_game()
 
 func pause_game() -> void:
 	get_tree().paused = true
-	ui_manager.open_panel("pause_menu")
+	UIManager.open_panel("pause_menu")
 
 func unpause_game() -> void:
 	get_tree().paused = false
-	ui_manager.close_panel("pause_menu")
+	UIManager.close_panel("pause_menu")

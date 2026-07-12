@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cico8vmwlblfq"]
+
+[ext_resource type="Script" uid="uid://4m86c7nyjv6r" path="res://UI/UICoordinator.gd" id="1_6coxy"]
+[ext_resource type="Script" uid="uid://0bknqh1j4mig" path="res://UI/Core/TooltipManager.gd" id="2_k4wkg"]
+[ext_resource type="PackedScene" uid="uid://degew88ksr0vu" path="res://UI/Core/DialogManager.tscn" id="3_rn1yx"]
+
+[node name="UICoordinator" type="Node" unique_id=2134864192]
+script = ExtResource("1_6coxy")
+
+[node name="TooltipManager" type="Control" parent="." unique_id=90568531]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_k4wkg")
+
+[node name="DialogManager" parent="." unique_id=1163189804 instance=ExtResource("3_rn1yx")]
