@@ -38,6 +38,21 @@ var current_target: Node:
 func has_target() -> bool:
 	return _current_target != null and is_instance_valid(_current_target)
 
+func get_target_within_range(range: float) -> Node3D:
+
+	if not has_target():
+		return null
+
+	var character := owner_character as Node3D
+	var target := _current_target as Node3D
+
+	if character == null or target == null:
+		return null
+
+	if character.global_position.distance_to(target.global_position) > range:
+		return null
+
+	return target
 #==============================================================================
 # Lifecycle
 #==============================================================================
