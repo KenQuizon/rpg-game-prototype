@@ -6,19 +6,16 @@ signal slot_selected
 @onready var icon: TextureRect = $Icon
 @onready var slot_name_label: Label = $SlotName
 
-var slot_name: String
-var equipped_item: EquippedItem
+var slot: EquipmentSlotType.Id
+var equipped_profile: EquipmentProfile
 
 func _ready() -> void:
 	gui_input.connect(_on_gui_input)
+	slot_name_label.text = EquipmentSlotType.Id.keys()[slot].capitalize()
 
-func set_equipment(item: EquippedItem) -> void:
-	equipped_item = item
-	
-	if item:
-		icon.texture = item.item_profile.icon if item.item_profile.has_meta("icon") else null
-	else:
-		icon.texture = null
+func set_equipment(profile: EquipmentProfile) -> void:
+	equipped_profile = profile
+	icon.texture = profile.icon if profile else null
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:

@@ -13,19 +13,18 @@ func _ready() -> void:
 	gui_input.connect(_on_gui_input)
 
 func set_item(new_item: ItemDefinition, qty: int = 1) -> void:
-	"""Display an item in this slot"""
 	item = new_item
 	item_quantity = qty
-	
+
 	if item:
-		icon.texture = item.get_meta("icon", null)
+		icon.texture = item.icon
 		quantity.text = str(qty) if qty > 1 else ""
-		tooltip_text = item.name
+		tooltip_text = item.display_name
 
 func _on_gui_input(event: InputEvent) -> void:
 	if not item:
 		return
-	
+
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			item_selected.emit()

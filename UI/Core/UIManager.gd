@@ -1,5 +1,6 @@
 extends Node
-class_name UIManager
+
+#class_name UIManager - Autoload
 
 # Singleton for managing all UI panels
 var panels: Dictionary[String, BaseUIPanel] = {}

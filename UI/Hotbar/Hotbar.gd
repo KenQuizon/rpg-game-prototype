@@ -19,9 +19,9 @@ func _ready() -> void:
 
 	for i in range(slot_count):
 		var slot = hotbar_slot_scene.instantiate() as HotbarSlot
+		add_child(slot)          # add first — set_skill() needs @onready to be resolved
 		slot.set_skill(null, hotkeys[i] if i < hotkeys.size() else "")
 		slot.skill_activated.connect(_on_skill_activated)
-		add_child(slot)
 		slots.append(slot)
 
 	_setup_hotkey_inputs()

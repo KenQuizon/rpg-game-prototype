@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cs7yoatek8jnu" path="res://Project/Characters/Scenes_Character/SkeletonArcher.tscn" id="7_2ua4a"]
 [ext_resource type="PackedScene" uid="uid://c01nirneon10h" path="res://UI/Feedback/DamageNumberSpawner.tscn" id="9_gwcue"]
 [ext_resource type="PackedScene" uid="uid://cxa5bhd30h8bh" path="res://UI/HUD/MainHUD.tscn" id="9_yhhn6"]
+[ext_resource type="Script" uid="uid://dnaq051yd1kdj" path="res://UI/Inventory/ItemUsageSystem.gd" id="10_gwcue"]
 
 [sub_resource type="Environment" id="Environment_tw2g7"]
 
@@ -69,3 +70,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.383242)
 [node name="MainHUD" parent="." unique_id=424546778 instance=ExtResource("9_yhhn6")]
 
 [node name="DamageNumberSpawner" parent="." unique_id=492531340 instance=ExtResource("9_gwcue")]
+
+[node name="ItemUsageSystem" type="Node" parent="." unique_id=1823475828]
+script = ExtResource("10_gwcue")
+metadata/_custom_type_script = "uid://dnaq051yd1kdj"
