@@ -8,6 +8,8 @@ class_name AttackAction
 var _weapon: WeaponComponent
 var _attack: AttackDefinition
 
+var _watched_clip: StringName = &""
+
 #==============================================================================
 # Validation
 #==============================================================================
@@ -122,6 +124,24 @@ func _play_attack_animation() -> void:
 		_attack.animation,
 		true
 	)
+
+	_watch_for_completion(_attack.animation)
+
+# Finishes this action as soon as the clip it's watching actually plays
+# through — no duration timer, no dependency on a "finish_action"
+# animation event that doesn't exist yet. request_finish() then still
+# goes through the normal on_finish_requested() → recovery_time →
+# on_finish() pipeline exactly as before, so nothing about that changes;
+# this only fixes *when* completion gets triggered in the first place.
+func _watch_for_completion(clip_name: StringName) -> void:
+	_watched_clip = clip_name
+	if not animation.animation_finished.is_connected(_on_watched_animation_finished):
+		animation.animation_finished.connect(_on_watched_animation_finished, CONNECT_ONE_SHOT)
+
+func _on_watched_animation_finished(finished_name: StringName) -> void:
+	if finished_name != _watched_clip:
+		return
+	request_finish()
 
 func _play_attack_effects() -> void:
 	if _attack == null or _attack.effects == null:

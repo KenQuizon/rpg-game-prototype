@@ -25,4 +25,5 @@ display_name = "DiagonalSlash"
 action_script = ExtResource("1_u4lbc")
 locks = 10
 flags = 17
+duration = 1.0
 metadata/_custom_type_script = "uid://bbp1veisyovtv"

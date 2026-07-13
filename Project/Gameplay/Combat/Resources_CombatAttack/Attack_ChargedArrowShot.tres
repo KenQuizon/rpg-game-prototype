@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="AttackDefinition" format=3 uid="uid://b6n41grno8hnr"]
+
+[ext_resource type="Script" uid="uid://bttogue7bqaph" path="res://Project/Gameplay/Actions/Combat/RangedChargeAttackAction.gd" id="1_c2dtj"]
+[ext_resource type="Script" uid="uid://qpepkjukhlvt" path="res://Project/Action/Data/ActionPolicy.gd" id="1_d7twr"]
+[ext_resource type="Script" uid="uid://bbp1veisyovtv" path="res://Project/Characters/Components/Combat/Data/AttackDefinition.gd" id="2_c2dtj"]
+[ext_resource type="Script" uid="uid://bnnbymum325ix" path="res://Project/Gameplay/Combat/Data/AttackData.gd" id="2_ltqfj"]
+[ext_resource type="PackedScene" uid="uid://5telnvpq3e8e" path="res://Project/Gameplay/Projectiles/Arrow.tscn" id="4_3rlgl"]
+[ext_resource type="Script" uid="uid://bm7k5aqdcgye3" path="res://Project/Characters/Components/Combat/Data/AttackTiming.gd" id="6_idmoj"]
+
+[sub_resource type="Resource" id="Resource_ll6cg"]
+script = ExtResource("2_ltqfj")
+damage = 16.0
+stagger_damage = 1.0
+metadata/_custom_type_script = "uid://bnnbymum325ix"
+
+[sub_resource type="Resource" id="Resource_jo4au"]
+script = ExtResource("6_idmoj")
+metadata/_custom_type_script = "uid://bm7k5aqdcgye3"
+
+[resource]
+script = ExtResource("2_c2dtj")
+animation = &"Combat/Ranged_Bow_Release"
+draw_animation = &"Combat/Ranged_Bow_Draw"
+aim_animation = &"Combat/Ranged_Bow_Aiming_Idle"
+attack_data = SubResource("Resource_ll6cg")
+timing = SubResource("Resource_jo4au")
+projectile_scene = ExtResource("4_3rlgl")
+id = &"attack_charged_arrow_shot"
+display_name = "Charged Arrow Shot"
+action_script = ExtResource("1_c2dtj")
+flags = 19
+delayed_interrupt_window = true
+metadata/_custom_type_script = "uid://bbp1veisyovtv"

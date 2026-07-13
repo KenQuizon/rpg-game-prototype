@@ -192,7 +192,8 @@ func _is_action_locked_with_no_input() -> bool:
 
 func _play(
 	animation_name: StringName,
-	force_restart: bool = false
+	force_restart: bool = false,
+	blend_time: float = -1.0
 ) -> void:
 
 	if _animation_player == null:
@@ -208,7 +209,7 @@ func _play(
 
 	_current_animation = animation_name
 
-	_animation_player.play(animation_name)
+	_animation_player.play(animation_name, blend_time)
 
 	animation_started.emit(animation_name)
 	
@@ -228,8 +229,8 @@ func animation_event_trigger(event_name: StringName) -> void:
 func _on_animation_finished(animation_name: StringName) -> void:
 	animation_finished.emit(animation_name)
 	
-func play(animation_name: StringName, force_restart := false) -> void:
-	_play(animation_name, force_restart)
+func play(animation_name: StringName, force_restart := false, blend_time: float = -1.0) -> void:
+	_play(animation_name, force_restart, blend_time)
 
 func play_death() -> void:
 	_play(animation_profile.death, true)

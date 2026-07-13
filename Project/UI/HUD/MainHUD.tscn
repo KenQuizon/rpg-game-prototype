@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c727bvmb8e0fs" path="res://Project/UI/Feedback/CastBar.tscn" id="7_4cr1f"]
 [ext_resource type="PackedScene" uid="uid://paepsyf5y6i8" path="res://Project/UI/Feedback/StatusEffectContainer.tscn" id="8_bcs26"]
 [ext_resource type="PackedScene" uid="uid://de0tqe3qu6mbq" path="res://Project/UI/Hotbar/Hotbar.tscn" id="9_4cr1f"]
+[ext_resource type="PackedScene" uid="uid://coygoo8es1dhs" path="res://Project/UI/Feedback/ChargeBar.tscn" id="10_ll6cg"]
 
 [node name="MainHUD" type="CanvasLayer" unique_id=615724408]
 layer = 50
@@ -80,3 +81,16 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Hotbar" parent="." unique_id=2051952290 instance=ExtResource("9_4cr1f")]
+
+[node name="ChargeBar" parent="." unique_id=2085802221 instance=ExtResource("10_ll6cg")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -7.5
+offset_right = 50.0
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2

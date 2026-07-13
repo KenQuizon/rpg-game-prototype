@@ -135,17 +135,34 @@ func _update_direction() -> void:
 
 	_is_moving = not _move_direction.is_zero_approx()
 
-	# facing_direction is deliberately NOT updated from input while
-	# ROTATION is locked. Without this, held WASD input keeps overwriting
-	# facing_direction every physics frame regardless of what the current
-	# action wants — which is exactly why a projectile could spawn toward
-	# whatever direction the player happened to be holding, rather than
-	# the direction the attack actually faced (either a snapped-to target
-	# via face_point(), or wherever the character was facing when the
-	# attack started). Physical velocity is unaffected by this — it's
-	# still zeroed separately by _is_movement_locked() below — this only
-	# freezes the visual/aim direction.
-	if _is_moving and not _is_rotation_locked():
+	# Rotation is owned by the MovementComponent.
+	#
+	# Priority:
+	#
+	# 1. ROTATION lock
+	#      Current action (attack, hit, dash, etc.) owns facing.
+	#
+	# 2. Aim Mode
+	#      Mouse owns facing.
+	#
+	# 3. Normal Movement
+	#      WASD owns facing.
+	#
+	# Physical movement is completely independent from facing.
+	# Even while aiming, WASD continues updating _move_direction and
+	# velocity normally—the only thing that changes is where the
+	# character is looking.
+
+	if _is_rotation_locked():
+		return
+
+	# Bow aiming / future ranged weapons.
+	if context.input != null and context.input.aim_mode:
+		face_point(context.input.aim_world_position)
+		return
+
+	# Default movement-based facing.
+	if _is_moving:
 		_facing_direction = _move_direction.normalized()
 
 func _apply_horizontal_velocity(character: CharacterBody3D) -> void:

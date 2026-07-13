@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://qpepkjukhlvt" path="res://Project/Action/Data/ActionPolicy.gd" id="1_bksef"]
 [ext_resource type="Script" uid="uid://bnnbymum325ix" path="res://Project/Gameplay/Combat/Data/AttackData.gd" id="1_h3bmu"]
-[ext_resource type="Script" uid="uid://bttogue7bqaph" path="res://Project/Gameplay/Actions/Combat/RangedChargeAttackAction.gd" id="1_pj822"]
+[ext_resource type="Script" uid="uid://cthflwsd7y65i" path="res://Project/Gameplay/Actions/Combat/RangedAttackAction.gd" id="1_pj822"]
 [ext_resource type="Script" uid="uid://bbp1veisyovtv" path="res://Project/Characters/Components/Combat/Data/AttackDefinition.gd" id="2_h3bmu"]
 [ext_resource type="PackedScene" uid="uid://5telnvpq3e8e" path="res://Project/Gameplay/Projectiles/Arrow.tscn" id="3_3emdp"]
 [ext_resource type="Script" uid="uid://bm7k5aqdcgye3" path="res://Project/Characters/Components/Combat/Data/AttackTiming.gd" id="5_f2br6"]
@@ -22,14 +22,14 @@ metadata/_custom_type_script = "uid://bm7k5aqdcgye3"
 script = ExtResource("2_h3bmu")
 animation = &"Combat/Ranged_Bow_Release"
 draw_animation = &"Combat/Ranged_Bow_Draw"
-aim_animation = &"Combat/Ranged_Bow_Aiming_Idle"
 attack_data = SubResource("Resource_5qypi")
 timing = SubResource("Resource_pj822")
 projectile_scene = ExtResource("3_3emdp")
-id = &"attack_arrow"
-display_name = "Bow"
+id = &"attack_arrow_shot"
+display_name = "Arrow Shot"
 action_script = ExtResource("1_pj822")
 locks = 138
 flags = 19
+duration = 1.5
 delayed_interrupt_window = true
 metadata/_custom_type_script = "uid://bbp1veisyovtv"

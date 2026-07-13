@@ -24,3 +24,7 @@ signal item_equipped(item_name: String, slot: String)
 
 signal character_died
 signal level_up(new_level: int)
+
+signal charge_started
+signal charge_updated(percent: float)
+signal charge_released(percent: float)
