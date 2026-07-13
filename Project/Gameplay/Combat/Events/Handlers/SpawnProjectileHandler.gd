@@ -62,3 +62,6 @@ func handle_event(
 		context.combat,
 		context.combat.get_active_projectile_data()
 	)
+	
+	if context.action != null:
+		context.action.notify_projectile_spawned()

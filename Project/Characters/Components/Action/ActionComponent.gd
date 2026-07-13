@@ -119,3 +119,8 @@ func process_update(delta: float) -> void:
 
 	if previous != null and _scheduler.current_execution == null:
 		execution_finished.emit(previous)
+
+# ActionComponent.gd
+func notify_projectile_spawned() -> void:
+	if _scheduler.current_execution != null:
+		_scheduler.current_execution.action.on_projectile_spawned()

@@ -304,3 +304,11 @@ func on_cancel() -> void:
 
 func on_interrupt() -> void:
 	on_cancel()
+
+# CharacterAction.gd
+# Called by SpawnProjectileHandler the instant a projectile actually
+# leaves this action's owner. Distinct from open_interrupt_window(): this
+# fires at the exact commit frame, which may be earlier than when the
+# action becomes preemptible. No-op by default.
+func on_projectile_spawned() -> void:
+	pass

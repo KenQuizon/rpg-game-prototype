@@ -1,6 +1,9 @@
 extends BaseComponent
 class_name AnimationComponent
 
+var _animation_tree: AnimationTree
+var _is_aiming := false
+
 #==============================================================================
 # Signals
 #==============================================================================
@@ -78,9 +81,50 @@ func on_initialize() -> void:
 	_visual_root = owner_character.get_character_visual()
 	_animation_player = owner_character.get_character_animation_player()
 
+	if _animation_player != null:
+		var parent := _animation_player.get_parent()
+		if parent != null:
+			_animation_tree = parent.get_node_or_null("AnimationTree")
+			
 	if not _animation_player.animation_finished.is_connected(_on_animation_finished):
 		_animation_player.animation_finished.connect(_on_animation_finished)
 
+func set_aiming(active: bool) -> void:
+
+	if _animation_tree == null:
+		return
+
+	_is_aiming = active
+	_animation_tree.active = active
+
+	if not active:
+		return
+
+	_animation_tree.set(
+		"parameters/AimOverlay/blend_amount",
+		1.0
+	)
+	
+	# Every time aiming turns on, it always starts at the draw pose —
+	# RangedChargeAttackAction now calls this from the very start of the
+	# action, not from draw-finished, so this is genuinely the first
+	# upper-body pose that should show.
+	set_aim_pose(&"Draw")
+
+# Crossfades the upper-body pose between the draw and aim-hold poses via
+# the UpperBodyPose transition node's own built-in xfade — no manual
+# tweening needed. No-op if aiming isn't currently active, since the
+# transition node's parameters don't exist/matter while the tree is
+# inactive.
+func set_aim_pose(state: StringName) -> void:
+
+	if _animation_tree == null or not _is_aiming:
+		return
+
+	_animation_tree.set(
+		"parameters/UpperBodyPose/transition_request",
+		state
+	)
 #==============================================================================
 # Updates
 #==============================================================================
@@ -102,6 +146,11 @@ func process_update(delta: float) -> void:
 	_update_visual_rotation(delta)
 
 	_update_locomotion_takeover()
+	
+	if _is_aiming:
+		_update_aim_locomotion()
+		return   # AnimationTree owns playback entirely while aiming — skip
+				 # the plain AnimationPlayer.play() path below completely.
 
 	if _is_action_locked_with_no_input():
 		return
@@ -115,6 +164,21 @@ func process_update(delta: float) -> void:
 	else:
 		play_idle()
 
+func _update_aim_locomotion() -> void:
+
+	if _animation_tree == null:
+		return
+
+	# Feed the same speed signal your Locomotion blend space is keyed on.
+	# _movement.is_moving is a bool today — if your walk/run threshold
+	# needs finer resolution than that, expose an actual speed float on
+	# MovementComponent instead and read it here.
+	var speed := 0.5 if _movement.is_moving else 0.0
+
+	_animation_tree.set(
+		"parameters/Locomotion/blend_position",
+		speed
+	)
 # Turns the visual model to face _movement.facing_direction. Deliberately
 # NOT gated on _movement.is_moving or a rotation lock: facing_direction is
 # already the single source of truth for "which way is this character

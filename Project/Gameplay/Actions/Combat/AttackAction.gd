@@ -73,6 +73,7 @@ func on_finish_requested() -> void:
 	print("[COMBAT] AttackAction.on_finish_requested() - FINISH_ACTION event received")
 	context.combat.finish_attack()
 	_clear_attack_data()
+	_clear_motion()
 
 func get_recovery_time() -> float:
 	if _attack == null or _attack.timing == null:
@@ -105,6 +106,7 @@ func on_finish() -> void:
 	print("[COMBAT] AttackAction.on_finish() - final cleanup")
 	context.combat.finish_attack()
 	_clear_attack_data()
+	_clear_motion()
 	super.on_finish()
 
 #==============================================================================
