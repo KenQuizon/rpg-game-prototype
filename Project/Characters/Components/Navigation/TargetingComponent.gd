@@ -23,6 +23,8 @@ var _detection_area: Area3D
 # Runtime
 #==============================================================================
 
+var _enabled: bool = true
+
 var _nearby: Array[Node] = []
 var _current_target: Node = null
 
@@ -34,25 +36,85 @@ var current_target: Node:
 	get:
 		return _current_target
 
+#==============================================================================
+# Public API
+#==============================================================================
 
 func has_target() -> bool:
 	return _current_target != null and is_instance_valid(_current_target)
 
-func get_target_within_range(range: float) -> Node3D:
 
-	if not has_target():
+func is_enabled() -> bool:
+	return _enabled
+
+
+func set_enabled(enabled: bool) -> void:
+	if _enabled == enabled:
+		return
+
+	_enabled = enabled
+
+	if _detection_area != null:
+		_detection_area.monitoring = enabled
+		_detection_area.monitorable = enabled
+
+	if not enabled:
+		clear_target()
+
+
+func clear_target() -> void:
+	var previous := _current_target
+
+	_current_target = null
+	_nearby.clear()
+
+	target_changed.emit(previous, null)
+
+
+# Nearest valid enemy within attack range.
+func get_target_within_range(range: float) -> Node:
+
+	if not _enabled:
 		return null
+
+	_prune_invalid()
 
 	var character := owner_character as Node3D
-	var target := _current_target as Node3D
 
-	if character == null or target == null:
+	if character == null:
 		return null
 
-	if character.global_position.distance_to(target.global_position) > range:
-		return null
+	var range_squared := range * range
 
-	return target
+	var best: Node = null
+	var best_distance := INF
+
+	for candidate in _nearby:
+
+		if not is_instance_valid(candidate):
+			continue
+
+		var candidate_3d := candidate as Node3D
+
+		if candidate_3d == null:
+			continue
+
+		if _is_dead(candidate):
+			continue
+
+		var distance := character.global_position.distance_squared_to(
+			candidate_3d.global_position
+		)
+
+		if distance > range_squared:
+			continue
+
+		if distance < best_distance:
+			best_distance = distance
+			best = candidate
+
+	return best
+
 #==============================================================================
 # Lifecycle
 #==============================================================================
@@ -77,6 +139,9 @@ func on_initialize() -> void:
 
 func physics_update(_delta: float) -> void:
 
+	if not _enabled:
+		return
+
 	_prune_invalid()
 
 	if _current_target != null and _is_dead(_current_target):
@@ -95,6 +160,9 @@ func physics_update(_delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 
+	if not _enabled:
+		return
+
 	if not body.is_in_group(target_group):
 		return
 
@@ -108,6 +176,9 @@ func _on_body_entered(body: Node) -> void:
 
 
 func _on_body_exited(body: Node) -> void:
+
+	if not _enabled:
+		return
 
 	if not _nearby.has(body):
 		return
@@ -134,11 +205,7 @@ func _refresh_target() -> void:
 	_current_target = _select_best_target()
 
 	if previous != _current_target:
-
-		target_changed.emit(
-			previous,
-			_current_target
-		)
+		target_changed.emit(previous, _current_target)
 
 
 func _select_best_target() -> Node:
@@ -146,8 +213,6 @@ func _select_best_target() -> Node:
 	if _nearby.is_empty():
 		return null
 
-	# Node3D, not Character — only world position is needed here, so any 3D
-	# entity can be the targeting origin, not just Character.
 	var character := owner_character as Node3D
 
 	if character == null:
@@ -179,10 +244,7 @@ func _select_best_target() -> Node:
 
 	return best
 
-# Candidates without a get_component() method (or with no CombatComponent)
-# are treated as always-valid — duck-typed rather than requiring the
-# candidate to be a Character, so any host implementing the same framework
-# contract (an NPC, a boss, a destructible) can be targeted correctly.
+
 func _is_dead(candidate: Node) -> bool:
 
 	if not candidate.has_method("get_component"):

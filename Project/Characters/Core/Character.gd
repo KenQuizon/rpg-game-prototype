@@ -14,6 +14,12 @@ class_name Character
 @export var evade_definition: ActionDefinition
 @export var projectile_spawn_point: Marker3D
 @export var attack_range_area: Area3D
+# Any Node3D that visually marks this character as targeted — a Sprite3D,
+# a ring decal, whatever you build. Left null on characters that never
+# need to show one. Toggled by TargetIndicatorComponent on whichever
+# character is attacking this one, not by this character itself — see
+# get_character_target_marker() below.
+@export var target_marker: Node3D
 #==============================================================================
 # Cached Nodes
 #==============================================================================
@@ -67,6 +73,8 @@ func get_character_evade_definition() -> ActionDefinition:
 	return evade_definition
 func get_character_attack_range_area() -> Area3D:
 	return attack_range_area
+func get_character_target_marker() -> Node3D:
+	return target_marker
 #==============================================================================
 # Public Framework API
 #==============================================================================
@@ -201,3 +209,40 @@ func load_state(data: Dictionary) -> void:
 
 	if data.has("inventory") and context.inventory != null:
 		context.inventory.load_state(data["inventory"])
+
+# Add these methods to the Character class in Characters/Core/Character.gd
+# They can be added at the end of the file (after line 211)
+
+#==============================================================================
+# Death and Controller Management
+#==============================================================================
+
+func set_controller_active(active: bool) -> void:
+	"""Enable or disable the controller's update processing"""
+	if not has_node("Systems/Controller"):
+		return
+	
+	var ctrl = get_node("Systems/Controller")
+	if ctrl == null:
+		return
+	
+	if active:
+		ctrl.set_physics_process(true)
+		ctrl.set_process(true)
+		print("[Character] Controller enabled")
+	else:
+		ctrl.set_physics_process(false)
+		ctrl.set_process(false)
+		print("[Character] Controller disabled")
+
+
+func is_controller_active() -> bool:
+	"""Check if controller is currently active"""
+	if not has_node("Systems/Controller"):
+		return false
+	
+	var ctrl = get_node("Systems/Controller")
+	if ctrl == null:
+		return false
+	
+	return ctrl.is_physics_processing()

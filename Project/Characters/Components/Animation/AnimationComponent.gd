@@ -99,6 +99,8 @@ func process_update(delta: float) -> void:
 	if context.combat != null and context.combat.is_dead():
 		return 
 		
+	_update_visual_rotation(delta)
+
 	_update_locomotion_takeover()
 
 	if _is_action_locked_with_no_input():
@@ -108,25 +110,41 @@ func process_update(delta: float) -> void:
 		play_block_idle()
 		return
 
-	if _movement.is_moving and not _is_rotation_locked():
-
-		var direction := _movement.facing_direction
-
-		var target_rotation := atan2(
-			direction.x,
-			direction.z
-		)
-
-		_visual_root.rotation.y = lerp_angle(
-			_visual_root.rotation.y,
-			target_rotation,
-			rotation_speed * delta
-		)
-
 	if _movement.is_moving:
 		play_walk()
 	else:
 		play_idle()
+
+# Turns the visual model to face _movement.facing_direction. Deliberately
+# NOT gated on _movement.is_moving or a rotation lock: facing_direction is
+# already the single source of truth for "which way is this character
+# actually facing," correctly protected at its source — MovementComponent
+# won't update it from WASD while ROTATION is locked, and
+# AttackAction._face_target() explicitly overrides it when there's a
+# target in range. The visual's only job is to keep matching it, whether
+# that's from walking, standing still and shooting, or anything else. This
+# also deliberately runs before the animation-clip gate below (rather than
+# after), so it keeps working through an attack's fully-locked phase too —
+# previously it only ran during locomotion, which is why a stationary
+# archer's model never turned to face a target even though the projectile
+# aimed correctly.
+func _update_visual_rotation(delta: float) -> void:
+
+	var direction := _movement.facing_direction
+
+	if direction.is_zero_approx():
+		return
+
+	var target_rotation := atan2(
+		direction.x,
+		direction.z
+	)
+
+	_visual_root.rotation.y = lerp_angle(
+		_visual_root.rotation.y,
+		target_rotation,
+		rotation_speed * delta
+	)
 
 # Updates _locomotion_active — see its declaration above for why this
 # needs to be a latch rather than a live is_moving check.
@@ -167,9 +185,6 @@ func _is_action_locked_with_no_input() -> bool:
 		return true
 
 	return not _locomotion_active
-
-func _is_rotation_locked() -> bool:
-	return context.is_locked(ActionLock.Id.ROTATION)
 
 #==============================================================================
 # Animation

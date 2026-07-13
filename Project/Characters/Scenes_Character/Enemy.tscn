@@ -31,16 +31,20 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2t644"]
 height = 2.2
 
+[sub_resource type="TorusMesh" id="TorusMesh_3fngs"]
+inner_radius = 1.25
+outer_radius = 1.5
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_er8h5"]
 height = 2.2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3fngs"]
-radius = 8.0
+radius = 10.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2nri0"]
 radius = 1.5
 
-[node name="Enemy" type="CharacterBody3D" unique_id=1084824515 node_paths=PackedStringArray("projectile_spawn_point", "attack_range_area")]
+[node name="Enemy" type="CharacterBody3D" unique_id=1084824515 node_paths=PackedStringArray("projectile_spawn_point", "attack_range_area", "target_marker") groups=["enemies"]]
 script = ExtResource("1_2t644")
 animation_player_path = NodePath("Model/VisualRoot/Skeleton_Minion/AnimationPlayer")
 weapon_socket_path = NodePath("Model/VisualRoot/Skeleton_Minion/Rig_Medium/Skeleton3D/Main_Hand/WeaponSocket")
@@ -48,6 +52,7 @@ off_hand_socket_path = NodePath("Model/VisualRoot/Skeleton_Minion/Rig_Medium/Ske
 evade_definition = ExtResource("2_yt0mr")
 projectile_spawn_point = NodePath("Model/VisualRoot/ProjectileSpawnPoint")
 attack_range_area = NodePath("AttackRangeArea")
+target_marker = NodePath("Model/VisualRoot/TargetMarker")
 
 [node name="Components" type="Node3D" parent="." unique_id=1215277130]
 
@@ -141,6 +146,11 @@ metadata/_custom_type_script = "uid://cigxfduvci7n2"
 
 [node name="ProjectileSpawnPoint" type="Marker3D" parent="Model/VisualRoot" unique_id=80610288]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+
+[node name="TargetMarker" type="MeshInstance3D" parent="Model/VisualRoot" unique_id=856037755]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+visible = false
+mesh = SubResource("TorusMesh_3fngs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2039398385]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)

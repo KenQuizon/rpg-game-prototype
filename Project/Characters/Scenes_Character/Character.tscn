@@ -32,6 +32,7 @@
 [ext_resource type="Script" uid="uid://dtb7oc0r6dx1g" path="res://Project/Characters/Components/Skills/SkillDefinition.gd" id="28_stqro"]
 [ext_resource type="Script" uid="uid://ojuacks7rywl" path="res://Project/Characters/Components/Navigation/TargetingComponent.gd" id="29_d0wnp"]
 [ext_resource type="Resource" uid="uid://ie0iyf8mlky7" path="res://Project/Characters/Components/Skills/Resources_Skill/Fireball.tres" id="29_fw7kn"]
+[ext_resource type="Script" uid="uid://b34rjjdl8e42v" path="res://Project/Characters/Components/Navigation/TargetIndicatorComponent.gd" id="30_21rwx"]
 [ext_resource type="Script" uid="uid://d052vxq1yotpq" path="res://Project/Equipment/Component/InventoryComponent.gd" id="31_fw7kn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fef4x"]
@@ -46,7 +47,7 @@ height = 2.2
 radius = 1.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_21rwx"]
-radius = 8.0
+radius = 12.0
 
 [node name="Character" type="CharacterBody3D" unique_id=1084824515 node_paths=PackedStringArray("projectile_spawn_point", "attack_range_area") groups=["player"]]
 script = ExtResource("1_xdxam")
@@ -140,6 +141,10 @@ metadata/_custom_type_script = "uid://d052vxq1yotpq"
 [node name="TargetingComponent" type="Node" parent="Components" unique_id=1372506095]
 script = ExtResource("29_d0wnp")
 metadata/_custom_type_script = "uid://ojuacks7rywl"
+
+[node name="TargetIndicatorComponent" type="Node" parent="Components" unique_id=615317372]
+script = ExtResource("30_21rwx")
+metadata/_custom_type_script = "uid://b34rjjdl8e42v"
 
 [node name="Systems" type="Node" parent="." unique_id=1868648437]
 

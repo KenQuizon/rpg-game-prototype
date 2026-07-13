@@ -2,6 +2,12 @@ extends BaseController
 class_name AIController
 
 #==============================================================================
+# Runtime State
+#==============================================================================
+
+var _was_in_range := false
+
+#==============================================================================
 # Updates
 #==============================================================================
 
@@ -16,21 +22,27 @@ func physics_update(_delta: float) -> void:
 
 	if targeting == null or not targeting.has_target():
 		_write_input(Vector2.ZERO, false)
+		_was_in_range = false
 		return
 
 	var target := targeting.current_target as Node3D
 
 	if target == null:
 		_write_input(Vector2.ZERO, false)
+		_was_in_range = false
 		return
 
 	var distance: float = character.global_position.distance_to(target.global_position)
 	var attack_range := context.weapon.get_attack_range() if context.weapon != null else 1.5
 
 	if distance > attack_range:
+		# Out of range: chase
 		_chase(target, navigation)
+		_was_in_range = false
 	else:
+		# In range: engage
 		_engage(navigation)
+		_was_in_range = true
 
 #==============================================================================
 # Behavior
