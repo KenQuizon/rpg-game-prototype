@@ -18,8 +18,8 @@
 [ext_resource type="Script" uid="uid://cs3373l874ea1" path="res://Project/Characters/Components/Combat/Components/CombatComponent.gd" id="11_cj3vo"]
 [ext_resource type="Script" uid="uid://c714tlwbn8rdv" path="res://Project/Characters/Components/Combat/Components/HurtboxComponent.gd" id="12_5otae"]
 [ext_resource type="Script" uid="uid://ccm8lflo77amt" path="res://Project/Characters/Components/Combat/Components/WeaponComponent.gd" id="13_m1gpw"]
+[ext_resource type="Resource" uid="uid://wrnwpt7j5wuw" path="res://Project/Characters/Components/Combat/Resources_CombatWeapons/IronSword.tres" id="15_21rwx"]
 [ext_resource type="Script" uid="uid://ylguh5pimf4c" path="res://Project/Characters/Components/Combat/Components/ComboComponent.gd" id="15_adxff"]
-[ext_resource type="Resource" uid="uid://coe3n66dd8q5c" path="res://Project/Characters/Components/Combat/Resources_CombatWeapons/Bow.tres" id="15_iifnj"]
 [ext_resource type="Script" uid="uid://cv5gb46oukrjm" path="res://Project/Action/Components/PoiseComponent.gd" id="20_xovkx"]
 [ext_resource type="Resource" uid="uid://dbsmaqf0ui8ah" path="res://Project/Characters/Components/Resources/Resources_/Mana.tres" id="21_0gj3o"]
 [ext_resource type="Script" uid="uid://c7xa74wehf8b5" path="res://Project/Characters/Components/Status/StatusComponent.gd" id="21_3fb5f"]
@@ -101,7 +101,7 @@ metadata/_custom_type_script = "uid://cs3373l874ea1"
 
 [node name="WeaponComponent" type="Node" parent="Components" unique_id=1398985983]
 script = ExtResource("13_m1gpw")
-default_off_hand = ExtResource("15_iifnj")
+default_weapon = ExtResource("15_21rwx")
 metadata/_custom_type_script = "uid://ccm8lflo77amt"
 
 [node name="ComboComponent" type="Node" parent="Components" unique_id=2143321997]

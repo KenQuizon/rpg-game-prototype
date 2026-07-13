@@ -26,4 +26,5 @@ action_script = ExtResource("1_u4lbc")
 locks = 10
 flags = 17
 duration = 1.0
+delayed_interrupt_window = true
 metadata/_custom_type_script = "uid://bbp1veisyovtv"

@@ -263,3 +263,4 @@ libraries/ = SubResource("AnimationLibrary_vj2vy")
 libraries/Combat = SubResource("AnimationLibrary_ekfj2")
 libraries/Movement = SubResource("AnimationLibrary_wdu0t")
 libraries/Skeleton = SubResource("AnimationLibrary_jmn2b")
+playback_default_blend_time = 0.15
