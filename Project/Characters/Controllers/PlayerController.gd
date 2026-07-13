@@ -2,6 +2,12 @@ extends BaseController
 class_name PlayerController
 
 #==============================================================================
+# Runtime
+#==============================================================================
+
+var _attack_move_target: Node3D = null
+
+#==============================================================================
 # Updates
 #==============================================================================
 
@@ -23,7 +29,7 @@ func physics_update(_delta: float) -> void:
 	context.input.interact_pressed = Input.is_action_just_pressed("interact")
 	context.input.dash_pressed = Input.is_action_just_pressed("dash")
 	context.input.skill_1_pressed = Input.is_action_just_pressed("skill_1")
-	context.combat.set_blocking(Input.is_action_pressed("block")and not context.is_locked(ActionLock.Id.ATTACK))
+	context.combat.set_blocking(Input.is_action_pressed("block") and not context.is_locked(ActionLock.Id.ATTACK))
 	context.input.charged_attack_pressed = Input.is_action_just_pressed("charged_attack")
 	context.input.charged_attack_held = Input.is_action_pressed("charged_attack")
 	context.input.aim_mode = context.input.charged_attack_held
@@ -35,15 +41,29 @@ func physics_update(_delta: float) -> void:
 		return
 
 	#--------------------------------------------------------------------------
-	# Attack-Move — attack input beats movement input. Holding attack with
-	# a target out of range walks you toward it instead of swinging;
-	# once in range, it attacks instead of walking. With no target at
-	# all, this is a no-op and the normal move+attack flow below runs
-	# exactly as before (single click, single swing, in place).
+	# Attack-Move — a single click starts a standing order that keeps
+	# running on its own every frame (no more spam-clicking): walk to the
+	# target, attack once in range, then keep attacking it. Real movement
+	# input cancels the order immediately and hands control straight back
+	# to WASD — that's the "interruptible" part.
 	#--------------------------------------------------------------------------
 
-	if context.input.attack_held and _try_attack_move():
-		return
+	if context.input.move_vector != Vector2.ZERO:
+		_attack_move_target = null
+
+	if context.input.attack_pressed:
+
+		var clicked_target: Node3D = context.targeting.current_target as Node3D if context.targeting else null
+
+		if clicked_target != null and is_instance_valid(clicked_target):
+			_attack_move_target = clicked_target
+
+	if _attack_move_target != null:
+
+		if not is_instance_valid(_attack_move_target):
+			_attack_move_target = null
+		elif _try_attack_move(_attack_move_target):
+			return
 
 	#--------------------------------------------------------------------------
 	# Movement
@@ -96,26 +116,19 @@ func physics_update(_delta: float) -> void:
 
 		charged.initialize(context)
 		charged.execute()
+
 #==============================================================================
 # Internal
 #==============================================================================
 
-# Returns true if attack input took over this frame (either closing
-# distance to a target or attacking it in range) — false means there's
-# no target at all, so the caller falls through to normal movement.
-func _try_attack_move() -> bool:
+func _try_attack_move(target: Node3D) -> bool:
 
-	if context.targeting == null or context.weapon == null:
+	if context.weapon == null:
 		return false
 
 	var character: Node3D = context.character as Node3D
 
 	if character == null:
-		return false
-
-	var target: Node3D = context.targeting.current_target as Node3D
-
-	if target == null or not is_instance_valid(target):
 		return false
 
 	var attack_range: float = context.weapon.get_attack_range()
@@ -128,10 +141,6 @@ func _try_attack_move() -> bool:
 		_move_toward(target.global_position)
 		return true
 
-	# In range — stop walking, face the target, and attack.
-	# Submitting every held frame is safe: ActionScheduler rejects it while
-	# an attack is already running and immediately accepts another once the
-	# action finishes, giving attack-hold auto-repeat behavior.
 	if context.movement != null:
 		context.movement.set_move_input(Vector2.ZERO)
 		context.movement.face_point(target.global_position)
@@ -164,9 +173,6 @@ func _move_toward(position: Vector3) -> void:
 
 	direction = direction.normalized()
 
-	# MovementComponent expects CharacterInput's shape:
-	# X -> world X
-	# Y -> world Z
 	context.movement.set_move_input(
 		Vector2(direction.x, direction.z)
 	)

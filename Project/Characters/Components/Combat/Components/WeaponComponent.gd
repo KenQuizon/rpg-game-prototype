@@ -222,6 +222,9 @@ func reset_combo() -> void:
 func select_next_attack() -> AttackDefinition:
 	return _attack_runtime.select_next_attack()
 
+func commit_attack(attack: AttackDefinition) -> void:
+	_attack_runtime.commit_attack(attack)
+	
 func _sync_attack_range_visual() -> void:
 
 	if not owner_character.has_method("get_character_attack_range_area"):

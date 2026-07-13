@@ -30,6 +30,11 @@ class_name AttackDefinition
 
 @export var attack_speed: float = 1.0
 
+# Fraction (0–1) of the "commit" animation's length at which this attack
+# opens its interrupt window automatically — no animation Call Method
+# Track needed. 0 (default) disables this and preserves prior behavior
+# exactly (window only opens via an explicit animation event, if ever).
+@export var interrupt_window_percent: float = 0.0
 
 #==============================================================================
 # Optional

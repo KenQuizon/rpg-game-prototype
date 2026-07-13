@@ -289,7 +289,18 @@ func animation_event_trigger(event_name: StringName) -> void:
 
 	context.combat.dispatch_event(event_name)
 
+func get_animation_progress() -> float:
 
+	if _animation_player == null or not _animation_player.is_playing():
+		return 0.0
+
+	var length := _animation_player.current_animation_length
+
+	if length <= 0.0:
+		return 0.0
+
+	return _animation_player.current_animation_position / length
+	
 func _on_animation_finished(animation_name: StringName) -> void:
 	animation_finished.emit(animation_name)
 	

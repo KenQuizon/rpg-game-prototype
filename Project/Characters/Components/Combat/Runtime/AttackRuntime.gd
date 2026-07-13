@@ -27,21 +27,33 @@ func select_next_attack() -> AttackDefinition:
 		return null
 
 	var combo := _weapon.context.combo
-
 	var set := _weapon.get_attack_set()
 
-	if combo == null:
+	if combo == null or set == null:
 		return null
 
-	if set == null:
-		return null
+	# Pure read — no longer advances anything. Safe to call as many times
+	# as validation needs to; it always returns the same attack until
+	# commit_attack() below is actually called.
+	return set.get_light_attack(combo.combo_index)
+
+# Called by AttackAction.on_start() — the one place guaranteed to run only
+# once an attack has actually been accepted by the scheduler and begun.
+func commit_attack(attack: AttackDefinition) -> void:
+
+	if _weapon == null:
+		return
+
+	var combo := _weapon.context.combo
+	var set := _weapon.get_attack_set()
+
+	if combo == null or set == null:
+		return
 
 	if not combo.is_combo_active():
 		combo.begin_combo()
 	else:
 		combo.reset_timer()
-
-	var attack := set.get_light_attack(combo.combo_index)
 
 	if attack != null and attack.timing != null:
 		combo.set_active_timeout(attack.timing.combo_close_time)
@@ -49,8 +61,6 @@ func select_next_attack() -> AttackDefinition:
 	combo.advance_combo(
 		set.get_light_attack_count()
 	)
-
-	return attack
 
 
 func reset_combo() -> void:

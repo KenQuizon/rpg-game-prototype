@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WeaponProfile" format=3 uid="uid://dhht4mspyc4ya"]
 
 [ext_resource type="Script" uid="uid://bbp1veisyovtv" path="res://Project/Characters/Components/Combat/Data/AttackDefinition.gd" id="1_jtwc4"]
-[ext_resource type="Resource" uid="uid://dvn2cwpuy7sbk" path="res://Project/Gameplay/Combat/Resources_CombatAttack/Attack_Slash1.tres" id="2_ppj6a"]
+[ext_resource type="Resource" uid="uid://dvn2cwpuy7sbk" path="res://Project/Gameplay/Combat/Resources_CombatAttack/Attack_SwordSlash2.tres" id="2_ppj6a"]
 [ext_resource type="Script" uid="uid://rgnyd2ru1lwi" path="res://Project/Characters/Components/Combat/Data/AttackSet.gd" id="3_cj2sg"]
 [ext_resource type="Script" uid="uid://bb12xak51omdq" path="res://Project/Characters/Components/Combat/Weapons/WeaponProfile.gd" id="4_xxbe6"]
 [ext_resource type="PackedScene" uid="uid://crk1ut2sgeeyg" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/SkeletonBlade.tscn" id="5_iuc2k"]
