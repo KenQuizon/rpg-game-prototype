@@ -5,29 +5,30 @@
 [ext_resource type="PackedScene" uid="uid://lm4al6eocidx" path="res://Project/UI/Equipment/WeaponSlotUI.tscn" id="3_d7cu8"]
 
 [node name="EquipmentPanel" type="VBoxContainer" unique_id=241303303]
-custom_minimum_size = Vector2(250, 0)
-offset_right = 250.0
-offset_bottom = 1018.0
+custom_minimum_size = Vector2(158, 215)
+offset_right = 158.0
+offset_bottom = 212.0
 script = ExtResource("1_eod75")
 
-[node name="SlotGrid" type="GridContainer" parent="." unique_id=871555977]
+[node name="SlotGrid" type="GridContainer" parent="." unique_id=2115009976]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
+columns = 3
+
+[node name="Control" type="Control" parent="SlotGrid" unique_id=432424221]
+layout_mode = 2
 
 [node name="Head" parent="SlotGrid" unique_id=1805287938 instance=ExtResource("2_ibx1j")]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="SlotGrid" unique_id=412361036]
+layout_mode = 2
+
+[node name="MainHand" parent="SlotGrid" unique_id=1939842554 instance=ExtResource("3_d7cu8")]
 layout_mode = 2
 
 [node name="Chest" parent="SlotGrid" unique_id=1203618902 instance=ExtResource("2_ibx1j")]
 layout_mode = 2
 slot = 1
-
-[node name="Legs" parent="SlotGrid" unique_id=1323993664 instance=ExtResource("2_ibx1j")]
-layout_mode = 2
-slot = 2
-
-[node name="MainHand" parent="SlotGrid" unique_id=1939842554 instance=ExtResource("3_d7cu8")]
-layout_mode = 2
 
 [node name="OffHand" parent="SlotGrid" unique_id=2012082845 instance=ExtResource("3_d7cu8")]
 layout_mode = 2
@@ -36,6 +37,10 @@ slot = 1
 [node name="Ring1" parent="SlotGrid" unique_id=798275681 instance=ExtResource("2_ibx1j")]
 layout_mode = 2
 slot = 5
+
+[node name="Legs" parent="SlotGrid" unique_id=1323993664 instance=ExtResource("2_ibx1j")]
+layout_mode = 2
+slot = 2
 
 [node name="Ring2" parent="SlotGrid" unique_id=1592590382 instance=ExtResource("2_ibx1j")]
 layout_mode = 2

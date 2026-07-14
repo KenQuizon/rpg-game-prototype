@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="2_1f8pt"]
 
 [node name="WeaponSlotUI" type="PanelContainer" unique_id=1805287938]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(128, 128)
 offset_right = 1.0
 offset_bottom = 23.0
 script = ExtResource("1_ucj57")
@@ -15,7 +15,6 @@ layout_mode = 2
 [node name="SlotName" type="Label" parent="." unique_id=69118032]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_1f8pt")
-theme_override_font_sizes/font_size = 10
 text = "chest"
 horizontal_alignment = 1
 vertical_alignment = 1

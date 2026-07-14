@@ -2,6 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="1_7ge61"]
 [ext_resource type="Script" uid="uid://d1fyeb6vcxjst" path="res://Project/UI/CharacterHub/CharacterHub.gd" id="1_rug7c"]
+[ext_resource type="Shader" uid="uid://ue6ryiltfguj" path="res://Assets/Shader/Blur.gdshader" id="2_osv55"]
 [ext_resource type="PackedScene" uid="uid://qpoj80y8e2r5" path="res://Project/UI/Character/CharacterScreen.tscn" id="2_r8ut7"]
 [ext_resource type="PackedScene" uid="uid://b0ad3wqxiid28" path="res://Project/UI/Equipment/EquipmentPanel.tscn" id="3_1qgv4"]
 [ext_resource type="PackedScene" uid="uid://bvwhqbbs7plhy" path="res://Project/UI/Inventory/InventoryPanel.tscn" id="4_rug7c"]
@@ -13,6 +14,10 @@ colors = PackedColorArray(0.11764706, 0.101960786, 0.27450982, 1, 0.043137256, 0
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_g3r0j"]
 gradient = SubResource("Gradient_wsdww")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_84wve"]
+shader = ExtResource("2_osv55")
+shader_parameter/blur_amount = 1.5
+
 [node name="CharacterHub" type="Control" unique_id=252376391]
 layout_mode = 3
 anchors_preset = 15
@@ -23,6 +28,7 @@ grow_vertical = 2
 script = ExtResource("1_rug7c")
 
 [node name="Background" type="TextureRect" parent="." unique_id=400658008]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,6 +41,16 @@ grow_vertical = 2
 rotation = 1.5707964
 texture = SubResource("GradientTexture1D_g3r0j")
 expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=62051505]
+material = SubResource("ShaderMaterial_84wve")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.75, 0.75, 0.75, 1)
 
 [node name="LayoutMargin" type="MarginContainer" parent="." unique_id=341928031]
 layout_mode = 1
@@ -53,57 +69,99 @@ layout_mode = 2
 offset_transform_position = Vector2(1.565, 0)
 
 [node name="TabList" type="VBoxContainer" parent="LayoutMargin/Layout" unique_id=1248439038]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+
+[node name="Title" type="Label" parent="LayoutMargin/Layout/TabList" unique_id=1031313131]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7ge61")
+theme_override_font_sizes/font_size = 32
+text = "Backpack"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AttributesTab" type="Button" parent="LayoutMargin/Layout/TabList" unique_id=1939465036]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_7ge61")
+theme_override_font_sizes/font_size = 28
 text = "Attributes"
 
 [node name="EquipmentTab" type="Button" parent="LayoutMargin/Layout/TabList" unique_id=601168793]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_7ge61")
+theme_override_font_sizes/font_size = 28
 text = "Equipment"
 
 [node name="SkillsTab" type="Button" parent="LayoutMargin/Layout/TabList" unique_id=301833667]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_7ge61")
+theme_override_font_sizes/font_size = 28
 text = "Skills"
 
 [node name="ItemsTab" type="Button" parent="LayoutMargin/Layout/TabList" unique_id=758338998]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_7ge61")
+theme_override_font_sizes/font_size = 28
 text = "Items"
 
 [node name="CharacterPreviewRoot" parent="LayoutMargin/Layout" unique_id=1180754930 instance=ExtResource("2_r8ut7")]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(770, 0)
 layout_mode = 2
 
 [node name="PageContainer" type="Control" parent="LayoutMargin/Layout" unique_id=1759051192]
+custom_minimum_size = Vector2(850, 0)
 layout_mode = 2
 
 [node name="AttributesPage" type="Control" parent="LayoutMargin/Layout/PageContainer" unique_id=468699503]
+layout_mode = 1
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="EquipmentPage" type="HBoxContainer" parent="LayoutMargin/Layout/PageContainer" unique_id=768856365]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+offset_right = 1000.0
+offset_bottom = 980.0
 
 [node name="EquipmentAndWeaponsGrid" parent="LayoutMargin/Layout/PageContainer/EquipmentPage" unique_id=2084216896 instance=ExtResource("3_1qgv4")]
 layout_mode = 2
 
-[node name="InventoryColumn" type="VBoxContainer" parent="LayoutMargin/Layout/PageContainer/EquipmentPage" unique_id=1206561689]
+[node name="InventoryColumn" type="Control" parent="LayoutMargin/Layout/PageContainer/EquipmentPage" unique_id=1419222835]
+custom_minimum_size = Vector2(600, 980)
 layout_mode = 2
+
+[node name="InventoryText" type="Label" parent="LayoutMargin/Layout/PageContainer/EquipmentPage/InventoryColumn" unique_id=1945201289]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -170.0
+offset_right = 170.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_7ge61")
+theme_override_font_sizes/font_size = 32
+text = "Inventory"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="InventoryScrollRoot" parent="LayoutMargin/Layout/PageContainer/EquipmentPage/InventoryColumn" unique_id=1846918466 instance=ExtResource("4_rug7c")]
-layout_mode = 2
+custom_minimum_size = Vector2(250, 504)
+layout_mode = 0
+offset_top = 44.0
+offset_right = 600.0
+offset_bottom = 44.0
+grid_columns = 0
 
 [node name="ItemStatPanel" parent="LayoutMargin/Layout/PageContainer/EquipmentPage/InventoryColumn" unique_id=1900709615 instance=ExtResource("6_84wve")]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_top = -130.0
+offset_right = 340.0
+grow_horizontal = 1
+grow_vertical = 0
 
 [node name="SkillsPage" type="Control" parent="LayoutMargin/Layout/PageContainer" unique_id=1406089798]
 anchors_preset = 0

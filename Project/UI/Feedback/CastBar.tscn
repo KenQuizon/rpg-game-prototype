@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="2_jfg2c"]
 
 [node name="CastBar" type="Control" unique_id=1833968866]
-custom_minimum_size = Vector2(100, 15)
+custom_minimum_size = Vector2(150, 18)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 100.0
@@ -13,8 +13,8 @@ script = ExtResource("1_jc0k0")
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=2143663113]
 layout_mode = 1
-offset_right = 100.0
-offset_bottom = 15.0
+offset_right = 150.0
+offset_bottom = 18.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="." unique_id=1389779021]
@@ -25,7 +25,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_jfg2c")
-theme_override_font_sizes/font_size = 12
 text = "casting"
 horizontal_alignment = 1
 vertical_alignment = 1

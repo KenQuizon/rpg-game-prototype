@@ -6,7 +6,8 @@ signal slot_selected
 @onready var icon: TextureRect = $Icon
 @onready var slot_name_label: Label = $SlotName
 
-var slot: EquipmentSlotType.Id
+@export var slot: EquipmentSlotType.Id
+
 var equipped_profile: EquipmentProfile
 
 func _ready() -> void:

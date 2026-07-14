@@ -55,7 +55,7 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [node name="HealthBar" type="Control" unique_id=179306097]
-custom_minimum_size = Vector2(257, 23)
+custom_minimum_size = Vector2(310, 28)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 257.0
@@ -64,8 +64,8 @@ script = ExtResource("1_g20jw")
 
 [node name="AbsorbBar" type="ProgressBar" parent="." unique_id=1836864588]
 layout_mode = 1
-offset_right = 252.0
-offset_bottom = 23.0
+offset_right = 310.0
+offset_bottom = 28.0
 theme_override_styles/background = SubResource("StyleBoxEmpty_2apcu")
 theme_override_styles/fill = SubResource("StyleBoxFlat_2apcu")
 value = 14.0
@@ -76,8 +76,8 @@ z_index = 1
 layout_mode = 1
 offset_left = 5.0
 offset_top = 4.0
-offset_right = 247.0
-offset_bottom = 19.0
+offset_right = 305.0
+offset_bottom = 24.0
 theme_override_styles/background = SubResource("StyleBoxFlat_x72bi")
 theme_override_styles/fill = SubResource("StyleBoxFlat_j0nya")
 value = 85.3
@@ -88,8 +88,8 @@ z_index = 2
 layout_mode = 1
 offset_left = 5.0
 offset_top = 4.0
-offset_right = 247.0
-offset_bottom = 19.0
+offset_right = 305.0
+offset_bottom = 24.0
 theme_override_styles/background = SubResource("StyleBoxEmpty_j0nya")
 theme_override_styles/fill = SubResource("StyleBoxFlat_g20jw")
 value = 76.68
@@ -103,7 +103,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_57wpw")
-theme_override_font_sizes/font_size = 12
 text = "100"
 horizontal_alignment = 1
 

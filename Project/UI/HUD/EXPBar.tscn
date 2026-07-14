@@ -6,16 +6,16 @@
 [ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="4_cniox"]
 
 [node name="EXPBar" type="Control" unique_id=179306097]
-custom_minimum_size = Vector2(78, 78)
+custom_minimum_size = Vector2(110, 110)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 79.0
-offset_bottom = 79.0
+offset_right = 110.0
+offset_bottom = 110.0
 
 [node name="BG" type="TextureRect" parent="." unique_id=1236747364]
 layout_mode = 1
-offset_right = 78.0
-offset_bottom = 86.0
+offset_right = 110.0
+offset_bottom = 121.28205
 texture = ExtResource("1_8duni")
 expand_mode = 1
 stretch_mode = 4
@@ -24,8 +24,8 @@ stretch_mode = 4
 layout_mode = 1
 offset_left = 2.0
 offset_top = 2.0
-offset_right = 76.0
-offset_bottom = 76.0
+offset_right = 108.0
+offset_bottom = 108.0
 value = 17.0
 fill_mode = 4
 nine_patch_stretch = true
@@ -46,6 +46,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 9.0
+offset_bottom = 9.857143
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_oksc1")
@@ -53,13 +55,12 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="LevelText" type="Label" parent="CharacterLevel" unique_id=1105220280]
-custom_maximum_size = Vector2(21, 21)
+custom_maximum_size = Vector2(30, 30)
 propagate_maximum_size = true
 layout_mode = 1
-offset_right = 21.0
-offset_bottom = 21.0
+offset_right = 30.0
+offset_bottom = 30.0
 theme_override_fonts/font = ExtResource("4_cniox")
-theme_override_font_sizes/font_size = 12
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1

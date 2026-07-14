@@ -12,7 +12,23 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2hlw6")
 
-[node name="CharacterPreview" type="Node3D" parent="." unique_id=1728772884]
+[node name="CharacterPreview" type="SubViewportContainer" parent="." unique_id=1402586364]
+custom_minimum_size = Vector2(280, 280)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CharacterPreview" unique_id=1593991590]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="CharacterPreview/SubViewport" unique_id=916865135]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.3, 3)
 
 [node name="Info" type="VBoxContainer" parent="." unique_id=1194628856]
 layout_mode = 0
