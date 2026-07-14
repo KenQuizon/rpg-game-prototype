@@ -88,4 +88,4 @@ func _update_capacity_display() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_inventory"):
 		UIManager.toggle_panel("inventory")
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()

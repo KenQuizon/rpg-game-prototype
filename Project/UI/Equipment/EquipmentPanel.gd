@@ -54,7 +54,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_equipment"):
 		UIManager.toggle_panel("equipment")
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 
 func _on_slot_selected(slot: EquipmentSlotType.Id) -> void:
 	selected_slot = slot
