@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://dhq8edr62edtq"]
 
 [ext_resource type="Script" uid="uid://dag1g6xq7ktse" path="res://Project/UI/Equipment/EquipmentSlotUI.gd" id="1_wpw4b"]
+[ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="2_b3kh8"]
 
 [node name="EquipmentSlotUI" type="PanelContainer" unique_id=1805287938]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(50, 50)
+offset_right = 1.0
+offset_bottom = 23.0
 script = ExtResource("1_wpw4b")
 
 [node name="Icon" type="TextureRect" parent="." unique_id=953630522]
@@ -15,3 +14,8 @@ layout_mode = 2
 
 [node name="SlotName" type="Label" parent="." unique_id=69118032]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_b3kh8")
+theme_override_font_sizes/font_size = 10
+text = "chest"
+horizontal_alignment = 1
+vertical_alignment = 1

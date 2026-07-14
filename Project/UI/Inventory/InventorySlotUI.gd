@@ -4,8 +4,8 @@ class_name InventorySlotUI
 signal item_selected
 signal item_activated
 
-@onready var icon: TextureRect = $VBoxContainer/Icon
-@onready var quantity: Label = $VBoxContainer/Quantity
+@onready var icon: TextureRect = $Icon
+@onready var quantity: Label = $Quantity
 
 var item: ItemDefinition
 var item_quantity: int = 1

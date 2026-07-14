@@ -19,6 +19,7 @@ layer = 50
 script = ExtResource("1_rpgmc")
 
 [node name="PlayerStats" type="HBoxContainer" parent="." unique_id=73180882]
+visible = false
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 380.0
@@ -53,6 +54,7 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(300, 280)
 
 [node name="ActionFeed" parent="." unique_id=1718562854 instance=ExtResource("6_1wvxl")]
+visible = false
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -64,6 +66,7 @@ grow_horizontal = 0
 grow_vertical = 2
 
 [node name="CastBar" parent="." unique_id=1833968866 instance=ExtResource("7_4cr1f")]
+visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -77,12 +80,14 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="StatusEffects" parent="." unique_id=1661896671 instance=ExtResource("8_bcs26")]
+visible = false
 offset_left = 80.0
 offset_top = 60.0
 offset_right = 90.0
 offset_bottom = 83.0
 
 [node name="TargetStats" type="Control" parent="." unique_id=1714810978]
+visible = false
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
@@ -92,8 +97,10 @@ offset_bottom = 40.0
 grow_horizontal = 0
 
 [node name="Hotbar" parent="." unique_id=2051952290 instance=ExtResource("9_4cr1f")]
+visible = false
 
 [node name="ChargeBar" parent="." unique_id=2085802221 instance=ExtResource("10_ll6cg")]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -106,6 +113,17 @@ offset_bottom = 7.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InventoryPanel" parent="." unique_id=1846918466 instance=ExtResource("12_gjlbi")]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1545447225]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="EquipmentPanel" parent="." unique_id=2084216896 instance=ExtResource("13_v0gnw")]
+[node name="EquipmentPanel" parent="HBoxContainer" unique_id=2084216896 instance=ExtResource("13_v0gnw")]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="InventoryPanel" parent="HBoxContainer" unique_id=1846918466 instance=ExtResource("12_gjlbi")]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
