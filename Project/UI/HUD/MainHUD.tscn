@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://paepsyf5y6i8" path="res://Project/UI/Feedback/StatusEffectContainer.tscn" id="8_bcs26"]
 [ext_resource type="PackedScene" uid="uid://de0tqe3qu6mbq" path="res://Project/UI/Hotbar/Hotbar.tscn" id="9_4cr1f"]
 [ext_resource type="PackedScene" uid="uid://coygoo8es1dhs" path="res://Project/UI/Feedback/ChargeBar.tscn" id="10_ll6cg"]
+[ext_resource type="PackedScene" uid="uid://bvwhqbbs7plhy" path="res://Project/UI/Inventory/InventoryPanel.tscn" id="12_gjlbi"]
+[ext_resource type="PackedScene" uid="uid://b0ad3wqxiid28" path="res://Project/UI/Equipment/EquipmentPanel.tscn" id="13_v0gnw"]
 
 [node name="MainHUD" type="CanvasLayer" unique_id=615724408]
 layer = 50
@@ -62,7 +64,6 @@ grow_horizontal = 0
 grow_vertical = 2
 
 [node name="CastBar" parent="." unique_id=1833968866 instance=ExtResource("7_4cr1f")]
-visible = true
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -104,3 +105,7 @@ offset_right = 50.0
 offset_bottom = 7.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="InventoryPanel" parent="." unique_id=1846918466 instance=ExtResource("12_gjlbi")]
+
+[node name="EquipmentPanel" parent="." unique_id=2084216896 instance=ExtResource("13_v0gnw")]
