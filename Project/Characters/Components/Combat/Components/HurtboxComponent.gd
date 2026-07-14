@@ -68,6 +68,12 @@ func _receive_hit(hitbox: HitboxComponent) -> void:
 	if not hitbox.is_active():
 		return
 
+	# A hitbox never damages its own owner — the sword can't cut the hand
+	# holding it, and this covers projectiles too (an arrow's hitbox
+	# still carries the archer as its combat_owner for its whole flight).
+	if hitbox.get_combat_owner() == _combat:
+		return
+		
 	if not hitbox.can_hit(self):
 		return
 

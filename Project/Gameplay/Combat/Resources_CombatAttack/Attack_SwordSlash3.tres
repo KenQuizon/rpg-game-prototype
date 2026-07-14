@@ -14,6 +14,7 @@ metadata/_custom_type_script = "uid://bnnbymum325ix"
 
 [sub_resource type="Resource" id="Resource_5qypi"]
 script = ExtResource("5_a65wh")
+combo_close_time = 2.5
 metadata/_custom_type_script = "uid://bm7k5aqdcgye3"
 
 [resource]
@@ -25,7 +26,7 @@ interrupt_window_percent = 0.6
 id = &"attack_light_3"
 display_name = "Chop"
 action_script = ExtResource("1_xlbdy")
-locks = 10
+locks = 11
 flags = 19
 duration = 1.0
 delayed_interrupt_window = true

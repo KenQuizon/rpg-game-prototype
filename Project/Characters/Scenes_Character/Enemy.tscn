@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://g4yf1rbowctg" path="res://Project/Characters/Components/Navigation/NavigationComponent.gd" id="26_6ixcu"]
 [ext_resource type="Script" uid="uid://xyrl2ubhsmjr" path="res://Project/Characters/Controllers/AIController.gd" id="27_qgp1a"]
 [ext_resource type="Script" uid="uid://cigxfduvci7n2" path="res://Project/Characters/StateMachine/CharacterStateMachine.gd" id="27_r77gu"]
+[ext_resource type="PackedScene" uid="uid://cj3fmo8q303wd" path="res://Project/UI/HUD/EnemyHealthBar.tscn" id="28_5tm1d"]
 [ext_resource type="PackedScene" uid="uid://digqepvu8m4ax" path="res://Project/Characters/Scenes_Character/InheritedScenes/Skeleton_Minion.tscn" id="29_2t644"]
 [ext_resource type="PackedScene" uid="uid://b6gj2tri376r5" path="res://Project/Characters/Components/Interaction/Scenes_Interaction/InteractionArea.tscn" id="30_g6bof"]
 
@@ -176,3 +177,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.5)
 
 [node name="InteractionArea" parent="InteractionOrigin" unique_id=1013743914 instance=ExtResource("30_g6bof")]
+
+[node name="EnemyHealthBar" parent="." unique_id=179306097 instance=ExtResource("28_5tm1d")]
+offset_right = 110.0

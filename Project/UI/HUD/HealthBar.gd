@@ -2,36 +2,43 @@ extends Control
 class_name HealthBar
 
 @onready var progress_bar: ProgressBar = $ProgressBar
+@onready var damage_bar: ProgressBar = $DamageBar
 @onready var label: Label = $ProgressBar/Label
+@onready var damage_timer: Timer = $DamageTimer
 
 var health_component: HealthComponent
-var tween: Tween
 
 func _ready() -> void:
 	health_component = CharacterRef.get_player_health()
 
 	if health_component:
-		print("[HealthBar] bound to HealthComponent id=", health_component.get_instance_id(), " owner=", health_component.owner_character.name if health_component.owner_character else "null")
-		progress_bar.max_value = health_component.max_health
-		progress_bar.value = health_component.current_health
-		label.text = "%d/%d" % [int(health_component.current_health), int(health_component.max_health)]
+		var max_health := health_component.max_health
+		var current := health_component.current_health
+
+		progress_bar.max_value = max_health
+		progress_bar.value = current
+
+		damage_bar.max_value = max_health
+		damage_bar.value = current
+
+		label.text = "%d/%d" % [int(current), int(max_health)]
 
 		health_component.health_changed.connect(_on_health_changed)
 		health_component.died.connect(_on_died)
-		print("HealthBar connected to player health")
+
+		damage_timer.timeout.connect(_on_damage_timer_timeout)
 	else:
 		print("ERROR: Could not find player health component")
 
-func _on_health_changed(_previous: float, current: float) -> void:
-	print("[HealthBar] _on_health_changed fired, current=", current)
-	"""Called when player health changes"""
+func _on_health_changed(previous: float, current: float) -> void:
+
 	var max_health := health_component.max_health
 	progress_bar.max_value = max_health
+	damage_bar.max_value = max_health
 
-	if tween:
-		tween.kill()
-	tween = create_tween()
-	tween.tween_property(progress_bar, "value", current, 0.5)
+	# Health bar snaps immediately now — the damage bar underneath is
+	# what shows "how much did I just lose."
+	progress_bar.value = current
 
 	label.text = "%d/%d" % [int(current), int(max_health)]
 
@@ -43,8 +50,22 @@ func _on_health_changed(_previous: float, current: float) -> void:
 	else:
 		progress_bar.self_modulate = Color.WHITE
 
+	if current < previous:
+		# Damage taken — leave the damage bar at its current (higher)
+		# value and (re)start the catch-up timer. Repeated hits during a
+		# combo keep restarting it, so it only starts closing the gap
+		# once the flurry actually stops — same effect as the reference.
+		damage_timer.start()
+	else:
+		# Healing — no lag, catch up immediately.
+		damage_bar.value = current
+
+func _on_damage_timer_timeout() -> void:
+	var tween := create_tween()
+	tween.tween_property(damage_bar, "value", health_component.current_health, 0.3)
+
 func _on_died() -> void:
-	"""Called when player dies"""
 	label.text = "DEAD"
 	progress_bar.self_modulate = Color.GRAY
+	damage_bar.value = 0.0
 	UIEvents.character_died.emit()

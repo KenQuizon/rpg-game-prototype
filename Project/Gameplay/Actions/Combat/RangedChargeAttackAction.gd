@@ -110,5 +110,7 @@ func on_projectile_spawned() -> void:
 # aiming, since spawn_projectile should always be keyed earlier on the
 # clip than open_interrupt_window.
 func open_interrupt_window() -> void:
-	_aiming = false
+	if _aiming:
+		_aiming = false
+		animation.set_aiming(false)
 	super.open_interrupt_window()
