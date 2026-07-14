@@ -96,13 +96,13 @@ offset_bottom = 40.0
 [node name="EquipmentAndWeaponsGrid" parent="LayoutMargin/Layout/PageContainer/EquipmentPage" unique_id=2084216896 instance=ExtResource("3_1qgv4")]
 layout_mode = 2
 
-[node name="InventoryColumn" type="VBoxContainer" parent="LayoutMargin/Layout/PageContainer/EquipmentPage" unique_id=1206561689]
+[node name="InventoryCollumn" type="VBoxContainer" parent="LayoutMargin/Layout/PageContainer/EquipmentPage" unique_id=1206561689]
 layout_mode = 2
 
-[node name="InventoryScrollRoot" parent="LayoutMargin/Layout/PageContainer/EquipmentPage/InventoryColumn" unique_id=1846918466 instance=ExtResource("4_rug7c")]
+[node name="InventoryScrollRoot" parent="LayoutMargin/Layout/PageContainer/EquipmentPage/InventoryCollumn" unique_id=1846918466 instance=ExtResource("4_rug7c")]
 layout_mode = 2
 
-[node name="ItemStatPanel" parent="LayoutMargin/Layout/PageContainer/EquipmentPage/InventoryColumn" unique_id=1900709615 instance=ExtResource("6_84wve")]
+[node name="ItemsStatPanel" parent="LayoutMargin/Layout/PageContainer/EquipmentPage/InventoryCollumn" unique_id=1900709615 instance=ExtResource("6_84wve")]
 layout_mode = 2
 
 [node name="SkillsPage" type="Control" parent="LayoutMargin/Layout/PageContainer" unique_id=1406089798]

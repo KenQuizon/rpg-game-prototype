@@ -2,21 +2,21 @@
 
 [ext_resource type="Script" uid="uid://dwtn5jahhhyvs" path="res://Project/UI/Equipment/EquipmentPanel.gd" id="1_eod75"]
 [ext_resource type="PackedScene" uid="uid://dhq8edr62edtq" path="res://Project/UI/Equipment/EquipmentSlotUI.tscn" id="2_ibx1j"]
+[ext_resource type="PackedScene" uid="uid://lm4al6eocidx" path="res://Project/UI/Equipment/WeaponSlotUI.tscn" id="3_d7cu8"]
 
-[node name="EquipmentPanel" type="Control" unique_id=2084216896]
-layout_mode = 3
+[node name="EquipmentPanel" type="GridContainer" unique_id=442926490]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+columns = 3
 script = ExtResource("1_eod75")
 equipment_slot_scene = ExtResource("2_ibx1j")
+weapon_slot_scene = ExtResource("3_d7cu8")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=845255587]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
 
 [node name="StatBonuses" type="Label" parent="VBoxContainer" unique_id=1862314081]
 layout_mode = 2

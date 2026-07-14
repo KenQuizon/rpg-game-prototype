@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://lm4al6eocidx"]
 
-[ext_resource type="Script" uid="uid://dag1g6xq7ktse" path="res://Project/UI/Equipment/EquipmentSlotUI.gd" id="1_ucj57"]
+[ext_resource type="Script" uid="uid://bp5plc36csbnl" path="res://Project/UI/Equipment/WeaponSlotUI.gd" id="1_ucj57"]
 [ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="2_1f8pt"]
 
 [node name="WeaponSlotUI" type="PanelContainer" unique_id=1805287938]

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://qpoj80y8e2r5" path="res://Project/UI/Character/CharacterScreen.tscn" id="2_r8ut7"]
 [ext_resource type="PackedScene" uid="uid://b0ad3wqxiid28" path="res://Project/UI/Equipment/EquipmentPanel.tscn" id="3_1qgv4"]
 [ext_resource type="PackedScene" uid="uid://bvwhqbbs7plhy" path="res://Project/UI/Inventory/InventoryPanel.tscn" id="4_rug7c"]
-[ext_resource type="PackedScene" uid="uid://3shhwdgweewn" path="res://Project/UI/CharacterHub/ItemStatPanel.tscn" id="6_84wve"]
+[ext_resource type="PackedScene" uid="uid://3shhwdgweewn" path="res://Project/UI/CharacterHub/ItemsStatPanel.tscn" id="6_84wve"]
 
 [sub_resource type="Gradient" id="Gradient_wsdww"]
 colors = PackedColorArray(0.11764706, 0.101960786, 0.27450982, 1, 0.043137256, 0.05490196, 0.16078432, 1)
@@ -96,13 +96,13 @@ offset_bottom = 40.0
 [node name="EquipmentAndWeaponsGrid" parent="LayoutMargin/Layout/PageContainer/EquipmentPage" unique_id=2084216896 instance=ExtResource("3_1qgv4")]
 layout_mode = 2
 
-[node name="InventoryColumn" type="VBoxContainer" parent="LayoutMargin/Layout/PageContainer/EquipmentPage" unique_id=1206561689]
+[node name="InventoryCollumn" type="VBoxContainer" parent="LayoutMargin/Layout/PageContainer/EquipmentPage" unique_id=1206561689]
 layout_mode = 2
 
-[node name="InventoryScrollRoot" parent="LayoutMargin/Layout/PageContainer/EquipmentPage/InventoryColumn" unique_id=1846918466 instance=ExtResource("4_rug7c")]
+[node name="InventoryScrollRoot" parent="LayoutMargin/Layout/PageContainer/EquipmentPage/InventoryCollumn" unique_id=1846918466 instance=ExtResource("4_rug7c")]
 layout_mode = 2
 
-[node name="ItemStatPanel" parent="LayoutMargin/Layout/PageContainer/EquipmentPage/InventoryColumn" unique_id=1900709615 instance=ExtResource("6_84wve")]
+[node name="ItemsStatPanel" parent="LayoutMargin/Layout/PageContainer/EquipmentPage/InventoryCollumn" unique_id=1900709615 instance=ExtResource("6_84wve")]
 layout_mode = 2
 
 [node name="SkillsPage" type="Control" parent="LayoutMargin/Layout/PageContainer" unique_id=1406089798]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://3shhwdgweewn"]
 
-[ext_resource type="Script" uid="uid://cxs5y1vvwtcje" path="res://Project/UI/CharacterHub/ItemStatPanel.gd" id="1_ubfhj"]
+[ext_resource type="Script" uid="uid://cxs5y1vvwtcje" path="res://Project/UI/CharacterHub/ItemStatPanel.gd" id="1_tmfc6"]
 [ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="2_tmfc6"]
 
 [node name="ItemStatPanel" type="PanelContainer" unique_id=1900709615]
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ubfhj")
+script = ExtResource("1_tmfc6")
 
 [node name="VBox" type="VBoxContainer" parent="." unique_id=258862792]
 layout_mode = 2
