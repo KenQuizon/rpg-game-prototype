@@ -54,30 +54,33 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [node name="EnemyHealthBar" type="Control" unique_id=179306097]
-custom_minimum_size = Vector2(110, 16)
+z_index = 10
+custom_minimum_size = Vector2(56, 11)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 108.0
-offset_bottom = 16.0
+offset_right = 56.0
+offset_bottom = 11.0
 mouse_filter = 2
 script = ExtResource("1_datx4")
 
 [node name="AbsorbBar" type="ProgressBar" parent="." unique_id=1836864588]
 layout_mode = 1
-offset_right = 110.0
-offset_bottom = 16.0
+offset_right = 56.0
+offset_bottom = 11.0
+mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_2apcu")
 theme_override_styles/fill = SubResource("StyleBoxFlat_2apcu")
-value = 12.0
+value = 10.0
 show_percentage = false
 
 [node name="DamageBar" type="ProgressBar" parent="." unique_id=1484280175]
 z_index = 1
 layout_mode = 1
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 105.0
-offset_bottom = 12.0
+offset_left = 2.5
+offset_top = 3.0
+offset_right = 52.5
+offset_bottom = 8.0
+mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_x72bi")
 theme_override_styles/fill = SubResource("StyleBoxFlat_j0nya")
 value = 85.3
@@ -86,10 +89,11 @@ show_percentage = false
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1758328913]
 z_index = 2
 layout_mode = 1
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 105.0
-offset_bottom = 12.0
+offset_left = 2.5
+offset_top = 3.0
+offset_right = 52.5
+offset_bottom = 8.0
+mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_j0nya")
 theme_override_styles/fill = SubResource("StyleBoxFlat_g20jw")
 value = 76.68

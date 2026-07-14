@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://onhi17xtt73p"]
 
+[ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="1_4dgmp"]
 [ext_resource type="Script" uid="uid://btfsaiy30dsxd" path="res://Project/UI/Feedback/DamageNumber.gd" id="1_t8g4r"]
 
 [node name="DamageNumber" type="Label" unique_id=2015026791]
+theme_override_fonts/font = ExtResource("1_4dgmp")
+theme_override_font_sizes/font_size = 16
+text = "500"
+horizontal_alignment = 1
+vertical_alignment = 1
 script = ExtResource("1_t8g4r")

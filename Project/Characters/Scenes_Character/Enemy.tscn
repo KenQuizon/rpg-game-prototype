@@ -179,4 +179,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.5)
 [node name="InteractionArea" parent="InteractionOrigin" unique_id=1013743914 instance=ExtResource("30_g6bof")]
 
 [node name="EnemyHealthBar" parent="." unique_id=179306097 instance=ExtResource("28_5tm1d")]
-offset_right = 110.0

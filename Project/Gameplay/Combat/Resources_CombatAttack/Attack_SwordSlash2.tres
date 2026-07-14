@@ -22,7 +22,6 @@ script = ExtResource("4_qbkih")
 animation = &"Combat/Melee_1H_Attack_Stab"
 attack_data = SubResource("Resource_u4lbc")
 timing = SubResource("Resource_5qypi")
-interrupt_window_percent = 0.6
 id = &"attack_light_2"
 display_name = "Stab"
 action_script = ExtResource("1_gwia6")

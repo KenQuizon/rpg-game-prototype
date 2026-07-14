@@ -1,7 +1,7 @@
 extends Control
 class_name EnemyHealthBar
 
-const HEAD_HEIGHT_OFFSET: float = 2.2   # tune to sit just above the model's head
+const HEAD_HEIGHT_OFFSET: float = 2.5  # tune to sit just above the model's head
 
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var damage_bar: ProgressBar = $DamageBar
@@ -12,13 +12,18 @@ var _health: HealthComponent
 
 func _ready() -> void:
 
-	print("EnemyHealthBar _ready")
-	
 	visible = false
 
+	# Deferred because this node's _ready() runs before its own parent's
+	# (Godot readies children bottom-up) — the parent Character hasn't
+	# built context/components yet at this exact point. call_deferred
+	# pushes this to right after the current _ready() batch finishes,
+	# by which point the parent is guaranteed fully initialized.
+	call_deferred("_bind_to_character")
+
+func _bind_to_character() -> void:
+
 	_character = get_parent() as Character
-	print("Parent:", get_parent())
-	print("Character:", _character)
 
 	if _character == null or _character.context == null:
 		return

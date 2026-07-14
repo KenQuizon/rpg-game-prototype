@@ -4,6 +4,13 @@ class_name BaseUIPanel
 signal panel_opened
 signal panel_closed
 
+## Which UI layer this panel belongs to. Subclasses should set this in
+## _ready(), before calling super._ready(), e.g.:
+##   func _ready() -> void:
+##       layer = UILayerType.Id.MODAL
+##       super._ready()
+var layer: UILayerType.Id = UILayerType.Id.SCREEN
+
 var is_open: bool = false
 var tween: Tween
 

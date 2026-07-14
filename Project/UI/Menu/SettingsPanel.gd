@@ -10,6 +10,7 @@ const SETTINGS_PATH := "user://settings.cfg"
 var current_tab: Control
 
 func _ready() -> void:
+	layer = UILayerType.Id.MODAL
 	super._ready()
 	UIManager.register_panel("settings", self)
 

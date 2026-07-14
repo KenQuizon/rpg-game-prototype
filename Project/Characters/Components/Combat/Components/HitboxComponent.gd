@@ -93,8 +93,11 @@ func create_damage_request() -> DamageRequest:
 	var data := _active_attack_data if _active_attack_data != null else attack_data
 
 	if data == null:
+		print("[HITBOX BUG] owner=", _combat_owner.owner_character.name if _combat_owner and _combat_owner.owner_character else "unknown",
+			" current_anim=", _combat_owner.owner_character.get_character_animation_player().current_animation if _combat_owner and _combat_owner.owner_character.has_method("get_character_animation_player") else "?")
 		push_error("HitboxComponent has no AttackData (no active attack and no default assigned).")
 		return null
+		
 	if _combat_owner == null:
 		push_error("Hitbox has no combat owner.")
 		return null

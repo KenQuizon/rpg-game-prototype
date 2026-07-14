@@ -4,6 +4,7 @@ class_name PauseMenu
 @onready var button_container: VBoxContainer = $VBoxContainer
 
 func _ready() -> void:
+	layer = UILayerType.Id.MODAL
 	super._ready()
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 

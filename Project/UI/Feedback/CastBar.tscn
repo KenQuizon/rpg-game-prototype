@@ -1,24 +1,34 @@
 [gd_scene format=3 uid="uid://c727bvmb8e0fs"]
 
 [ext_resource type="Script" uid="uid://412gqn7fyhta" path="res://Project/UI/Feedback/CastBar.gd" id="1_jc0k0"]
+[ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="2_jfg2c"]
 
 [node name="CastBar" type="Control" unique_id=1833968866]
-visible = false
+custom_minimum_size = Vector2(100, 15)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 4.0
-offset_bottom = 27.0
+offset_right = 100.0
+offset_bottom = 15.0
 script = ExtResource("1_jc0k0")
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=2143663113]
-layout_mode = 0
-offset_right = 4.0
-offset_bottom = 27.0
+layout_mode = 1
+offset_right = 100.0
+offset_bottom = 15.0
+show_percentage = false
 
 [node name="Label" type="Label" parent="." unique_id=1389779021]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_jfg2c")
+theme_override_font_sizes/font_size = 12
+text = "casting"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Icon" type="TextureRect" parent="." unique_id=15787304]
 layout_mode = 0

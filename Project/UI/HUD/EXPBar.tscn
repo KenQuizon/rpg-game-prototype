@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b1ytewht1qxdx" path="res://Assets/buttonCircle_white.png" id="1_8duni"]
 [ext_resource type="Texture2D" uid="uid://dbfs0ia333ycy" path="res://Assets/CircularProgressBar.png" id="1_oiydk"]
 [ext_resource type="Texture2D" uid="uid://ddu1vwf41m70f" path="res://Assets/buttonCircle_black.png" id="2_oksc1"]
+[ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="4_cniox"]
 
 [node name="EXPBar" type="Control" unique_id=179306097]
 custom_minimum_size = Vector2(78, 78)
@@ -35,6 +36,7 @@ tint_under = Color(0.14901961, 0.14901961, 0.20392157, 1)
 [node name="CharacterLevel" type="Control" parent="." unique_id=427473919]
 custom_minimum_size = Vector2(21, 23)
 custom_maximum_size = Vector2(21, 23)
+layout_mode = 1
 anchors_preset = 0
 offset_right = 21.0
 offset_bottom = 23.0
@@ -51,10 +53,13 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="LevelText" type="Label" parent="CharacterLevel" unique_id=1105220280]
+custom_maximum_size = Vector2(21, 21)
+propagate_maximum_size = true
 layout_mode = 1
 offset_right = 21.0
 offset_bottom = 21.0
+theme_override_fonts/font = ExtResource("4_cniox")
 theme_override_font_sizes/font_size = 12
-text = "0"
+text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1

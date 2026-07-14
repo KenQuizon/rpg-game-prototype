@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://doj881bk73sdq" path="res://Project/UI/HUD/HealthBar.tscn" id="1_5qg3j"]
 [ext_resource type="Script" uid="uid://cto74svibu2dt" path="res://Project/UI/HUD/MainHUD.gd" id="1_rpgmc"]
 [ext_resource type="PackedScene" uid="uid://6814pqptgp25" path="res://Project/UI/HUD/ManaBar.tscn" id="2_cdo0s"]
+[ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="3_jo4au"]
 [ext_resource type="PackedScene" uid="uid://c10wtpdgiaiv4" path="res://Project/UI/HUD/EXPBar.tscn" id="3_uljmn"]
 [ext_resource type="PackedScene" uid="uid://bl2j3vy3pdpc8" path="res://Project/UI/HUD/StaminaBar.tscn" id="4_2kuvv"]
 [ext_resource type="PackedScene" uid="uid://g2rpetu5a8wo" path="res://Project/UI/Feedback/ActionFeedback.tscn" id="6_1wvxl"]
@@ -29,7 +30,14 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerStats" unique_id=1377261596]
 layout_mode = 2
 theme_override_constants/separation = 0
-alignment = 1
+
+[node name="PlayerName" type="Label" parent="PlayerStats/VBoxContainer" unique_id=1645724311]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(10, 0)
+theme_override_fonts/font = ExtResource("3_jo4au")
+text = "Player"
+vertical_alignment = 1
 
 [node name="HealthBar" parent="PlayerStats/VBoxContainer" unique_id=179306097 instance=ExtResource("1_5qg3j")]
 layout_mode = 2
@@ -74,11 +82,13 @@ offset_right = 90.0
 offset_bottom = 83.0
 
 [node name="TargetStats" type="Control" parent="." unique_id=1714810978]
-visible = false
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
 offset_bottom = 40.0
+grow_horizontal = 0
 
 [node name="Hotbar" parent="." unique_id=2051952290 instance=ExtResource("9_4cr1f")]
 

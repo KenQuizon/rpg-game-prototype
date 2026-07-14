@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://doj881bk73sdq"]
 
 [ext_resource type="Script" uid="uid://c6lstf3lk1m6x" path="res://Project/UI/HUD/HealthBar.gd" id="1_g20jw"]
+[ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="2_57wpw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2apcu"]
 
@@ -101,7 +102,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 10
+theme_override_fonts/font = ExtResource("2_57wpw")
+theme_override_font_sizes/font_size = 12
 text = "100"
 horizontal_alignment = 1
 

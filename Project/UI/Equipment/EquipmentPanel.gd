@@ -23,7 +23,11 @@ var equipment_component: EquipmentComponent
 var selected_slot: EquipmentSlotType.Id
 
 func _ready() -> void:
+	layer = UILayerType.Id.SCREEN
 	super._ready()
+
+	UIManager.register_panel("equipment", self)
+
 	character = CharacterRef.get_player()
 
 	if character and character.context and character.context.equipment:
@@ -40,6 +44,17 @@ func _ready() -> void:
 			equipment_slots[slot] = slot_ui
 
 		_update_equipment_display()
+
+	if not InputMap.has_action("toggle_equipment"):
+		InputMap.add_action("toggle_equipment")
+		var event = InputEventKey.new()
+		event.keycode = KEY_E
+		InputMap.action_add_event("toggle_equipment", event)
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_equipment"):
+		UIManager.toggle_panel("equipment")
+		get_tree().set_input_as_handled()
 
 func _on_slot_selected(slot: EquipmentSlotType.Id) -> void:
 	selected_slot = slot

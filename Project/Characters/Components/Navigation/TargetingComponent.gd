@@ -55,8 +55,8 @@ func set_enabled(enabled: bool) -> void:
 	_enabled = enabled
 
 	if _detection_area != null:
-		_detection_area.monitoring = enabled
-		_detection_area.monitorable = enabled
+		_detection_area.set_deferred("monitoring", enabled)
+		_detection_area.set_deferred("monitorable", enabled)
 
 	if not enabled:
 		clear_target()
