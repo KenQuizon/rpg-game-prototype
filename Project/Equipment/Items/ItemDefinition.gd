@@ -11,6 +11,11 @@ class_name ItemDefinition
 
 @export_multiline var description: String = ""
 
+@export_group("Equip Links")
+@export var equipment_profile: EquipmentProfile   # armor/accessories -> EquipmentComponent
+@export var weapon_profile: WeaponProfile          # weapons -> WeaponComponent
+@export var weapon_slot: WeaponSlot.Id = WeaponSlot.Id.MAIN_HAND
+
 #==============================================================================
 # Stacking
 #==============================================================================

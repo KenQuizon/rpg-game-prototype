@@ -2,6 +2,7 @@ extends PanelContainer
 class_name InventorySlotUI
 
 signal item_selected
+signal item_activated
 
 @onready var icon: TextureRect = $VBoxContainer/Icon
 @onready var quantity: Label = $VBoxContainer/Quantity
@@ -25,6 +26,8 @@ func _on_gui_input(event: InputEvent) -> void:
 	if not item:
 		return
 
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.double_click:
+			item_activated.emit()
+		else:
 			item_selected.emit()

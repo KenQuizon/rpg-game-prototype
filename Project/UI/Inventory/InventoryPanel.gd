@@ -50,7 +50,28 @@ func _populate_inventory() -> void:
 		grid.add_child(slot_ui)
 		slot_ui.set_item(item, slot.quantity)
 		slot_ui.item_selected.connect(func(): _on_item_selected(item))
+		slot_ui.item_activated.connect(func(): _on_item_activated(item))
 
+func _on_item_activated(item: ItemDefinition) -> void:
+
+	if character == null or character.context == null:
+		return
+
+	if item.weapon_profile != null and character.context.weapon:
+		character.context.weapon.equip(item.weapon_profile, item.weapon_slot)
+		print("Equipped weapon: %s" % item.display_name)
+
+	elif item.equipment_profile != null and character.context.equipment:
+		character.context.equipment.equip(item.equipment_profile)
+		print("Equipped: %s" % item.display_name)
+
+	elif item.consumable:
+		if item.heal_amount > 0.0 and character.context.health:
+			character.context.health.heal(item.heal_amount)
+		if item.restore_amount > 0.0 and character.context.resources:
+			character.context.resources.restore(item.restore_resource_type, item.restore_amount)
+		inventory_component.remove_item(item, 1)
+		
 func _on_item_selected(item: ItemDefinition) -> void:
 	selected_item = item
 	item_info.text = "[b]%s[/b]\n%s" % [item.display_name, item.description]
