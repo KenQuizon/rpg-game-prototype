@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddu1vwf41m70f"
-path="res://.godot/imported/buttonCircle_black.png-4598c2aceb008244f97b57db48ec2667.ctex"
+uid="uid://dbfs0ia333ycy"
+path="res://.godot/imported/CircularProgressBar.png-1e18ac1ac1ca8fc67748b013d478c101.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/buttonCircle_black.png"
-dest_files=["res://.godot/imported/buttonCircle_black.png-4598c2aceb008244f97b57db48ec2667.ctex"]
+source_file="res://Assets/UI/CircularProgressBar.png"
+dest_files=["res://.godot/imported/CircularProgressBar.png-1e18ac1ac1ca8fc67748b013d478c101.ctex"]
 
 [params]
 

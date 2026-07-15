@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://8vpeuvknkv6u" path="res://Project/UI/Inventory/InventoryPanel.gd" id="1_11hnm"]
 [ext_resource type="PackedScene" uid="uid://bdyjrg14m7e57" path="res://Project/UI/Inventory/InventorySlotUI.tscn" id="2_b6wx5"]
-[ext_resource type="Texture2D" uid="uid://wgm6uq8nkht1" path="res://Assets/container_stone.png" id="3_783n0"]
+[ext_resource type="Texture2D" uid="uid://wgm6uq8nkht1" path="res://Assets/UI/container_stone.png" id="3_783n0"]
 
 [node name="InventoryPanel" type="Control" unique_id=1846918466]
 custom_minimum_size = Vector2(600, 980)

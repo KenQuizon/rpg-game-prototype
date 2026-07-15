@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bdyjrg14m7e57"]
 
 [ext_resource type="Script" uid="uid://38f4x0r31e0o" path="res://Project/UI/Inventory/InventorySlotUI.gd" id="1_7shkf"]
-[ext_resource type="Texture2D" uid="uid://3noypuing3ew" path="res://Assets/itemSlot1_gray.png" id="2_avwv7"]
+[ext_resource type="Texture2D" uid="uid://3noypuing3ew" path="res://Assets/UI/itemSlot1_gray.png" id="2_avwv7"]
 [ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="2_y1gdb"]
 
 [node name="InventorySlotUI" type="PanelContainer" unique_id=1856283796]
-custom_minimum_size = Vector2(128, 128)
-offset_right = 128.0
-offset_bottom = 128.0
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
 script = ExtResource("1_7shkf")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=414130436]
@@ -17,7 +17,7 @@ texture = ExtResource("2_avwv7")
 region_rect = Rect2(8, 8, 112, 112)
 
 [node name="Icon" type="TextureRect" parent="." unique_id=988539186]
-custom_minimum_size = Vector2(128, 128)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5

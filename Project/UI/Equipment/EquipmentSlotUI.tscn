@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="2_b3kh8"]
 
 [node name="EquipmentSlotUI" type="PanelContainer" unique_id=1805287938]
-custom_minimum_size = Vector2(128, 128)
+custom_minimum_size = Vector2(64, 64)
 offset_right = 1.0
 offset_bottom = 23.0
 script = ExtResource("1_wpw4b")

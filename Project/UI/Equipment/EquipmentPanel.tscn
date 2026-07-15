@@ -2,44 +2,62 @@
 
 [ext_resource type="Script" uid="uid://dwtn5jahhhyvs" path="res://Project/UI/Equipment/EquipmentPanel.gd" id="1_eod75"]
 [ext_resource type="PackedScene" uid="uid://dhq8edr62edtq" path="res://Project/UI/Equipment/EquipmentSlotUI.tscn" id="2_ibx1j"]
+[ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="2_n12df"]
 [ext_resource type="PackedScene" uid="uid://lm4al6eocidx" path="res://Project/UI/Equipment/WeaponSlotUI.tscn" id="3_d7cu8"]
 
-[node name="EquipmentPanel" type="VBoxContainer" unique_id=241303303]
+[node name="EquipmentPanel" type="VBoxContainer" unique_id=818916105]
 custom_minimum_size = Vector2(250, 0)
-offset_right = 250.0
-offset_bottom = 1018.0
+offset_right = 827.0
+offset_bottom = 566.0
 script = ExtResource("1_eod75")
 
-[node name="SlotGrid" type="GridContainer" parent="." unique_id=871555977]
+[node name="EquipmentText" type="Label" parent="." unique_id=864936279]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_n12df")
+theme_override_font_sizes/font_size = 32
+text = "Equipment"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Head" parent="SlotGrid" unique_id=1805287938 instance=ExtResource("2_ibx1j")]
-layout_mode = 2
-
-[node name="Chest" parent="SlotGrid" unique_id=1203618902 instance=ExtResource("2_ibx1j")]
-layout_mode = 2
-slot = 1
-
-[node name="Legs" parent="SlotGrid" unique_id=1323993664 instance=ExtResource("2_ibx1j")]
-layout_mode = 2
-slot = 2
-
-[node name="MainHand" parent="SlotGrid" unique_id=1939842554 instance=ExtResource("3_d7cu8")]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=286782161]
 layout_mode = 2
 
-[node name="OffHand" parent="SlotGrid" unique_id=2012082845 instance=ExtResource("3_d7cu8")]
+[node name="LeftCollumn" type="VBoxContainer" parent="HBoxContainer" unique_id=1697539924]
 layout_mode = 2
-slot = 1
 
-[node name="Ring1" parent="SlotGrid" unique_id=798275681 instance=ExtResource("2_ibx1j")]
+[node name="Ring1" parent="HBoxContainer/LeftCollumn" unique_id=1805287938 instance=ExtResource("2_ibx1j")]
 layout_mode = 2
 slot = 5
 
-[node name="Ring2" parent="SlotGrid" unique_id=1592590382 instance=ExtResource("2_ibx1j")]
+[node name="Ring2" parent="HBoxContainer/LeftCollumn" unique_id=1058192228 instance=ExtResource("2_ibx1j")]
 layout_mode = 2
 slot = 6
+
+[node name="Amulet" parent="HBoxContainer/LeftCollumn" unique_id=664828354 instance=ExtResource("2_ibx1j")]
+layout_mode = 2
+slot = 7
+
+[node name="MainHand" parent="HBoxContainer/LeftCollumn" unique_id=539140193 instance=ExtResource("3_d7cu8")]
+layout_mode = 2
+
+[node name="RightCollumn" type="VBoxContainer" parent="HBoxContainer" unique_id=1240166234]
+layout_mode = 2
+
+[node name="Head" parent="HBoxContainer/RightCollumn" unique_id=1103805654 instance=ExtResource("2_ibx1j")]
+layout_mode = 2
+
+[node name="Chest" parent="HBoxContainer/RightCollumn" unique_id=1010408510 instance=ExtResource("2_ibx1j")]
+layout_mode = 2
+slot = 1
+
+[node name="Legs" parent="HBoxContainer/RightCollumn" unique_id=559327633 instance=ExtResource("2_ibx1j")]
+layout_mode = 2
+slot = 2
+
+[node name="OffHand" parent="HBoxContainer/RightCollumn" unique_id=1263800134 instance=ExtResource("3_d7cu8")]
+layout_mode = 2
+slot = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=845255587]
 layout_mode = 2

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cepqjooduev2j"
-path="res://.godot/imported/panel_white.png-025ba33385007d2192adfb5f545e26c3.ctex"
+uid="uid://b5juxp1qgyata"
+path="res://.godot/imported/bow.png-02df5fcfe091b318a5c8173bf98a94e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/panel_white.png"
-dest_files=["res://.godot/imported/panel_white.png-025ba33385007d2192adfb5f545e26c3.ctex"]
+source_file="res://Assets/KayKit/sprites/bow.png"
+dest_files=["res://.godot/imported/bow.png-02df5fcfe091b318a5c8173bf98a94e5.ctex"]
 
 [params]
 

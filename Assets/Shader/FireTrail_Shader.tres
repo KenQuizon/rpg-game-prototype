@@ -1,0 +1,53 @@
+[gd_resource type="VisualShader" format=3 uid="uid://ksgutb07a4hf"]
+
+[ext_resource type="Texture2D" uid="uid://b1mutjs7pdwan" path="res://Assets/Shader/T_FireballTrail.png" id="1_401k7"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_1h3sc"]
+texture = ExtResource("1_401k7")
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_401k7"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_1h3sc"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_ghbbb"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(1, 1), 2, Vector2(0, 0)]
+op_type = 1
+
+[sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_3cycp"]
+parameter_name = "TrailSpeed"
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_6qxif"]
+parameter_name = "ColorTexture"
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_q3glq"]
+expanded_output_ports = [0]
+source = 5
+
+[sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_mpatq"]
+
+[resource]
+modes/cull = 2
+flags/unshaded = true
+flags/shadows_disabled = true
+flags/ambient_light_disabled = true
+flags/fog_disabled = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_1h3sc")
+nodes/fragment/2/position = Vector2(-80, 160)
+nodes/fragment/3/node = SubResource("VisualShaderNodeUVFunc_401k7")
+nodes/fragment/3/position = Vector2(-460.2732, 96.79959)
+nodes/fragment/4/node = SubResource("VisualShaderNodeInput_1h3sc")
+nodes/fragment/4/position = Vector2(-960, 60)
+nodes/fragment/5/node = SubResource("VisualShaderNodeMultiplyAdd_ghbbb")
+nodes/fragment/5/position = Vector2(-663.7831, 243.20961)
+nodes/fragment/6/node = SubResource("VisualShaderNodeVec2Parameter_3cycp")
+nodes/fragment/6/position = Vector2(-1060, 280)
+nodes/fragment/7/node = SubResource("VisualShaderNodeTexture2DParameter_6qxif")
+nodes/fragment/7/position = Vector2(-640, -320)
+nodes/fragment/8/node = SubResource("VisualShaderNodeTexture_q3glq")
+nodes/fragment/8/position = Vector2(-180, -260)
+nodes/fragment/9/node = SubResource("VisualShaderNodeMultiplyAdd_mpatq")
+nodes/fragment/9/position = Vector2(200, 220)
+nodes/fragment/connections = PackedInt32Array(3, 0, 2, 0, 4, 0, 5, 0, 5, 0, 3, 2, 6, 0, 5, 1, 7, 0, 8, 2, 8, 0, 0, 0, 8, 4, 9, 0, 2, 0, 9, 1, 9, 0, 0, 1)

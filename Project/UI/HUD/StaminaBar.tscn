@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bl2j3vy3pdpc8"]
 
 [ext_resource type="Script" uid="uid://cqd6g8ga1hhw6" path="res://Project/UI/HUD/ResourceBar.gd" id="1_u0o6r"]
-[ext_resource type="Texture2D" uid="uid://dbfs0ia333ycy" path="res://Assets/CircularProgressBar.png" id="2_15xih"]
+[ext_resource type="Texture2D" uid="uid://dbfs0ia333ycy" path="res://Assets/UI/CircularProgressBar.png" id="2_15xih"]
 
 [node name="StaminaBar" type="Control" unique_id=179306097]
 custom_minimum_size = Vector2(50, 50)

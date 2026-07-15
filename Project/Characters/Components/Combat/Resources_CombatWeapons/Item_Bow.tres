@@ -1,17 +1,13 @@
 [gd_resource type="Resource" script_class="ItemDefinition" format=3 uid="uid://v0t4uchrgf18"]
 
-[ext_resource type="Texture2D" uid="uid://e7schtwwy8hy" path="res://Assets/BHLegacy/BHLegacy_Weapon_Icons.png" id="1_2i4e0"]
+[ext_resource type="Texture2D" uid="uid://b5juxp1qgyata" path="res://Assets/KayKit/sprites/bow.png" id="1_2i4e0"]
 [ext_resource type="Script" uid="uid://b6ia87gxo0r2d" path="res://Project/Equipment/Items/ItemDefinition.gd" id="1_ioiur"]
 [ext_resource type="Resource" uid="uid://coe3n66dd8q5c" path="res://Project/Characters/Components/Combat/Resources_CombatWeapons/Bow.tres" id="3_hhgwb"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tng1o"]
-atlas = ExtResource("1_2i4e0")
-region = Rect2(0, 128, 128, 128)
 
 [resource]
 script = ExtResource("1_ioiur")
 display_name = "Wooden Bow"
-icon = SubResource("AtlasTexture_tng1o")
+icon = ExtResource("1_2i4e0")
 description = "A simple recurve bow."
 weapon_profile = ExtResource("3_hhgwb")
 weapon_slot = 1

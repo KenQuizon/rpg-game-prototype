@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1ytewht1qxdx"
-path="res://.godot/imported/buttonCircle_white.png-63bb1f648d497cecfa5a1134f55bc093.ctex"
+uid="uid://wgm6uq8nkht1"
+path="res://.godot/imported/container_stone.png-0df9b02004a5f11e8556dc763d14ee74.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/buttonCircle_white.png"
-dest_files=["res://.godot/imported/buttonCircle_white.png-63bb1f648d497cecfa5a1134f55bc093.ctex"]
+source_file="res://Assets/UI/container_stone.png"
+dest_files=["res://.godot/imported/container_stone.png-0df9b02004a5f11e8556dc763d14ee74.ctex"]
 
 [params]
 

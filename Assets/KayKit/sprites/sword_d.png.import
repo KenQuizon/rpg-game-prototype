@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wgm6uq8nkht1"
-path="res://.godot/imported/container_stone.png-a045b8d6750bbf73f5cb7ef05d140084.ctex"
+uid="uid://k5o0222vj21c"
+path="res://.godot/imported/sword_d.png-9b3e8300b449d73d34513a57881bebe2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/container_stone.png"
-dest_files=["res://.godot/imported/container_stone.png-a045b8d6750bbf73f5cb7ef05d140084.ctex"]
+source_file="res://Assets/KayKit/sprites/sword_d.png"
+dest_files=["res://.godot/imported/sword_d.png-9b3e8300b449d73d34513a57881bebe2.ctex"]
 
 [params]
 

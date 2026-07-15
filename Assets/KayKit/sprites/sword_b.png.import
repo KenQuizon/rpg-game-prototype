@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhq7n310h5gmm"
-path="res://.godot/imported/progressBar_cyan.png-56b22a5cc81833ad48db642adda45f4c.ctex"
+uid="uid://dkitqv7lurj62"
+path="res://.godot/imported/sword_b.png-2303a115c4b51abb287f5814c9fd32a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/progressBar_cyan.png"
-dest_files=["res://.godot/imported/progressBar_cyan.png-56b22a5cc81833ad48db642adda45f4c.ctex"]
+source_file="res://Assets/KayKit/sprites/sword_b.png"
+dest_files=["res://.godot/imported/sword_b.png-2303a115c4b51abb287f5814c9fd32a8.ctex"]
 
 [params]
 

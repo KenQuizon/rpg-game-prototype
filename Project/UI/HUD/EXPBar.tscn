@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c10wtpdgiaiv4"]
 
-[ext_resource type="Texture2D" uid="uid://b1ytewht1qxdx" path="res://Assets/buttonCircle_white.png" id="1_8duni"]
-[ext_resource type="Texture2D" uid="uid://dbfs0ia333ycy" path="res://Assets/CircularProgressBar.png" id="1_oiydk"]
-[ext_resource type="Texture2D" uid="uid://ddu1vwf41m70f" path="res://Assets/buttonCircle_black.png" id="2_oksc1"]
+[ext_resource type="Texture2D" uid="uid://b1ytewht1qxdx" path="res://Assets/UI/buttonCircle_white.png" id="1_8duni"]
+[ext_resource type="Texture2D" uid="uid://dbfs0ia333ycy" path="res://Assets/UI/CircularProgressBar.png" id="1_oiydk"]
+[ext_resource type="Texture2D" uid="uid://ddu1vwf41m70f" path="res://Assets/UI/buttonCircle_black.png" id="2_oksc1"]
 [ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="4_cniox"]
 
 [node name="EXPBar" type="Control" unique_id=179306097]

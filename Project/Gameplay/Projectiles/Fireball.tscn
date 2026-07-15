@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://20ma6ismfmj1"]
+
+[ext_resource type="Script" uid="uid://korydahe87g6" path="res://Project/Gameplay/Projectiles/Projectile.gd" id="1_h4hwd"]
+[ext_resource type="PackedScene" uid="uid://2r00002qw2u" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/HitboxComponent.tscn" id="2_10tba"]
+[ext_resource type="ArrayMesh" uid="uid://s1ls04vhgqbf" path="res://Assets/BlenderMesh/Fireball_Head.obj" id="3_10tba"]
+[ext_resource type="Shader" uid="uid://vohge8kjxmcf" path="res://Assets/Shader/Fireball_Shader.tres" id="4_y0odc"]
+[ext_resource type="Material" uid="uid://doct6csl7r3br" path="res://Assets/Shader/FireTrail1_Material.tres" id="5_3ogrj"]
+[ext_resource type="Shader" uid="uid://ckxy70rfe0lew" path="res://Assets/Shader/FireHeader_Shader.tres" id="5_tkser"]
+[ext_resource type="Texture2D" uid="uid://djmymtwjn5rmw" path="res://Assets/Shader/T_VFX_basic1.PNG" id="6_yiebj"]
+[ext_resource type="Script" uid="uid://ccanyi0vi58s2" path="res://Assets/Shader/Trail3D.gd" id="7_5goo5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_knafj"]
+render_priority = 1
+shader = ExtResource("4_y0odc")
+shader_parameter/FireColor = Color(1.353256, 1.0758188, 0.34820014, 1)
+shader_parameter/Speed = Vector2(0.1, 3)
+
+[sub_resource type="SphereMesh" id="SphereMesh_g3r0j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y0odc"]
+render_priority = 0
+shader = ExtResource("5_tkser")
+shader_parameter/BallColor = Color(1, 0.40392157, 0, 1)
+shader_parameter/FrenselPower = 1.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_g3r0j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ogrj"]
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("6_yiebj")
+
+[sub_resource type="Curve" id="Curve_3ogrj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5goo5"]
+curve = SubResource("Curve_3ogrj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3xvhd"]
+particle_flag_align_y = true
+emission_shape = 2
+emission_sphere_radius = 0.5
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 3.0
+initial_velocity_max = 8.0
+radial_velocity_min = 0.99997765
+radial_velocity_max = 1.9999776
+gravity = Vector3(0, 0, 0)
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_5goo5")
+color = Color(1.353256, 1.0182375, 0.71986145, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_yiebj"]
+size = Vector2(0.1, 0.5)
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_3ogrj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g3r0j"]
+
+[node name="Fireball" type="Node3D" unique_id=2087007725]
+script = ExtResource("1_h4hwd")
+
+[node name="FireballHead" type="MeshInstance3D" parent="." unique_id=2129329411]
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 0, 0, 0.15)
+cast_shadow = 0
+mesh = ExtResource("3_10tba")
+surface_material_override/0 = SubResource("ShaderMaterial_knafj")
+
+[node name="Fireball" type="MeshInstance3D" parent="." unique_id=958564685]
+transform = Transform3D(-2.6226834e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.6226834e-08, 0, 0, 0)
+mesh = SubResource("SphereMesh_g3r0j")
+surface_material_override/0 = SubResource("ShaderMaterial_y0odc")
+
+[node name="TailMesh" type="MeshInstance3D" parent="." unique_id=599543835]
+transform = Transform3D(-1.5298986e-07, 1, 4.371139e-08, 0, -4.371139e-08, 1, 3.5, 4.371139e-08, 1.9106855e-15, 0, 0, 1.75)
+material_override = ExtResource("5_3ogrj")
+mesh = SubResource("QuadMesh_g3r0j")
+
+[node name="SmallSparks" type="GPUParticles3D" parent="." unique_id=294907089]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0.6)
+material_override = SubResource("StandardMaterial3D_3ogrj")
+amount = 10
+lifetime = 0.3
+explosiveness = 0.4
+process_material = SubResource("ParticleProcessMaterial_3xvhd")
+draw_pass_1 = SubResource("QuadMesh_yiebj")
+
+[node name="Trail3D" type="MeshInstance3D" parent="." unique_id=331424073]
+transform = Transform3D(7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, 0, 0, 0)
+visible = false
+material_override = ExtResource("5_3ogrj")
+mesh = SubResource("ImmediateMesh_3ogrj")
+script = ExtResource("7_5goo5")
+fromWidth = 1.0
+toWidth = 1.0
+
+[node name="HitboxComponent" parent="." unique_id=858829038 instance=ExtResource("2_10tba")]
+
+[node name="CollisionShape3D" parent="HitboxComponent/Area3D" parent_id_path=PackedInt32Array(858829038, 1461109804) index="0" unique_id=72962891]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0, 0)
+shape = SubResource("SphereShape3D_g3r0j")
+
+[editable path="HitboxComponent"]

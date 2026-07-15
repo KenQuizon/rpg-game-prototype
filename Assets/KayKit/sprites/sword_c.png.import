@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b84egfyc0r6w4"
-path="res://.godot/imported/Selection22_lightTheme.png-c8315b11e80d74e7587b505bef95c977.ctex"
+uid="uid://b7ke3ycwsdgu5"
+path="res://.godot/imported/sword_c.png-aa79fe115d5a55ccee77e768639be96c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Selection22_lightTheme.png"
-dest_files=["res://.godot/imported/Selection22_lightTheme.png-c8315b11e80d74e7587b505bef95c977.ctex"]
+source_file="res://Assets/KayKit/sprites/sword_c.png"
+dest_files=["res://.godot/imported/sword_c.png-aa79fe115d5a55ccee77e768639be96c.ctex"]
 
 [params]
 

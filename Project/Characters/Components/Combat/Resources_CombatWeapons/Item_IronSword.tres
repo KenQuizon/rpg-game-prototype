@@ -1,17 +1,13 @@
 [gd_resource type="Resource" script_class="ItemDefinition" format=3 uid="uid://d1koenh0fdjml"]
 
 [ext_resource type="Script" uid="uid://b6ia87gxo0r2d" path="res://Project/Equipment/Items/ItemDefinition.gd" id="1_2rwah"]
-[ext_resource type="Texture2D" uid="uid://e7schtwwy8hy" path="res://Assets/BHLegacy/BHLegacy_Weapon_Icons.png" id="1_hp8yi"]
+[ext_resource type="Texture2D" uid="uid://buj6v0ml7g8w3" path="res://Assets/KayKit/sprites/sword_1handed.png" id="1_hp8yi"]
 [ext_resource type="Resource" uid="uid://wrnwpt7j5wuw" path="res://Project/Characters/Components/Combat/Resources_CombatWeapons/IronSword.tres" id="3_k8syn"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_slo5b"]
-atlas = ExtResource("1_hp8yi")
-region = Rect2(128, 896, 128, 128)
 
 [resource]
 script = ExtResource("1_2rwah")
 display_name = "Iron Sword"
-icon = SubResource("AtlasTexture_slo5b")
+icon = ExtResource("1_hp8yi")
 description = "A sturdy iron blade."
 weapon_profile = ExtResource("3_k8syn")
 metadata/_custom_type_script = "uid://b6ia87gxo0r2d"

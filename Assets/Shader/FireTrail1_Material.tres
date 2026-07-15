@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://doct6csl7r3br"]
+
+[ext_resource type="Shader" uid="uid://ksgutb07a4hf" path="res://Assets/Shader/FireTrail_Shader.tres" id="1_nlt2s"]
+
+[sub_resource type="Gradient" id="Gradient_3xvhd"]
+offsets = PackedFloat32Array(0, 0.04113924, 0.64873415, 1)
+colors = PackedColorArray(1.8247963, 1.6291479, 0, 0, 1.8247963, 1.6291479, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3cycp"]
+gradient = SubResource("Gradient_3xvhd")
+use_hdr = true
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_nlt2s")
+shader_parameter/ColorTexture = SubResource("GradientTexture1D_3cycp")
+shader_parameter/TrailSpeed = Vector2(-2, 0)
