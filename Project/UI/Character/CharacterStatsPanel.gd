@@ -1,4 +1,4 @@
-extends BaseUIPanel
+extends Control
 class_name CharacterStatsPanel
 
 @onready var stat_items: VBoxContainer = $VBoxContainer/StatsList
@@ -11,22 +11,23 @@ class_name CharacterStatsPanel
 var character: Character
 var stats_component: StatsComponent
 
-func _ready() -> void:
-	super._ready()
-	character = CharacterRef.get_player()
+func setup(bound_character: Character) -> void:
+	character = bound_character
 
-	if character:
-		character_name.text = character.name
+	if character == null:
+		return
 
-		# No leveling/XP system exists yet — static placeholders until
-		# that gameplay system is built.
-		level_label.text = "Lv. 1"
-		experience_bar.visible = false
+	character_name.text = character.name
 
-		if character.context and character.context.stats:
-			stats_component = character.context.stats
-			update_stats()
-			stats_component.stat_changed.connect(_on_stat_changed)
+	# No leveling/XP system exists yet — static placeholders until that
+	# gameplay system is built.
+	level_label.text = "Lv. 1"
+	experience_bar.visible = false
+
+	if character.context and character.context.stats:
+		stats_component = character.context.stats
+		update_stats()
+		stats_component.stat_changed.connect(_on_stat_changed)
 
 func update_stats() -> void:
 	for child in stat_items.get_children():
@@ -48,7 +49,7 @@ func update_stats() -> void:
 	for stat_type in stat_types:
 		var stat_value := stats_component.get_stat(stat_type)
 		var stat_item = stat_item_scene.instantiate()
-		stat_items.add_child(stat_item)          # add first, same @onready-order fix as before
+		stat_items.add_child(stat_item)
 		stat_item.set_stat(StatType.Id.keys()[stat_type].capitalize(), stat_value)
 
 func _on_stat_changed(_stat: StatType.Id, _old_value: float, _new_value: float) -> void:

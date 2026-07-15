@@ -3,8 +3,8 @@
 [ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="1_7ge61"]
 [ext_resource type="Script" uid="uid://d1fyeb6vcxjst" path="res://Project/UI/CharacterHub/CharacterHub.gd" id="1_rug7c"]
 [ext_resource type="Shader" uid="uid://ue6ryiltfguj" path="res://Assets/Shader/Blur.gdshader" id="2_osv55"]
-[ext_resource type="PackedScene" uid="uid://qpoj80y8e2r5" path="res://Project/UI/Character/CharacterScreen.tscn" id="2_r8ut7"]
 [ext_resource type="PackedScene" uid="uid://b0ad3wqxiid28" path="res://Project/UI/Equipment/EquipmentPanel.tscn" id="3_1qgv4"]
+[ext_resource type="PackedScene" uid="uid://c5nq711moy2rk" path="res://Project/UI/Character/CharacterStatsPanel.tscn" id="4_osv55"]
 [ext_resource type="PackedScene" uid="uid://bvwhqbbs7plhy" path="res://Project/UI/Inventory/InventoryPanel.tscn" id="4_rug7c"]
 [ext_resource type="PackedScene" uid="uid://3shhwdgweewn" path="res://Project/UI/CharacterHub/ItemStatPanel.tscn" id="6_84wve"]
 
@@ -105,11 +105,6 @@ theme_override_fonts/font = ExtResource("1_7ge61")
 theme_override_font_sizes/font_size = 28
 text = "Items"
 
-[node name="CharacterPreviewRoot" parent="LayoutMargin/Layout" unique_id=1180754930 instance=ExtResource("2_r8ut7")]
-visible = false
-custom_minimum_size = Vector2(770, 0)
-layout_mode = 2
-
 [node name="PageContainer" type="Control" parent="LayoutMargin/Layout" unique_id=1759051192]
 custom_minimum_size = Vector2(850, 0)
 layout_mode = 2
@@ -117,6 +112,9 @@ layout_mode = 2
 [node name="AttributesPage" type="Control" parent="LayoutMargin/Layout/PageContainer" unique_id=468699503]
 layout_mode = 1
 anchors_preset = 0
+
+[node name="CharacterStatsPanel" parent="LayoutMargin/Layout/PageContainer/AttributesPage" unique_id=692893571 instance=ExtResource("4_osv55")]
+layout_mode = 1
 
 [node name="EquipmentPage" type="HBoxContainer" parent="LayoutMargin/Layout/PageContainer" unique_id=768856365]
 layout_mode = 1

@@ -3,8 +3,8 @@ class_name EquipmentPanel
 
 signal item_info_requested(item_name: String, description: String, stat_lines: PackedStringArray)
 
-@onready var left_column: VBoxContainer = $LeftColumn
-@onready var right_column: VBoxContainer = $RightColumn
+@onready var left_column: VBoxContainer = $HBoxContainer/LeftCollumn
+@onready var right_column: VBoxContainer = $HBoxContainer/RightCollumn
 
 var character: Character
 var equipment_component: EquipmentComponent

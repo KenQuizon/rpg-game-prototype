@@ -12,7 +12,14 @@ var equipped_profile: EquipmentProfile
 
 func _ready() -> void:
 	gui_input.connect(_on_gui_input)
-	slot_name_label.text = EquipmentSlotType.Id.keys()[slot].capitalize()
+
+	var names := EquipmentSlotType.Id.keys()
+
+	if slot < 0 or slot >= names.size():
+		push_error("%s has invalid slot value %d" % [get_path(), slot])
+		return
+
+	slot_name_label.text = names[slot].capitalize()
 
 func set_equipment(profile: EquipmentProfile) -> void:
 	equipped_profile = profile

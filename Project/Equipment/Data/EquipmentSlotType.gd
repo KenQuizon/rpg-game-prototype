@@ -8,5 +8,5 @@ enum Id {
 	RING_1,
 	RING_2,
 	AMULET,
-	CUSTOM
+	CUSTOM,
 }

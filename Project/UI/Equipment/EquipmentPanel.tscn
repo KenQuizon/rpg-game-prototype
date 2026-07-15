@@ -28,17 +28,17 @@ layout_mode = 2
 layout_mode = 2
 alignment = 1
 
-[node name="Ring1" parent="HBoxContainer/LeftCollumn" unique_id=1805287938 instance=ExtResource("2_ibx1j")]
+[node name="EquipmentSlotUI" parent="HBoxContainer/LeftCollumn" unique_id=1805287938 instance=ExtResource("2_ibx1j")]
+layout_mode = 2
+slot = 3
+
+[node name="EquipmentSlotUI2" parent="HBoxContainer/LeftCollumn" unique_id=643930490 instance=ExtResource("2_ibx1j")]
+layout_mode = 2
+slot = 4
+
+[node name="EquipmentSlotUI3" parent="HBoxContainer/LeftCollumn" unique_id=2046034793 instance=ExtResource("2_ibx1j")]
 layout_mode = 2
 slot = 5
-
-[node name="Ring2" parent="HBoxContainer/LeftCollumn" unique_id=1058192228 instance=ExtResource("2_ibx1j")]
-layout_mode = 2
-slot = 6
-
-[node name="Amulet" parent="HBoxContainer/LeftCollumn" unique_id=664828354 instance=ExtResource("2_ibx1j")]
-layout_mode = 2
-slot = 7
 
 [node name="MainHand" parent="HBoxContainer/LeftCollumn" unique_id=539140193 instance=ExtResource("3_d7cu8")]
 layout_mode = 2
@@ -62,14 +62,14 @@ vertical_alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="Head" parent="HBoxContainer/RightCollumn" unique_id=1103805654 instance=ExtResource("2_ibx1j")]
+[node name="EquipmentSlotUI" parent="HBoxContainer/RightCollumn" unique_id=647430669 instance=ExtResource("2_ibx1j")]
 layout_mode = 2
 
-[node name="Chest" parent="HBoxContainer/RightCollumn" unique_id=1010408510 instance=ExtResource("2_ibx1j")]
+[node name="EquipmentSlotUI2" parent="HBoxContainer/RightCollumn" unique_id=555814748 instance=ExtResource("2_ibx1j")]
 layout_mode = 2
 slot = 1
 
-[node name="Legs" parent="HBoxContainer/RightCollumn" unique_id=559327633 instance=ExtResource("2_ibx1j")]
+[node name="EquipmentSlotUI3" parent="HBoxContainer/RightCollumn" unique_id=1895818035 instance=ExtResource("2_ibx1j")]
 layout_mode = 2
 slot = 2
 

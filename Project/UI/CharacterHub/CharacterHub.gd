@@ -11,7 +11,10 @@ class_name CharacterHub
 @onready var skills_page: Control = $LayoutMargin/Layout/PageContainer/SkillsPage
 @onready var items_page: Control = $LayoutMargin/Layout/PageContainer/ItemsPage
 
-@onready var character_preview: CharacterScreen = $LayoutMargin/Layout/CharacterPreviewRoot
+@onready var character_preview: CharacterScreen = $LayoutMargin/Layout/PageContainer/EquipmentPage/EquipmentAndWeaponsGrid/HBoxContainer/CharacterPreview/CharacterScreen
+
+@onready var attributes_panel: CharacterStatsPanel = $LayoutMargin/Layout/PageContainer/AttributesPage/CharacterStatsPanel
+
 @onready var equipment_panel: EquipmentPanel = $LayoutMargin/Layout/PageContainer/EquipmentPage/EquipmentAndWeaponsGrid
 @onready var inventory_panel: InventoryPanel = $LayoutMargin/Layout/PageContainer/EquipmentPage/InventoryColumn/InventoryScrollRoot
 @onready var item_stat_panel: ItemStatPanel = $LayoutMargin/Layout/PageContainer/EquipmentPage/InventoryColumn/ItemStatPanel
