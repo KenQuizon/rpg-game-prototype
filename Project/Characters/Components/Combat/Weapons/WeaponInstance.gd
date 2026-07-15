@@ -1,7 +1,7 @@
 extends Node3D
 class_name WeaponInstance
 
-var item: ItemDefinition   # was: var profile: WeaponProfile
+var item: ItemDefinition
 
 var _context: CharacterContext
 

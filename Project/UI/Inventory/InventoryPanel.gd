@@ -48,7 +48,9 @@ func _on_item_activated(item: ItemDefinition) -> void:
 		return
 
 	if item.category == ItemCategory.Id.WEAPON and character.context.weapon:
-		character.context.weapon.equip(item, item.weapon_slot)
+		var weapon_payload := item.payload as WeaponPayload
+		var slot := weapon_payload.weapon_slot if weapon_payload else WeaponSlot.Id.MAIN_HAND
+		character.context.weapon.equip(item, slot)
 
 	elif (item.category == ItemCategory.Id.ARMOR or item.category == ItemCategory.Id.ACCESSORY) and character.context.equipment:
 		character.context.equipment.equip(item)

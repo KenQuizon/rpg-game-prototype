@@ -17,11 +17,6 @@ class_name ItemDefinition
 @export var value: int = 0
 @export var weight: float = 0.0
 
-@export_group("Equip Links")
-@export var equipment_profile: EquipmentProfile   # armor/accessories -> EquipmentComponent
-@export var weapon_profile: WeaponProfile          # weapons -> WeaponComponent
-@export var weapon_slot: WeaponSlot.Id = WeaponSlot.Id.MAIN_HAND
-
 #==============================================================================
 # Stacking
 #==============================================================================

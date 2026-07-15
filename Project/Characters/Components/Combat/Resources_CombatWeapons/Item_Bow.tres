@@ -13,5 +13,4 @@ display_name = "Wooden Bow"
 description = "A simple recurve bow."
 value = 50
 weight = 4.0
-weapon_slot = 1
 metadata/_custom_type_script = "uid://b6ia87gxo0r2d"

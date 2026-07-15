@@ -2,6 +2,15 @@ extends ItemPayload
 class_name WeaponPayload
 
 #==============================================================================
+# Identity
+#==============================================================================
+
+# Which hand this weapon equips into. Lives here (not on ItemDefinition)
+# for the same reason ArmorPayload owns equipment_slot: it's identity info
+# specific to the weapon category, not a generic item property.
+@export var weapon_slot: WeaponSlot.Id = WeaponSlot.Id.MAIN_HAND
+
+#==============================================================================
 # Combat
 #==============================================================================
 

@@ -15,6 +15,7 @@ metadata/_custom_type_script = "uid://rgnyd2ru1lwi"
 
 [resource]
 script = ExtResource("1_lhvwa")
+weapon_slot = 1
 weapon_type = 5
 attack_range = 8.0
 weapon_scene = ExtResource("6_6tsch")
