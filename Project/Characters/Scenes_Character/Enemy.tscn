@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://c714tlwbn8rdv" path="res://Project/Characters/Components/Combat/Components/HurtboxComponent.gd" id="11_4kmdd"]
 [ext_resource type="Script" uid="uid://cs3373l874ea1" path="res://Project/Characters/Components/Combat/Components/CombatComponent.gd" id="12_kavtx"]
 [ext_resource type="Script" uid="uid://ccm8lflo77amt" path="res://Project/Characters/Components/Combat/Components/WeaponComponent.gd" id="13_p6s61"]
-[ext_resource type="Resource" uid="uid://dhht4mspyc4ya" path="res://Project/Characters/Components/Combat/Resources_CombatWeapons/SkeletonBlade.tres" id="14_3fngs"]
+[ext_resource type="Resource" uid="uid://d1koenh0fdjml" path="res://Project/Characters/Components/Combat/Resources_CombatWeapons/Item_IronSword.tres" id="14_5tm1d"]
 [ext_resource type="Script" uid="uid://ylguh5pimf4c" path="res://Project/Characters/Components/Combat/Components/ComboComponent.gd" id="19_l3ol5"]
 [ext_resource type="Script" uid="uid://cv5gb46oukrjm" path="res://Project/Action/Components/PoiseComponent.gd" id="20_jm3mx"]
 [ext_resource type="Script" uid="uid://c7xa74wehf8b5" path="res://Project/Characters/Components/Status/StatusComponent.gd" id="21_t2n2y"]
@@ -95,7 +95,7 @@ metadata/_custom_type_script = "uid://cs3373l874ea1"
 
 [node name="WeaponComponent" type="Node" parent="Components" unique_id=1398985983]
 script = ExtResource("13_p6s61")
-default_weapon = ExtResource("14_3fngs")
+default_weapon = ExtResource("14_5tm1d")
 metadata/_custom_type_script = "uid://ccm8lflo77amt"
 
 [node name="ComboComponent" type="Node" parent="Components" unique_id=2143321997]

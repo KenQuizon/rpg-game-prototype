@@ -47,11 +47,11 @@ func _on_item_activated(item: ItemDefinition) -> void:
 	if character == null or character.context == null:
 		return
 
-	if item.weapon_profile != null and character.context.weapon:
-		character.context.weapon.equip(item.weapon_profile, item.weapon_slot)
+	if item.category == ItemCategory.Id.WEAPON and character.context.weapon:
+		character.context.weapon.equip(item, item.weapon_slot)
 
-	elif item.equipment_profile != null and character.context.equipment:
-		character.context.equipment.equip(item.equipment_profile)
+	elif (item.category == ItemCategory.Id.ARMOR or item.category == ItemCategory.Id.ACCESSORY) and character.context.equipment:
+		character.context.equipment.equip(item)
 
 	elif item.consumable:
 		if item.heal_amount > 0.0 and character.context.health:

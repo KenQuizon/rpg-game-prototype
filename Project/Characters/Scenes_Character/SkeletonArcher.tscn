@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://c714tlwbn8rdv" path="res://Project/Characters/Components/Combat/Components/HurtboxComponent.gd" id="10_qp1uf"]
 [ext_resource type="Script" uid="uid://cs3373l874ea1" path="res://Project/Characters/Components/Combat/Components/CombatComponent.gd" id="11_n31nj"]
 [ext_resource type="Script" uid="uid://ccm8lflo77amt" path="res://Project/Characters/Components/Combat/Components/WeaponComponent.gd" id="12_wp44x"]
-[ext_resource type="Resource" uid="uid://coe3n66dd8q5c" path="res://Project/Characters/Components/Combat/Resources_CombatWeapons/Bow.tres" id="14_t0v8g"]
+[ext_resource type="Resource" uid="uid://v0t4uchrgf18" path="res://Project/Characters/Components/Combat/Resources_CombatWeapons/Item_Bow.tres" id="14_2ngx2"]
 [ext_resource type="Script" uid="uid://ylguh5pimf4c" path="res://Project/Characters/Components/Combat/Components/ComboComponent.gd" id="18_fner7"]
 [ext_resource type="Script" uid="uid://cv5gb46oukrjm" path="res://Project/Action/Components/PoiseComponent.gd" id="19_xae5f"]
 [ext_resource type="Script" uid="uid://c7xa74wehf8b5" path="res://Project/Characters/Components/Status/StatusComponent.gd" id="20_orc6g"]
@@ -95,7 +95,7 @@ metadata/_custom_type_script = "uid://cs3373l874ea1"
 
 [node name="WeaponComponent" type="Node" parent="Components" unique_id=1398985983]
 script = ExtResource("12_wp44x")
-default_off_hand = ExtResource("14_t0v8g")
+default_off_hand = ExtResource("14_2ngx2")
 metadata/_custom_type_script = "uid://ccm8lflo77amt"
 
 [node name="ComboComponent" type="Node" parent="Components" unique_id=2143321997]

@@ -80,10 +80,14 @@ slot = 1
 [node name="EquipedStatsPanel" type="VBoxContainer" parent="." unique_id=845255587]
 layout_mode = 2
 
-[node name="StatBonuses" type="Label" parent="EquipedStatsPanel" unique_id=1862314081]
+[node name="WeaponPowerLabel" type="Label" parent="EquipedStatsPanel" unique_id=1862314081]
 layout_mode = 2
 text = "Stats"
 
-[node name="Armor" type="Label" parent="EquipedStatsPanel" unique_id=1599575995]
+[node name="DefenseLabel" type="Label" parent="EquipedStatsPanel" unique_id=1599575995]
+layout_mode = 2
+text = "defense"
+
+[node name="MagicPowerLabel" type="Label" parent="EquipedStatsPanel" unique_id=1348518407]
 layout_mode = 2
 text = "defense"

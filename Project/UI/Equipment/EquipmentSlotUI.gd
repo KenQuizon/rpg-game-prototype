@@ -8,7 +8,7 @@ signal slot_selected
 
 @export var slot: EquipmentSlotType.Id
 
-var equipped_profile: EquipmentProfile
+var equipped_item: ItemDefinition
 
 func _ready() -> void:
 	gui_input.connect(_on_gui_input)
@@ -21,10 +21,10 @@ func _ready() -> void:
 
 	slot_name_label.text = names[slot].capitalize()
 
-func set_equipment(profile: EquipmentProfile) -> void:
-	equipped_profile = profile
-	icon.texture = profile.icon if profile else null
-	slot_name_label.visible = profile == null
+func set_equipment(item: ItemDefinition) -> void:
+	equipped_item = item
+	icon.texture = item.icon if item else null
+	slot_name_label.visible = item == null
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:

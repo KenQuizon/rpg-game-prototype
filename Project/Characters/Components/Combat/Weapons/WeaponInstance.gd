@@ -1,39 +1,22 @@
 extends Node3D
 class_name WeaponInstance
 
-#==============================================================================
-# Runtime
-#==============================================================================
-
-var profile: WeaponProfile
+var item: ItemDefinition   # was: var profile: WeaponProfile
 
 var _context: CharacterContext
 
-#==============================================================================
-# Cached Nodes
-#==============================================================================
-
 @onready var hitbox: HitboxComponent = get_node_or_null("HitboxComponent")
-
-#==============================================================================
-# Initialization
-#==============================================================================
 
 func initialize(
 	character_context: CharacterContext,
-	weapon_profile: WeaponProfile
+	weapon_item: ItemDefinition
 ) -> void:
 
 	_context = character_context
-	profile = weapon_profile
+	item = weapon_item
 
 	_initialize_children()
 
-#==============================================================================
-# Internal
-#==============================================================================
-
-# WeaponInstance.gd
 func _initialize_children() -> void:
 
 	if hitbox == null:
@@ -43,13 +26,8 @@ func _initialize_children() -> void:
 
 	hitbox.set_combat_owner(_context.combat)
 
-#==============================================================================
-# Public API
-#==============================================================================
-
 func get_hitbox() -> HitboxComponent:
 	return hitbox
-
 
 func get_context() -> CharacterContext:
 	return _context

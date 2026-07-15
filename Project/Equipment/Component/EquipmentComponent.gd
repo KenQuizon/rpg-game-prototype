@@ -5,14 +5,14 @@ class_name EquipmentComponent
 # Signals
 #==============================================================================
 
-signal equipment_equipped(slot: int, profile: EquipmentProfile)
-signal equipment_unequipped(slot: int, profile: EquipmentProfile)
+signal equipment_equipped(slot: int, item: ItemDefinition)
+signal equipment_unequipped(slot: int, item: ItemDefinition)
 
 #==============================================================================
 # Export Variables
 #==============================================================================
 
-@export var default_equipment: Array[EquipmentProfile] = []
+@export var default_equipment: Array[ItemDefinition] = []
 
 #==============================================================================
 # Runtime
@@ -32,8 +32,8 @@ func on_initialize() -> void:
 
 	_discover_sockets(owner_character.get_character_visual())
 
-	for profile in default_equipment:
-		equip(profile)
+	for item in default_equipment:
+		equip(item)
 
 func _discover_sockets(node: Node) -> void:
 
@@ -51,22 +51,37 @@ func _discover_sockets(node: Node) -> void:
 # Public API
 #==============================================================================
 
-func equip(profile: EquipmentProfile) -> bool:
+func equip(item: ItemDefinition) -> bool:
 
-	if profile == null:
+	if item == null:
 		return false
 
-	unequip(profile.slot)
+	var slot: int
+	var payload: ItemPayload
 
-	var item := EquippedItem.new(profile, profile.slot)
+	if item.payload is ArmorPayload:
+		var armor := item.payload as ArmorPayload
+		slot = armor.equipment_slot
+		payload = armor
+	elif item.payload is AccessoryPayload:
+		var accessory := item.payload as AccessoryPayload
+		slot = accessory.equipment_slot
+		payload = accessory
+	else:
+		push_error("ItemDefinition '%s' has no Armor/Accessory payload." % item.display_name)
+		return false
 
-	_equipped[profile.slot] = item
+	unequip(slot)
 
-	_apply_modifiers(item)
+	var equipped := EquippedItem.new(item, payload, slot)
 
-	_attach_visual(item)
+	_equipped[slot] = equipped
 
-	equipment_equipped.emit(profile.slot, profile)
+	_apply_modifiers(equipped)
+
+	_attach_visual(equipped)
+
+	equipment_equipped.emit(slot, item)
 
 	return true
 
@@ -75,28 +90,28 @@ func unequip(slot: int) -> void:
 	if not _equipped.has(slot):
 		return
 
-	var item: EquippedItem = _equipped[slot]
+	var equipped: EquippedItem = _equipped[slot]
 
-	_remove_modifiers(item)
+	_remove_modifiers(equipped)
 
-	_detach_visual(item)
+	_detach_visual(equipped)
 
 	_equipped.erase(slot)
 
-	equipment_unequipped.emit(slot, item.profile)
+	equipment_unequipped.emit(slot, equipped.item)
 
 func unequip_all() -> void:
 	for slot in _equipped.keys().duplicate():
 		unequip(slot)
 
-func get_equipped(slot: int) -> EquipmentProfile:
+func get_equipped(slot: int) -> ItemDefinition:
 
 	if not _equipped.has(slot):
 		return null
 
-	var item: EquippedItem = _equipped[slot]
+	var equipped: EquippedItem = _equipped[slot]
 
-	return item.profile
+	return equipped.item
 
 func has_equipped(slot: int) -> bool:
 	return _equipped.has(slot)
@@ -105,69 +120,73 @@ func has_equipped(slot: int) -> bool:
 # Internal — Stat Modifiers
 #==============================================================================
 
-func _apply_modifiers(item: EquippedItem) -> void:
+func _apply_modifiers(equipped: EquippedItem) -> void:
 
 	var stats := context.stats
 
 	if stats == null:
 		return
 
-	if item.profile.stat_modifiers.is_empty():
+	var modifiers: Array = equipped.payload.get("stat_modifiers")
+
+	if modifiers == null or modifiers.is_empty():
 		return
 
-	for entry: StatModifierEntry in item.profile.stat_modifiers:
+	for entry: StatModifierEntry in modifiers:
 		stats.add_modifier(
 			entry.stat,
-			StatModifier.new(item, entry.value)
+			StatModifier.new(equipped, entry.value)
 		)
 
-func _remove_modifiers(item: EquippedItem) -> void:
+func _remove_modifiers(equipped: EquippedItem) -> void:
 
 	var stats := context.stats
 
 	if stats == null:
 		return
 
-	stats.remove_modifiers_from_source(item)
+	stats.remove_modifiers_from_source(equipped)
 
 #==============================================================================
 # Internal — Visuals
 #==============================================================================
 
-func _attach_visual(item: EquippedItem) -> void:
+func _attach_visual(equipped: EquippedItem) -> void:
 
-	if item.profile.visual_scene == null:
+	var visual_scene: PackedScene = equipped.payload.get("visual_scene")
+
+	if visual_scene == null:
 		return
 
-	var socket: EquipmentSlotSocket = _sockets.get(item.slot)
+	var socket: EquipmentSlotSocket = _sockets.get(equipped.slot)
 
 	if socket == null:
 		return
 
-	var visual := item.profile.visual_scene.instantiate() as Node3D
+	var visual := visual_scene.instantiate() as Node3D
 
 	if visual == null:
 		return
 
 	socket.attach(visual)
 
-func _detach_visual(item: EquippedItem) -> void:
+func _detach_visual(equipped: EquippedItem) -> void:
 
-	var socket: EquipmentSlotSocket = _sockets.get(item.slot)
+	var socket: EquipmentSlotSocket = _sockets.get(equipped.slot)
 
 	if socket != null:
 		socket.clear()
-		
+
 func save_state() -> Dictionary:
 	var data := {}
 	for slot in _equipped.keys():
-		var item: EquippedItem = _equipped[slot]
-		data[str(slot)] = item.profile.resource_path
+		var equipped: EquippedItem = _equipped[slot]
+		data[str(slot)] = equipped.item.resource_path
 	return data
 
 func load_state(data: Dictionary) -> void:
 	unequip_all()
 	for key in data.keys():
-		var profile := load(data[key]) as EquipmentProfile
-		if profile != null:
-			equip(profile)
+		var item := load(data[key]) as ItemDefinition
+		if item != null:
+			equip(item)

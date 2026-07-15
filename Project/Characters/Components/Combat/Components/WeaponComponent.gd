@@ -5,15 +5,15 @@ class_name WeaponComponent
 # Signals
 #==============================================================================
 
-signal weapon_equipped(profile: WeaponProfile, slot: WeaponSlot.Id)
-signal weapon_unequipped(profile: WeaponProfile, slot: WeaponSlot.Id)
+signal weapon_equipped(item: ItemDefinition, slot: WeaponSlot.Id)
+signal weapon_unequipped(item: ItemDefinition, slot: WeaponSlot.Id)
 
 #==============================================================================
 # Export Variables
 #==============================================================================
 
-@export var default_weapon: WeaponProfile          # main hand — unchanged name/behavior
-@export var default_off_hand: WeaponProfile
+@export var default_weapon: ItemDefinition
+@export var default_off_hand: ItemDefinition
 
 #==============================================================================
 # Cached References
@@ -32,24 +32,17 @@ var _off_instance: WeaponInstance
 var _attack_runtime: AttackRuntime = AttackRuntime.new()
 
 #==============================================================================
-# Properties — unchanged, now explicitly "main hand" under the hood
-#==============================================================================
-
-#==============================================================================
-# Properties — resolves to whichever hand currently holds a weapon,
-# preferring main hand when both are equipped. An off-hand-only weapon
-# (e.g. a bow with nothing in main hand) now drives attacks/range exactly
-# like a main-hand-only setup did before this fix.
+# Properties
 #==============================================================================
 
 var current_instance: WeaponInstance:
 	get:
 		return _active_instance()
 
-var current_profile: WeaponProfile:
+var current_item: ItemDefinition:
 	get:
 		var instance := _active_instance()
-		return instance.profile if instance != null else null
+		return instance.item if instance != null else null
 
 func has_weapon() -> bool:
 	return _active_instance() != null
@@ -58,6 +51,13 @@ func _active_instance() -> WeaponInstance:
 	if _main_instance != null:
 		return _main_instance
 	return _off_instance
+
+func _current_payload() -> WeaponPayload:
+	var item := current_item
+	if item == null:
+		return null
+	return item.payload as WeaponPayload
+
 #==============================================================================
 # Lifecycle
 #==============================================================================
@@ -82,18 +82,24 @@ func on_initialize() -> void:
 # Equipment
 #==============================================================================
 
-func equip(profile: WeaponProfile, slot: WeaponSlot.Id = WeaponSlot.Id.MAIN_HAND) -> bool:
+func equip(item: ItemDefinition, slot: WeaponSlot.Id = WeaponSlot.Id.MAIN_HAND) -> bool:
 
-	if profile == null:
+	if item == null:
 		return false
 
-	if profile.weapon_scene == null:
-		push_error("WeaponProfile has no weapon_scene.")
+	var payload := item.payload as WeaponPayload
+
+	if payload == null:
+		push_error("ItemDefinition '%s' has no WeaponPayload." % item.display_name)
+		return false
+
+	if payload.weapon_scene == null:
+		push_error("WeaponPayload has no weapon_scene.")
 		return false
 
 	unequip(slot)
 
-	var scene := profile.weapon_scene.instantiate()
+	var scene := payload.weapon_scene.instantiate()
 
 	if scene == null:
 		return false
@@ -109,14 +115,14 @@ func equip(profile: WeaponProfile, slot: WeaponSlot.Id = WeaponSlot.Id.MAIN_HAND
 	if socket != null:
 		socket.attach(instance)
 
-	instance.initialize(context, profile)
+	instance.initialize(context, item)
 
 	_set_instance_for(slot, instance)
 
-	weapon_equipped.emit(profile, slot)
+	weapon_equipped.emit(item, slot)
 
 	_sync_attack_range_visual()
-	
+
 	return true
 
 func unequip(slot: WeaponSlot.Id = WeaponSlot.Id.MAIN_HAND) -> void:
@@ -126,7 +132,7 @@ func unequip(slot: WeaponSlot.Id = WeaponSlot.Id.MAIN_HAND) -> void:
 	if instance == null:
 		return
 
-	var profile := instance.profile
+	var item := instance.item
 	var socket := _socket_for(slot)
 
 	if socket != null:
@@ -134,17 +140,17 @@ func unequip(slot: WeaponSlot.Id = WeaponSlot.Id.MAIN_HAND) -> void:
 
 	_set_instance_for(slot, null)
 
-	weapon_unequipped.emit(profile, slot)
-	
+	weapon_unequipped.emit(item, slot)
+
 	_sync_attack_range_visual()
 
 #==============================================================================
 # Slot Helpers
 #==============================================================================
 
-func get_profile(slot: WeaponSlot.Id) -> WeaponProfile:
+func get_equipped_item(slot: WeaponSlot.Id) -> ItemDefinition:
 	var instance := _instance_for(slot)
-	return instance.profile if instance != null else null
+	return instance.item if instance != null else null
 
 func has_weapon_in_slot(slot: WeaponSlot.Id) -> bool:
 	return _instance_for(slot) != null
@@ -162,15 +168,12 @@ func _socket_for(slot: WeaponSlot.Id) -> WeaponSocket:
 	return _off_socket if slot == WeaponSlot.Id.OFF_HAND else _main_socket
 
 #==============================================================================
-# Queries — unchanged signatures, main hand only (attacks/combos are a
-# main-hand concept for now; off-hand is equip-only until a dual-wield or
-# shield-block mechanic is built on top of it)
+# Queries
 #==============================================================================
 
 func get_weapon_type() -> WeaponType.Id:
-	if current_profile == null:
-		return WeaponType.Id.UNARMED
-	return current_profile.weapon_type
+	var payload := _current_payload()
+	return payload.weapon_type if payload != null else WeaponType.Id.UNARMED
 
 func is_weapon_type(type: WeaponType.Id) -> bool:
 	return get_weapon_type() == type
@@ -180,16 +183,14 @@ func get_hitbox() -> HitboxComponent:
 	if instance == null:
 		return null
 	return instance.get_hitbox()
-	
+
 func get_attack_set() -> AttackSet:
-	if current_profile == null:
-		return null
-	return current_profile.attack_set
+	var payload := _current_payload()
+	return payload.attack_set if payload != null else null
 
 func get_attack_range() -> float:
-	if current_profile == null:
-		return 1.5 # unarmed default — matches WeaponProfile's own default range
-	return current_profile.attack_range
+	var payload := _current_payload()
+	return payload.attack_range if payload != null else 1.5
 
 #------------------------------------------------------------------------------
 # Action Framework API
@@ -200,10 +201,6 @@ func get_attack_definition(index: int = 0) -> ActionDefinition:
 	if attack_set == null:
 		return null
 	return attack_set.get_light_attack(index)
-
-#------------------------------------------------------------------------------
-# Legacy Compatibility
-#------------------------------------------------------------------------------
 
 func get_attack(index: int = 0) -> AttackDefinition:
 	return get_attack_definition(index)
@@ -224,7 +221,7 @@ func select_next_attack() -> AttackDefinition:
 
 func commit_attack(attack: AttackDefinition) -> void:
 	_attack_runtime.commit_attack(attack)
-	
+
 func _sync_attack_range_visual() -> void:
 
 	if not owner_character.has_method("get_character_attack_range_area"):
