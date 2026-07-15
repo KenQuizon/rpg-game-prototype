@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://de0tqe3qu6mbq" path="res://Project/UI/Hotbar/Hotbar.tscn" id="9_4cr1f"]
 [ext_resource type="PackedScene" uid="uid://coygoo8es1dhs" path="res://Project/UI/Feedback/ChargeBar.tscn" id="10_ll6cg"]
 [ext_resource type="PackedScene" uid="uid://c7dwri6byjoml" path="res://Project/UI/CharacterHub/CharacterHub.tscn" id="12_2pw5a"]
+[ext_resource type="PackedScene" uid="uid://bxgvfdyoamxq4" path="res://Project/World/InteractionPromptUI.tscn" id="13_gjlbi"]
 
 [node name="MainHUD" type="CanvasLayer" unique_id=615724408]
 layer = 50
@@ -118,3 +119,9 @@ grow_vertical = 2
 [node name="CharacterHub" parent="." unique_id=252376391 instance=ExtResource("12_2pw5a")]
 visible = false
 z_index = 5
+
+[node name="InteractionPromptUI" parent="." unique_id=1247840949 instance=ExtResource("13_gjlbi")]
+offset_left = 75.0
+offset_top = 23.0
+offset_right = 375.0
+offset_bottom = 223.0

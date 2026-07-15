@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dxwrgeun5mjrf"]
+
+[ext_resource type="Script" uid="uid://cqeetwagp6brw" path="res://Project/World/InteractionRowUI.gd" id="1_pqfce"]
+
+[node name="InteractionRowUI" type="PanelContainer" unique_id=1215357393]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pqfce")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=847259947]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer" unique_id=510649609]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="HBoxContainer" unique_id=1516875238]
+layout_mode = 2

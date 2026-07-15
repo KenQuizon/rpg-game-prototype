@@ -4,6 +4,10 @@ class_name CharacterInput
 var move_vector: Vector2 = Vector2.ZERO
 
 var interact_pressed: bool = false
+var interact_held: bool = false
+
+var scroll_up_pressed: bool = false
+var scroll_down_pressed: bool = false
 
 var attack_pressed: bool = false
 var attack_held: bool = false

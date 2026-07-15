@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b6gj2tri376r5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2nri0"]
-radius = 1.5
+radius = 2.0
 
 [node name="InteractionArea" type="Area3D" unique_id=1013743914]
 collision_layer = 2

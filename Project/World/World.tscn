@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://cxa5bhd30h8bh" path="res://Project/UI/HUD/MainHUD.tscn" id="9_yhhn6"]
 [ext_resource type="Script" uid="uid://dnaq051yd1kdj" path="res://Project/UI/Inventory/ItemUsageSystem.gd" id="10_gwcue"]
 [ext_resource type="Texture2D" uid="uid://rmmnjmhe0s77" path="res://Assets/KayKit/textures/skeleton_texture.png" id="10_jghqt"]
+[ext_resource type="PackedScene" uid="uid://xpv4mvoflt6i" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/IronSword.tscn" id="11_lg08s"]
+[ext_resource type="PackedScene" uid="uid://clrgffw5yf0cf" path="res://Project/Equipment/Resources_Equipment/Items/IronHelmet/IronHelmet.tscn" id="12_6myyt"]
+[ext_resource type="PackedScene" uid="uid://duluvxv0iivpa" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/Bow.tscn" id="13_34ujs"]
+[ext_resource type="PackedScene" uid="uid://c5myfuo0yl1i8" path="res://Project/World/WorldItem.tscn" id="14_6myyt"]
 
 [sub_resource type="Environment" id="Environment_tw2g7"]
 
@@ -74,3 +78,25 @@ mesh = SubResource("BoxMesh_2nri0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=2081875558]
 shape = SubResource("BoxShape3D_2nri0")
+
+[node name="IronSword" parent="." unique_id=1934521417 instance=ExtResource("11_lg08s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5355134, 15)
+
+[node name="IronHelmet" parent="." unique_id=640539730 instance=ExtResource("12_6myyt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5355134, 15)
+
+[node name="Bow" parent="." unique_id=1363536088 instance=ExtResource("13_34ujs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.5355134, 15)
+
+[node name="WorldItem_IS" parent="." unique_id=377183093 instance=ExtResource("14_6myyt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1, 8.186621)
+item = ExtResource("11_lg08s")
+
+[node name="WorldItem_B" parent="." unique_id=1300921206 instance=ExtResource("14_6myyt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.032272, 1, 8.186621)
+item = ExtResource("13_34ujs")
+
+[node name="WorldItem_IH" parent="." unique_id=910574007 instance=ExtResource("14_6myyt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.491166, 1, 10.092584)
+item = ExtResource("12_6myyt")
+quantity = 3

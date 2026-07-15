@@ -26,12 +26,20 @@ func physics_update(_delta: float) -> void:
 
 	context.input.attack_pressed = Input.is_action_just_pressed("attack")
 	context.input.attack_held = Input.is_action_pressed("attack")
+	
 	context.input.interact_pressed = Input.is_action_just_pressed("interact")
+	context.input.interact_held = Input.is_action_pressed("interact")
+	context.input.scroll_up_pressed = Input.is_action_just_pressed("interact_scroll_up")
+	context.input.scroll_down_pressed = Input.is_action_just_pressed("interact_scroll_down")
+	
 	context.input.dash_pressed = Input.is_action_just_pressed("dash")
 	context.input.skill_1_pressed = Input.is_action_just_pressed("skill_1")
+	
 	context.combat.set_blocking(Input.is_action_pressed("block") and not context.is_locked(ActionLock.Id.ATTACK))
+	
 	context.input.charged_attack_pressed = Input.is_action_just_pressed("charged_attack")
 	context.input.charged_attack_held = Input.is_action_pressed("charged_attack")
+	
 	context.input.aim_mode = context.input.charged_attack_held
 	context.input.aim_world_position = _get_mouse_world_position()
 
@@ -93,6 +101,12 @@ func physics_update(_delta: float) -> void:
 		interact.initialize(context)
 
 		interact.execute()
+		
+	if context.input.scroll_up_pressed and context.interaction:
+		context.interaction.select_previous()
+
+	if context.input.scroll_down_pressed and context.interaction:
+		context.interaction.select_next()
 
 	if context.input.dash_pressed:
 

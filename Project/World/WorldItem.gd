@@ -22,3 +22,22 @@ func interact(interactor: Node) -> void:
 
 	if inventory.add_item(item, quantity):
 		queue_free()
+
+
+# Duck-typed contract InteractionComponent.get_interactable_info() looks
+# for — see InteractableInfo.gd. is_gatherable is left at its default
+# (false) for now; Stage 3 promotes that flag onto ItemDefinition and
+# this will read it from there instead of hardcoding it here.
+func get_interact_info() -> InteractableInfo:
+
+	var definition := item as ItemDefinition
+
+	if definition == null:
+		return InteractableInfo.new()
+
+	var label := definition.display_name
+
+	if quantity > 1:
+		label = "%s x%d" % [definition.display_name, quantity]
+
+	return InteractableInfo.new(label, definition.icon)

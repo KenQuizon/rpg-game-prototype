@@ -7,6 +7,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_2nri0"]
 
 [node name="WorldItem" type="StaticBody3D" unique_id=377183093]
+collision_layer = 5
 script = ExtResource("1_p3idi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=67225795]

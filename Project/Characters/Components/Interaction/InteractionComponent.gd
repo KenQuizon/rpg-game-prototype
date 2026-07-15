@@ -16,6 +16,12 @@ signal interaction_performed(target: Node)
 
 signal interaction_cancelled(target: Node)
 
+# Emitted whenever the set or order of nearby interactables changes —
+# separate from interaction_target_changed, which only means "the
+# highlighted/active one changed." UI (Stage 2) listens to this to
+# rebuild its list, and to the other to update the highlight.
+signal interaction_list_changed(ordered: Array[Node])
+
 #==============================================================================
 # Export Variables
 #==============================================================================
@@ -38,7 +44,19 @@ var _interaction_area: Area3D
 
 var _nearby: Array[Node] = []
 
+# Distance-sorted copy of _nearby, closest first. Recomputed whenever
+# _nearby changes or the character moves relative to more than one
+# candidate — see physics_update(). This is what scroll cycling and the
+# Stage 2 prompt list both iterate, so both always agree on order.
+var _ordered_nearby: Array[Node] = []
+
 var _current_target: Node = null
+
+# Non-null while the player has manually scrolled to a specific target,
+# overriding the default closest-first selection. Falls back to auto
+# (closest) the moment this node is no longer in _ordered_nearby — see
+# _resolve_current_target().
+var _manual_target: Node = null
 
 # The target an in-flight InteractAction is actually operating on, captured
 # at begin_interaction() and independent of _current_target — so if the
@@ -60,6 +78,29 @@ func has_target() -> bool:
 	return _current_target != null
 
 
+# Distance-sorted copy of every currently-nearby interactable, closest
+# first — the same order the prompt list (Stage 2) renders and scrolling
+# cycles through. Returns a duplicate so callers can't mutate internal state.
+func get_ordered_nearby() -> Array[Node]:
+	return _ordered_nearby.duplicate()
+
+
+# Returns the target's own get_interact_info() if it implements one
+# (duck-typed, same pattern as get_interact_definition() below),
+# otherwise a generic fallback so any existing interactable that hasn't
+# opted in still renders sensibly in the prompt list.
+func get_interactable_info(target: Node) -> InteractableInfo:
+
+	if target != null and target.has_method("get_interact_info"):
+
+		var custom = target.call("get_interact_info")
+
+		if custom is InteractableInfo:
+			return custom
+
+	return InteractableInfo.new()
+
+
 # Returns the InteractDefinition to submit for this target: the target's
 # own get_interact_definition() if it implements one (duck-typed, same
 # pattern as the existing has_method("interact") check below), otherwise
@@ -74,6 +115,44 @@ func get_interact_definition(target: Node) -> InteractDefinition:
 			return custom
 
 	return default_interact_definition
+
+#==============================================================================
+# Selection
+#==============================================================================
+
+# Moves the manual selection one entry toward the front of the ordered
+# list (visually "up"). Wraps. No-ops if nothing is nearby.
+func select_previous() -> void:
+	_cycle_selection(-1)
+
+
+# Moves the manual selection one entry toward the back of the ordered
+# list (visually "down"). Wraps. No-ops if nothing is nearby.
+func select_next() -> void:
+	_cycle_selection(1)
+
+
+func _cycle_selection(delta: int) -> void:
+
+	if _ordered_nearby.is_empty():
+		return
+
+	var current_index := _ordered_nearby.find(_current_target)
+
+	if current_index == -1:
+		current_index = 0
+
+	var count := _ordered_nearby.size()
+	var new_index := ((current_index + delta) % count + count) % count
+
+	_manual_target = _ordered_nearby[new_index]
+
+	var previous := _current_target
+
+	_current_target = _manual_target
+
+	if previous != _current_target:
+		interaction_target_changed.emit(previous, _current_target)
 
 #==============================================================================
 # Action Pipeline Hooks
@@ -212,7 +291,8 @@ func _refresh_target() -> void:
 
 	var previous := _current_target
 
-	_current_target = _select_best_target()
+	_update_ordered_nearby()
+	_current_target = _resolve_current_target()
 
 	if previous != _current_target:
 
@@ -222,13 +302,46 @@ func _refresh_target() -> void:
 		)
 
 
+# Recomputes _ordered_nearby (closest-first) and emits
+# interaction_list_changed only when the order or membership actually
+# changed — avoids spamming the signal every physics frame once things
+# have settled.
+func _update_ordered_nearby() -> void:
+
+	var new_ordered := _compute_ordered_by_distance()
+
+	if new_ordered == _ordered_nearby:
+		return
+
+	_ordered_nearby = new_ordered
+
+	interaction_list_changed.emit(_ordered_nearby.duplicate())
+
+
+# Picks the manually-selected target if it's still valid, otherwise falls
+# back to closest (index 0 of the distance-sorted list). This is the one
+# place selection mode is decided — everything else just reads the result.
+func _resolve_current_target() -> Node:
+
+	if _ordered_nearby.is_empty():
+		_manual_target = null
+		return null
+
+	if _manual_target != null and _ordered_nearby.has(_manual_target):
+		return _manual_target
+
+	_manual_target = null
+
+	return _ordered_nearby[0]
+
+
 # Closest-by-distance rather than "first entered" — a simple, genre-neutral
 # default. A raycast-facing or priority-tag based selector can replace this
 # later without touching anything outside this one function.
-func _select_best_target() -> Node:
+func _compute_ordered_by_distance() -> Array[Node]:
 
 	if _nearby.is_empty():
-		return null
+		return []
 
 	# context.character is typed Node (roadmap 7.2) — only world position is
 	# needed here, so cast to Node3D rather than assuming Character, mirroring
@@ -236,27 +349,17 @@ func _select_best_target() -> Node:
 	var character := context.character as Node3D
 
 	if character == null:
-		return _nearby[0]
+		return _nearby.duplicate()
 
-	var best: Node = null
-	var best_distance := INF
+	var valid: Array[Node] = _nearby.filter(
+		func(candidate: Node): return is_instance_valid(candidate) and candidate is Node3D
+	)
 
-	for candidate in _nearby:
+	valid.sort_custom(
+		func(a: Node3D, b: Node3D) -> bool:
+			var distance_a := character.global_position.distance_squared_to(a.global_position)
+			var distance_b := character.global_position.distance_squared_to(b.global_position)
+			return distance_a < distance_b
+	)
 
-		if not is_instance_valid(candidate):
-			continue
-
-		var candidate_3d := candidate as Node3D
-
-		if candidate_3d == null:
-			continue
-
-		var distance := character.global_position.distance_squared_to(
-			candidate_3d.global_position
-		)
-
-		if distance < best_distance:
-			best_distance = distance
-			best = candidate
-
-	return best if best != null else _nearby[0]
+	return valid
