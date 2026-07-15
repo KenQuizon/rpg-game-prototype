@@ -77,21 +77,21 @@ func _on_weapon_slot_selected(slot: WeaponSlot.Id) -> void:
 
 	item_info_requested.emit(item.display_name, item.description, PackedStringArray())
 
-func _on_equipment_changed(_slot: int, _profile: EquipmentProfile) -> void:
+func _on_equipment_changed(_slot: int, _item: ItemDefinition) -> void:
 	_update_equipment_display()
 
-func _on_weapon_changed(_profile: WeaponProfile, _slot: WeaponSlot.Id) -> void:
+func _on_weapon_changed(_item: ItemDefinition, _slot: WeaponSlot.Id) -> void:
 	_update_weapon_display()
 
 func _update_equipment_display() -> void:
 	for slot in equipment_slots.keys():
 		equipment_slots[slot].set_equipment(equipment_component.get_equipped(slot))
-	_update_derived_stats()  
-	
+	_update_derived_stats()
+
 func _update_weapon_display() -> void:
 	for slot in weapon_slots.keys():
-		weapon_slots[slot].set_weapon(weapon_component.get_profile(slot))
-	_update_derived_stats()  
+		weapon_slots[slot].set_weapon(weapon_component.get_equipped_item(slot))
+	_update_derived_stats()
 	
 func _update_derived_stats() -> void:
 
