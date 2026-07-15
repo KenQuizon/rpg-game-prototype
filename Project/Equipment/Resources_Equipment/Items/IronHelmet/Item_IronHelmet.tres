@@ -2,15 +2,21 @@
 
 [ext_resource type="Resource" uid="uid://tmq8yc2xgmo3" path="res://Project/Equipment/Resources_Equipment/Items/IronHelmet/IronHelmet.tres" id="1_je7sx"]
 [ext_resource type="Script" uid="uid://b6ia87gxo0r2d" path="res://Project/Equipment/Items/ItemDefinition.gd" id="1_on8hs"]
-[ext_resource type="Texture2D" uid="uid://d0xrw2oifuclf" path="res://icon.svg" id="2_fik4s"]
+[ext_resource type="Texture2D" uid="uid://dbbbr5glefar" path="res://Assets/BHLegacy/BHLegacy_Armor_Icons.png" id="2_fik4s"]
+[ext_resource type="Resource" uid="uid://cl7fkf1l7bmcg" path="res://Project/Equipment/Resources_Equipment/Items/IronHelmet/IronHelmet_ArmorPayload.tres" id="3_mnr6f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_owni3"]
 atlas = ExtResource("2_fik4s")
+region = Rect2(0, 384, 128, 128)
 
 [resource]
 script = ExtResource("1_on8hs")
-display_name = "Iron Helmet"
+category = 1
+payload = ExtResource("3_mnr6f")
 icon = SubResource("AtlasTexture_owni3")
+display_name = "Iron Helmet"
 description = "eyy"
+value = 50
+weight = 4.0
 equipment_profile = ExtResource("1_je7sx")
 metadata/_custom_type_script = "uid://b6ia87gxo0r2d"

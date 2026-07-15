@@ -2,12 +2,17 @@
 
 [ext_resource type="Script" uid="uid://b6ia87gxo0r2d" path="res://Project/Equipment/Items/ItemDefinition.gd" id="1_2rwah"]
 [ext_resource type="Texture2D" uid="uid://buj6v0ml7g8w3" path="res://Assets/KayKit/sprites/sword_1handed.png" id="1_hp8yi"]
+[ext_resource type="Resource" uid="uid://bnymf0k2hkk8u" path="res://Project/Characters/Components/Combat/Resources_CombatWeapons/IronSword_WeaponPayload.tres" id="2_k8syn"]
 [ext_resource type="Resource" uid="uid://wrnwpt7j5wuw" path="res://Project/Characters/Components/Combat/Resources_CombatWeapons/IronSword.tres" id="3_k8syn"]
 
 [resource]
 script = ExtResource("1_2rwah")
-display_name = "Iron Sword"
+category = 0
+payload = ExtResource("2_k8syn")
 icon = ExtResource("1_hp8yi")
+display_name = "Iron Sword"
 description = "A sturdy iron blade."
+value = 50
+weight = 4.0
 weapon_profile = ExtResource("3_k8syn")
 metadata/_custom_type_script = "uid://b6ia87gxo0r2d"

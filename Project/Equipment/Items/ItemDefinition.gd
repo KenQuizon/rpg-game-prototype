@@ -4,12 +4,18 @@ class_name ItemDefinition
 #==============================================================================
 # Identity
 #==============================================================================
+@export_group("Category")
+@export var category: ItemCategory.Id = ItemCategory.Id.MISCELLANEOUS
+@export var payload: ItemPayload
 
-@export var display_name: String = ""
-
+@export_group("Base")
 @export var icon: Texture2D
-
+@export var display_name: String = ""
 @export_multiline var description: String = ""
+
+@export_group("Economy")
+@export var value: int = 0
+@export var weight: float = 0.0
 
 @export_group("Equip Links")
 @export var equipment_profile: EquipmentProfile   # armor/accessories -> EquipmentComponent
