@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://rgnyd2ru1lwi" path="res://Project/Characters/Components/Combat/Data/AttackSet.gd" id="3_kgxfl"]
 [ext_resource type="Script" uid="uid://bb12xak51omdq" path="res://Project/Characters/Components/Combat/Weapons/WeaponProfile.gd" id="4_dt01m"]
 [ext_resource type="PackedScene" uid="uid://duluvxv0iivpa" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/Bow.tscn" id="5_1mpvc"]
+[ext_resource type="Texture2D" uid="uid://b5juxp1qgyata" path="res://Assets/KayKit/sprites/bow.png" id="5_kgxfl"]
 
 [sub_resource type="Resource" id="Resource_6rtp4"]
 script = ExtResource("3_kgxfl")
@@ -18,6 +19,7 @@ script = ExtResource("4_dt01m")
 display_name = "Bow"
 weapon_type = 5
 attack_range = 8.0
+icon = ExtResource("5_kgxfl")
 weapon_scene = ExtResource("5_1mpvc")
 attack_set = SubResource("Resource_6rtp4")
 metadata/_custom_type_script = "uid://bb12xak51omdq"

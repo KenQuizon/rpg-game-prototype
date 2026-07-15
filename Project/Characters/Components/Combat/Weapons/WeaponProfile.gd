@@ -31,6 +31,7 @@ var attack_range: float = 1.5
 #==============================================================================
 # Weapon Scene
 #==============================================================================
+@export var icon: Texture2D
 
 @export var weapon_scene: PackedScene
 

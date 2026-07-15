@@ -24,6 +24,7 @@ func _ready() -> void:
 func set_equipment(profile: EquipmentProfile) -> void:
 	equipped_profile = profile
 	icon.texture = profile.icon if profile else null
+	slot_name_label.visible = profile == null
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:

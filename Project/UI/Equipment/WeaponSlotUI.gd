@@ -16,10 +16,8 @@ func _ready() -> void:
 
 func set_weapon(profile: WeaponProfile) -> void:
 	equipped_profile = profile
-
-	# WeaponProfile doesn't contain an icon.
-	# Clear the icon for now instead of causing an error.
-	icon.texture = null
+	icon.texture = profile.icon if profile else null
+	slot_name_label.visible = profile == null
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:

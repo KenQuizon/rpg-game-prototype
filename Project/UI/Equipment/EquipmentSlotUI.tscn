@@ -11,6 +11,8 @@ script = ExtResource("1_wpw4b")
 
 [node name="Icon" type="TextureRect" parent="." unique_id=953630522]
 layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="SlotName" type="Label" parent="." unique_id=69118032]
 layout_mode = 2

@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://bkgg3m2uc0ujv" path="res://Project/Gameplay/Combat/Resources_CombatAttack/Attack_SwordSlash3.tres" id="4_7wo5x"]
 [ext_resource type="Script" uid="uid://bb12xak51omdq" path="res://Project/Characters/Components/Combat/Weapons/WeaponProfile.gd" id="4_lc45l"]
 [ext_resource type="PackedScene" uid="uid://xpv4mvoflt6i" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/IronSword.tscn" id="5_rejem"]
+[ext_resource type="Texture2D" uid="uid://buj6v0ml7g8w3" path="res://Assets/KayKit/sprites/sword_1handed.png" id="6_lc45l"]
 
 [sub_resource type="Resource" id="Resource_6rtp4"]
 script = ExtResource("3_7wo5x")
@@ -17,6 +18,7 @@ metadata/_custom_type_script = "uid://rgnyd2ru1lwi"
 script = ExtResource("4_lc45l")
 display_name = "Iron Sword"
 weapon_type = 1
+icon = ExtResource("6_lc45l")
 weapon_scene = ExtResource("5_rejem")
 attack_set = SubResource("Resource_6rtp4")
 metadata/_custom_type_script = "uid://bb12xak51omdq"
