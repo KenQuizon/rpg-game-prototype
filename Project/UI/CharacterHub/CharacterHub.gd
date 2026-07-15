@@ -32,6 +32,7 @@ func _ready() -> void:
 	character_preview.setup(character)
 	equipment_panel.setup(character)
 	inventory_panel.setup(character)
+	attributes_panel.setup(character)
 
 	equipment_panel.item_info_requested.connect(item_stat_panel.show_item_info)
 	inventory_panel.item_info_requested.connect(item_stat_panel.show_item_info)

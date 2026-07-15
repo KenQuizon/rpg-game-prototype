@@ -117,3 +117,4 @@ grow_vertical = 2
 
 [node name="CharacterHub" parent="." unique_id=252376391 instance=ExtResource("12_2pw5a")]
 visible = false
+z_index = 5
