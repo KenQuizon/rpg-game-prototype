@@ -106,6 +106,7 @@ theme_override_font_sizes/font_size = 28
 text = "Items"
 
 [node name="CharacterPreviewRoot" parent="LayoutMargin/Layout" unique_id=1180754930 instance=ExtResource("2_r8ut7")]
+visible = false
 custom_minimum_size = Vector2(770, 0)
 layout_mode = 2
 
