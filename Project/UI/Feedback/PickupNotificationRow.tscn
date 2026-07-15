@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://m3qvcs00xkm4"]
+
+[ext_resource type="Script" uid="uid://btd1tkjg2fkiy" path="res://Project/UI/Feedback/PickupNotificationRow.gd" id="1_3onk3"]
+[ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="2_se081"]
+
+[node name="PickupNotificationRow" type="PanelContainer" unique_id=1579356912]
+custom_minimum_size = Vector2(300, 48)
+offset_right = 300.0
+offset_bottom = 48.0
+script = ExtResource("1_3onk3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1827878157]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer" unique_id=684782370]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="HBoxContainer" unique_id=86071577]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_se081")
+text = "Item Name"

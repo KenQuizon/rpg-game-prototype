@@ -18,7 +18,7 @@ signal healing_applied(amount: float)
 signal status_effect_applied(effect_name: String)
 signal status_effect_removed(effect_name: String)
 
-signal item_picked_up(item_name: String)
+signal item_picked_up(item: ItemDefinition, quantity: int)
 signal item_used(item_name: String)
 signal item_equipped(item_name: String, slot: String)
 

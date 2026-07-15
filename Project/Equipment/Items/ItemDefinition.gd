@@ -17,6 +17,9 @@ class_name ItemDefinition
 @export var value: int = 0
 @export var weight: float = 0.0
 
+@export_group("Interaction")
+@export var is_gatherable: bool = true
+
 #==============================================================================
 # Stacking
 #==============================================================================

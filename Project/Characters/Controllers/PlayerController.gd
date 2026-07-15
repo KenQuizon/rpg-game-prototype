@@ -11,7 +11,7 @@ var _attack_move_target: Node3D = null
 # Updates
 #==============================================================================
 
-func physics_update(_delta: float) -> void:
+func physics_update(delta: float) -> void:
 
 	#--------------------------------------------------------------------------
 	# Capture Input
@@ -107,6 +107,20 @@ func physics_update(_delta: float) -> void:
 
 	if context.input.scroll_down_pressed and context.interaction:
 		context.interaction.select_next()
+
+	if context.interaction:
+
+		var gather_ready := context.interaction.update_gather_hold(
+			context.input.interact_held,
+			delta
+		)
+
+		if gather_ready:
+
+			var gather := GatherCommand.new()
+
+			gather.initialize(context)
+			gather.execute()
 
 	if context.input.dash_pressed:
 

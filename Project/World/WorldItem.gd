@@ -25,9 +25,9 @@ func interact(interactor: Node) -> void:
 
 
 # Duck-typed contract InteractionComponent.get_interactable_info() looks
-# for — see InteractableInfo.gd. is_gatherable is left at its default
-# (false) for now; Stage 3 promotes that flag onto ItemDefinition and
-# this will read it from there instead of hardcoding it here.
+# for — see InteractableInfo.gd. is_gatherable is read straight from the
+# ItemDefinition (Stage 3) so a hold-to-gather sweep and a tap-pickup
+# always agree on whether this item counts as gatherable.
 func get_interact_info() -> InteractableInfo:
 
 	var definition := item as ItemDefinition
@@ -40,4 +40,4 @@ func get_interact_info() -> InteractableInfo:
 	if quantity > 1:
 		label = "%s x%d" % [definition.display_name, quantity]
 
-	return InteractableInfo.new(label, definition.icon)
+	return InteractableInfo.new(label, definition.icon, definition.is_gatherable)

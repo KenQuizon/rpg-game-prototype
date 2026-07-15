@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://coygoo8es1dhs" path="res://Project/UI/Feedback/ChargeBar.tscn" id="10_ll6cg"]
 [ext_resource type="PackedScene" uid="uid://c7dwri6byjoml" path="res://Project/UI/CharacterHub/CharacterHub.tscn" id="12_2pw5a"]
 [ext_resource type="PackedScene" uid="uid://bxgvfdyoamxq4" path="res://Project/World/InteractionPromptUI.tscn" id="13_gjlbi"]
+[ext_resource type="PackedScene" uid="uid://0ydlxi6dh51u" path="res://Project/UI/Feedback/PickupNotificationUI.tscn" id="14_v0gnw"]
 
 [node name="MainHUD" type="CanvasLayer" unique_id=615724408]
 layer = 50
@@ -125,3 +126,5 @@ offset_left = 75.0
 offset_top = 23.0
 offset_right = 375.0
 offset_bottom = 223.0
+
+[node name="PickupNotificationUI" parent="." unique_id=1620271807 instance=ExtResource("14_v0gnw")]

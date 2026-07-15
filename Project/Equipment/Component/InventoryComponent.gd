@@ -6,6 +6,7 @@ class_name InventoryComponent
 #==============================================================================
 
 signal inventory_changed()
+signal item_added(item: Resource, quantity: int)
 
 #==============================================================================
 # Export Variables
@@ -25,10 +26,15 @@ var _slots: Dictionary = {} # resource_path (String) -> InventorySlot
 # Lifecycle
 #==============================================================================
 
+var _initializing: bool = false
+
 func on_initialize() -> void:
+	_initializing = true
 	for item in starting_items:
 		add_item(item, 1)
+	_initializing = false
 
+	
 #==============================================================================
 # Public API
 #==============================================================================
@@ -48,6 +54,16 @@ func add_item(item: Resource, quantity: int = 1) -> bool:
 		_slots[path] = InventorySlot.new(item, quantity)
 
 	inventory_changed.emit()
+
+	if not _initializing:
+
+		item_added.emit(item, quantity)
+
+		var definition := item as ItemDefinition
+
+		if definition != null:
+			UIEvents.item_picked_up.emit(definition, quantity)
+
 	return true
 
 func remove_item(item: Resource, quantity: int = 1) -> bool:

@@ -32,6 +32,11 @@ signal interaction_list_changed(ordered: Array[Node])
 # implement interact(character)) keep working unchanged.
 @export var default_interact_definition: InteractDefinition
 
+# How long (seconds) the interact button must be held before a gather
+# sweep triggers. Exposed here, not hardcoded in GatherCommand, since
+# Stage 5 wants this settings-menu-tunable later.
+@export var gather_hold_duration: float = 0.4
+
 #==============================================================================
 # Cached Nodes
 #==============================================================================
@@ -154,6 +159,45 @@ func _cycle_selection(delta: int) -> void:
 	if previous != _current_target:
 		interaction_target_changed.emit(previous, _current_target)
 
+#==============================================================================
+# Gather Hold
+#==============================================================================
+
+var _gather_hold_time: float = 0.0
+var _gather_triggered: bool = false
+
+# Called every frame by PlayerController with the current interact_held
+# state. Returns true exactly once — the frame gather_hold_duration is
+# crossed — so the caller submits GatherCommand only that frame, not on
+# every frame the button stays held.
+func update_gather_hold(held: bool, delta: float) -> bool:
+
+	if not held:
+		_gather_hold_time = 0.0
+		_gather_triggered = false
+		return false
+
+	if _gather_triggered:
+		return false
+
+	_gather_hold_time += delta
+
+	if _gather_hold_time >= gather_hold_duration:
+		_gather_triggered = true
+		return true
+
+	return false
+
+
+# 0–1 charge progress, for a future radial/linear fill on the prompt UI
+# (InteractionPromptUI.set_hold_progress(), Stage 2's exposed hook).
+func get_gather_hold_progress() -> float:
+
+	if gather_hold_duration <= 0.0:
+		return 0.0
+
+	return clamp(_gather_hold_time / gather_hold_duration, 0.0, 1.0)
+	
 #==============================================================================
 # Action Pipeline Hooks
 #==============================================================================

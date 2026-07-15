@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://0ydlxi6dh51u"]
+
+[ext_resource type="Script" uid="uid://dcmu0tarp2sh6" path="res://Project/UI/Feedback/PickupNotificationUI.gd" id="1_jsgs0"]
+[ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="1_w27kx"]
+
+[node name="PickupNotificationUI" type="VBoxContainer" unique_id=1620271807]
+custom_minimum_size = Vector2(300, 200)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -100.0
+offset_right = 300.0
+offset_bottom = 100.0
+grow_vertical = 2
+script = ExtResource("1_jsgs0")
+
+[node name="ObtainedItemsText" type="Label" parent="." unique_id=610126808]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_w27kx")
+theme_override_font_sizes/font_size = 24
+text = "Obtained Items"
