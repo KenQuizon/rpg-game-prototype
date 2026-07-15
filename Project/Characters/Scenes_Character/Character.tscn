@@ -35,6 +35,7 @@
 [ext_resource type="Resource" uid="uid://ie0iyf8mlky7" path="res://Project/Characters/Components/Skills/Resources_Skill/Fireball.tres" id="29_fw7kn"]
 [ext_resource type="Resource" uid="uid://d1koenh0fdjml" path="res://Project/Characters/Components/Combat/Resources_CombatWeapons/Item_IronSword.tres" id="30_6bx62"]
 [ext_resource type="Script" uid="uid://b34rjjdl8e42v" path="res://Project/Characters/Components/Navigation/TargetIndicatorComponent.gd" id="30_21rwx"]
+[ext_resource type="Resource" uid="uid://bqhijrol0ngmk" path="res://Project/Equipment/Resources_Equipment/Items/IronHelmet/Item_IronHelmet.tres" id="31_6bx62"]
 [ext_resource type="Script" uid="uid://d052vxq1yotpq" path="res://Project/Equipment/Component/InventoryComponent.gd" id="31_fw7kn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fef4x"]
@@ -138,7 +139,7 @@ metadata/_custom_type_script = "uid://351jp0xp4ysr"
 
 [node name="InventoryComponent" type="Node" parent="Components" unique_id=2005927058]
 script = ExtResource("31_fw7kn")
-starting_items = Array[Resource]([ExtResource("29_credj"), ExtResource("30_6bx62")])
+starting_items = Array[Resource]([ExtResource("29_credj"), ExtResource("30_6bx62"), ExtResource("31_6bx62")])
 metadata/_custom_type_script = "uid://d052vxq1yotpq"
 
 [node name="TargetingComponent" type="Node" parent="Components" unique_id=1372506095]

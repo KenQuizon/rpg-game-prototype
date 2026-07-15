@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemDefinition" format=3 uid="uid://bqhijrol0ngmk"]
+
+[ext_resource type="Resource" uid="uid://tmq8yc2xgmo3" path="res://Project/Equipment/Resources_Equipment/Items/IronHelmet/IronHelmet.tres" id="1_je7sx"]
+[ext_resource type="Script" uid="uid://b6ia87gxo0r2d" path="res://Project/Equipment/Items/ItemDefinition.gd" id="1_on8hs"]
+[ext_resource type="Texture2D" uid="uid://d0xrw2oifuclf" path="res://icon.svg" id="2_fik4s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owni3"]
+atlas = ExtResource("2_fik4s")
+
+[resource]
+script = ExtResource("1_on8hs")
+display_name = "Iron Helmet"
+icon = SubResource("AtlasTexture_owni3")
+description = "eyy"
+equipment_profile = ExtResource("1_je7sx")
+metadata/_custom_type_script = "uid://b6ia87gxo0r2d"
