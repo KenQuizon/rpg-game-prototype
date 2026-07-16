@@ -13,7 +13,10 @@ class_name Character
 @export var off_hand_socket_path: NodePath = NodePath("Model/VisualRoot/Ranger/Rig_Medium/Skeleton3D/Off_Hand/WeaponSocket")
 @export var evade_definition: ActionDefinition
 @export var projectile_spawn_point: Marker3D
+
 @export var attack_range_area: Area3D
+@export var attack_range_indicator: AttackRangeIndicator
+
 # Any Node3D that visually marks this character as targeted — a Sprite3D,
 # a ring decal, whatever you build. Left null on characters that never
 # need to show one. Toggled by TargetIndicatorComponent on whichever
@@ -102,6 +105,8 @@ func get_character_evade_definition() -> ActionDefinition:
 	return evade_definition
 func get_character_attack_range_area() -> Area3D:
 	return attack_range_area
+func get_character_attack_range_indicator() -> AttackRangeIndicator:
+	return attack_range_indicator
 func get_character_target_marker() -> Node3D:
 	return target_marker
 #==============================================================================

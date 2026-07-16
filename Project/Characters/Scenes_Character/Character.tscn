@@ -37,6 +37,7 @@
 [ext_resource type="Script" uid="uid://b34rjjdl8e42v" path="res://Project/Characters/Components/Navigation/TargetIndicatorComponent.gd" id="30_21rwx"]
 [ext_resource type="Resource" uid="uid://bqhijrol0ngmk" path="res://Project/Items/Armor/IronArmorSet/Resources_Equipment/Item_IronHelmet.tres" id="31_6bx62"]
 [ext_resource type="Script" uid="uid://d052vxq1yotpq" path="res://Project/Equipment/Component/InventoryComponent.gd" id="31_fw7kn"]
+[ext_resource type="PackedScene" uid="uid://boy4rufbrtqem" path="res://Project/UI/World/AttackRangeIndicator.tscn" id="38_4wgcd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fef4x"]
 radius = 0.6
@@ -52,12 +53,13 @@ radius = 1.5
 [sub_resource type="SphereShape3D" id="SphereShape3D_21rwx"]
 radius = 12.0
 
-[node name="Character" type="CharacterBody3D" unique_id=1084824515 node_paths=PackedStringArray("projectile_spawn_point", "attack_range_area") groups=["player"]]
+[node name="Character" type="CharacterBody3D" unique_id=1084824515 node_paths=PackedStringArray("projectile_spawn_point", "attack_range_area", "attack_range_indicator") groups=["player"]]
 script = ExtResource("1_xdxam")
 weapon_socket_path = NodePath("Model/VisualRoot/Ranger/Rig_Medium/Skeleton3D/Main_Hand/WeaponSocket")
 evade_definition = ExtResource("2_stqro")
 projectile_spawn_point = NodePath("Model/VisualRoot/ProjectileSpawnPoint")
 attack_range_area = NodePath("AttackRangeArea")
+attack_range_indicator = NodePath("AttackRangeIndicator")
 
 [node name="Components" type="Node3D" parent="." unique_id=1511514424]
 
@@ -197,3 +199,6 @@ debug_color = Color(1, 0, 0.8499999, 0.41960785)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TargetingArea" unique_id=120468448]
 shape = SubResource("SphereShape3D_21rwx")
+
+[node name="AttackRangeIndicator" parent="." unique_id=610034025 instance=ExtResource("38_4wgcd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)

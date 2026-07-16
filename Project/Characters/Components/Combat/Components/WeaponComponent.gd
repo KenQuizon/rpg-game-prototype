@@ -306,3 +306,10 @@ func _sync_attack_range_visual() -> void:
 
 	if sphere != null:
 		sphere.radius = get_attack_range()
+
+	if owner_character.has_method("get_character_attack_range_indicator"):
+
+		var indicator: AttackRangeIndicator = owner_character.get_character_attack_range_indicator()
+
+		if indicator != null:
+			indicator.set_range(get_attack_range())

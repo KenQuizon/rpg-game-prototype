@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://boy4rufbrtqem"]
 
-[ext_resource type="Shader" uid="uid://biq66ttso0g2c" path="res://AttackRange.gdshader" id="1_p0usd"]
+[ext_resource type="Shader" uid="uid://biq66ttso0g2c" path="res://Assets/Shader/AttackRange.gdshader" id="1_p0usd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_84qdf"]
 render_priority = 0
 shader = ExtResource("1_p0usd")
-shader_parameter/outline_color = Color(0.6666667, 1, 1, 1)
+shader_parameter/outline_color = Color(0.6666667, 1, 1, 0.627451)
 shader_parameter/fill_color = Color(0.6666667, 1, 1, 0.078431375)
 shader_parameter/radius = 0.5
-shader_parameter/outline_width = 0.005
-shader_parameter/fade_width = 0.50000002305148
+shader_parameter/outline_width = 0.01
+shader_parameter/fade_width = 0.5
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2nri0"]
 
