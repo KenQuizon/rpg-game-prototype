@@ -70,7 +70,7 @@ shadow_mesh = SubResource("ArrayMesh_q33rc")
 [sub_resource type="BoxShape3D" id="BoxShape3D_g3r0j"]
 size = Vector3(1.6987915, 1.3016357, 1.4423218)
 
-[node name="Chest" type="StaticBody3D" unique_id=1541842573]
+[node name="Chest" type="RigidBody3D" unique_id=1698458610]
 collision_layer = 5
 script = ExtResource("1_4gslm")
 

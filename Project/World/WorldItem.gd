@@ -1,4 +1,4 @@
-extends StaticBody3D
+extends RigidBody3D
 class_name WorldItem
 
 @export var item: Resource

@@ -2,6 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dclj10k8orfxe" path="res://Project/World/WorldItem.gd" id="1_p3idi"]
 
-[node name="WorldItem" type="StaticBody3D" unique_id=377183093]
+[node name="WorldItem" type="RigidBody3D" unique_id=403346558]
 collision_layer = 5
 script = ExtResource("1_p3idi")

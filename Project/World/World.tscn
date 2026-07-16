@@ -84,10 +84,10 @@ mesh = SubResource("BoxMesh_2nri0")
 shape = SubResource("BoxShape3D_2nri0")
 
 [node name="Bow_WorldItem" parent="." unique_id=407772204 instance=ExtResource("15_urojf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.327781, 1.3766854, 9.732576)
+transform = Transform3D(1, 0, 0, 0, 0.9992615, 0.038424913, 0, -0.038424913, 0.9992615, -15.327781, 3.7701674, 11.787994)
 
 [node name="IronHelmet_WorldItem" parent="." unique_id=2127742783 instance=ExtResource("16_v3ot7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.449279, 0.8800883, 9.732576)
+transform = Transform3D(1, 0, 0, 0, 0.9992615, 0.038424913, 0, -0.038424913, 0.9992615, -13.449279, 3.2739372, 11.807076)
 
 [node name="IronSword_WorldItem" parent="." unique_id=1575738579 instance=ExtResource("17_ic4or")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.835857, 0.8800883, 9.732576)
+transform = Transform3D(1, 0, 0, 0, 0.9992615, 0.038424913, 0, -0.038424913, 0.9992615, -11.835857, 3.2739372, 11.807076)
