@@ -7,6 +7,7 @@ class_name WorldItem
 func _ready() -> void:
 	add_to_group("interactable")
 
+
 func interact(interactor: Node) -> void:
 
 	if item == null:

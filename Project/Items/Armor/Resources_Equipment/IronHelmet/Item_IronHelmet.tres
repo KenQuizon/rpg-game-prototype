@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemDefinition" format=3 uid="uid://bqhijrol0ngmk"]
+
+[ext_resource type="Texture2D" uid="uid://dbbbr5glefar" path="res://Assets/BHLegacy/BHLegacy_Armor_Icons.png" id="1_o2in7"]
+[ext_resource type="Resource" uid="uid://cl7fkf1l7bmcg" path="res://Project/Items/Armor/Resources_Equipment/IronHelmet/IronHelmet_ArmorPayload.tres" id="2_autw1"]
+[ext_resource type="Script" uid="uid://b6ia87gxo0r2d" path="res://Project/Equipment/Items/ItemDefinition.gd" id="3_wb81m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owni3"]
+atlas = ExtResource("1_o2in7")
+region = Rect2(0, 384, 128, 128)
+
+[resource]
+script = ExtResource("3_wb81m")
+category = 1
+payload = ExtResource("2_autw1")
+icon = SubResource("AtlasTexture_owni3")
+display_name = "Iron Helmet"
+description = "A helmet made up of iron."
+value = 50
+weight = 4.0
+metadata/_custom_type_script = "uid://b6ia87gxo0r2d"

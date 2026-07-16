@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://qpepkjukhlvt" path="res://Project/Action/Data/ActionPolicy.gd" id="1_d7twr"]
 [ext_resource type="Script" uid="uid://bbp1veisyovtv" path="res://Project/Characters/Components/Combat/Data/AttackDefinition.gd" id="2_c2dtj"]
 [ext_resource type="Script" uid="uid://bnnbymum325ix" path="res://Project/Gameplay/Combat/Data/AttackData.gd" id="2_ltqfj"]
-[ext_resource type="PackedScene" uid="uid://5telnvpq3e8e" path="res://Project/Gameplay/Projectiles/Arrow.tscn" id="4_3rlgl"]
+[ext_resource type="PackedScene" uid="uid://5telnvpq3e8e" path="res://Project/Items/Weapon/Projectiles/Arrow.tscn" id="4_3rlgl"]
 [ext_resource type="Script" uid="uid://bm7k5aqdcgye3" path="res://Project/Characters/Components/Combat/Data/AttackTiming.gd" id="6_idmoj"]
 
 [sub_resource type="Resource" id="Resource_ll6cg"]

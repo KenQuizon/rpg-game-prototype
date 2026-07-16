@@ -2,7 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://b5juxp1qgyata" path="res://Assets/KayKit/sprites/bow.png" id="1_2i4e0"]
 [ext_resource type="Script" uid="uid://b6ia87gxo0r2d" path="res://Project/Equipment/Items/ItemDefinition.gd" id="1_ioiur"]
-[ext_resource type="Resource" uid="uid://cac1ei7qt80pd" path="res://Project/Characters/Components/Combat/Resources_CombatWeapons/Bow_WeaponPayload.tres" id="2_hhgwb"]
+[ext_resource type="Resource" uid="uid://cac1ei7qt80pd" path="res://Project/Items/Weapon/Resource_Weapons/Bow_WeaponPayload.tres" id="2_hhgwb"]
+[ext_resource type="PackedScene" uid="uid://duluvxv0iivpa" path="res://Project/Items/Weapon/Scenes/Bow.tscn" id="4_hhgwb"]
 
 [resource]
 script = ExtResource("1_ioiur")
@@ -13,4 +14,5 @@ display_name = "Wooden Bow"
 description = "A simple recurve bow."
 value = 50
 weight = 4.0
+world_visual_scene = ExtResource("4_hhgwb")
 metadata/_custom_type_script = "uid://b6ia87gxo0r2d"

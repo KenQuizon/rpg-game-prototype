@@ -1,20 +1,38 @@
 [gd_scene format=3 uid="uid://dxwrgeun5mjrf"]
 
 [ext_resource type="Script" uid="uid://cqeetwagp6brw" path="res://Project/World/InteractionRowUI.gd" id="1_pqfce"]
+[ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="2_u4mqb"]
 
 [node name="InteractionRowUI" type="PanelContainer" unique_id=1215357393]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(300, 48)
+offset_right = 74.0
+offset_bottom = 23.0
 script = ExtResource("1_pqfce")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=847259947]
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="HBoxContainer" unique_id=510649609]
+[node name="InteractButton" type="Control" parent="HBoxContainer" unique_id=626507755]
+custom_minimum_size = Vector2(24, 32)
 layout_mode = 2
+
+[node name="Glyph" type="Label" parent="HBoxContainer/InteractButton" unique_id=1597330268]
+layout_mode = 1
+offset_right = 32.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("2_u4mqb")
+theme_override_font_sizes/font_size = 24
+text = "F"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer" unique_id=131335632]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="NameLabel" type="Label" parent="HBoxContainer" unique_id=1516875238]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_u4mqb")
+text = "Item"

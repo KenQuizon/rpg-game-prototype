@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="InteractDefinition" format=3 uid="uid://chqeq6rwlh2a1"]
+
+[ext_resource type="Script" uid="uid://drl03lu8abci7" path="res://Project/Characters/Components/Interaction/InteractAction.gd" id="1_oe8wl"]
+[ext_resource type="Script" uid="uid://c3sm1vjlkeud5" path="res://Project/Characters/Components/Interaction/InteractDefinition.gd" id="1_ygya0"]
+[ext_resource type="Script" uid="uid://qpepkjukhlvt" path="res://Project/Action/Data/ActionPolicy.gd" id="2_oe8wl"]
+
+[resource]
+script = ExtResource("1_ygya0")
+interact_animation = &"Movement/Interact"
+id = &"interact_default"
+action_script = ExtResource("1_oe8wl")
+locks = 32
+metadata/_custom_type_script = "uid://c3sm1vjlkeud5"

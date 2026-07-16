@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="WeaponPayload" format=3 uid="uid://cac1ei7qt80pd"]
 
 [ext_resource type="Script" uid="uid://ckhklqp28jff0" path="res://Project/Equipment/Items/Payloads/WeaponPayload.gd" id="1_lhvwa"]
-[ext_resource type="Resource" uid="uid://b6n41grno8hnr" path="res://Project/Gameplay/Combat/Resources_CombatAttack/Attack_ChargedArrowShot.tres" id="1_wo6wu"]
+[ext_resource type="Resource" uid="uid://b6n41grno8hnr" path="res://Project/Items/Weapon/Resource_Attacks/Attack_ChargedArrowShot.tres" id="1_wo6wu"]
 [ext_resource type="Script" uid="uid://bbp1veisyovtv" path="res://Project/Characters/Components/Combat/Data/AttackDefinition.gd" id="2_5mol4"]
-[ext_resource type="Resource" uid="uid://b6jpt7k38aws4" path="res://Project/Gameplay/Combat/Resources_CombatAttack/Attack_ArrowShot.tres" id="3_hcxi2"]
+[ext_resource type="Resource" uid="uid://b6jpt7k38aws4" path="res://Project/Items/Weapon/Resource_Attacks/Attack_ArrowShot.tres" id="3_hcxi2"]
 [ext_resource type="Script" uid="uid://rgnyd2ru1lwi" path="res://Project/Characters/Components/Combat/Data/AttackSet.gd" id="4_ykndp"]
-[ext_resource type="PackedScene" uid="uid://duluvxv0iivpa" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/Bow.tscn" id="6_6tsch"]
+[ext_resource type="PackedScene" uid="uid://duluvxv0iivpa" path="res://Project/Items/Weapon/Scenes/Bow.tscn" id="6_6tsch"]
 
 [sub_resource type="Resource" id="Resource_vcw70"]
 script = ExtResource("4_ykndp")

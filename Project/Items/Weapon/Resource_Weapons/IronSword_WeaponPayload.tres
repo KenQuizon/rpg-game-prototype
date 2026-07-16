@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://ckhklqp28jff0" path="res://Project/Equipment/Items/Payloads/WeaponPayload.gd" id="1_di77a"]
 [ext_resource type="Script" uid="uid://bbp1veisyovtv" path="res://Project/Characters/Components/Combat/Data/AttackDefinition.gd" id="1_kvdv1"]
-[ext_resource type="Resource" uid="uid://bry7hkbj0eqh1" path="res://Project/Gameplay/Combat/Resources_CombatAttack/Attack_SwordSlash1.tres" id="2_gh1cp"]
-[ext_resource type="Resource" uid="uid://dvn2cwpuy7sbk" path="res://Project/Gameplay/Combat/Resources_CombatAttack/Attack_SwordSlash2.tres" id="3_qsww8"]
-[ext_resource type="Resource" uid="uid://bkgg3m2uc0ujv" path="res://Project/Gameplay/Combat/Resources_CombatAttack/Attack_SwordSlash3.tres" id="4_a3hb5"]
+[ext_resource type="Resource" uid="uid://bry7hkbj0eqh1" path="res://Project/Items/Weapon/Resource_Attacks/Attack_SwordSlash1.tres" id="2_gh1cp"]
+[ext_resource type="Resource" uid="uid://dvn2cwpuy7sbk" path="res://Project/Items/Weapon/Resource_Attacks/Attack_SwordSlash2.tres" id="3_qsww8"]
+[ext_resource type="Resource" uid="uid://bkgg3m2uc0ujv" path="res://Project/Items/Weapon/Resource_Attacks/Attack_SwordSlash3.tres" id="4_a3hb5"]
 [ext_resource type="Script" uid="uid://rgnyd2ru1lwi" path="res://Project/Characters/Components/Combat/Data/AttackSet.gd" id="5_xpwxd"]
-[ext_resource type="PackedScene" uid="uid://xpv4mvoflt6i" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/IronSword.tscn" id="7_yos5o"]
+[ext_resource type="PackedScene" uid="uid://xpv4mvoflt6i" path="res://Project/Items/Weapon/Scenes/IronSword.tscn" id="7_yos5o"]
 
 [sub_resource type="Resource" id="Resource_10w3i"]
 script = ExtResource("5_xpwxd")

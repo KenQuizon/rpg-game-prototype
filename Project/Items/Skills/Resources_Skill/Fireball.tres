@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cm1am7hfwgfix" path="res://Project/Characters/Components/Cooldown/CooldownPolicy.gd" id="3_d1wip"]
 [ext_resource type="Script" uid="uid://c11wq0edaq4gi" path="res://Project/Characters/Components/Resources/ResourceCostPolicy.gd" id="4_0wpfb"]
 [ext_resource type="Script" uid="uid://dtb7oc0r6dx1g" path="res://Project/Characters/Components/Skills/SkillDefinition.gd" id="5_bqmdh"]
-[ext_resource type="PackedScene" uid="uid://20ma6ismfmj1" path="res://Project/Gameplay/Projectiles/Fireball.tscn" id="6_tmqr3"]
+[ext_resource type="PackedScene" uid="uid://20ma6ismfmj1" path="res://Project/Items/Weapon/Projectiles/Fireball.tscn" id="6_tmqr3"]
 
 [sub_resource type="Resource" id="Resource_qmh2x"]
 script = ExtResource("2_d1wip")

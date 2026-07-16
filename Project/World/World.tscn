@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://hlouhdxxrmv3" path="res://Project/World/World.gd" id="1_il6x7"]
 [ext_resource type="PackedScene" uid="uid://djkodwunqlpaw" path="res://Project/Characters/Scenes_Character/Character.tscn" id="2_o14yy"]
 [ext_resource type="PackedScene" uid="uid://c77s1tth17cnh" path="res://Project/Camera/CameraRig.tscn" id="3_04mge"]
+[ext_resource type="Script" uid="uid://b6ia87gxo0r2d" path="res://Project/Equipment/Items/ItemDefinition.gd" id="3_urojf"]
 [ext_resource type="PackedScene" uid="uid://cdff7qoxrslkx" path="res://Project/World/Chest.tscn" id="4_eue43"]
 [ext_resource type="PackedScene" uid="uid://d4bcsx26ymp38" path="res://Project/Characters/Scenes_Character/Enemy.tscn" id="5_o14yy"]
 [ext_resource type="PackedScene" uid="uid://cs7yoatek8jnu" path="res://Project/Characters/Scenes_Character/SkeletonArcher.tscn" id="7_2ua4a"]
@@ -10,10 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://cxa5bhd30h8bh" path="res://Project/UI/HUD/MainHUD.tscn" id="9_yhhn6"]
 [ext_resource type="Script" uid="uid://dnaq051yd1kdj" path="res://Project/UI/Inventory/ItemUsageSystem.gd" id="10_gwcue"]
 [ext_resource type="Texture2D" uid="uid://rmmnjmhe0s77" path="res://Assets/KayKit/textures/skeleton_texture.png" id="10_jghqt"]
-[ext_resource type="PackedScene" uid="uid://xpv4mvoflt6i" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/IronSword.tscn" id="11_lg08s"]
-[ext_resource type="PackedScene" uid="uid://clrgffw5yf0cf" path="res://Project/Equipment/Resources_Equipment/Items/IronHelmet/IronHelmet.tscn" id="12_6myyt"]
-[ext_resource type="PackedScene" uid="uid://duluvxv0iivpa" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/Bow.tscn" id="13_34ujs"]
-[ext_resource type="PackedScene" uid="uid://c5myfuo0yl1i8" path="res://Project/World/WorldItem.tscn" id="14_6myyt"]
+[ext_resource type="Resource" uid="uid://d1koenh0fdjml" path="res://Project/Items/Weapon/Resource_Weapons/Item_IronSword.tres" id="15_b561u"]
+[ext_resource type="PackedScene" uid="uid://bt8b6hqo6pjeb" path="res://Project/Items/Weapon/Scenes/Bow_WorldItem.tscn" id="15_urojf"]
+[ext_resource type="Resource" uid="uid://v0t4uchrgf18" path="res://Project/Items/Weapon/Resource_Weapons/Item_Bow.tres" id="16_urojf"]
+[ext_resource type="PackedScene" uid="uid://clrgffw5yf0cf" path="res://Project/Items/Armor/Resources_Equipment/IronHelmet/IronHelmet_WorldItem.tscn" id="16_v3ot7"]
+[ext_resource type="PackedScene" uid="uid://b0x4csls0eblo" path="res://Project/Items/Weapon/Scenes/IronSword_WorldItem.tscn" id="17_ic4or"]
+[ext_resource type="Resource" uid="uid://bqhijrol0ngmk" path="res://Project/Items/Armor/Resources_Equipment/IronHelmet/Item_IronHelmet.tres" id="17_v3ot7"]
 
 [sub_resource type="Environment" id="Environment_tw2g7"]
 
@@ -46,7 +49,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014487505, -4.7683716e-07, 
 navigation_mesh = SubResource("NavigationMesh_g3r0j")
 
 [node name="Chest" parent="NavigationRegion3D" unique_id=1541842573 instance=ExtResource("4_eue43")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.412642, 0.24353147, 7.7174945)
+loot = Array[ExtResource("3_urojf")]([ExtResource("17_v3ot7"), ExtResource("15_b561u"), ExtResource("15_b561u"), ExtResource("16_urojf")])
 
 [node name="Enemy" parent="." unique_id=1692040955 instance=ExtResource("5_o14yy")]
 transform = Transform3D(0.99961436, -0.027769044, 0, 0.027769044, 0.99961436, 0, 0, 0, 1, 5.687243, 0, -7.1346583)
@@ -79,24 +83,11 @@ mesh = SubResource("BoxMesh_2nri0")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=2081875558]
 shape = SubResource("BoxShape3D_2nri0")
 
-[node name="IronSword" parent="." unique_id=1934521417 instance=ExtResource("11_lg08s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5355134, 15)
+[node name="Bow_WorldItem" parent="." unique_id=407772204 instance=ExtResource("15_urojf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.327781, 1.3766854, 9.732576)
 
-[node name="IronHelmet" parent="." unique_id=640539730 instance=ExtResource("12_6myyt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5355134, 15)
+[node name="IronHelmet_WorldItem" parent="." unique_id=2127742783 instance=ExtResource("16_v3ot7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.449279, 0.8800883, 9.732576)
 
-[node name="Bow" parent="." unique_id=1363536088 instance=ExtResource("13_34ujs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.5355134, 15)
-
-[node name="WorldItem_IS" parent="." unique_id=377183093 instance=ExtResource("14_6myyt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1, 8.186621)
-item = ExtResource("11_lg08s")
-
-[node name="WorldItem_B" parent="." unique_id=1300921206 instance=ExtResource("14_6myyt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.032272, 1, 8.186621)
-item = ExtResource("13_34ujs")
-
-[node name="WorldItem_IH" parent="." unique_id=910574007 instance=ExtResource("14_6myyt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.491166, 1, 10.092584)
-item = ExtResource("12_6myyt")
-quantity = 3
+[node name="IronSword_WorldItem" parent="." unique_id=1575738579 instance=ExtResource("17_ic4or")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.835857, 0.8800883, 9.732576)

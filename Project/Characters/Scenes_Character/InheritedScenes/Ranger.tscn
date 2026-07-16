@@ -7,7 +7,7 @@
 [ext_resource type="Animation" uid="uid://dalhokfii67jc" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Jump_Chop.res" id="3_r3jr0"]
 [ext_resource type="Animation" uid="uid://h72ekkq1m1if" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Slice_Diagonal.res" id="4_tgmbb"]
 [ext_resource type="Animation" uid="uid://4ll5vfangkr0" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Slice_Horizontal.res" id="5_h62n6"]
-[ext_resource type="PackedScene" uid="uid://xpv4mvoflt6i" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/IronSword.tscn" id="5_u74fk"]
+[ext_resource type="PackedScene" uid="uid://xpv4mvoflt6i" path="res://Project/Items/Weapon/Scenes/IronSword.tscn" id="5_u74fk"]
 [ext_resource type="Animation" uid="uid://dabacevmai657" path="res://Assets/KayKit/characters/animations/combat/Melee_1H_Attack_Stab.res" id="6_i0t6l"]
 [ext_resource type="Animation" uid="uid://yi0s5lw0mr8w" path="res://Assets/KayKit/characters/animations/combat/Melee_2H_Attack_Chop.res" id="7_bsa5g"]
 [ext_resource type="Animation" uid="uid://du584glkly2cp" path="res://Assets/KayKit/characters/animations/combat/Melee_2H_Attack_Slice.res" id="8_kmfhw"]

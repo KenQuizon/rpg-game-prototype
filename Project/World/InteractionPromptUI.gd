@@ -3,8 +3,6 @@ class_name InteractionPromptUI
 
 const ROW_SCENE: PackedScene = preload("res://Project/World/InteractionRowUI.tscn")
 
-@onready var key_glyph_label: Label = $Root/Header/KeyGlyph
-@onready var action_label: Label = $Root/Header/ActionLabel
 @onready var row_list: VBoxContainer = $Root/RowList
 
 # Node (interactable) -> InteractionRowUI
@@ -71,9 +69,5 @@ func _update_selection(selected: Node) -> void:
 	for target: Node in _rows.keys():
 
 		var row: InteractionRowUI = _rows[target] as InteractionRowUI
-		var is_selected: bool = target == selected
 
-		row.set_selected(is_selected)
-
-		if is_selected:
-			action_label.text = _interaction.get_interactable_info(target).label
+		row.set_selected(target == selected)

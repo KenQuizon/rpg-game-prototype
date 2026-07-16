@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemDefinition" format=3 uid="uid://d1koenh0fdjml"]
+
+[ext_resource type="Texture2D" uid="uid://buj6v0ml7g8w3" path="res://Assets/KayKit/sprites/sword_1handed.png" id="1_vc7qr"]
+[ext_resource type="Resource" uid="uid://bnymf0k2hkk8u" path="res://Project/Items/Weapon/Resource_Weapons/IronSword_WeaponPayload.tres" id="2_vlkgj"]
+[ext_resource type="Script" uid="uid://b6ia87gxo0r2d" path="res://Project/Equipment/Items/ItemDefinition.gd" id="3_pn4ok"]
+
+[resource]
+script = ExtResource("3_pn4ok")
+category = 0
+payload = ExtResource("2_vlkgj")
+icon = ExtResource("1_vc7qr")
+display_name = "Iron Sword"
+description = "A sturdy iron blade."
+value = 50
+weight = 4.0
+metadata/_custom_type_script = "uid://b6ia87gxo0r2d"

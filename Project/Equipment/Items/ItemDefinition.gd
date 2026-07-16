@@ -20,6 +20,7 @@ class_name ItemDefinition
 @export_group("Interaction")
 @export var is_gatherable: bool = true
 
+
 #==============================================================================
 # Stacking
 #==============================================================================

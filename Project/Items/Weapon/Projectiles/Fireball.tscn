@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://20ma6ismfmj1"]
 
-[ext_resource type="Script" uid="uid://korydahe87g6" path="res://Project/Gameplay/Projectiles/Projectile.gd" id="1_h4hwd"]
-[ext_resource type="PackedScene" uid="uid://2r00002qw2u" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/HitboxComponent.tscn" id="2_10tba"]
+[ext_resource type="Script" uid="uid://korydahe87g6" path="res://Project/Gameplay/Projectile/Projectile.gd" id="1_h4hwd"]
+[ext_resource type="PackedScene" uid="uid://2r00002qw2u" path="res://Project/Items/Weapon/Scenes/HitboxComponent.tscn" id="2_10tba"]
 [ext_resource type="ArrayMesh" uid="uid://s1ls04vhgqbf" path="res://Assets/BlenderMesh/Fireball_Head.obj" id="3_10tba"]
 [ext_resource type="Shader" uid="uid://vohge8kjxmcf" path="res://Assets/Shader/Fireball_Shader.tres" id="4_y0odc"]
 [ext_resource type="Material" uid="uid://doct6csl7r3br" path="res://Assets/Shader/FireTrail1_Material.tres" id="5_3ogrj"]

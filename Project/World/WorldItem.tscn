@@ -2,16 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dclj10k8orfxe" path="res://Project/World/WorldItem.gd" id="1_p3idi"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_g3r0j"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2nri0"]
-
 [node name="WorldItem" type="StaticBody3D" unique_id=377183093]
 collision_layer = 5
 script = ExtResource("1_p3idi")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=67225795]
-mesh = SubResource("BoxMesh_g3r0j")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2118641355]
-shape = SubResource("BoxShape3D_2nri0")

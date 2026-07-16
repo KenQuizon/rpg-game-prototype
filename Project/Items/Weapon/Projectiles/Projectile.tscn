@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cwyhvfblurr7q"]
 
-[ext_resource type="Script" uid="uid://korydahe87g6" path="res://Project/Gameplay/Projectiles/Projectile.gd" id="1_vhbf7"]
-[ext_resource type="PackedScene" uid="uid://2r00002qw2u" path="res://Project/Characters/Components/Combat/Scenes_CombatWeapons/HitboxComponent.tscn" id="2_unbte"]
+[ext_resource type="Script" uid="uid://korydahe87g6" path="res://Project/Gameplay/Projectile/Projectile.gd" id="1_vhbf7"]
+[ext_resource type="PackedScene" uid="uid://2r00002qw2u" path="res://Project/Items/Weapon/Scenes/HitboxComponent.tscn" id="2_unbte"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_2nri0"]
 

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ArmorPayload" format=3 uid="uid://cl7fkf1l7bmcg"]
+
+[ext_resource type="Script" uid="uid://de2nbdksflapg" path="res://Project/Equipment/Items/Payloads/ArmorPayload.gd" id="1_tqnbx"]
+[ext_resource type="Script" uid="uid://b2cnklllsutok" path="res://Project/Characters/Components/Stats/StatModifierEntry.gd" id="2_1g7un"]
+[ext_resource type="PackedScene" uid="uid://dj37ilenx4yrk" path="res://Project/Items/Armor/Resources_Equipment/IronHelmet/IronHelmet.tscn" id="3_7aurj"]
+
+[sub_resource type="Resource" id="Resource_mbpby"]
+script = ExtResource("2_1g7un")
+stat = 8
+value = 5.0
+metadata/_custom_type_script = "uid://b2cnklllsutok"
+
+[resource]
+script = ExtResource("1_tqnbx")
+stat_modifiers = Array[ExtResource("2_1g7un")]([SubResource("Resource_mbpby")])
+visual_scene = ExtResource("3_7aurj")
+metadata/_custom_type_script = "uid://de2nbdksflapg"

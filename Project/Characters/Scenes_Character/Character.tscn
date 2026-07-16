@@ -15,6 +15,7 @@
 [ext_resource type="Resource" uid="uid://bni4713l6eyw5" path="res://Project/Characters/Components/Health/Resources_Health/PlayerHealth.tres" id="8_41xvy"]
 [ext_resource type="Script" uid="uid://cu6oyn8ecb07t" path="res://Project/Characters/Components/Stats/StatsComponent.gd" id="8_og5vo"]
 [ext_resource type="Script" uid="uid://x3ox78n14rii" path="res://Project/Characters/Components/Action/ActionComponent.gd" id="10_4wbua"]
+[ext_resource type="Resource" uid="uid://chqeq6rwlh2a1" path="res://Project/Characters/Components/Interaction/Scenes_Interaction/Default_InteractDefinition.tres" id="11_6bx62"]
 [ext_resource type="Script" uid="uid://cs3373l874ea1" path="res://Project/Characters/Components/Combat/Components/CombatComponent.gd" id="11_cj3vo"]
 [ext_resource type="Script" uid="uid://c714tlwbn8rdv" path="res://Project/Characters/Components/Combat/Components/HurtboxComponent.gd" id="12_5otae"]
 [ext_resource type="Script" uid="uid://ccm8lflo77amt" path="res://Project/Characters/Components/Combat/Components/WeaponComponent.gd" id="13_m1gpw"]
@@ -29,12 +30,12 @@
 [ext_resource type="Script" uid="uid://b2p2nf7kd6wrt" path="res://Project/Equipment/Component/EquipmentComponent.gd" id="26_s77ed"]
 [ext_resource type="Script" uid="uid://351jp0xp4ysr" path="res://Project/Characters/Components/Skills/SkillComponent.gd" id="27_8oa8c"]
 [ext_resource type="Script" uid="uid://dtb7oc0r6dx1g" path="res://Project/Characters/Components/Skills/SkillDefinition.gd" id="28_stqro"]
-[ext_resource type="Resource" uid="uid://v0t4uchrgf18" path="res://Project/Characters/Components/Combat/Resources_CombatWeapons/Item_Bow.tres" id="29_credj"]
+[ext_resource type="Resource" uid="uid://v0t4uchrgf18" path="res://Project/Items/Weapon/Resource_Weapons/Item_Bow.tres" id="29_credj"]
 [ext_resource type="Script" uid="uid://ojuacks7rywl" path="res://Project/Characters/Components/Navigation/TargetingComponent.gd" id="29_d0wnp"]
-[ext_resource type="Resource" uid="uid://ie0iyf8mlky7" path="res://Project/Characters/Components/Skills/Resources_Skill/Fireball.tres" id="29_fw7kn"]
-[ext_resource type="Resource" uid="uid://d1koenh0fdjml" path="res://Project/Characters/Components/Combat/Resources_CombatWeapons/Item_IronSword.tres" id="30_6bx62"]
+[ext_resource type="Resource" uid="uid://ie0iyf8mlky7" path="res://Project/Items/Skills/Resources_Skill/Fireball.tres" id="29_fw7kn"]
+[ext_resource type="Resource" uid="uid://d1koenh0fdjml" path="res://Project/Items/Weapon/Resource_Weapons/Item_IronSword.tres" id="30_6bx62"]
 [ext_resource type="Script" uid="uid://b34rjjdl8e42v" path="res://Project/Characters/Components/Navigation/TargetIndicatorComponent.gd" id="30_21rwx"]
-[ext_resource type="Resource" uid="uid://bqhijrol0ngmk" path="res://Project/Equipment/Resources_Equipment/Items/IronHelmet/Item_IronHelmet.tres" id="31_6bx62"]
+[ext_resource type="Resource" uid="uid://bqhijrol0ngmk" path="res://Project/Items/Armor/Resources_Equipment/IronHelmet/Item_IronHelmet.tres" id="31_6bx62"]
 [ext_resource type="Script" uid="uid://d052vxq1yotpq" path="res://Project/Equipment/Component/InventoryComponent.gd" id="31_fw7kn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fef4x"]
@@ -81,6 +82,7 @@ metadata/_custom_type_script = "uid://c0mhx0gyehvm3"
 
 [node name="InteractionComponent" type="Node" parent="Components" unique_id=951766864]
 script = ExtResource("5_mp4tf")
+default_interact_definition = ExtResource("11_6bx62")
 metadata/_custom_type_script = "uid://fymtemcyytr3"
 
 [node name="ActionComponent" type="Node" parent="Components" unique_id=1849275258]
