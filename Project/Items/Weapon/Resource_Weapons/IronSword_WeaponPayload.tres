@@ -16,6 +16,7 @@ metadata/_custom_type_script = "uid://rgnyd2ru1lwi"
 [resource]
 script = ExtResource("1_di77a")
 weapon_type = 1
+attack_range = 2.0
 weapon_scene = ExtResource("7_yos5o")
 attack_set = SubResource("Resource_10w3i")
 metadata/_custom_type_script = "uid://ckhklqp28jff0"

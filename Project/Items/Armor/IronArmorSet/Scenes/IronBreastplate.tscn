@@ -188,7 +188,7 @@ mesh = ExtResource("3_6mqge")
 skin = SubResource("Skin_8j2x7")
 skeleton = NodePath("..")
 
-[node name="Cape" type="MeshInstance3D" parent="Knight_Body" unique_id=157020848]
+[node name="Cape" type="MeshInstance3D" parent="Knight_Body" unique_id=1216956822]
 mesh = SubResource("ArrayMesh_6mqge")
 skin = SubResource("Skin_q8fde")
 skeleton = NodePath("../..")

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://de2nbdksflapg" path="res://Project/Equipment/Items/Payloads/ArmorPayload.gd" id="1_e77qj"]
 [ext_resource type="Script" uid="uid://ctrvesy1ddfga" path="res://Project/Equipment/Items/Payloads/BodyPartMeshMapping.gd" id="1_hmxqx"]
+[ext_resource type="Script" uid="uid://ba0vplr0s2u5t" path="res://Project/Equipment/Items/Payloads/MaterialOverride.gd" id="2_nnfyb"]
 [ext_resource type="Script" uid="uid://b2cnklllsutok" path="res://Project/Characters/Components/Stats/StatModifierEntry.gd" id="2_va0ne"]
 [ext_resource type="PackedScene" uid="uid://dxd5hd0sebwdc" path="res://Project/Items/Armor/IronArmorSet/Scenes/IronBreastplate.tscn" id="3_va0ne"]
 

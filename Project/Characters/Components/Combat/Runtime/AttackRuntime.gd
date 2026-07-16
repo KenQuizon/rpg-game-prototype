@@ -7,6 +7,12 @@ class_name AttackRuntime
 
 var _weapon: WeaponComponent
 
+# The weapon instance combo_index was last read against. Compared each
+# call so a mid-combo weapon switch (Stage 1's range-based selection)
+# resets the combo instead of misapplying its index/count against a
+# different weapon's attack set.
+var _last_instance: WeaponInstance
+
 #==============================================================================
 # Initialization
 #==============================================================================
@@ -31,6 +37,12 @@ func select_next_attack() -> AttackDefinition:
 
 	if combo == null or set == null:
 		return null
+
+	var instance := _weapon.current_instance
+
+	if instance != _last_instance:
+		combo.reset_combo()
+		_last_instance = instance
 
 	# Pure read — no longer advances anything. Safe to call as many times
 	# as validation needs to; it always returns the same attack until
@@ -70,3 +82,5 @@ func reset_combo() -> void:
 
 	if _weapon.context.combo:
 		_weapon.context.combo.reset_combo()
+
+	_last_instance = null

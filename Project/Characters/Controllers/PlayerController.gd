@@ -6,6 +6,10 @@ class_name PlayerController
 #==============================================================================
 
 var _attack_move_target: Node3D = null
+@export var attack_charge_threshold: float = 0.25
+
+var _attack_hold_time: float = 0.0
+var _attack_charging: bool = false
 
 # Same standing-order shape as _attack_move_target, but for skills — see
 # _try_skill_move(). _pending_skill_id travels alongside the target since,
@@ -32,8 +36,7 @@ func physics_update(delta: float) -> void:
 		"move_down"
 	)
 
-	context.input.attack_pressed = Input.is_action_just_pressed("attack")
-	context.input.attack_held = Input.is_action_pressed("attack")
+	_update_attack_input(delta)
 	
 	context.input.interact_pressed = Input.is_action_just_pressed("interact")
 	context.input.interact_held = Input.is_action_pressed("interact")
@@ -44,9 +47,6 @@ func physics_update(delta: float) -> void:
 	context.input.skill_1_pressed = Input.is_action_just_pressed("skill_1")
 	
 	context.combat.set_blocking(Input.is_action_pressed("block") and not context.is_locked(ActionLock.Id.ATTACK))
-	
-	context.input.charged_attack_pressed = Input.is_action_just_pressed("charged_attack")
-	context.input.charged_attack_held = Input.is_action_pressed("charged_attack")
 	
 	context.input.aim_mode = context.input.charged_attack_held
 	context.input.aim_world_position = _get_mouse_world_position()
@@ -308,3 +308,55 @@ func _get_mouse_world_position() -> Vector3:
 		return hit
 
 	return character.global_position
+
+# Single left-click drives both basic and charged attacks. A quick
+# tap fires the basic attack on release; holding past
+# attack_charge_threshold begins a charged attack instead. The whole
+# hold/charge path is skipped entirely when the active weapon has no
+# heavy attack to charge (e.g. sword-only) — so melee attacks stay
+# instant with zero added delay, and never enter aim-lock (see
+# MovementComponent's aim_mode check, fixed properly in Stage 2).
+func _update_attack_input(delta: float) -> void:
+
+	var pressed := Input.is_action_just_pressed("attack")
+	var held := Input.is_action_pressed("attack")
+	var released := Input.is_action_just_released("attack")
+
+	context.input.attack_pressed = false
+	context.input.charged_attack_pressed = false
+	context.input.charged_attack_held = false
+
+	var attack_set := context.weapon.get_attack_set() if context.weapon else null
+	var can_charge := attack_set != null and attack_set.has_heavy_attack()
+
+	if not can_charge:
+		context.input.attack_pressed = pressed
+		context.input.attack_held = held
+		_attack_hold_time = 0.0
+		_attack_charging = false
+		return
+
+	if pressed:
+		_attack_hold_time = 0.0
+		_attack_charging = false
+
+	if held:
+
+		_attack_hold_time += delta
+
+		if not _attack_charging and _attack_hold_time >= attack_charge_threshold:
+			_attack_charging = true
+			context.input.charged_attack_pressed = true
+
+	if _attack_charging:
+		context.input.charged_attack_held = true
+
+	if released:
+
+		if not _attack_charging:
+			context.input.attack_pressed = true
+
+		_attack_charging = false
+		_attack_hold_time = 0.0
+
+	context.input.attack_held = held

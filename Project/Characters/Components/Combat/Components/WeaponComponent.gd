@@ -44,14 +44,79 @@ var current_item: ItemDefinition:
 		var instance := _active_instance()
 		return instance.item if instance != null else null
 
+func physics_update(_delta: float) -> void:
+	_sync_attack_range_visual()
+	
 func has_weapon() -> bool:
 	return _active_instance() != null
 
 func _active_instance() -> WeaponInstance:
+
+	if _main_instance != null and _off_instance != null:
+		return _select_instance_by_range()
+
 	if _main_instance != null:
 		return _main_instance
+
 	return _off_instance
 
+# Only called when both hands are equipped (see _active_instance()).
+# "Ranged" and "melee" here are determined purely by attack_range, not
+# by which hand slot an item happens to be equipped in — so a future
+# staff automatically behaves like the bow does today without needing
+# to be equipped as main hand specifically. The ranged weapon is the
+# default/ready weapon; melee only takes over once a target is close
+# enough to actually reach with it.
+func _select_instance_by_range() -> WeaponInstance:
+
+	var ranged := _ranged_instance()
+	var melee := _melee_instance()
+
+	var target: Node = context.targeting.current_target if context.targeting else null
+
+	if target == null or not is_instance_valid(target):
+		return ranged
+
+	var target_3d := target as Node3D
+	var character_3d := owner_character as Node3D
+
+	if target_3d == null or character_3d == null:
+		return ranged
+
+	var distance := character_3d.global_position.distance_to(target_3d.global_position)
+
+	var melee_range := _range_for(melee)
+	var ranged_range := _range_for(ranged)
+
+	if distance <= melee_range:
+		return melee
+
+	if distance <= ranged_range:
+		return ranged
+
+	return ranged
+
+
+# Whichever equipped weapon has the larger attack_range. Ties (e.g. a
+# future sword+sword loadout) favor main-hand — an arbitrary but stable
+# tiebreak, not meaningful until dual-melee is actually built.
+func _ranged_instance() -> WeaponInstance:
+	return _main_instance if _range_for(_main_instance) >= _range_for(_off_instance) else _off_instance
+
+
+func _melee_instance() -> WeaponInstance:
+	return _off_instance if _ranged_instance() == _main_instance else _main_instance
+
+
+func _range_for(instance: WeaponInstance) -> float:
+
+	if instance == null:
+		return 0.0
+
+	var payload := instance.item.payload as WeaponPayload if instance.item else null
+
+	return payload.attack_range if payload != null else 1.5
+	
 func _current_payload() -> WeaponPayload:
 	var item := current_item
 	if item == null:
