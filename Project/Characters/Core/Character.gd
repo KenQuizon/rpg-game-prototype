@@ -20,6 +20,20 @@ class_name Character
 # character is attacking this one, not by this character itself — see
 # get_character_target_marker() below.
 @export var target_marker: Node3D
+
+# Swappable body-part meshes for equipment that replaces the base body
+# mesh (armor covering the torso/arms) rather than attaching an external
+# visual at a socket — see EquipmentSlotSocket for that case instead.
+# skeleton_path is needed alongside these because replacement meshes must
+# be reparented directly under the real Skeleton3D for their own skin
+# binding to resolve correctly (see Stage 3). Add more part paths here as
+# more parts become swappable (legs, hands, ...).
+@export var skeleton_path: NodePath = NodePath("Model/VisualRoot/Ranger/Rig_Medium/Skeleton3D")
+@export var arm_left_mesh_path: NodePath = NodePath("Model/VisualRoot/Ranger/Rig_Medium/Skeleton3D/Body/Ranger_ArmLeft")
+@export var arm_right_mesh_path: NodePath = NodePath("Model/VisualRoot/Ranger/Rig_Medium/Skeleton3D/Body/Ranger_ArmRight")
+@export var body_mesh_path: NodePath = NodePath("Model/VisualRoot/Ranger/Rig_Medium/Skeleton3D/Body/Ranger_Body")
+@export var leg_left_mesh_path: NodePath = NodePath("Model/VisualRoot/Ranger/Rig_Medium/Skeleton3D/Legs/Ranger_LegLeft")
+@export var leg_right_mesh_path: NodePath = NodePath("Model/VisualRoot/Ranger/Rig_Medium/Skeleton3D/Legs/Ranger_LegRight")
 #==============================================================================
 # Cached Nodes
 #==============================================================================
@@ -34,6 +48,21 @@ class_name Character
 var animation_player: AnimationPlayer
 var weapon_socket: WeaponSocket
 var off_hand_weapon_socket: WeaponSocket
+
+var skeleton: Skeleton3D
+
+# part name (e.g. "arm_left", "arm_right", "body") -> the base MeshInstance3D
+# for that part. Stage 3's mesh-replacement equip pathway hides/shows
+# these by key.
+var _body_part_meshes: Dictionary = {}
+
+# part name -> the MeshInstance3D currently showing for that part: the
+# base mesh by default, swapped to point at a replacement mesh while
+# armor covering that part is equipped (see EquipmentComponent). Material
+# overrides (Stage 5) always target whichever mesh is active here, never
+# a node reference cached elsewhere — so they keep working correctly
+# across mesh swaps.
+var _active_body_part_meshes: Dictionary = {}
 #==============================================================================
 # Camera API
 #==============================================================================
@@ -141,6 +170,20 @@ func _resolve_model_dependent_nodes() -> void:
 		push_error(
 			"Character: off_hand_socket_path '%s' did not resolve to a WeaponSocket." % off_hand_socket_path
 		)
+
+	skeleton = get_node_or_null(skeleton_path) as Skeleton3D
+	if skeleton == null:
+		push_error(
+			"Character: skeleton_path '%s' did not resolve to a Skeleton3D." % skeleton_path
+		)
+
+	_resolve_body_part_mesh("arm_left", arm_left_mesh_path)
+	_resolve_body_part_mesh("arm_right", arm_right_mesh_path)
+	_resolve_body_part_mesh("body", body_mesh_path)
+	_resolve_body_part_mesh("leg_left", leg_left_mesh_path)
+	_resolve_body_part_mesh("leg_right", leg_right_mesh_path)
+	
+	_active_body_part_meshes = _body_part_meshes.duplicate()
 func _discover_components() -> void:
 	_components.clear()
 	_discover_components_recursive(components_root)
@@ -210,9 +253,6 @@ func load_state(data: Dictionary) -> void:
 	if data.has("inventory") and context.inventory != null:
 		context.inventory.load_state(data["inventory"])
 
-# Add these methods to the Character class in Characters/Core/Character.gd
-# They can be added at the end of the file (after line 211)
-
 #==============================================================================
 # Death and Controller Management
 #==============================================================================
@@ -246,3 +286,63 @@ func is_controller_active() -> bool:
 		return false
 	
 	return ctrl.is_physics_processing()
+
+func _resolve_body_part_mesh(part_name: String, path: NodePath) -> void:
+
+	var mesh := get_node_or_null(path) as MeshInstance3D
+
+	if mesh == null:
+		push_error(
+			"Character: body part mesh path '%s' for part '%s' did not resolve to a MeshInstance3D." % [path, part_name]
+		)
+		return
+
+	_body_part_meshes[part_name] = mesh
+	
+func get_character_skeleton() -> Skeleton3D:
+	return skeleton
+	
+func get_character_body_part_mesh(part_name: String) -> MeshInstance3D:
+	return _body_part_meshes.get(part_name)
+
+func get_character_active_body_part_mesh(part_name: String) -> MeshInstance3D:
+	return _active_body_part_meshes.get(part_name)
+
+# Called by EquipmentComponent right after reparenting a replacement mesh
+# onto the skeleton, so subsequent material overrides (and anything else
+# that looks up the "active" mesh) target the new mesh, not the hidden
+# base one.
+func set_character_active_body_part_mesh(part_name: String, mesh: MeshInstance3D) -> void:
+	_active_body_part_meshes[part_name] = mesh
+
+# Called by EquipmentComponent on unequip to point part_name back at the
+# original base mesh.
+func reset_character_active_body_part_mesh(part_name: String) -> void:
+	var base_mesh: MeshInstance3D = _body_part_meshes.get(part_name)
+	if base_mesh != null:
+		_active_body_part_meshes[part_name] = base_mesh
+
+func apply_character_material_override(part_name: String, material: Material, surface_index: int = -1) -> void:
+
+	var mesh: MeshInstance3D = get_character_active_body_part_mesh(part_name)
+
+	if mesh == null:
+		push_error("Character: no active mesh for part '%s' — cannot apply material override." % part_name)
+		return
+
+	if surface_index < 0:
+		mesh.material_override = material
+	else:
+		mesh.set_surface_override_material(surface_index, material)
+
+func clear_character_material_override(part_name: String, surface_index: int = -1) -> void:
+
+	var mesh: MeshInstance3D = get_character_active_body_part_mesh(part_name)
+
+	if mesh == null:
+		return
+
+	if surface_index < 0:
+		mesh.material_override = null
+	else:
+		mesh.set_surface_override_material(surface_index, null)

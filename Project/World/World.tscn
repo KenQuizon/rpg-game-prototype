@@ -14,9 +14,11 @@
 [ext_resource type="Resource" uid="uid://d1koenh0fdjml" path="res://Project/Items/Weapon/Resource_Weapons/Item_IronSword.tres" id="15_b561u"]
 [ext_resource type="PackedScene" uid="uid://bt8b6hqo6pjeb" path="res://Project/Items/Weapon/Scenes/Bow_WorldItem.tscn" id="15_urojf"]
 [ext_resource type="Resource" uid="uid://v0t4uchrgf18" path="res://Project/Items/Weapon/Resource_Weapons/Item_Bow.tres" id="16_urojf"]
-[ext_resource type="PackedScene" uid="uid://clrgffw5yf0cf" path="res://Project/Items/Armor/Resources_Equipment/IronHelmet/IronHelmet_WorldItem.tscn" id="16_v3ot7"]
+[ext_resource type="PackedScene" uid="uid://clrgffw5yf0cf" path="res://Project/Items/Armor/Scenes/IronHelmet_WorldItem.tscn" id="16_v3ot7"]
 [ext_resource type="PackedScene" uid="uid://b0x4csls0eblo" path="res://Project/Items/Weapon/Scenes/IronSword_WorldItem.tscn" id="17_ic4or"]
-[ext_resource type="Resource" uid="uid://bqhijrol0ngmk" path="res://Project/Items/Armor/Resources_Equipment/IronHelmet/Item_IronHelmet.tres" id="17_v3ot7"]
+[ext_resource type="Resource" uid="uid://bqhijrol0ngmk" path="res://Project/Items/Armor/Resources_Equipment/Item_IronHelmet.tres" id="17_v3ot7"]
+[ext_resource type="PackedScene" uid="uid://j5bx5eqbop1a" path="res://Project/Items/Armor/Scenes/IronBreastplate_WorldItem.tscn" id="18_urojf"]
+[ext_resource type="PackedScene" uid="uid://c61o0fc6amqo0" path="res://Project/Items/Armor/Scenes/IronBoots_WorldItem.tscn" id="19_v3ot7"]
 
 [sub_resource type="Environment" id="Environment_tw2g7"]
 
@@ -35,6 +37,7 @@ size = Vector3(100, 1, 100)
 size = Vector3(100, 1, 100)
 
 [node name="World" type="Node3D" unique_id=2144308848]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 9, -3)
 script = ExtResource("1_il6x7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1036113808]
@@ -91,3 +94,9 @@ transform = Transform3D(1, 0, 0, 0, 0.9992615, 0.038424913, 0, -0.038424913, 0.9
 
 [node name="IronSword_WorldItem" parent="." unique_id=1575738579 instance=ExtResource("17_ic4or")]
 transform = Transform3D(1, 0, 0, 0, 0.9992615, 0.038424913, 0, -0.038424913, 0.9992615, -11.835857, 3.2739372, 11.807076)
+
+[node name="IronBreastplate_WorldItem" parent="." unique_id=686149531 instance=ExtResource("18_urojf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 3, 14)
+
+[node name="IronBoots" parent="." unique_id=1165152549 instance=ExtResource("19_v3ot7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.360828, 3.7017813, 14.396609)

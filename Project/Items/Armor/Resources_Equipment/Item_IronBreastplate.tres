@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemDefinition" format=3 uid="uid://qs6qclevchku"]
+
+[ext_resource type="Texture2D" uid="uid://dbbbr5glefar" path="res://Assets/BHLegacy/BHLegacy_Armor_Icons.png" id="1_qyln3"]
+[ext_resource type="Script" uid="uid://b6ia87gxo0r2d" path="res://Project/Equipment/Items/ItemDefinition.gd" id="1_w46we"]
+[ext_resource type="Resource" uid="uid://bljxjewxa0oyo" path="res://Project/Items/Armor/Resources_Equipment/IronBreastplate_ArmorPayload.tres" id="2_w1yum"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w46we"]
+atlas = ExtResource("1_qyln3")
+region = Rect2(128, 384, 128, 128)
+
+[resource]
+script = ExtResource("1_w46we")
+category = 1
+payload = ExtResource("2_w1yum")
+icon = SubResource("AtlasTexture_w46we")
+display_name = "Iron Breastplate"
+description = "Iron armor"
+value = 50
+weight = 4.0
+metadata/_custom_type_script = "uid://b6ia87gxo0r2d"

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemDefinition" format=3 uid="uid://krl1bpdcyxf8"]
+
+[ext_resource type="Texture2D" uid="uid://dbbbr5glefar" path="res://Assets/BHLegacy/BHLegacy_Armor_Icons.png" id="1_im8ia"]
+[ext_resource type="Script" uid="uid://b6ia87gxo0r2d" path="res://Project/Equipment/Items/ItemDefinition.gd" id="1_rpu1c"]
+[ext_resource type="Resource" uid="uid://dtxpbn7llll5f" path="res://Project/Items/Armor/Resources_Equipment/IronBoots_ArmorPayload.tres" id="2_vj3ye"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5h862"]
+atlas = ExtResource("1_im8ia")
+region = Rect2(256, 384, 128, 128)
+
+[resource]
+script = ExtResource("1_rpu1c")
+category = 1
+payload = ExtResource("2_vj3ye")
+icon = SubResource("AtlasTexture_5h862")
+display_name = "Iron Boots"
+description = "Boot of iron."
+value = 50
+weight = 4.0
+metadata/_custom_type_script = "uid://b6ia87gxo0r2d"

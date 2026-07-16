@@ -53,7 +53,7 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://Assets/KayKit/characters/adventurers/mesh/knight/Knight_Knight_ArmLeft.res",
 "save_to_file/path": "uid://ow624vexrr4e"
 },
@@ -62,7 +62,7 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://Assets/KayKit/characters/adventurers/mesh/knight/Knight_Knight_ArmRight.res",
 "save_to_file/path": "uid://ea68uvsia07u"
 },
@@ -71,7 +71,7 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://Assets/KayKit/characters/adventurers/mesh/knight/Knight_Knight_Body.res",
 "save_to_file/path": "uid://pcjsfhpoh7pe"
 },
@@ -80,7 +80,7 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://Assets/KayKit/characters/adventurers/mesh/knight/Knight_Knight_Cape.res",
 "save_to_file/path": "uid://bulojci4njrte"
 },
@@ -89,7 +89,7 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://Assets/KayKit/characters/adventurers/mesh/knight/Knight_Knight_Head.res",
 "save_to_file/path": "uid://d0tnp341h5xax"
 },
@@ -98,7 +98,7 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://Assets/KayKit/characters/adventurers/mesh/knight/Knight_Knight_Helmet.res",
 "save_to_file/path": "uid://go1m1gp83qff"
 },
@@ -107,7 +107,7 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://Assets/KayKit/characters/adventurers/mesh/knight/Knight_Knight_HelmetVisor.res",
 "save_to_file/path": "uid://ce2e2ji4fa1ku"
 },
@@ -116,7 +116,7 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://Assets/KayKit/characters/adventurers/mesh/knight/Knight_Knight_LegLeft.res",
 "save_to_file/path": "uid://c1bjsayh8yx34"
 },
@@ -125,7 +125,7 @@ _subresources={
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://Assets/KayKit/characters/adventurers/mesh/knight/Knight_Knight_LegRight.res",
 "save_to_file/path": "uid://2msfhg6t3qyj"
 }

@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="ArmorPayload" format=3 uid="uid://bljxjewxa0oyo"]
+
+[ext_resource type="Script" uid="uid://de2nbdksflapg" path="res://Project/Equipment/Items/Payloads/ArmorPayload.gd" id="1_e77qj"]
+[ext_resource type="Script" uid="uid://ctrvesy1ddfga" path="res://Project/Equipment/Items/Payloads/BodyPartMeshMapping.gd" id="1_hmxqx"]
+[ext_resource type="Script" uid="uid://b2cnklllsutok" path="res://Project/Characters/Components/Stats/StatModifierEntry.gd" id="2_va0ne"]
+[ext_resource type="PackedScene" uid="uid://dxd5hd0sebwdc" path="res://Project/Items/Armor/Scenes/IronBreastplate.tscn" id="3_va0ne"]
+
+[sub_resource type="Resource" id="Resource_fmmiw"]
+script = ExtResource("1_hmxqx")
+source_node_name = "Knight_ArmLeft"
+target_part = "arm_left"
+metadata/_custom_type_script = "uid://ctrvesy1ddfga"
+
+[sub_resource type="Resource" id="Resource_v4vyv"]
+script = ExtResource("1_hmxqx")
+source_node_name = "Knight_ArmRight"
+target_part = "arm_right"
+metadata/_custom_type_script = "uid://ctrvesy1ddfga"
+
+[sub_resource type="Resource" id="Resource_6mqge"]
+script = ExtResource("1_hmxqx")
+source_node_name = "Knight_Body"
+target_part = "body"
+metadata/_custom_type_script = "uid://ctrvesy1ddfga"
+
+[sub_resource type="Resource" id="Resource_3tk0k"]
+script = ExtResource("2_va0ne")
+stat = 8
+value = 10.0
+metadata/_custom_type_script = "uid://b2cnklllsutok"
+
+[resource]
+script = ExtResource("1_e77qj")
+equipment_slot = 1
+stat_modifiers = Array[ExtResource("2_va0ne")]([SubResource("Resource_3tk0k")])
+visual_scene = ExtResource("3_va0ne")
+body_part_replacements = Array[ExtResource("1_hmxqx")]([SubResource("Resource_fmmiw"), SubResource("Resource_v4vyv"), SubResource("Resource_6mqge")])
+metadata/_custom_type_script = "uid://de2nbdksflapg"

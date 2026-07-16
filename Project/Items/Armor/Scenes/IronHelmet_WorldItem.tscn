@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dclj10k8orfxe" path="res://Project/World/WorldItem.gd" id="1_q87xs"]
 [ext_resource type="Material" uid="uid://bf4rqut3rtnkr" path="res://Assets/KayKit/materials/knight/knight.tres" id="2_7lqjd"]
-[ext_resource type="Resource" uid="uid://bqhijrol0ngmk" path="res://Project/Items/Armor/Resources_Equipment/IronHelmet/Item_IronHelmet.tres" id="2_uign3"]
+[ext_resource type="Resource" uid="uid://bqhijrol0ngmk" path="res://Project/Items/Armor/Resources_Equipment/Item_IronHelmet.tres" id="2_uign3"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_eiir7"]
 resource_name = "Knight_Knight_Helmet"
