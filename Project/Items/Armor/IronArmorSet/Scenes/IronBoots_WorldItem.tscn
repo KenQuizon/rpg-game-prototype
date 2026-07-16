@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dclj10k8orfxe" path="res://Project/World/WorldItem.gd" id="1_0wwq8"]
 [ext_resource type="Material" uid="uid://bf4rqut3rtnkr" path="res://Assets/KayKit/materials/knight/knight.tres" id="1_ir6ta"]
-[ext_resource type="Resource" uid="uid://krl1bpdcyxf8" path="res://Project/Items/Armor/Resources_Equipment/Item_IronBoots.tres" id="2_ixaru"]
+[ext_resource type="Resource" uid="uid://krl1bpdcyxf8" path="res://Project/Items/Armor/IronArmorSet/Resources_Equipment/Item_IronBoots.tres" id="2_ixaru"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vwi5b"]
 resource_name = "Knight_Knight_LegLeft"

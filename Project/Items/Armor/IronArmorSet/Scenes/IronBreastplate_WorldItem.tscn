@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dclj10k8orfxe" path="res://Project/World/WorldItem.gd" id="1_guab5"]
 [ext_resource type="ArrayMesh" uid="uid://ow624vexrr4e" path="res://Assets/KayKit/characters/adventurers/mesh/knight/Knight_Knight_ArmLeft.res" id="2_cvl1x"]
-[ext_resource type="Resource" uid="uid://qs6qclevchku" path="res://Project/Items/Armor/Resources_Equipment/Item_IronBreastplate.tres" id="2_rv480"]
+[ext_resource type="Resource" uid="uid://qs6qclevchku" path="res://Project/Items/Armor/IronArmorSet/Resources_Equipment/Item_IronBreastplate.tres" id="2_rv480"]
 [ext_resource type="ArrayMesh" uid="uid://ea68uvsia07u" path="res://Assets/KayKit/characters/adventurers/mesh/knight/Knight_Knight_ArmRight.res" id="3_rv480"]
 [ext_resource type="ArrayMesh" uid="uid://pcjsfhpoh7pe" path="res://Assets/KayKit/characters/adventurers/mesh/knight/Knight_Knight_Body.res" id="4_03c2j"]
 [ext_resource type="Material" uid="uid://bf4rqut3rtnkr" path="res://Assets/KayKit/materials/knight/knight.tres" id="6_rv480"]

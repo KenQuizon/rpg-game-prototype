@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://be2wqa18gif6g" path="res://Project/Gameplay/Actions/Skills/CastAction.gd" id="1_nyj0y"]
 [ext_resource type="Script" uid="uid://bnnbymum325ix" path="res://Project/Gameplay/Combat/Data/AttackData.gd" id="2_d1wip"]
 [ext_resource type="Script" uid="uid://qpepkjukhlvt" path="res://Project/Action/Data/ActionPolicy.gd" id="3_0wpfb"]
+[ext_resource type="Texture2D" uid="uid://bdv5ipugrsjvx" path="res://Assets/BHLegacy/BHLegacy_ActiveSkill_Icons.png" id="3_7cad8"]
 [ext_resource type="Script" uid="uid://cm1am7hfwgfix" path="res://Project/Characters/Components/Cooldown/CooldownPolicy.gd" id="3_d1wip"]
 [ext_resource type="Script" uid="uid://c11wq0edaq4gi" path="res://Project/Characters/Components/Resources/ResourceCostPolicy.gd" id="4_0wpfb"]
 [ext_resource type="Script" uid="uid://dtb7oc0r6dx1g" path="res://Project/Characters/Components/Skills/SkillDefinition.gd" id="5_bqmdh"]
@@ -13,6 +14,10 @@ script = ExtResource("2_d1wip")
 damage = 20.0
 damage_type = 1
 metadata/_custom_type_script = "uid://bnnbymum325ix"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x424s"]
+atlas = ExtResource("3_7cad8")
+region = Rect2(128, 2816, 128, 128)
 
 [sub_resource type="Resource" id="Resource_kevn2"]
 script = ExtResource("3_d1wip")
@@ -30,9 +35,10 @@ recovery_time = 0.2
 projectile_scene = ExtResource("6_tmqr3")
 attack_data = SubResource("Resource_qmh2x")
 id = &"fireball"
+icon = SubResource("AtlasTexture_x424s")
 display_name = "Fire Ball"
 action_script = ExtResource("1_nyj0y")
-locks = 18
+locks = 19
 flags = 0
 cooldown_group = &"fireball"
 cooldown = 4.0

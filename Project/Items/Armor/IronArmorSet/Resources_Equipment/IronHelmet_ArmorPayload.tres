@@ -1,8 +1,10 @@
 [gd_resource type="Resource" script_class="ArmorPayload" format=3 uid="uid://cl7fkf1l7bmcg"]
 
+[ext_resource type="Script" uid="uid://ctrvesy1ddfga" path="res://Project/Equipment/Items/Payloads/BodyPartMeshMapping.gd" id="1_cysek"]
 [ext_resource type="Script" uid="uid://de2nbdksflapg" path="res://Project/Equipment/Items/Payloads/ArmorPayload.gd" id="1_tqnbx"]
 [ext_resource type="Script" uid="uid://b2cnklllsutok" path="res://Project/Characters/Components/Stats/StatModifierEntry.gd" id="2_1g7un"]
-[ext_resource type="PackedScene" uid="uid://dj37ilenx4yrk" path="res://Project/Items/Armor/Scenes/IronHelmet.tscn" id="3_7aurj"]
+[ext_resource type="Script" uid="uid://ba0vplr0s2u5t" path="res://Project/Equipment/Items/Payloads/MaterialOverride.gd" id="2_2dka7"]
+[ext_resource type="PackedScene" uid="uid://dj37ilenx4yrk" path="res://Project/Items/Armor/IronArmorSet/Scenes/IronHelmet.tscn" id="3_7aurj"]
 
 [sub_resource type="Resource" id="Resource_mbpby"]
 script = ExtResource("2_1g7un")

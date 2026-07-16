@@ -7,6 +7,14 @@ class_name PlayerController
 
 var _attack_move_target: Node3D = null
 
+# Same standing-order shape as _attack_move_target, but for skills — see
+# _try_skill_move(). _pending_skill_id travels alongside the target since,
+# unlike attack (always "whatever the weapon's next attack is"), a skill
+# button press needs to remember *which* skill it was moving toward
+# casting.
+var _skill_move_target: Node3D = null
+var _pending_skill_id: StringName = &""
+
 #==============================================================================
 # Updates
 #==============================================================================
@@ -54,10 +62,15 @@ func physics_update(delta: float) -> void:
 	# target, attack once in range, then keep attacking it. Real movement
 	# input cancels the order immediately and hands control straight back
 	# to WASD — that's the "interruptible" part.
+	#
+	# Skill-Move below follows the same walk-to-range shape, but is
+	# single-shot rather than a repeating standing order — a skill cast is
+	# a deliberate, cooldown-gated action, not an auto-attack.
 	#--------------------------------------------------------------------------
 
 	if context.input.move_vector != Vector2.ZERO:
 		_attack_move_target = null
+		_skill_move_target = null
 
 	if context.input.attack_pressed:
 
@@ -66,11 +79,26 @@ func physics_update(delta: float) -> void:
 		if clicked_target != null and is_instance_valid(clicked_target):
 			_attack_move_target = clicked_target
 
+	if context.input.skill_1_pressed:
+
+		var clicked_skill_target: Node3D = context.targeting.current_target as Node3D if context.targeting else null
+
+		if clicked_skill_target != null and is_instance_valid(clicked_skill_target):
+			_skill_move_target = clicked_skill_target
+			_pending_skill_id = &"fireball"
+
 	if _attack_move_target != null:
 
 		if not is_instance_valid(_attack_move_target):
 			_attack_move_target = null
 		elif _try_attack_move(_attack_move_target):
+			return
+
+	if _skill_move_target != null:
+
+		if not is_instance_valid(_skill_move_target):
+			_skill_move_target = null
+		elif _try_skill_move(_skill_move_target, _pending_skill_id):
 			return
 
 	#--------------------------------------------------------------------------
@@ -177,6 +205,53 @@ func _try_attack_move(target: Node3D) -> bool:
 
 	attack.initialize(context)
 	attack.execute()
+
+	return true
+
+# Single-shot version of _try_attack_move: walks toward target while out
+# of skill_range, then — once in range — stops, faces the target, submits
+# the cast exactly once, and clears the standing order so it doesn't
+# re-fire every frame. If the cast is rejected by the scheduler (on
+# cooldown, insufficient resource, etc.) the order still clears rather
+# than looping in place waiting for it to become valid — press the skill
+# again once it's actually available.
+func _try_skill_move(target: Node3D, skill_id: StringName) -> bool:
+
+	if context.skills == null:
+		return false
+
+	var skill := context.skills.get_skill(skill_id)
+
+	if skill == null:
+		return false
+
+	var character: Node3D = context.character as Node3D
+
+	if character == null:
+		return false
+
+	var skill_range: float = skill.skill_range
+
+	var distance: float = character.global_position.distance_to(
+		target.global_position
+	)
+
+	if distance > skill_range:
+		_move_toward(target.global_position)
+		return true
+
+	if context.movement != null:
+		context.movement.set_move_input(Vector2.ZERO)
+		context.movement.face_point(target.global_position)
+
+	var cast := CastSkillCommand.new()
+
+	cast.initialize(context)
+	cast.skill_id = skill_id
+
+	cast.execute()
+
+	_skill_move_target = null
 
 	return true
 

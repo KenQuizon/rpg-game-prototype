@@ -79,10 +79,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -2.0
-offset_top = -98.0
-offset_right = 0.0
-offset_bottom = -98.0
+offset_left = -76.0
+offset_top = -130.0
+offset_right = 74.0
+offset_bottom = -112.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -102,7 +102,8 @@ offset_bottom = 40.0
 grow_horizontal = 0
 
 [node name="Hotbar" parent="." unique_id=2051952290 instance=ExtResource("9_4cr1f")]
-custom_minimum_size = Vector2(500, 75)
+offset_top = -100.0
+offset_bottom = -35.999634
 
 [node name="ChargeBar" parent="." unique_id=2085802221 instance=ExtResource("10_ll6cg")]
 anchors_preset = 8

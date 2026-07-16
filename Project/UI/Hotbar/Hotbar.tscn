@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://crsiltuw6ss81" path="res://Project/UI/Hotbar/HotbarSlot.tscn" id="2_tgoqj"]
 
 [node name="Hotbar" type="HBoxContainer" unique_id=2051952290]
-custom_minimum_size = Vector2(500, 50)
+custom_minimum_size = Vector2(500, 64)
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0

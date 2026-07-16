@@ -2,35 +2,43 @@
 
 [ext_resource type="Script" uid="uid://d2rf8wuf18ete" path="res://Project/UI/Hotbar/HotbarSlot.gd" id="1_cvxou"]
 [ext_resource type="Texture2D" uid="uid://bdv5ipugrsjvx" path="res://Assets/BHLegacy/BHLegacy_ActiveSkill_Icons.png" id="2_bo6ue"]
+[ext_resource type="FontFile" uid="uid://dr0wjqhjvc0r0" path="res://Assets/Font/Baar Zeitgeist.ttf" id="3_i05w8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k4wkg"]
 atlas = ExtResource("2_bo6ue")
 region = Rect2(128, 2816, 128, 128)
 
 [node name="HotbarSlot" type="PanelContainer" unique_id=1361512614]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(64, 64)
 offset_right = 50.0
 offset_bottom = 50.0
 script = ExtResource("1_cvxou")
 
 [node name="Icon" type="TextureRect" parent="." unique_id=1320353690]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = SubResource("AtlasTexture_k4wkg")
 expand_mode = 1
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="KeyLabel" type="Label" parent="." unique_id=1936507558]
 layout_mode = 2
 size_flags_vertical = 8
 offset_transform_position_ratio = Vector2(0, -1)
+theme_override_fonts/font = ExtResource("3_i05w8")
 text = "1"
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="CooldownOverlay" type="TextureProgressBar" parent="." unique_id=1020928854]
+layout_mode = 2
+value = 14.0
+fill_mode = 4
+
 [node name="CooldownLabel" type="Label" parent="." unique_id=1570390958]
 layout_mode = 2
 offset_transform_enabled = true
+theme_override_fonts/font = ExtResource("3_i05w8")
 text = "1.0"
 horizontal_alignment = 1
 vertical_alignment = 1

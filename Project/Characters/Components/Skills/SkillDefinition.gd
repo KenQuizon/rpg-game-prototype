@@ -46,3 +46,14 @@ class_name SkillDefinition
 #==============================================================================
 
 @export var attack_data: AttackData = AttackData.new()
+
+#==============================================================================
+# Targeting
+#==============================================================================
+
+# Distance within which this skill can be cast at a target — deliberately
+# separate from WeaponPayload.attack_range, since a skill's effective
+# range (a melee smash vs. a fireball) doesn't have to match whatever
+# weapon happens to be equipped. Used by PlayerController's skill-move
+# flow and by CastAction to decide whether/who to face.
+@export var skill_range: float = 6.0

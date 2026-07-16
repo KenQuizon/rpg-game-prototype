@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dbbbr5glefar" path="res://Assets/BHLegacy/BHLegacy_Armor_Icons.png" id="1_qyln3"]
 [ext_resource type="Script" uid="uid://b6ia87gxo0r2d" path="res://Project/Equipment/Items/ItemDefinition.gd" id="1_w46we"]
-[ext_resource type="Resource" uid="uid://bljxjewxa0oyo" path="res://Project/Items/Armor/Resources_Equipment/IronBreastplate_ArmorPayload.tres" id="2_w1yum"]
+[ext_resource type="Resource" uid="uid://bljxjewxa0oyo" path="res://Project/Items/Armor/IronArmorSet/Resources_Equipment/IronBreastplate_ArmorPayload.tres" id="2_w1yum"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w46we"]
 atlas = ExtResource("1_qyln3")

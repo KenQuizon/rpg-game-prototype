@@ -35,7 +35,7 @@
 [ext_resource type="Resource" uid="uid://ie0iyf8mlky7" path="res://Project/Items/Skills/Resources_Skill/Fireball.tres" id="29_fw7kn"]
 [ext_resource type="Resource" uid="uid://d1koenh0fdjml" path="res://Project/Items/Weapon/Resource_Weapons/Item_IronSword.tres" id="30_6bx62"]
 [ext_resource type="Script" uid="uid://b34rjjdl8e42v" path="res://Project/Characters/Components/Navigation/TargetIndicatorComponent.gd" id="30_21rwx"]
-[ext_resource type="Resource" uid="uid://bqhijrol0ngmk" path="res://Project/Items/Armor/Resources_Equipment/Item_IronHelmet.tres" id="31_6bx62"]
+[ext_resource type="Resource" uid="uid://bqhijrol0ngmk" path="res://Project/Items/Armor/IronArmorSet/Resources_Equipment/Item_IronHelmet.tres" id="31_6bx62"]
 [ext_resource type="Script" uid="uid://d052vxq1yotpq" path="res://Project/Equipment/Component/InventoryComponent.gd" id="31_fw7kn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fef4x"]

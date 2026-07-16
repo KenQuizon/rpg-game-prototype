@@ -25,7 +25,27 @@ func _ready() -> void:
 		slots.append(slot)
 
 	_setup_hotkey_inputs()
+	_populate_known_skills()
+
 	print("Hotbar initialized with %d slots" % slot_count)
+
+# Fills slots left-to-right with whatever the player currently knows,
+# in known_skills order. This is a simple default auto-fill — if you
+# later want the player to choose/reorder which skill sits in which
+# slot, that becomes a separate assign_skill() call from a loadout UI
+# instead of this loop, with assign_skill() itself unchanged either way.
+func _populate_known_skills() -> void:
+
+	var skill_component := CharacterRef.get_player_skills()
+
+	if skill_component == null:
+		return
+
+	var known := skill_component.known_skills
+
+	for i in range(min(known.size(), slots.size())):
+		if known[i] != null:
+			assign_skill(i, known[i])
 
 func assign_skill(slot_index: int, skill: SkillDefinition) -> void:
 	if slot_index < slots.size():

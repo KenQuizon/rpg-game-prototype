@@ -40,10 +40,12 @@ func on_start() -> void:
 
 	super.on_start()
 
+	_face_target()
 	_play_cast_animation()
 	context.combat.set_active_projectile(_skill.projectile_scene, _skill.attack_data)
 
 func on_update(_delta: float) -> int:
+	_face_target()
 	return ActionExecutionStatus.Id.RUNNING
 
 func get_recovery_time() -> float:
@@ -80,3 +82,18 @@ func _play_cast_animation() -> void:
 			_skill.cast_animation,
 			true
 		)
+
+# Mirrors AttackAction._face_target() — same shape, but gated by this
+# skill's own skill_range instead of the weapon's attack_range, since a
+# skill isn't necessarily bound to whatever's currently equipped.
+func _face_target() -> void:
+
+	if context.targeting == null or _skill == null:
+		return
+
+	var target := context.targeting.get_target_within_range(_skill.skill_range)
+
+	if target == null:
+		return
+
+	context.movement.face_point(target.global_position)

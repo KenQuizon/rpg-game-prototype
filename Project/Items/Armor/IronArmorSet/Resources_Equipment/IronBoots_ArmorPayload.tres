@@ -2,10 +2,9 @@
 
 [ext_resource type="Script" uid="uid://ctrvesy1ddfga" path="res://Project/Equipment/Items/Payloads/BodyPartMeshMapping.gd" id="1_71w03"]
 [ext_resource type="Script" uid="uid://ba0vplr0s2u5t" path="res://Project/Equipment/Items/Payloads/MaterialOverride.gd" id="2_b145y"]
-[ext_resource type="Material" uid="uid://dxw0qx3o3smwy" path="res://Assets/KayKit/materials/knight/knight_a.tres" id="3_mobyl"]
 [ext_resource type="Script" uid="uid://de2nbdksflapg" path="res://Project/Equipment/Items/Payloads/ArmorPayload.gd" id="3_ou4cn"]
 [ext_resource type="Script" uid="uid://b2cnklllsutok" path="res://Project/Characters/Components/Stats/StatModifierEntry.gd" id="4_mobyl"]
-[ext_resource type="PackedScene" uid="uid://dsoditxmy56p7" path="res://Project/Items/Armor/Scenes/IronBoots.tscn" id="6_7my7g"]
+[ext_resource type="PackedScene" uid="uid://dsoditxmy56p7" path="res://Project/Items/Armor/IronArmorSet/Scenes/IronBoots.tscn" id="6_7my7g"]
 
 [sub_resource type="Resource" id="Resource_nprm6"]
 script = ExtResource("1_71w03")
@@ -19,20 +18,6 @@ source_node_name = "Knight_LegRight"
 target_part = "leg_right"
 metadata/_custom_type_script = "uid://ctrvesy1ddfga"
 
-[sub_resource type="Resource" id="Resource_r1q1u"]
-script = ExtResource("2_b145y")
-target_part = "leg_left"
-material = ExtResource("3_mobyl")
-surface_index = 1
-metadata/_custom_type_script = "uid://ba0vplr0s2u5t"
-
-[sub_resource type="Resource" id="Resource_nyua5"]
-script = ExtResource("2_b145y")
-target_part = "leg_right"
-material = ExtResource("3_mobyl")
-surface_index = 1
-metadata/_custom_type_script = "uid://ba0vplr0s2u5t"
-
 [sub_resource type="Resource" id="Resource_7my7g"]
 script = ExtResource("4_mobyl")
 stat = 8
@@ -45,5 +30,4 @@ equipment_slot = 2
 stat_modifiers = Array[ExtResource("4_mobyl")]([SubResource("Resource_7my7g")])
 visual_scene = ExtResource("6_7my7g")
 body_part_replacements = Array[ExtResource("1_71w03")]([SubResource("Resource_nprm6"), SubResource("Resource_5h862")])
-material_overrides = Array[ExtResource("2_b145y")]([SubResource("Resource_r1q1u"), SubResource("Resource_nyua5")])
 metadata/_custom_type_script = "uid://de2nbdksflapg"
