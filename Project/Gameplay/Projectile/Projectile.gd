@@ -7,6 +7,7 @@ class_name Projectile
 
 @export var speed: float = 15.0
 @export var lifetime: float = 3.0
+@export var model_faces_positive_z: bool = true
 
 #==============================================================================
 # Cached Nodes
@@ -40,8 +41,15 @@ func launch(direction: Vector3, combat_owner: CombatComponent, attack_data: Atta
 	hitbox.activate()
 
 	if _direction.length_squared() > 0.0:
-		look_at(global_position + _direction, Vector3.UP)
 
+		# look_at() always points this node's local -Z at the target —
+		# that part's fixed. What varies is which way the Arrow model
+		# was actually authored to face. If it looks backwards again
+		# after a future asset re-import, flip this in the Inspector
+		# rather than touching this code.
+		var look_target := global_position - _direction if model_faces_positive_z else global_position + _direction
+
+		look_at(look_target, Vector3.UP)
 #==============================================================================
 # Lifecycle
 #==============================================================================

@@ -19,5 +19,6 @@ var aim_mode: bool = false
 var aim_world_position: Vector3 = Vector3.ZERO
 
 var dash_pressed: bool = false
+var dash_held: bool = false
 
 var skill_1_pressed: bool = false

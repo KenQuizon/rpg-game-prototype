@@ -31,6 +31,9 @@ var _off_instance: WeaponInstance
 
 var _attack_runtime: AttackRuntime = AttackRuntime.new()
 
+const SWITCH_HYSTERESIS: float = 0.5
+
+var _last_selected: WeaponInstance = null
 #==============================================================================
 # Properties
 #==============================================================================
@@ -75,12 +78,14 @@ func _select_instance_by_range() -> WeaponInstance:
 	var target: Node = context.targeting.current_target if context.targeting else null
 
 	if target == null or not is_instance_valid(target):
+		_last_selected = ranged
 		return ranged
 
 	var target_3d := target as Node3D
 	var character_3d := owner_character as Node3D
 
 	if target_3d == null or character_3d == null:
+		_last_selected = ranged
 		return ranged
 
 	var distance := character_3d.global_position.distance_to(target_3d.global_position)
@@ -88,8 +93,33 @@ func _select_instance_by_range() -> WeaponInstance:
 	var melee_range := _range_for(melee)
 	var ranged_range := _range_for(ranged)
 
-	if distance <= melee_range:
-		return melee
+	var selected := _resolve_with_hysteresis(distance, melee, melee_range, ranged, ranged_range)
+
+	_last_selected = selected
+
+	return selected
+
+
+# Once melee is active, distance has to grow past melee_range by
+# SWITCH_HYSTERESIS before switching away — but switching *into* melee
+# still happens right at melee_range, no bonus needed. That asymmetry
+# is what creates a small sticky band around the boundary instead of a
+# hard line, so hovering exactly at the edge (or a target's own small
+# movement jitter) can't flip the active weapon every frame.
+func _resolve_with_hysteresis(
+	distance: float,
+	melee: WeaponInstance,
+	melee_range: float,
+	ranged: WeaponInstance,
+	ranged_range: float
+) -> WeaponInstance:
+
+	if _last_selected == melee:
+		if distance <= melee_range + SWITCH_HYSTERESIS:
+			return melee
+	else:
+		if distance <= melee_range:
+			return melee
 
 	if distance <= ranged_range:
 		return ranged
@@ -289,6 +319,14 @@ func commit_attack(attack: AttackDefinition) -> void:
 
 func _sync_attack_range_visual() -> void:
 
+	var range := get_attack_range()
+
+	_sync_attack_range_area(range)
+	_sync_attack_range_indicator(range)
+
+
+func _sync_attack_range_area(range: float) -> void:
+
 	if not owner_character.has_method("get_character_attack_range_area"):
 		return
 
@@ -305,11 +343,67 @@ func _sync_attack_range_visual() -> void:
 	var sphere := shape_node.shape as SphereShape3D
 
 	if sphere != null:
-		sphere.radius = get_attack_range()
+		sphere.radius = range
 
-	if owner_character.has_method("get_character_attack_range_indicator"):
 
-		var indicator: AttackRangeIndicator = owner_character.get_character_attack_range_indicator()
+func _sync_attack_range_indicator(_range: float) -> void:
 
-		if indicator != null:
-			indicator.set_range(get_attack_range())
+	if not owner_character.has_method("get_character_attack_range_indicator"):
+		return
+
+	var primary: AttackRangeIndicator = owner_character.get_character_attack_range_indicator()
+	var secondary: AttackRangeIndicator = null
+
+	if owner_character.has_method("get_character_attack_range_indicator_secondary"):
+		secondary = owner_character.get_character_attack_range_indicator_secondary()
+
+	if primary == null:
+		return
+
+	# Only one weapon equipped (or none) — single ring, always shown
+	# "active" since there's nothing to compare it against.
+	if _main_instance == null or _off_instance == null:
+
+		var instance := _active_instance()
+
+		primary.visible = instance != null
+
+		if secondary != null:
+			secondary.visible = false
+
+		if instance != null:
+			primary.set_range(_range_for(instance))
+			primary.set_active(true)
+
+		return
+
+	# Both hands equipped — this is the dual-wield case.
+	var melee := _melee_instance()
+	var ranged := _ranged_instance()
+
+	var melee_range := _range_for(melee)
+	var ranged_range := _range_for(ranged)
+
+	var active := _active_instance()
+
+	# Same range on both weapons — collapse to a single ring rather than
+	# drawing two identical overlapping circles.
+	if is_equal_approx(melee_range, ranged_range):
+
+		primary.visible = true
+		primary.set_range(melee_range)
+		primary.set_active(true)
+
+		if secondary != null:
+			secondary.visible = false
+
+		return
+
+	primary.visible = true
+	primary.set_range(melee_range)
+	primary.set_active(active == melee)
+
+	if secondary != null:
+		secondary.visible = true
+		secondary.set_range(ranged_range)
+		secondary.set_active(active == ranged)

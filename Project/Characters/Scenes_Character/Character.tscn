@@ -38,6 +38,7 @@
 [ext_resource type="Resource" uid="uid://bqhijrol0ngmk" path="res://Project/Items/Armor/IronArmorSet/Resources_Equipment/Item_IronHelmet.tres" id="31_6bx62"]
 [ext_resource type="Script" uid="uid://d052vxq1yotpq" path="res://Project/Equipment/Component/InventoryComponent.gd" id="31_fw7kn"]
 [ext_resource type="PackedScene" uid="uid://boy4rufbrtqem" path="res://Project/UI/World/AttackRangeIndicator.tscn" id="38_4wgcd"]
+[ext_resource type="PackedScene" uid="uid://b1g2be25ruecx" path="res://Project/UI/World/DirectionCastIndicator.tscn" id="39_5c8b6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fef4x"]
 radius = 0.6
@@ -53,13 +54,15 @@ radius = 1.5
 [sub_resource type="SphereShape3D" id="SphereShape3D_21rwx"]
 radius = 12.0
 
-[node name="Character" type="CharacterBody3D" unique_id=1084824515 node_paths=PackedStringArray("projectile_spawn_point", "attack_range_area", "attack_range_indicator") groups=["player"]]
+[node name="Character" type="CharacterBody3D" unique_id=1084824515 node_paths=PackedStringArray("projectile_spawn_point", "attack_range_area", "attack_range_indicator", "attack_range_indicator_secondary", "direction_cast_indicator") groups=["player"]]
 script = ExtResource("1_xdxam")
 weapon_socket_path = NodePath("Model/VisualRoot/Ranger/Rig_Medium/Skeleton3D/Main_Hand/WeaponSocket")
 evade_definition = ExtResource("2_stqro")
 projectile_spawn_point = NodePath("Model/VisualRoot/ProjectileSpawnPoint")
 attack_range_area = NodePath("AttackRangeArea")
 attack_range_indicator = NodePath("AttackRangeIndicator")
+attack_range_indicator_secondary = NodePath("AttackRangeIndicatorSecondary")
+direction_cast_indicator = NodePath("DirectionCastIndicator")
 
 [node name="Components" type="Node3D" parent="." unique_id=1511514424]
 
@@ -70,6 +73,9 @@ metadata/_custom_type_script = "uid://cr0gnhrwfolxe"
 [node name="AnimationComponent" type="Node" parent="Components" unique_id=1517437127]
 script = ExtResource("2_xdxam")
 animation_profile = ExtResource("4_2dinu")
+sprint_animation_speed_scale = 1.25
+dash_blend_time = 0.5
+sprint_to_locomotion_blend_time = 0.5
 metadata/_custom_type_script = "uid://1uxjegku06ai"
 
 [node name="StatsComponent" type="Node" parent="Components" unique_id=268312463]
@@ -180,9 +186,10 @@ debug_color = Color(0.9440604, 5.4580272e-05, 0.70688885, 0.41960785)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraTarget" unique_id=1667876836]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 10, 10)
+transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 40, 40)
 current = true
-fov = 60.0
+fov = 20.0
+size = 20.0
 
 [node name="InteractionOrigin" type="Node3D" parent="." unique_id=1127554027]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.5)
@@ -202,3 +209,9 @@ shape = SubResource("SphereShape3D_21rwx")
 
 [node name="AttackRangeIndicator" parent="." unique_id=610034025 instance=ExtResource("38_4wgcd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+
+[node name="AttackRangeIndicatorSecondary" parent="." unique_id=395686539 instance=ExtResource("38_4wgcd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+
+[node name="DirectionCastIndicator" parent="." unique_id=1364669717 instance=ExtResource("39_5c8b6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.075, 0)

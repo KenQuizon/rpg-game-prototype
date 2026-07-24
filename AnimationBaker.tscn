@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dehhxxblcok6f"]
+
+[ext_resource type="Script" uid="uid://3oiuw1e1fp2l" path="res://AnimationBaker.gd" id="1_am3or"]
+[ext_resource type="PackedScene" uid="uid://cr2hmkf65x5m1" path="res://Project/Characters/Scenes_Character/InheritedScenes/Ranger.tscn" id="2_c7woo"]
+
+[node name="AnimationBaker" type="Node" unique_id=1950338951]
+script = ExtResource("1_am3or")
+
+[node name="Ranger" parent="." unique_id=1767411657 instance=ExtResource("2_c7woo")]

@@ -16,6 +16,8 @@ class_name Character
 
 @export var attack_range_area: Area3D
 @export var attack_range_indicator: AttackRangeIndicator
+@export var attack_range_indicator_secondary: AttackRangeIndicator
+@export var direction_cast_indicator: DirectionCastIndicator
 
 # Any Node3D that visually marks this character as targeted — a Sprite3D,
 # a ring decal, whatever you build. Left null on characters that never
@@ -107,6 +109,10 @@ func get_character_attack_range_area() -> Area3D:
 	return attack_range_area
 func get_character_attack_range_indicator() -> AttackRangeIndicator:
 	return attack_range_indicator
+func get_character_attack_range_indicator_secondary() -> AttackRangeIndicator:
+	return attack_range_indicator_secondary
+func get_character_direction_indicator() -> DirectionCastIndicator:
+	return direction_cast_indicator
 func get_character_target_marker() -> Node3D:
 	return target_marker
 #==============================================================================

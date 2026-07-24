@@ -13,12 +13,10 @@ signal animation_finished(animation_name: StringName)
 signal animation_event(event_name: StringName)
 
 func play_idle() -> void:
-	_play(animation_profile.idle)
-
+	_play(animation_profile.idle, false, locomotion_blend_time)
 
 func play_walk() -> void:
-	_play(animation_profile.walk)
-
+	_play(animation_profile.walk, false, locomotion_blend_time)
 
 func play_attack():
 
@@ -26,13 +24,18 @@ func play_attack():
 		animation_profile.attack_primary,
 		true
 	)
-	
+
 #==============================================================================
 # Export Variables
 #==============================================================================
 
 @export var rotation_speed: float = 10.0
 @export var animation_profile: AnimationProfile
+@export var sprint_animation_speed_scale: float = 1.3
+
+@export_group("Blend Times")
+@export var locomotion_blend_time: float = 0.2
+@export var aim_locomotion_blend_speed: float = 6.0
 
 #==============================================================================
 # Cached References
@@ -41,6 +44,8 @@ func play_attack():
 var _movement: MovementComponent
 var _visual_root: Node3D
 var _animation_player: AnimationPlayer
+
+var _aim_locomotion_blend: float = 0.0
 
 #==============================================================================
 # Animation State
@@ -85,7 +90,7 @@ func on_initialize() -> void:
 		var parent := _animation_player.get_parent()
 		if parent != null:
 			_animation_tree = parent.get_node_or_null("AnimationTree")
-			
+
 	if not _animation_player.animation_finished.is_connected(_on_animation_finished):
 		_animation_player.animation_finished.connect(_on_animation_finished)
 
@@ -104,7 +109,7 @@ func set_aiming(active: bool) -> void:
 		"parameters/AimOverlay/blend_amount",
 		1.0
 	)
-	
+
 	# Every time aiming turns on, it always starts at the draw pose —
 	# RangedChargeAttackAction now calls this from the very start of the
 	# action, not from draw-finished, so this is genuinely the first
@@ -125,6 +130,7 @@ func set_aim_pose(state: StringName) -> void:
 		"parameters/UpperBodyPose/transition_request",
 		state
 	)
+
 #==============================================================================
 # Updates
 #==============================================================================
@@ -139,16 +145,16 @@ func process_update(delta: float) -> void:
 
 	if _visual_root == null:
 		return
-		
+
 	if context.combat != null and context.combat.is_dead():
-		return 
-		
+		return
+
 	_update_visual_rotation(delta)
 
 	_update_locomotion_takeover()
-	
+
 	if _is_aiming:
-		_update_aim_locomotion()
+		_update_aim_locomotion(delta)
 		return   # AnimationTree owns playback entirely while aiming — skip
 				 # the plain AnimationPlayer.play() path below completely.
 
@@ -159,39 +165,38 @@ func process_update(delta: float) -> void:
 		play_block_idle()
 		return
 
+	var show_sprint := _movement.is_sprinting and _movement.is_moving
+
+	_apply_sprint_animation_speed()
+
+	if show_sprint:
+		_play(animation_profile.sprint, false)
+		return
+
 	if _movement.is_moving:
-		play_walk()
+		_play(animation_profile.walk, false, locomotion_blend_time)
 	else:
+		_play(animation_profile.idle, false, locomotion_blend_time)
 		play_idle()
 
-func _update_aim_locomotion() -> void:
+func _update_aim_locomotion(delta: float) -> void:
 
 	if _animation_tree == null:
 		return
 
-	# Feed the same speed signal your Locomotion blend space is keyed on.
-	# _movement.is_moving is a bool today — if your walk/run threshold
-	# needs finer resolution than that, expose an actual speed float on
-	# MovementComponent instead and read it here.
-	var speed := 0.5 if _movement.is_moving else 0.0
+	var target_speed := 0.5 if _movement.is_moving else 0.0
+
+	_aim_locomotion_blend = move_toward(
+		_aim_locomotion_blend,
+		target_speed,
+		aim_locomotion_blend_speed * delta
+	)
 
 	_animation_tree.set(
 		"parameters/Locomotion/blend_position",
-		speed
+		_aim_locomotion_blend
 	)
-# Turns the visual model to face _movement.facing_direction. Deliberately
-# NOT gated on _movement.is_moving or a rotation lock: facing_direction is
-# already the single source of truth for "which way is this character
-# actually facing," correctly protected at its source — MovementComponent
-# won't update it from WASD while ROTATION is locked, and
-# AttackAction._face_target() explicitly overrides it when there's a
-# target in range. The visual's only job is to keep matching it, whether
-# that's from walking, standing still and shooting, or anything else. This
-# also deliberately runs before the animation-clip gate below (rather than
-# after), so it keeps working through an attack's fully-locked phase too —
-# previously it only ran during locomotion, which is why a stationary
-# archer's model never turned to face a target even though the projectile
-# aimed correctly.
+
 func _update_visual_rotation(delta: float) -> void:
 
 	var direction := _movement.facing_direction
@@ -276,7 +281,7 @@ func _play(
 	_animation_player.play(animation_name, blend_time)
 
 	animation_started.emit(animation_name)
-	
+
 func animation_event_trigger(event_name: StringName) -> void:
 
 	animation_event.emit(event_name)
@@ -300,10 +305,10 @@ func get_animation_progress() -> float:
 		return 0.0
 
 	return _animation_player.current_animation_position / length
-	
+
 func _on_animation_finished(animation_name: StringName) -> void:
 	animation_finished.emit(animation_name)
-	
+
 func play(animation_name: StringName, force_restart := false, blend_time: float = -1.0) -> void:
 	_play(animation_name, force_restart, blend_time)
 
@@ -313,11 +318,34 @@ func play_death() -> void:
 func play_hurt() -> void:
 	_play(animation_profile.hurt, true)
 
-func play_dash() -> void:
+func play_dash(target_duration: float = -1.0) -> void:
+
 	_play(animation_profile.dash, true)
+
+	if target_duration <= 0.0 or _animation_player == null:
+		return
+
+	var native_length := _animation_player.current_animation_length
+
+	if native_length > 0.0:
+		_animation_player.speed_scale = native_length / target_duration
+
+func reset_animation_speed() -> void:
+	if _animation_player != null:
+		_animation_player.speed_scale = 1.0
 
 func play_block_idle() -> void:
 	_play(animation_profile.block_idle)
 
 func play_block_hit() -> void:
 	_play(animation_profile.block_hit, true)
+
+func _apply_sprint_animation_speed() -> void:
+
+	if _animation_player == null or _movement == null:
+		return
+
+	if _movement.is_sprinting:
+		_animation_player.speed_scale = sprint_animation_speed_scale
+	else:
+		_animation_player.speed_scale = 1.0

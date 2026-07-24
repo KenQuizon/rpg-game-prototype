@@ -44,6 +44,7 @@ func physics_update(delta: float) -> void:
 	context.input.scroll_down_pressed = Input.is_action_just_pressed("interact_scroll_down")
 	
 	context.input.dash_pressed = Input.is_action_just_pressed("dash")
+	context.input.dash_held = Input.is_action_pressed("dash")
 	context.input.skill_1_pressed = Input.is_action_just_pressed("skill_1")
 	
 	context.combat.set_blocking(Input.is_action_pressed("block") and not context.is_locked(ActionLock.Id.ATTACK))
@@ -51,6 +52,11 @@ func physics_update(delta: float) -> void:
 	context.input.aim_mode = context.input.charged_attack_held
 	context.input.aim_world_position = _get_mouse_world_position()
 
+	context.input.aim_mode = context.input.charged_attack_held
+	context.input.aim_world_position = _get_mouse_world_position()
+
+	_update_cast_indicator()
+	
 	if context.is_locked(ActionLock.Id.INPUT):
 		if context.movement:
 			context.movement.set_move_input(Vector2.ZERO)
@@ -360,3 +366,46 @@ func _update_attack_input(delta: float) -> void:
 		_attack_hold_time = 0.0
 
 	context.input.attack_held = held
+
+# Purely cosmetic — mirrors context.input.aim_mode exactly, so it shows
+# and hides in lockstep with the same rotation-lock Stage 2 (dual-wield
+# work) already gated on has_heavy_attack(). Nothing here changes when
+# an actual shot fires or how charging works; this only visualizes it.
+func _update_cast_indicator() -> void:
+
+	if not character.has_method("get_character_direction_indicator"):
+		return
+
+	var indicator: DirectionCastIndicator = character.get_character_direction_indicator()
+
+	if indicator == null:
+		return
+
+	if not context.input.aim_mode:
+		indicator.hide_indicator()
+		return
+
+	var character_3d := character as Node3D
+
+	if character_3d == null:
+		indicator.hide_indicator()
+		return
+
+	var world_direction := context.input.aim_world_position - character_3d.global_position
+	world_direction.y = 0.0
+
+	if world_direction.length_squared() < 0.0001:
+		indicator.hide_indicator()
+		return
+
+	# The indicator is a direct child of Character, which itself rotates
+	# to face movement/attacks — update_aim() works in local space, so
+	# the world-space aim direction has to be un-rotated by the
+	# character's current facing first, or the arrow would point the
+	# wrong way whenever the character isn't facing world +Z.
+	var local_direction: Vector3 = character_3d.global_transform.basis.inverse() * world_direction
+
+	var max_range := context.weapon.get_attack_range() if context.weapon else 0.0
+
+	indicator.show_indicator()
+	indicator.update_aim(local_direction, max_range)

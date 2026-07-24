@@ -7,6 +7,9 @@ class_name MovementComponent
 
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+@export_group("Sprint")
+@export var sprint_speed_multiplier: float = 1.5
+@export var sprint_stamina_cost_per_second: float = 15.0
 #==============================================================================
 # Private Variables
 #==============================================================================
@@ -15,6 +18,7 @@ var _movement_input: Vector2 = Vector2.ZERO
 var _move_direction: Vector3 = Vector3.ZERO
 var _facing_direction: Vector3 = Vector3.FORWARD
 var _is_moving: bool = false
+var _is_sprinting: bool = false
 
 # Forced motion (e.g. an attack lunge) overrides input-driven movement and
 # the MOVEMENT lock entirely — it's a distinct, higher-priority velocity
@@ -44,6 +48,9 @@ var is_moving: bool:
 	get:
 		return _is_moving
 
+var is_sprinting: bool:
+	get:
+		return _is_sprinting
 #==============================================================================
 # Public API
 #==============================================================================
@@ -68,6 +75,35 @@ func clear_attack_motion() -> void:
 	_forced_motion_active = false
 	_forced_motion_remaining_distance = 0.0
 
+# Called by EvadeAction the instant the dash's own travel ends. Only
+# takes effect if the dash button is still held and stamina remains —
+# EvadeAction doesn't need to check either condition itself.
+func try_start_sprint() -> bool:
+
+	if context.resources == null:
+		return false
+
+	if context.input == null or not context.input.dash_held:
+		return false
+
+	if not context.resources.has_resource(ResourceType.Id.STAMINA, 0.01):
+		return false
+
+	_is_sprinting = true
+	return true
+
+# Resets animation speed immediately, not lazily — so a new action
+# (attack, skill, ...) that locks MOVEMENT the same frame sprint ends
+# never inherits the sped-up speed_scale. See _update_sprint().
+func stop_sprint() -> void:
+
+	if not _is_sprinting:
+		return
+
+	_is_sprinting = false
+
+	if context.animation != null:
+		context.animation.reset_animation_speed()
 # Directly overrides facing_direction — used to snap the character toward
 # a target when initiating an attack (see AttackAction._face_target()).
 # Deliberately NOT gated by ROTATION lock itself (this IS the attack's
@@ -108,7 +144,8 @@ func physics_update(delta: float) -> void:
 		return
 
 	_update_direction()
-
+	_update_sprint(delta)  
+	
 	_apply_gravity(character, delta)
 
 	if _forced_motion_active:
@@ -164,7 +201,7 @@ func _update_direction() -> void:
 	# Default movement-based facing.
 	if _is_moving:
 		_facing_direction = _move_direction.normalized()
-
+		
 func _apply_horizontal_velocity(character: CharacterBody3D) -> void:
 
 	var stats := context.stats
@@ -173,6 +210,9 @@ func _apply_horizontal_velocity(character: CharacterBody3D) -> void:
 
 	if stats != null:
 		speed = stats.get_stat(StatType.Id.MOVE_SPEED)
+
+	if _is_sprinting:                          # NEW
+		speed *= sprint_speed_multiplier       # NEW
 
 	character.velocity.x = _move_direction.x * speed
 	character.velocity.z = _move_direction.z * speed
@@ -199,3 +239,36 @@ func _is_movement_locked() -> bool:
 
 func _is_rotation_locked() -> bool:
 	return context.is_locked(ActionLock.Id.ROTATION)
+
+# Drains stamina while sprinting and cancels it the moment any of its
+# conditions stop holding. Deliberately does NOT cancel just because
+# the player briefly stops moving (_is_moving false) — that just pauses
+# the drain, so releasing WASD for a second while still holding dash
+# doesn't force a fresh dash to resume sprinting, matching Genshin/WuWa.
+func _update_sprint(delta: float) -> void:
+
+	if not _is_sprinting:
+		return
+
+	if context.resources == null or context.input == null:
+		stop_sprint()
+		return
+
+	if not context.input.dash_held:
+		stop_sprint()
+		return
+
+	if _is_movement_locked():
+		stop_sprint()
+		return
+
+	if not _is_moving:
+		return
+
+	var cost := sprint_stamina_cost_per_second * delta
+
+	if not context.resources.has_resource(ResourceType.Id.STAMINA, cost):
+		stop_sprint()
+		return
+
+	context.resources.spend(ResourceType.Id.STAMINA, cost)

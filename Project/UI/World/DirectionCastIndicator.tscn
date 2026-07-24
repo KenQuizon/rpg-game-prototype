@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://b1g2be25ruecx"]
+
+[ext_resource type="Script" uid="uid://cfank0a42uqdd" path="res://Project/UI/World/DirectionCastIndicator.gd" id="1_xgcfb"]
+[ext_resource type="Shader" uid="uid://pg86r27w5x3v" path="res://Assets/Shader/DirectionCastIndicator.gdshader" id="2_a06r3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g3r0j"]
+render_priority = 0
+shader = ExtResource("2_a06r3")
+shader_parameter/fill_color = Color(1, 1, 1, 0.019607844)
+shader_parameter/outline_color = Color(1, 1, 1, 0.19607843)
+shader_parameter/outline_width = 0.010000000475
+shader_parameter/shaft_half_width = 0.0750000035625
+shader_parameter/head_half_width = 0.0750000035625
+shader_parameter/head_length = 0.250000011875
+shader_parameter/flip_head = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2nri0"]
+size = Vector2(1, 1)
+
+[node name="DirectionCastIndicator" type="Node3D" unique_id=1364669717]
+script = ExtResource("1_xgcfb")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1368115859]
+material_override = SubResource("ShaderMaterial_g3r0j")
+mesh = SubResource("PlaneMesh_2nri0")
